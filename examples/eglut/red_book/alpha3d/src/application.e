@@ -4,8 +4,8 @@ indexing
         application: "alpha3D"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/01/27 18:45:13 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:28:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	APPLICATION
@@ -13,8 +13,6 @@ class
 inherit
 	
 	EGLUT_APPLICATION
-		export
-			{NONE} all
 		redefine
 			initial_displaymode,
 			main_window

@@ -4,8 +4,8 @@ indexing
         application: "bezcurve"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/09/11 07:34:45 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:29:16 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	APPLICATION
@@ -13,8 +13,6 @@ class
 inherit
 	
 	EGLUT_APPLICATION
-		export
-			{NONE} all
 		redefine
 			initial_displaymode,
 			main_window

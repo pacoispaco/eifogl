@@ -4,8 +4,8 @@ indexing
         application: "cube"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:34:19 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:29:35 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	APPLICATION
@@ -13,8 +13,6 @@ class
 inherit
 	
 	EGLUT_APPLICATION
-		export
-			{NONE} all
 		redefine
 			initial_displaymode,
 			main_window

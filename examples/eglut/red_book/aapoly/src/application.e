@@ -3,8 +3,8 @@ indexing
         application: "aapoly"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:32:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:26:54 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	APPLICATION
@@ -12,8 +12,6 @@ class
 inherit
 	
 	EGLUT_APPLICATION
-		export
-			{NONE} all
 		redefine
 			initial_displaymode,
 			main_window

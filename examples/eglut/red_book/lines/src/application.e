@@ -3,8 +3,8 @@ indexing
         application: "lines"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:35:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:30:56 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	APPLICATION
@@ -12,8 +12,6 @@ class
 inherit
 	
 	EGLUT_APPLICATION
-		export
-			{NONE} all
 		redefine
 			initial_displaymode,
 			main_window
