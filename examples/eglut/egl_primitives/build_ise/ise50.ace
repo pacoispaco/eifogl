@@ -1,8 +1,8 @@
 -- application: "egl_primitives"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/10/30 22:54:54 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2002/01/08 22:28:05 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	egl_primitives
@@ -55,6 +55,7 @@ cluster
 external
         include_path:   "$(GL)\include",
                         "$(GLUT)\include",
+                        "$(EIFOGL)\egl\c\include",
                         "$(EIFOGL)\eglut\include";
 
         object:         "$(GL)\lib\opengl32.lib",
