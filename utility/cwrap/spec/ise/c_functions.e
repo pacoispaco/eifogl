@@ -1,10 +1,11 @@
 indexing
 	description: "Some useful C functions"
-	library: "Eiffel C wrapper utilities"
+	library: "Eiffel C wrapper utilities (EiffelOpenGL)"
+	compilers: "ISE 5.2"	
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/08 11:59:17 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/23 21:20:23 $"
+	revision: "$Revision: 1.2 $"
 
 class C_FUNCTIONS
 	
@@ -24,8 +25,14 @@ feature	-- Basic operations
 			"free"
 		end
 	
+	c_memcpy (dest, src: POINTER; len: INTEGER): POINTER is
+		external
+			"C [macro <string.h>] (void *, const void *, size_t): void *"
+		alias	
+			"memcpy"
+		end
+	
 end -- class C_FUNCTIONS
-
 
 -- begin documentation
 --

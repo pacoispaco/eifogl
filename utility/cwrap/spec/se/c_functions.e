@@ -4,8 +4,8 @@ indexing
 	compilers: "SmallEiffel -0.74 beta #17 (lcc-win32 3.7)"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/09/02 08:38:01 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/23 21:20:35 $"
+	revision: "$Revision: 1.3 $"
 
 class C_FUNCTIONS
 	
@@ -27,6 +27,14 @@ feature	-- Basic operations
 			"free"
 		end
 	
+	c_memcpy (dest, src: POINTER; len: INTEGER): POINTER is
+		external
+--			"C [macro <string.h>] (void *, const void *, size_t): void *"
+			"C use <string.h>]"		
+		alias	
+			"memcpy"
+		end
+
 end -- class C_FUNCTIONS
 
 
