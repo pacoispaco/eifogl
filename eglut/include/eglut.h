@@ -5,8 +5,8 @@
  * library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
  * author: "Paul Cohen"
  * copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
- * date: "$Date: 2002/03/30 09:37:37 $"
- * revision: "$Revision: 1.3 $"
+ * date: "$Date: 2002/11/13 16:38:43 $"
+ * revision: "$Revision: 1.5 $"
  */
 
 #ifndef __EGLUT__
