@@ -5,8 +5,8 @@
  * library: "EGL - Eiffel wrapping of the OpenGL library"
  * author: "Paul Cohen"
  * copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
- * date: "$Date: 2001/10/26 22:38:10 $"
- * revision: "$Revision: 1.1 $"
+ * date: "$Date: 2002/01/27 18:48:56 $"
+ * revision: "$Revision: 1.2 $"
  */
 
 #ifndef __EGL__
@@ -21,5 +21,7 @@
 #define c_integer_in_glint_array(p, i) (((GLint*)p)[i])
 #define c_put_integer_in_gluint_array(p, i, n) (((GLuint*)p)[i]=(GLuint)n)
 #define c_integer_in_gluint_array(p, i) (((GLuint*)p)[i])
+#define c_put_integer_in_glubyte_array(p, i, n) (((GLubyte*)p)[i]=(GLubyte)n)
+#define c_integer_in_glubyte_array(p, i) (((GLubyte*)p)[i])
 
 #endif
