@@ -8,8 +8,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/01/14 22:41:47 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EGLUT_APPLICATION
@@ -40,7 +40,8 @@ feature {NONE} -- Initialization
 			init_gl
 			
 			-- Set the application object in the EGLUT C interface
-			eglut_set_application_object (ceif_adopt (Current))
+--			eglut_set_application_object (ceif_adopt (Current))
+			eglut_initialize_library (current)
 			
 			-- Create the main window
 			!! main_window.make
@@ -104,7 +105,7 @@ feature	-- Access
 			Result := 100
 		end
 	
-feature {NONE} -- Implementation (Callbacks)
+feature -- Implementation (Callbacks)
 	
 	frozen main_application_callback (event, i1, i2, i3, i4: INTEGER; c: CHARACTER) is
 			-- The main application callback feature. `event'
@@ -256,12 +257,18 @@ feature {NONE} -- Implementation (GLUT wrappers)
 	
 feature {NONE} -- Implementation (EGLUT C interface)	
 	
-	frozen eglut_set_application_object (p: POINTER) is
-			-- Set the application object in the EGLUT C interface
+--	frozen eglut_set_application_object (p: POINTER) is
+--			-- Set the application object in the EGLUT C interface
+--		external
+--			"C [macro <eglut.h>] (EIF_OBJ)"
+--		end
+	
+	frozen eglut_initialize_library (object: like Current) is 
+			-- Intialize the C side of eglut.
 		external
 			"C [macro <eglut.h>] (EIF_OBJ)"
 		end
-	
+
 feature {NONE} -- Implementation (CECIL stuff)	
 	
 	ceif_adopt (object: ANY): POINTER is
