@@ -3,7 +3,7 @@ License for EiffelOpenGL
 EiffelOpenGL is licensed under the EFL license as formulated
 in the file "forum.txt".
 
-There exists one cluster of classes in EiffelOpenGL that is not 
+There exists one cluster of classes in EiffelOpenGL that is *not* 
 licensed under the EFL license and that is the files in the 
 directory "utility/string". Those files may not be used for any 
 other pupose than compiling the EiffelOpenGL example programs. They
