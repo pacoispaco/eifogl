@@ -3,8 +3,8 @@ indexing
         application: "teapots"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/11/12 21:34:52 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/08 11:39:56 $"
+	revision: "$Revision: 1.3 $"
 
 class MAIN_WINDOW
 
@@ -176,7 +176,7 @@ feature {NONE} -- Implementation
 	teapot_list: INTEGER
 			-- Id of display list for drawing teapot
 	
-	render_teapot (x, y, ambr, ambg, ambb, difr, difg, difb, specr, specg, specb, shine: DOUBLE) is
+	render_teapot (x, y, ambr, ambg, ambb, difr, difg, difb, specr, specg, specb, shine: REAL) is
 			-- Move object into position. Use 3rd through 12th
 			-- parameters to specify the material property. Draw a
 			-- teapot. 
@@ -199,7 +199,7 @@ feature {NONE} -- Implementation
 			mat.put (specg, 2)
 			mat.put (specb, 3)
 			egl_material_fv (Gl_front, Gl_specular, mat)
-			egl_material_f (Gl_front, Gl_shininess, shine * 128.0)
+			egl_material_f (Gl_front, Gl_shininess, shine * 128)
 			egl_call_list (teapot_list)
 			egl_pop_matrix
 		end
