@@ -118,7 +118,7 @@ Here are some freqently (and not so frequently) asked questions and answers.
 <OL>
 
 <LI><B>What does EiffelOpenGL consist of?</B><P>
-A decent number of Eiffel classes and a few C and C header files. Together they
+A decent number of Eiffel classes and a few C text and header files. Together they
 implement a wrapping of the OpenGL and GLUT libraries and also the WGL OpenGL
 extension library. Originally I also started wrapping the OpenGL AUX library 
 but dropped that in favor of GLUT. <P>
@@ -128,15 +128,28 @@ EiffelOpenGL is divided into three parts:<P>
 * EWGL. The Eiffel library that wraps WGL, the OpenGL extension library
 for the Win32 platform.<P>
 
-<LI><B>What implementations of OpenGL and GLUT are supported?</B><P>
-Currently only the Microsoft Win32 OpenGL implementation and the GLUT 3.7 (and 3.6) 
-implementation for Win32. Of course EiffelOpenGL should work well with any implementation
-that is fully OpenGL compliant. However, as every windowing platform has its own
-OpenGL extension library for integrating OpenGL, those extension libraries need
-to be wrapped as well. Today only WGL is wrapped. My goal is of course to have 
-EiffelOpenGL run smoothly on all important OpenGL platforms such as X Window. 
-Since GLUT is a simple windowing system for OpenGL that already exists on a 
-number of platforms it should work on X Window as it is.</LI><P>
+<LI><B>What versions/implementations of OpenGL and GLUT are supported?</B><P>
+Since development has been done on the Win32 platform and because I've only
+used the OpenGL files provided by Microsoft I have so far only wrapped OpenGL 
+1.1 functionality.
+<P>
+The currently shipping opengl32.dll from Microsoft only has entry points
+for OpenGL 1.1. If an application wants to use OpenGL 1.2 or 1.3 functions, 
+it has to use the function wglGetProcAddress() in order to obtain the OpenGL
+1.2/1.3 entry points from the driver. There is a very neat and small OpenGL SDK 
+from SGI that makes it easy to use OpenGL 1.2 or 1.3 on the Win32 platform and 
+I intend to use that SDK for wrapping the functionality provided in those newer 
+OpenGL versions.
+<P>
+As for the OpenGL extension libraries for different windowing systems I have
+only yet wrapped WGL (Win32 extension library). My goal is of course to have 
+EiffelOpenGL run smoothly on all important OpenGL platforms such as X Window,
+which means eventuallt wrapping GLX (X Window extension library).
+<P>
+EGLUT was first developed with GLUT 3.6 but I now use 3.7.3 and it works fine.
+Since GLUT is platform independent and already exists on a number of platforms, 
+EGLUT should work on X Window as it is today, but I haven't tested that yet.
+</LI><P>
 
 <LI><B>What do I need to use EiffelOpenGL?</B><P>
 To use EiffelOpenGL you need: <P>
@@ -158,7 +171,8 @@ the glut32.lib import library as well as the glut32.dll dynamic library. </LI><P
 <LI><B>How large is the EiffelOpenGL source code?</B><P>
 The library contains 125 Eiffel classes and the example programs another 43
 classes. The library also contains 3 C text files and 6 C header files. All
-in all 8.000+ LOC.</LI><P>
+in all 8.000+ LOC. However I add new code on a regular basis and the actual
+current metrics may differ from that.</LI><P>
 
 <LI><B>Are there any example programs?</B>
 Yes. Look under the examples link. 
@@ -194,8 +208,8 @@ guitar</A>.
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2002/01/08 18:39:40 $" <BR>
-"$Revision: 1.6 $"
+"$Date: 2002/03/23 13:31:27 $" <BR>
+"$Revision: 1.7 $"
 </FONT>
 </TD></TR>
 
