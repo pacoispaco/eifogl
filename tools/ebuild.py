@@ -2,8 +2,8 @@
 # Description:	Python module for building ISE Eiffel systems
 # Author:	Paul Cohen
 # Copyright:	Copyright (c) 2001 Paul Cohen
-# Date:		$Date: 2001/11/01 20:15:56 $
-# Revision:	$Revision: 1.2 $
+# Date:		$Date: 2001/11/11 14:16:26 $
+# Revision:	$Revision: 1.3 $
 ####################################################################
 
 import os
@@ -618,6 +618,7 @@ class EbuildTargetSpecFile:
 		ace_file = ""
 		build_type = ""
 		parsing_state = self.Parsing_new_target ()
+		error_preamble = "\nInvalid ebuild target file "
 		
 		for line in lines:
 			# Skip all comment lines and blank lines
@@ -626,11 +627,11 @@ class EbuildTargetSpecFile:
 				if parsing_state == self.Parsing_new_target ():
 					words = string.split (stripped_line)
 					if len (words) != 2:
-						err_msg = "Error: Invalid number of tokens on line " + str (i) + "."
+						err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Invalid number of tokens on line " + str (i) + "."
 						break
 					else:
 						if words[0] != "target":
-							err_msg = "Error: Expected keyword \"target\" is not first token on line " + str (i) + "."
+							err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Expected keyword \"target\" is not first token on line " + str (i) + "."
 							break
 						else:
 							target_name = words[1]
@@ -638,27 +639,27 @@ class EbuildTargetSpecFile:
 				elif parsing_state == self.Parsing_compiler_spec ():
 					words = string.split (stripped_line, ": ")
 					if len (words) != 2:
-						err_msg = "Error: Invalid number of tokens on line " + str (i)
+						err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Invalid number of tokens on line " + str (i)
 						break
 					else:
 						if words[0] != "compiler":
-							err_msg = "Error: Expected keyword \"compiler\" is not first token on line " + str (i) + "."
+							err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Expected keyword \"compiler\" is not first token on line " + str (i) + "."
 							break
 						else:
 							compiler = string.strip (words[1])
 							if not (compiler == "es4" or compiler == "ec"):
-								err_msg = "Error: Invalid compiler selection on line " + str (i) + ". Must be one of \"es4\", \"ec\"."
+								err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Invalid compiler selection on line " + str (i) + ". Must be one of \"es4\", \"ec\"."
 								break
 							else:
 								parsing_state = self.Parsing_ace_file_spec ()
 				elif parsing_state == self.Parsing_ace_file_spec ():
 					words = string.split (stripped_line, ": ")
 					if len (words) != 2:
-						err_msg = "Error: Invalid number of tokens on line " + str (i)
+						err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Invalid number of tokens on line " + str (i)
 						break
 					else:
 						if words[0] != "ace_file":
-							err_msg = "Error: Expected keyword \"ace_file\" is not first token on line " + str (i) + "."
+							err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Expected keyword \"ace_file\" is not first token on line " + str (i) + "."
 							break
 						else:
 							path = string.strip (words[1])
@@ -680,23 +681,23 @@ class EbuildTargetSpecFile:
 									else:
 									        ace_file = ace_file + "\\" + item
 							if not os.path.exists (ace_file):
-								err_msg = "Error: Path specified on line " + str(i) + " is not a valid path. (" + ace_file + ")"
+								err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Path specified on line " + str(i) + " is not a valid path.\nPath: \"" + ace_file + "\""
 								break
 							else:
 								parsing_state = self.Parsing_build_type_spec ()
 				elif parsing_state == self.Parsing_build_type_spec ():
 					words = string.split (stripped_line, ": ")
 					if len (words) != 2:
-						err_msg = "Error: Invalid number of tokens on line " + str (i)
+						err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Invalid number of tokens on line " + str (i)
 						break
 					else:
 						if words[0] != "build_type":
-							err_msg = "Error: Expected keyword \"build_type\" is not first token on line " + str (i)
+							err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Expected keyword \"build_type\" is not first token on line " + str (i)
 							break
 						else:
 							build_type = string.strip (words[1])
 							if not (build_type == "finalize" or build_type == "freeze"):
-								err_msg = "Error: Invalid build type on line " + str (i) + ". Must be one of \"finalize\", \"freeze\"."
+								err_msg = error_preamble + "\"" + self.file_name() + "\".\n" + "Invalid build type on line " + str (i) + ". Must be one of \"finalize\", \"freeze\"."
 								break
 							else:
 								parsing_state = self.Parsing_new_target ()
