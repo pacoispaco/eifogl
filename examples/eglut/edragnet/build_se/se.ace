@@ -1,8 +1,8 @@
 -- application: "edragnet"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
--- date: "$Date: 2002/12/23 22:01:52 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2003/01/27 16:33:28 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	edragnet
@@ -55,9 +55,9 @@ cluster
 	math:                            "${EIFOGL}\utility\math\spec\se"
 	
 		 -- SmartEiffel libraries
-	base:                            "C:\programs\elj\SmallEiffel\lib\base"
-	kernel:                          "C:\programs\elj\SmallEiffel\lib\kernel"
-	io:                              "C:\programs\elj\SmallEiffel\lib\io" 
+	base:                            "C:\programs\elj\SmartEiffel\lib\base"
+	kernel:                          "C:\programs\elj\SmartEiffel\lib\kernel"
+	io:                              "C:\programs\elj\SmartEiffel\lib\io" 
 	
 		-- GOBO
 	eiffel_base:                     "${GOBO}\library\other\eiffelbase"
@@ -76,7 +76,7 @@ external
 
 generate
 
-        c_compiler_options "-Ic:\programs\elj\SmallEiffel\sys\runtime -I${GL_LCC}\include\gl -I${EIFOGL}\egl\c\include -I${EIFOGL}\spec\compiler\se\eglut\include -I${EIFOGL}\utility\cwrap\include -I${GLUT}\include"
+        c_compiler_options "-Ic:\programs\elj\SmartEiffel\sys\runtime -I${GL_LCC}\include\gl -I${EIFOGL}\egl\c\include -I${EIFOGL}\spec\compiler\se\eglut\include -I${EIFOGL}\utility\cwrap\include -I${GLUT}\include"
 	
 --	linker_options: "-subsystem Windows"
 end
