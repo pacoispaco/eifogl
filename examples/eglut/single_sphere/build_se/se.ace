@@ -1,8 +1,8 @@
 -- application: "single_sphere"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
--- date: "$Date: 2003/03/11 10:37:20 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2003/04/27 06:41:57 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	single_sphere
@@ -78,7 +78,7 @@ external
 
 generate
 
-        c_compiler_options "-Ic:\programs\elj\SmartEiffel\sys\runtime -I${GL_LCC}\include\gl -I${EIFOGL}\egl\c\include -I${EIFOGL}\spec\compiler\se\eglut\include -I${EIFOGL}\utility\cwrap\include -I${GLUT}\include"
+        c_compiler_options "-Ic:\programs\elj\SmartEiffel\sys\runtime -I${GL_LCC}\include\gl -I${EIFOGL}\egl\include -I${EIFOGL}\spec\compiler\se\eglut\include -I${EIFOGL}\utility\cwrap\include -I${GLUT}\include"
 	
 	linker_options: "-subsystem Windows"
 end
