@@ -8,8 +8,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/02/10 21:28:34 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLUT_TOP_LEVEL_WINDOW
 
@@ -70,6 +70,13 @@ feature {NONE} -- Implementation (GLUT externals)
 		do
 			s := title.area
 			Result := glut_create_window ($s)
+		end
+	
+	glut_full_screen is
+		external
+			"C [macro <glut.h>]"
+		alias
+			"glutFullScreen()"
 		end
 	
 	glut_create_window (title: POINTER): INTEGER is
