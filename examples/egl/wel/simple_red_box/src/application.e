@@ -3,8 +3,8 @@ indexing
         application: "gl_test"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/01/27 18:59:24 $"
+	revision: "$Revision: 1.2 $"
 
 class APPLICATION
 
@@ -12,7 +12,7 @@ inherit
 
 	WEL_APPLICATION
 	
-creation  
+creation 
 	make
 	
 feature -- Initialization
