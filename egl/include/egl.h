@@ -5,8 +5,8 @@
  * library: "EGL - Eiffel wrapping of the OpenGL library"
  * author: "Paul Cohen"
  * copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
- * date: "$Date: 2002/09/11 08:18:02 $"
- * revision: "$Revision: 1.3 $"
+ * date: "$Date: 2003/03/25 14:09:33 $"
+ * revision: "$Revision: 1.1 $"
  */
 
 #ifndef __EGL__
