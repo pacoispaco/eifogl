@@ -8,8 +8,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/02/10 21:28:34 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/03/23 15:01:14 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLUT_TOP_LEVEL_WINDOW
 
@@ -66,10 +66,10 @@ feature {NONE} -- Implementation (GLUT externals)
 		require
 			title_not_void: title /= Void
 		local
-			s: SPECIAL [CHARACTER]
+			a: ANY
 		do
-			s := title.area
-			Result := glut_create_window ($s)
+			a := title.to_c
+			Result := glut_create_window ($a)
 		end
 	
 	glut_full_screen is
