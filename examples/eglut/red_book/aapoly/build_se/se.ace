@@ -1,8 +1,8 @@
 -- application: "aapoly"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
--- date: "$Date: 2002/03/23 20:04:17 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2002/09/11 08:29:03 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	aapoly
@@ -63,14 +63,24 @@ cluster
 	gobo_container:                  "c:\programs\elj-win32\lib\gobo\library\structure\container" 
 	
 external
+	-- Directories where to search for C .h files:
+	external_header_path: "c:\proj\eifogl\spec\compiler\se\eglut\include"
+	
+	-- External C files to be considered; update and uncomment the
+	-- following line:
+	external_c_files: "eglut.c"
+	
+	-- External object files to be considered; update and uncomment the
+	-- following line:
+--	external_object_files: "eglut.obj"
+	
 	cecil ("c:\proj\eifogl\examples\eglut\red_book\aapoly\build_se\cecil.se")
 	
-	external_lib:      "c:\programs\elj-win32\lcc\lib\opengl32.lib c:\programs\elj-win32\lcc\lib\glu32.lib c:\home\paco\dev\glut\glut-3.7.6\lcclib\glut32.lib c:\proj\eifogl\eglut\lib\eglut.lib"
+	external_lib:      "c:\programs\elj-win32\lcc\lib\opengl32.lib c:\programs\elj-win32\lcc\lib\glu32.lib c:\home\paco\dev\glut\glut-3.7.6\lcclib\glut32.lib"	
+	
 generate
 
---        c_compiler_options "-E -M -Ic:\proj\eifogl\utility\cwrap\include -Ic:\home\paco\dev\glut\glut-3.7.3\include -Ic:\programs\elj-win32\lcc\include\gl"
---        c_compiler_options "-E"
-        c_compiler_options "-Ic:\proj\eifogl\egl\c\include -Ic:\proj\eifogl\spec\compiler\se\eglut\include -Ic:\proj\eifogl\utility\cwrap\include -Ic:\home\paco\dev\glut\glut-3.7.3\include -Ic:\programs\elj-win32\lcc\include\gl"
+        c_compiler_options "-Ic:\programs\elj-win32\SmallEiffel\sys\runtime -Ic:\proj\eifogl\egl\c\include -Ic:\proj\eifogl\spec\compiler\se\eglut\include -Ic:\proj\eifogl\utility\cwrap\include -Ic:\home\paco\dev\glut\glut-3.7.6\include -Ic:\programs\elj-win32\lcc\include\gl"
 end
 
 
