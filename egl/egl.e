@@ -6,8 +6,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/09/11 08:15:33 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2002/12/08 11:16:01 $"
+	revision: "$Revision: 1.9 $"
 
 class EGL
 	
@@ -186,17 +186,17 @@ feature -- Primitives (Specify vertices or rectangles)
 			gl_api.gl_vertex_3f (x, y, z)
 		end
 	
-	egl_vertex_3fv (v: ARRAY [REAL]) is
+	egl_vertex_3fv (fv: ARRAY [REAL]) is
 			-- Specify the x, y and z coordinates of a vertex. w is
 			-- set to its default value 1.
 		require
 			valid_state: drawing_a_primitive
-			v_not_void: v /= Void
-			two_coordinates: v.count = 3
+			fv_not_void: fv /= Void
+			two_coordinates: fv.count = 3
 		local
 			c_array: EGL_GLFLOAT_C_ARRAY
 		do
-			!! c_array.make_from_array (v)
+			!! c_array.make_from_array (fv)
 			gl_api.gl_vertex_3fv (c_array.pointer)
 		end
 	
@@ -209,15 +209,18 @@ feature -- Primitives (Specify vertices or rectangles)
 			gl_api.gl_vertex_3d (x, y, z)
 		end
 	
-	egl_vertex_3dv (v: ARRAY [REAL]) is
+	egl_vertex_3dv (dv: ARRAY [DOUBLE]) is
 			-- Specify the x, y and z coordinates of a vertex. w is
 			-- set to its default value 1.
 		require
 			valid_state: drawing_a_primitive
-			v_not_void: v /= Void
-			two_coordinates: v.count = 3
+			dv_not_void: dv /= Void
+			two_coordinates: dv.count = 3
+		local
+			c_array: EGL_GLDOUBLE_C_ARRAY			
 		do
-			-- TBD!
+			!! c_array.make_from_array (dv)
+			gl_api.gl_vertex_3dv (c_array.pointer)
 		end
 	
 	egl_vertex_4i (x, y, z, w: INTEGER) is
@@ -898,11 +901,16 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
 			valid_green_value: fv @ 2 >= 0.0 and fv @ 2 <= 1.0
 			valid_blue_value: fv @ 3 >= 0.0 and fv @ 3 <= 1.0
 			valid_alpha_value: fv @ 4 >= 0.0 and fv @ 4 <= 1.0
-		local
-			s: SPECIAL [REAL]
-		do
-			s := fv.area
-			gl_api.gl_color_4fv ($s)
+--		local
+--			s: SPECIAL [REAL]
+--		do
+--			s := fv.area
+--			gl_api.gl_color_4fv ($s)
+                local
+                        c_array: EGL_GLFLOAT_C_ARRAY
+                do
+                        !! c_array.make_from_array (fv)
+                        gl_api.gl_color_4fv (c_array.pointer)	
 		ensure
 			-- Color is set
 		end
@@ -936,6 +944,20 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
 			gl_api.gl_normal_3f (nx, ny, nz)
 		end
 		
+	egl_normal_3fv (fv: ARRAY [REAL]) is
+			-- Specify the `x', `y' and `z' coordinates of the new
+			-- current normal.
+		require
+			valid_state: True
+			fv_not_void: fv /= Void
+			fv_has_3_reals: fv.count = 3
+                local
+                        c_array: EGL_GLFLOAT_C_ARRAY
+                do
+                        !! c_array.make_from_array (fv)
+                        gl_api.gl_normal_3fv (c_array.pointer)	
+		end
+	
 	egl_normal_3d (nx, ny, nz: DOUBLE) is
 			-- Specify the `x', `y' and `z' coordinates of the new
 			-- current normal.
@@ -944,20 +966,21 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
 		do
 			gl_api.gl_normal_3d (nx, ny, nz)
 		end
-		
-	egl_normal_3fv (fv: ARRAY [REAL]) is
+	
+	egl_normal_3dv (dv: ARRAY [DOUBLE]) is
 			-- Specify the `x', `y' and `z' coordinates of the new
 			-- current normal.
 		require
 			valid_state: True
-			fv_not_void: fv /= Void
-			fv_has_3_reals: fv.count = 3
-		local
-			s: SPECIAL [REAL]
-		do
-			s := fv.area
-			gl_api.gl_normal_3fv ($s)
+			dv_not_void: dv /= Void
+			dv_has_3_doubles: dv.count = 3
+                local
+                        c_array: EGL_GLDOUBLE_C_ARRAY
+                do
+                        !! c_array.make_from_array (dv)
+                        gl_api.gl_normal_3dv (c_array.pointer)	
 		end
+	
 	
 feature -- Coloring and Lighting (specify light source, material, or lighting model parameter values)	
 	
@@ -973,11 +996,16 @@ feature -- Coloring and Lighting (specify light source, material, or lighting mo
 			-- valid_spot_exponent_value: 0 <= value <= 180
 			-- valid_spot_cutoff_value: 0 <= value <= 90 or value = 180
 			-- valid_attenuation_value: value >= 0
-		local
-			s: SPECIAL [REAL]
-		do
-			s := params.area
-			gl_api.gl_light_fv (light, pname, $s)
+--		local
+--			s: SPECIAL [REAL]
+--		do
+--			s := params.area
+--			gl_api.gl_light_fv (light, pname, $s)
+                local
+                        c_array: EGL_GLFLOAT_C_ARRAY
+                do
+                        !! c_array.make_from_array (params)
+                        gl_api.gl_light_fv (light, pname, c_array.pointer)	
 		ensure
 			-- Light parameter is set
 		end
@@ -992,11 +1020,16 @@ feature -- Coloring and Lighting (specify light source, material, or lighting mo
 			valid_material_property: is_valid_material_property (pname)
 			params_not_void: params /= Void
 			-- valid_shininess_value: 0 <= value <= 128 			 
-		local
-			s: SPECIAL [REAL]
-		do
-			s := params.area
-			gl_api.gl_material_fv (face, pname, $s)
+--		local
+--			s: SPECIAL [REAL]
+--		do
+--			s := params.area
+--			gl_api.gl_material_fv (face, pname, $s)
+                local
+                        c_array: EGL_GLFLOAT_C_ARRAY
+                do
+                        !! c_array.make_from_array (params)
+                        gl_api.gl_material_fv (face, pname, c_array.pointer)	
 		ensure
 			-- Material parameter is set
 		end
@@ -1024,11 +1057,16 @@ feature -- Coloring and Lighting (specify light source, material, or lighting mo
 			params_not_void: params /= Void
 --			valid_value: pname = Gl_light_model_color_control implies 
 --				     params @ 1 = Gl_single_color or params @ 1 = Gl_separate_specular_color
-		local
-			s: SPECIAL [REAL]
-		do
-			s := params.area
-			gl_api.gl_light_model_fv (pname, $s)
+--		local
+--			s: SPECIAL [REAL]
+--		do
+--			s := params.area
+--			gl_api.gl_light_model_fv (pname, $s)
+                local
+                        c_array: EGL_GLFLOAT_C_ARRAY
+                do
+                        !! c_array.make_from_array (params)
+                        gl_api.gl_light_model_fv (pname, c_array.pointer)	
 		ensure
 			-- Light model parameter is set
 		end
@@ -1986,6 +2024,7 @@ feature {NONE} -- Implementation (Uitilities)
 	bit16_to_integer (b: BIT 16): INTEGER is
 		local
 			i: INTEGER
+			d: DOUBLE
 		do
 			from  
 				i := 1
@@ -1993,7 +2032,8 @@ feature {NONE} -- Implementation (Uitilities)
 				i > 16
 			loop
 				if b.item (i) then
-					Result := Result + (2^(16-i)).truncated_to_integer
+					d := Result + (2^(16-i))
+					Result := d.truncated_to_integer
 				end
 				i := i + 1
 			end
