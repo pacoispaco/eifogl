@@ -2,13 +2,13 @@ indexing
 	description: "An Windows Client DC for OpenGL rendering that%
                      %can be used with ISE Eiffels WEL library."
 	library: "EWGL - Eiffel wrapping of the Win32 OpenGL extensions"
-	compilers: "ISE 4.3, ISE4.5. See dependencies."
+	compilers: "ISE 4.3, ISE4.5, ISE 5.0.24 See dependencies."
 	platforms: "Win32"
 	dependencies: "ISE's WEL, which means it will only work with ISE compilers."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:41 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/26 22:57:10 $"
+	revision: "$Revision: 1.2 $"
 
 class EWGL_WEL_CLIENT_DC
 
