@@ -1,0 +1,88 @@
+-- application: "NeHe lesson 7 translated to EffelOpenGL"
+-- author: "Paul Cohen"
+-- copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
+-- date: "$Date: 2002/03/23 19:31:18 $"
+-- revision: "$Revision: 1.1 $"
+
+system
+	lesson7
+
+root
+        APPLICATION (src_root): "make"
+
+default
+        assertion (all)
+	array_optimization (yes)
+	dead_code_removal (yes)
+	inlining (yes)
+	inlining_size ("4")
+	
+cluster
+
+		-- Eiffel OpenGL
+	eifogl:				"$EIFOGL"
+
+	        -- Application
+	src_root:			"$EIFOGL\examples\eglut\nehe\lesson7\src"
+
+		 -- EGL
+	all egl (eifogl):		"$\egl"
+
+		 -- EGL (Compiler specific "external" classes)
+	egl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\egl"
+        gl_constants (egl_comp):	"$\gl_constants"
+        glu_constants (egl_comp):	"$\glu_constants"
+
+		-- EGLUT     
+	eglut (eifogl):			"$\eglut"
+
+		-- EGLUT (Compiler specific "external" classes)
+	eglut_comp:			"$EIFOGL\spec\compiler\ise\eglut"
+		visible
+			EGLUT_APPLICATION
+				export
+					"main_application_callback"
+				end
+		end
+	
+	        -- ETGA
+	etga:                           "$EIFOGL\utility\libtga"
+	
+		-- C Wrap Utilities
+	cwrap:		  "$EIFOGL\utility\cwrap"
+	        exclude
+		        se
+		end
+			
+		-- EiffelBase   
+	all base:         "$ISE_EIFFEL\library\base"
+	        exclude
+		        table_eiffel3
+		end
+	
+	all time:         "$ISE_EIFFEL\library\time"
+	        exclude
+		        french; german
+		end
+	
+external
+        include_path:   "$(ISE_EIFFEL)\library\time\Clib\",
+	                "$(GL)\include",
+                        "$(GLUT)\include",
+                        "$(EIFOGL)\egl\c\include",
+                        "$(EIFOGL)\eglut\include",
+			"$(EIFOGL)\utility\libtga\include",
+			"$(EIFOGL)\utility\libtga\libtga-0.1.0\src";
+
+        object:         "$(ISE_EIFFEL)\library\time\spec\msc\lib\datetime.lib",
+			"$(GL)\lib\opengl32.lib",
+			"$(GL)\lib\glu32.lib",
+                        "$(GLUT)\lib\glut32.lib",
+                        "$(EIFOGL)\eglut\lib\eglut.lib",
+			"$(EIFOGL)\utility\libtga\lib\msc\libtga.lib";
+			
+end
+
+
+
+
