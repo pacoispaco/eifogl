@@ -1,0 +1,42 @@
+-- application: "read_tga_file"
+-- author: "Paul Cohen"
+-- copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
+-- date: "$Date: 2002/03/23 18:01:01 $"
+-- revision: "$Revision: 1.1 $"
+
+system
+	read_tga_file
+
+root
+        APPLICATION (src_root): "make"
+
+default
+        assertion (all);
+
+cluster
+                -- Application
+        src_root:         "$EIFOGL\utility\libtga\examples\read_tga_file\src"
+
+                -- ETGA
+        etga:             "$EIFOGL\utility\libtga"
+
+		-- C Wrap Utilities
+	cwrap:		  "$EIFOGL\utility\cwrap"
+			
+		-- EiffelBase   
+	all base:         "$ISE_EIFFEL\library\base"
+	        exclude
+		        table_eiffel3
+		end
+	
+external
+        include_path:   "$(EIFOGL)\utility\libtga\libtga-0.1.0\src",
+	                "$(EIFOGL)\utility\libtga\include";
+
+        object:         "$(EIFOGL)\utility\libtga\libtga-0.1.0\lib\libtga.lib";
+
+end
+
+
+
+
