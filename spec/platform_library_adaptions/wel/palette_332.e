@@ -8,8 +8,8 @@ indexing
 	dependencies: "ISE's WEL, which means it will only work with ISE compilers."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:41 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/04/27 06:47:24 $"
+	revision: "$Revision: 1.2 $"
 
 class PALETTE_332
 
@@ -29,7 +29,6 @@ feature {NONE}-- Initialization
 	make_evenly_distributed is
 		local
 			lp: WEL_LOG_PALETTE
-			pfd: PIXEL_FORMAT_DESCRIPTOR
 			pe: WEL_PALETTE_ENTRY
 			i: INTEGER
 			b8: BIT 8
