@@ -3,8 +3,8 @@ indexing
         application: "multi_sphere"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/23 21:16:29 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/04/26 21:45:23 $"
+	revision: "$Revision: 1.4 $"
 
 
 class MAIN_WINDOW
@@ -62,8 +62,6 @@ feature {NONE} -- Implementation (GLUT callbacks)
 			egl_clear (Gl_color_buffer_bit + Gl_depth_buffer_bit)
 		        glut_solid_sphere (1.0, 80, 64)
 			egl_flush
---			glut_set_window (id)
---			glut_swap_buffers
 		end
 	
 	on_reshape (width, height: INTEGER) is
@@ -81,8 +79,6 @@ feature {NONE} -- Implementation (GLUT callbacks)
 			end
 			egl_matrix_mode (Gl_modelview)
 			egl_load_identity
---			glut_set_window (id)
---			glut_swap_buffers
 		end
 	
 	on_keyboard (char: CHARACTER; modifier, x, y: INTEGER) is

@@ -3,8 +3,8 @@ indexing
         application: "sphere_and_red_box"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/09/11 08:26:36 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/04/26 21:41:16 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	MAIN_WINDOW
@@ -120,7 +120,7 @@ feature {NONE} -- Initialization
 		local
 			wgb: WEL_GROUP_BOX
 			st: WEL_STATIC
-			wsle: SINGLE_LINE_EDIT
+			wsle: SINGLE_LINE_EDIT_FOR_REAL
 		do
 			!! wsle_table.make (10)
 			!! wgb.make (Current, "Sphere material ambience [0.00, 1.00]", 5, 30, 235, 50, -1)
@@ -244,7 +244,7 @@ feature {NONE} -- Implementation (Window messages)
 	
 	default_process_message (msg, wparam, lparam: INTEGER) is
 		local
-			sle: SINGLE_LINE_EDIT
+			sle: SINGLE_LINE_EDIT_FOR_REAL
 		do
 			if msg = Wm_sle_return_pressed then
 				-- A <Return> has been pressed in a
@@ -323,9 +323,8 @@ feature {NONE} -- Implementation (Basic operations)
 			-- Show information on the OpenGL implementation that
 			-- is currently being used.
 		local
-			s: STRING
-			a_s: ANALYSIS_STRING
-			s_list: LIST [STRING]
+			s, s2: STRING
+			ls: LIST [STRING]
 			wmb: WEL_MSG_BOX
 		do
 			!! s.make (0)
@@ -340,19 +339,19 @@ feature {NONE} -- Implementation (Basic operations)
 			s.append ("%N%N")
 			s.append ("Supported extensions:%N")
 
-			!! a_s.init (egl_get_string (Gl_extensions))
-			s_list := a_s.fields (" ")
+			s2 := egl_get_string (Gl_extensions)
+			ls := s2.split (' ')
 			from  
-				s_list.start
+				ls.start
 			until
-				s_list.after
+				ls.after
 			loop
 				s.append ("(")
-				s.append (s_list.index.out)
+				s.append (ls.index.out)
 				s.append (") ")
-				s.append (s_list.item)
+				s.append (ls.item)
 				s.append ("%N")
-				s_list.forth
+				ls.forth
 			end
 			
 			!! wmb.make 
@@ -473,43 +472,43 @@ feature {NONE} -- Implementation (Quadrics control)
 			-- Check the GUI for valid values
 		do
 			if not amb_red_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the ambient red parameter.")
+				show_error_msg ("Invalid value for the ambient red parameter. It must be a real number in the specified interval.")
 				amb_red_wsle.set_focus
 				amb_red_wsle.select_all			
 			elseif not amb_green_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the ambient green parameter.")
+				show_error_msg ("Invalid value for the ambient green parameter. It must be a real number in the specified interval.")
 				amb_green_wsle.set_focus
 				amb_green_wsle.select_all
 			elseif not amb_blue_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the ambient blue parameter.")
+				show_error_msg ("Invalid value for the ambient blue parameter. It must be a real number in the specified interval.")
 				amb_blue_wsle.set_focus
 				amb_blue_wsle.select_all			
 			elseif not spec_red_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the specular red parameter.")
+				show_error_msg ("Invalid value for the specular red parameter. It must be a real number in the specified interval.")
 				spec_red_wsle.set_focus
 				spec_red_wsle.select_all			
 			elseif not spec_green_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the specular green parameter.")
+				show_error_msg ("Invalid value for the specular green parameter. It must be a real number in the specified interval.")
 				spec_green_wsle.set_focus
 				spec_green_wsle.select_all			
 			elseif not spec_blue_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the specular blue parameter.")
+				show_error_msg ("Invalid value for the specular blue parameter. It must be a real number in the specified interval.")
 				spec_blue_wsle.set_focus
 				spec_blue_wsle.select_all			
 			elseif not shininess_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the shininess parameter.")
+				show_error_msg ("Invalid value for the shininess parameter. It must be a real number in the specified interval.")
 				shininess_wsle.set_focus
 				shininess_wsle.select_all			
 			elseif not emis_red_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the emission red parameter.")
+				show_error_msg ("Invalid value for the emission red parameter. It must be a real number in the specified interval.")
 				emis_red_wsle.set_focus
 				emis_red_wsle.select_all			
 			elseif not emis_green_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the emission green parameter.")
+				show_error_msg ("Invalid value for the emission green parameter. It must be a real number in the specified interval.")
 				emis_green_wsle.set_focus
 				emis_green_wsle.select_all			
 			elseif not emis_blue_wsle.has_valid_value then
-				show_error_msg ("Invalid value for the emission blue parameter.")
+				show_error_msg ("Invalid value for the emission blue parameter. It must be a real number in the specified interval.")
 				emis_blue_wsle.set_focus
 				emis_blue_wsle.select_all			
 			else
@@ -565,31 +564,31 @@ feature {NONE} -- Implementation (Internals)
 	
 	Title: STRING is "EGL demo 2"
 	
-	amb_red_wsle: SINGLE_LINE_EDIT
+	amb_red_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	amb_red_wsle_id: INTEGER is 20001
-	amb_green_wsle: SINGLE_LINE_EDIT
+	amb_green_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	amb_green_wsle_id: INTEGER is 20002
-	amb_blue_wsle: SINGLE_LINE_EDIT
+	amb_blue_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	amb_blue_wsle_id: INTEGER is 20003
 
-	spec_red_wsle: SINGLE_LINE_EDIT
+	spec_red_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	spec_red_wsle_id: INTEGER is 20004
-	spec_green_wsle: SINGLE_LINE_EDIT
+	spec_green_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	spec_green_wsle_id: INTEGER is 20005
-	spec_blue_wsle: SINGLE_LINE_EDIT
+	spec_blue_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	spec_blue_wsle_id: INTEGER is 20006
 
-	shininess_wsle: SINGLE_LINE_EDIT
+	shininess_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	shininess_wsle_id: INTEGER is 20007
 	
-	emis_red_wsle: SINGLE_LINE_EDIT
+	emis_red_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	emis_red_wsle_id: INTEGER is 20008
-	emis_green_wsle: SINGLE_LINE_EDIT
+	emis_green_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	emis_green_wsle_id: INTEGER is 20009
-	emis_blue_wsle: SINGLE_LINE_EDIT
+	emis_blue_wsle: SINGLE_LINE_EDIT_FOR_REAL
 	emis_blue_wsle_id: INTEGER is 20010
 	
-	wsle_table: HASH_TABLE [SINGLE_LINE_EDIT, INTEGER]
+	wsle_table: HASH_TABLE [SINGLE_LINE_EDIT_FOR_REAL, INTEGER]
 			-- Table containing all edit fields hashed by control id.
 	
 	on_rb: WEL_RADIO_BUTTON
