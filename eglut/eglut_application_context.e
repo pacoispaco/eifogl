@@ -7,8 +7,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/13 16:57:22 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/11/14 14:29:42 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLUT_APPLICATION_CONTEXT
 	
@@ -33,11 +33,13 @@ feature -- Access
 	
 feature {NONE} -- Implementation 
 	
-	frozen windows: HASH_TABLE [EGLUT_WINDOW, INTEGER] is
+	frozen windows: DS_HASH_TABLE [EGLUT_WINDOW, INTEGER] is
 			-- Hash table containing all the applications EGLUT
 			-- windows hashed by the unique GLUT window id:s.
 		once
-			!! Result.make (0)
+			-- Note! This should not be hardcoded! Maybe a feature
+			-- `no_of_windows'!?
+			!! Result.make (10)
 		end
 	
 feature {NONE} -- Implementation
