@@ -8,8 +8,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/04/03 21:26:26 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/11 08:36:10 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	EGLUT_APPLICATION
@@ -50,7 +50,7 @@ feature {NONE} -- Initialization
 			init_gl
 			
 			-- Set the application object in the EGLUT C interface
-			ceif_adopt (Current)
+--			ceif_adopt (Current)
 			eglut_set_application_object (Current)
 			
 			-- Create the main window
@@ -291,7 +291,7 @@ feature {NONE} -- Implementation (GLUT wrappers)
 --			"C [macro <glut.h>] ()"			
 			"C macro use <glut.h>"
 		alias
-			"glutMainLoop"
+			"glutMainLoop()"
 		end
 	
 feature {NONE} -- Implementation (EGLUT C interface)	
