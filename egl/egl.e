@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/02/10 21:19:29 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/04/11 19:24:20 $"
+	revision: "$Revision: 1.7 $"
 
 class EGL
 	
@@ -1039,7 +1039,24 @@ feature -- Coloring and Lighting (Obtain light source or material parameter valu
 	
 feature -- Clipping (Specify a clipping plane)	
 	
---	egl_clip_plane TBD!	
+        egl_clip_plane (plane: INTEGER; equation: ARRAY [DOUBLE]) is
+                        -- Specify a plane against which all geometry is
+                        -- clipped. `plane' specifies the plane in question and
+                        -- thefour values in èq' are interpreted as a plane
+                        -- equation. 
+                require
+                        valid_state: not drawing_a_primitive
+                        equation_not_void: equation /= Void
+                        valid_equation_size: equation.count = 4
+                        valid_plane: plane >= 0 and then plane <= 5
+			-- The last precondition might also be:
+			-- valid_plane: plane >= 0 and egl_get_value (Gl_max_clip_planes) - 1
+                local
+                        c_array: EGL_GLDOUBLE_C_ARRAY
+                do
+                        !! c_array.make_from_array (equation)
+                        gl_api.gl_clip_plane (plane, c_array.pointer)	
+		end
 	
 feature -- Clipping (Return clipping plane coefficients)	
 	
