@@ -1,8 +1,8 @@
 -- application: "sphere_and_red_box"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/11/11 15:48:03 $"
--- revision: "$Revision: 1.2 $"
+-- date: "$Date: 2002/01/03 18:21:47 $"
+-- revision: "$Revision: 1.3 $"
 
 system
 	sphere_and_red_box
@@ -41,8 +41,9 @@ cluster
 	
 	        -- Utility WEL extensions
 	wel_ext (eifogl):       "$\utility\wel_extensions"
+
 		-- WEL
-	all wel:		"$EIFFEL5\library\wel"
+	all wel:		"$ISE_EIFFEL\library\wel"
 			
 			-- EiffelBase   
 	all base:               "$ISE_EIFFEL\library\base"
@@ -52,13 +53,13 @@ cluster
 	
 external
 	include_path:
-	        "$(EIFFEL5)\library\wel\spec\windows\include",
+	        "$(ISE_EIFFEL)\library\wel\spec\windows\include",
 		"$(GL)\include",
 		"$(EIFOGL)\egl\c\include",
 		"$(EIFOGL)\spec\compiler\$(EIFFEL_COMPILER)\ewgl\include";
 
 	object:	
-		"$(EIFFEL5)\library\wel\spec\$(COMPILER)\lib\wel.lib",
+		"$(ISE_EIFFEL)\library\wel\spec\msc\lib\wel.lib",
 		"$(GL)\lib\opengl32.lib",
 		"$(GL)\lib\glu32.lib";
 	
