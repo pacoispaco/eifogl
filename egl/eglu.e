@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2003/04/26 21:19:16 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/04/29 20:03:36 $"
+	revision: "$Revision: 1.7 $"
 
 class EGLU
 	
@@ -332,9 +332,12 @@ feature -- Implementation (NURBS callback function constants)
 		
 feature {NONE} -- Implementation 	
 	
-	glu_api: expanded GLU 
+	glu_api: GLU is 
 			-- The raw Eiffel encapsulation of the OpenGL glu API
-
+		once
+			!! Result
+		end
+	
 end -- class EGLU
 
 -- begin dictionary
