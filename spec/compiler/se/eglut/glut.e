@@ -5,17 +5,14 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/25 16:02:20 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:49:19 $"
+	revision: "$Revision: 1.2 $"
 
 class GLUT
 	
 inherit
 	GENERAL
-		export
-			{NONE} all
-		end
-	
+
 feature -- Raw GLUT API
 	
 	glut_init (argcp, argv: POINTER) is
