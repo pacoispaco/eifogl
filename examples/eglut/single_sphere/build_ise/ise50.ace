@@ -1,8 +1,8 @@
 -- application: "single_sphere"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/10/30 22:46:11 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2002/03/23 20:50:54 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	single_sphere
@@ -46,6 +46,9 @@ cluster
 	
 		-- C Wrap Utilities
 	cwrap:		"$EIFOGL\utility\cwrap"
+	        exclude
+		        se
+		end
 
                 -- EiffelBase   
         all base:         "$ISE_EIFFEL\library\base"

@@ -1,8 +1,8 @@
 -- application: "drawf"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
--- date: "$Date: 2002/01/27 18:39:59 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2002/03/23 20:48:34 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	light
@@ -43,6 +43,9 @@ cluster
 	
 		-- C Wrap Utilities
 	cwrap:		  "$EIFOGL\utility\cwrap"
+	        exclude
+		        se
+		end
 			
 		-- EiffelBase   
 	all base:         "$ISE_EIFFEL\library\base"

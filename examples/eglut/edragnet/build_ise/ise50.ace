@@ -1,8 +1,8 @@
 -- application: "edragnet"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/10/30 22:16:41 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2002/03/23 20:44:40 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	edragnet
@@ -61,7 +61,10 @@ cluster
 
 		-- C Wrap Utilities
 	all cwrap:		"$EIFOGL\utility\cwrap"
-
+	        exclude
+		        se
+		end	
+	
 		-- EiffelBase	
 	all base:		"$ISE_EIFFEL\library\base"
 	        exclude
