@@ -14,7 +14,7 @@ feature -- Access
 
 	gl_false: INTEGER is
 		external
-			"C macro use gl.h>"
+			"C macro use <gl.h>"
 		alias
 			"GL_FALSE"
 		end
