@@ -3,8 +3,8 @@ indexing
         application: "sphere_and_red_box"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/29 23:23:03 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class GL_CONTROL
 
@@ -12,7 +12,6 @@ inherit
 	
 	WEL_CONTROL_WINDOW
 		redefine
-            destroy_item,
 			make_with_coordinates,
 			on_query_new_palette,
 			on_wm_destroy
@@ -80,7 +79,7 @@ feature -- Messages
 		do
 			rendering_context.make_current (gl_device_context)
 			rendering_context.delete
-			gl_device_context.release
+			gl_device_context.release			
 			destroy
 		end
 
@@ -137,14 +136,6 @@ feature {NONE} -- Implementation
 			-- palette is needed, i.e. if we're running on a 256
 			-- color machine.
 
-feature {NONE} -- Removal
-
-	destroy_item is
-		do
-			gl_device_context.release
-            precursor
-		end
-	
 invariant
 	desired_pixel_format_supports_opengl: flag_set (desired_pixel_format.dw_flags, Pfd_support_opengl)
 	

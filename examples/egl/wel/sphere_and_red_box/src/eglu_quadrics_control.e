@@ -3,8 +3,8 @@ indexing
         application: "sphere_and_red_box"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/29 23:22:35 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLU_QUADRICS_CONTROL
 
@@ -141,7 +141,7 @@ feature {NONE} -- Implementation (Window messages)
 	on_destroy is
 			-- Delete the quadrics object.
 		do
-        	quadrics_object.eglu_delete_quadric
+--        	quadrics_object.eglu_delete_quadric
 		end
 	
 	on_mouse_move (keys, x_pos, y_pos: INTEGER) is
