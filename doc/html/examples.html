@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 TRANSITIONAL//EN">
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Paul Cohen">
+   <TITLE>EiffelOpenGL Examples</TITLE>
+</HEAD>
+<BODY BACKGROUND="images/background_test.gif">
+
+<!-- Create the main table for the page -->
+<TABLE BORDER=0 CELLSPACING=3 CELLPADDING=3 COLS=1 WIDTH="600">
+
+<!-- Top row begins here -->
+<TR>
+
+<!-- Top left dark blue square -->
+<TD WIDTH="100" ALIGN=CENTER VALIGN=CENTER>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#FFFFFF">
+<BR><BR>
+</FONT>
+<FONT SIZE="4" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#FFFFFF">
+<B>EiffelOpenGL</B>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#FFFFFF">
+<P>
+Currrent release 0.1.0 <BR> January 13, 2001
+</P>
+</FONT>
+</TD>
+
+<!-- Central top title square -->
+<TD WIDTH="400" ALIGN=CENTER VALIGN=CENTER>
+<FONT SIZE="4" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#FFFFFF">
+<B>EiffelOpenGL Examples</B>
+</TD>
+
+<!-- Top right square with various icons -->
+<TD WIDTH="100" ALIGN=CENTER VALIGN=CENTER>
+<A HREF="http://sourceforge.net"><IMG SRC="http://sourceforge.net/sflogo.php?group_id=10172" WIDTH="88" HEIGHT="31" BORDER="0" ALT="sourceforge.net"></A>
+<A HREF="http://www.opengl.org"><IMG SRC="images/OGL_sm.gif" WIDTH="68" HEIGHT="32" BORDER="0" ALT="www.opengl.org"></A>
+</TD>
+
+</TR>
+<!-- End of top row! -->
+
+<TR>
+<TD WIDTH="100" ALIGN=LEFT VALIGN=TOP>
+
+<!-- Add a table for the table of contents on the left side of the page -->
+<TABLE BORDER=0 CELLSPACING=3 CELLPADDING=3 COLS=1 WIDTH="160" NOSAVE>
+
+<BR><BR>
+
+<TR><TD><B><A HREF="index.html">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
+Home
+</A></B></TD></TR>
+
+<TR><TD><B><A HREF="faq.html">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
+FAQ
+</A></B></TD></TR>
+
+<TR><TD><B><A HREF="documentation.html">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
+Documentation
+</A></B></TD></TR>
+
+<TR><TD><B><A HREF="download.html">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
+Download
+</A></B></TD></TR>
+
+<TR><TD><B><A HREF="examples.html">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
+Examples
+</A></B></TD></TR>
+
+<TR><TD><B><A HREF="https://sourceforge.net/projects/eifogl/">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
+Project page
+</A></B></TD></TR>
+
+<TR><TD><B><A HREF="links.html">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
+Links
+</A></B></TD></TR>
+
+<TR><TD><B>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
+<BR><BR>
+Contact:<A href="mailto:ericb@gobosoft.com"><BR>paco@ieee.org</A>
+</B></TD></TR>
+
+</TABLE>
+</TD>
+
+<!-- Main contents starts here! -->
+<TD WIDTH="400" ALIGN=LEFT VALIGN=TOP COLSPAN=2>
+<TABLE BORDER=0 CELLSPACING=3 CELLPADDING=3 COLS=1 WIDTH="400">
+
+<BR>
+<TR><TD BGCOLOR="#BBBBBB">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<b>EGLUT Red book examples translated from C</b>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+All the example programs in this section are based on EGLUT. They are all 
+translations of the C example programs in the Red Book.<P>
+All the programs are comprised of two classes; one class, called APPLICATION, 
+that inherits from EGLUT_APPLICATION that acts as the root class for the 
+program, and one class, called MAIN_WINDOW, that inherits from 
+EGLUT_TOP_LEVEL_WINDOW. In the MAIN_WINDOW most of the program
+code is located. Among other things it contains code for handling all GLUT
+events that can be recieved by the program. In the examples below the code
+for every MAIN_WINDOW can be viewed by clicking on the program screenshot.<P>
+
+<B>Example 1: lines.exe </B><P>
+This example illustrates the use of the OpenGL drawing primitive GL_LINES 
+and the use of line stippling.<P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_lines.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A>
+
+<TR><TD BGCOLOR="#BBBBBB">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<b>Other GLUT examples</b>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+Boogaloo
+</BR>
+</TD></TR>
+
+<TR><TD BGCOLOR="#BBBBBB">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<b>Some examples based on ISEs WEL</b>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+Shaggaloo
+</BR>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
+<BR>
+Author: Paul Cohen <BR>
+"$Date: 2001/10/26 23:27:20 $" <BR>
+"$Revision: 1.1 $"
+</FONT>
+</TD></TR>
+
+</TABLE>
+
+</TD>
+</TR>
+
+</TABLE>
+
+</BODY>
+
+</HTML>
+
+
