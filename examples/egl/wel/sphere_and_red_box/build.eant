@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<project name="sphere_and_red_box" default="all">
+	 <target name="info">
+		 <echo message="Geant build file for sphere_and_red_box."/>
+	 </target>
+
+	 <target name="init">
+		 <set name="sphere_and_red_box_dir" value="${EIFOGL}\examples\egl\wel\sphere_and_red_box" />
+	 </target>
+
+	 <target name="ise" dir="${sphere_and_red_box_dir}\build_ise" depend="init" description="Compile sphere_and_red_box with ISE Eiffel">
+		 <echo message="Compiling sphere_and_red_box with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${sphere_and_red_box_dir}\build_ise\ise50.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${sphere_and_red_box_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\sphere_and_red_box.exe" to_file=".\sphere_and_red_box.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="sphere_and_red_box.epr"/>
+		 <delete file="sphere_and_red_box.rc"/>
+         </target>
+
+	 <target name="all" description="Compile with ISE Eiffel" depend="ise">
+	 </target>
+
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<project name="examples" default="info">
+
+	 <target name="info">
+		 <echo message="Geant build file for all the example programs."/>
+	 </target>
+
+	 <target name="init">
+		 <set name="examples_dir" value="${EIFOGL}\examples" />
+	 </target>
+
+	 <target name="ise" depend="init" description="Compile all examples with ISE Eiffel">
+		 <echo message="Compiling all examples with ISE Eiffel compiler"/>
+		 <exec executable="geant ise" dir="${examples_dir}\eglut"/>
+		 <exec executable="geant ise" dir="${examples_dir}\egl\wel\simple_red_box"/>
+		 <exec executable="geant ise" dir="${examples_dir}\egl\wel\sphere_and_red_box"/>
+	 </target>
+
+	 <target name="se" depend="init" description="Compile all examples with SmallEiffel">
+		 <echo message="Compiling all examples with SmallEiffel compiler"/>
+		 <exec executable="geant se" dir="${examples_dir}\eglut"/>
+	 </target>
+
+	 <target name="all" description="Compile all examples, both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	 </target>
+
+</project>
