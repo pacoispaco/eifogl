@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:10:38 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:15:06 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLU_NURBS
 	
@@ -35,7 +35,7 @@ feature	-- Status setting
 feature	-- Status setting (Callbacks)
 	
 	activate_nurbs_error_callback (nurb: EGLU_NURBS_OBJ) is	
-			-- Activate the NURBS error callback for th egiven
+			-- Activate the NURBS error callback for the given
 			-- `nurb'. 
 		require
 			nurbs_c_interface_is_initialized: nurbs_c_interface_is_initialized

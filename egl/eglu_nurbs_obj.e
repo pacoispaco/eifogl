@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:11:41 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:14:45 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLU_NURBS_OBJ
 	
@@ -23,6 +23,6 @@ feature -- Access
 			Result := 0
 		end
 				
-end -- class EGLU_NURBS
+end -- class EGLU_NURBS_OBJ
 	
 	
