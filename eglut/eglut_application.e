@@ -8,17 +8,17 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999, 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/25 17:33:24 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/08 11:17:02 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	EGLUT_APPLICATION
 	
 inherit	
 	EGLUT_APPLICATION_CONTEXT
-		export
-			{NONE} all
-		end
+--		export
+--			{NONE} all
+--		end
 	
 feature {NONE} -- Initialization
 	
