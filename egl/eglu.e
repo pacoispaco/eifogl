@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/23 21:06:07 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/04/26 21:19:16 $"
+	revision: "$Revision: 1.6 $"
 
 class EGLU
 	
@@ -120,17 +120,34 @@ feature -- Basic operations (Positioning)
 	
 feature -- Basic operations (NURBS)
 	
-	eglu_new_nurbs_renderer: EGLU_NURBS_OBJ is
+	eglu_init_nurbs_api is
+			-- Initialize the GLU NURBS C API.
+		require
+			not_initialized: not eglu_nurbs_api_is_initialized
+		do			
+			glu_api.eglu_init_nurbs_api (Current)
+			eglu_nurbs_api_is_initialized := True
+		ensure
+			initialized: eglu_nurbs_api_is_initialized
+		end
+	
+	eglu_nurbs_api_is_initialized: BOOLEAN
+			-- Has the GLU NURBS C API been initialized? 
+	
+	eglu_new_nurbs_renderer: EGLU_NURBS is
 			-- Create a new NURBS object. Returns void if OpenGL
 			-- cannot allocate memory for a new NURBS object.
+		require
+			initialized: eglu_nurbs_api_is_initialized
 		do
 			!! Result.make_shared (glu_api.glu_new_nurbs_renderer)
 		end
 	
-	eglu_nurbs_property (nurb: EGLU_NURBS_OBJ; property: INTEGER; value: DOUBLE) is
+	eglu_nurbs_property (nurb: EGLU_NURBS; property: INTEGER; value: DOUBLE) is
 			-- Set the `value' of the give `property' in the given
 			-- NURBS object `nurb'.
 		require
+			initialized: eglu_nurbs_api_is_initialized
 			nurb_not_void: nurb /= Void
 			valid_property: property = Glu_display_mode or
 --					property = Glu_nurbs_mode or
@@ -145,23 +162,25 @@ feature -- Basic operations (NURBS)
 			glu_api.glu_nurbs_property (nurb.pointer, property, value)
 		end
 	
-	eglu_begin_surface (nurb: EGLU_NURBS_OBJ) is
+	eglu_begin_surface (nurb: EGLU_NURBS) is
 			-- Start creating a NURBS surface.
 		require
+			initialized: eglu_nurbs_api_is_initialized
 			nurb_not_void: nurb /= Void			
 		do
 			glu_api.glu_begin_surface (nurb.pointer)
 		end
 	
-	eglu_end_surface (nurb: EGLU_NURBS_OBJ) is
+	eglu_end_surface (nurb: EGLU_NURBS) is
 			-- Stop creating a NURBS surface.
 		require
+			initialized: eglu_nurbs_api_is_initialized
 			nurb_not_void: nurb /= Void			
 		do
 			glu_api.glu_end_surface (nurb.pointer)
 		end
 	
-	eglu_nurbs_surface (nurb: EGLU_NURBS_OBJ; 
+	eglu_nurbs_surface (nurb: EGLU_NURBS; 
 			    u_knot, v_knot: ARRAY [REAL]; 
 			    u_knot_stride, v_knot_stride: INTEGER; 
 			    ctl_array: ARRAY [REAL]; 
@@ -170,6 +189,7 @@ feature -- Basic operations (NURBS)
 			-- Describe the vertices (or surface normals or texture
 			-- coordinates) of the NURBS surface `nurb'.
 		require
+			initialized: eglu_nurbs_api_is_initialized
 			nurb_not_void: nurb /= Void
 			u_knot_not_void: u_knot /= Void
 			v_knot_not_void: v_knot /= Void
@@ -201,6 +221,115 @@ feature -- Basic operations (NURBS)
 						   type)
 		end
 	
+feature -- Basic operations (NURBS callbacks)
+	
+	nurbs_error_callback_activated: BOOLEAN
+			-- Is the GLU NURBS error callback activated?
+	
+	activate_nurbs_error_callback (nurb: EGLU_NURBS) is
+			-- Activate the NURBS error callback for the given
+			-- `nurb'.
+		require
+			initialized: eglu_nurbs_api_is_initialized
+			nurb_not_void: nurb /= void
+		do
+			nurbs_error_callback_activated := True
+			glu_api.eglu_set_nurbs_error_callback_function (nurb.pointer)
+		ensure
+			nurbs_error_callback_activated: nurbs_error_callback_activated
+		end
+
+	deactivate_nurbs_error_callback (nurb: EGLU_NURBS) is
+			-- Deactivate the NURBS error callback for the given
+			-- `nurb'.
+		require
+			initialized: eglu_nurbs_api_is_initialized
+			nurb_not_void: nurb /= void
+		do
+			nurbs_error_callback_activated := False
+			glu_api.eglu_set_nurbs_error_callback_function_to_null (nurb.pointer)
+		ensure
+			nurbs_error_callback_is_not_activated: not nurbs_error_callback_activated
+		end
+	
+	on_nurbs_error (error_code: INTEGER) is
+			-- A NURBS error notification has been
+			-- recieved. `error_code' indicates the type of error.
+		require
+			callback_activated: nurbs_error_callback_activated
+		do
+			debug ("nurbs_callback")
+				print ("on_nurbs_error")
+				print ("%N")
+				print ("  error_code: ")
+				print (error_code)
+				print ("%N")
+				print ("  Meaning: ")
+				print (eglu_error_string (error_code))
+				print ("%N")
+			end
+		end
+	
+	frozen main_nurbs_callback (nurbs_callback, glenum: INTEGER; glfloat: DOUBLE; userdata: POINTER) is
+			-- The EGLU_NURBS callback feature. This feature is only
+			-- invoked from the EGLU_NURBS C interface. All 13 GLU
+			-- NURBS callback functions enter here! `nurbs_callback'
+			-- indicates the NURBS callback function. `glenum',
+			-- `glfloat' and `userdata' are parameters that are
+			-- interpreted differently depending on the NURBS
+			-- callback function.
+		do
+			inspect nurbs_callback
+			when eglu_nurbs_error then 
+				on_nurbs_error (glenum)
+			when eglu_nurbs_begin then 
+			when eglu_nurbs_begin_data then 
+			when eglu_nurbs_texture_coord then 
+			when eglu_nurbs_texture_coord_data then 
+			when eglu_nurbs_color then 
+			when eglu_nurbs_color_data then 
+			when eglu_nurbs_normal then 
+			when eglu_nurbs_normal_data then 
+			when eglu_nurbs_vertex then 
+			when eglu_nurbs_vertex_data then 
+			when eglu_nurbs_end then 
+			when eglu_nurbs_end_data then 
+			end
+		end
+	
+feature -- Implementation (NURBS callback function constants)
+-- NOTA BENE! These Eiffel constants MUST be correspond exactly to
+-- those in the C #define:s in the eglu_nurbs.h file! The reason that these
+-- constants are not accessed, via external, from the eglu_nurbs.h file is
+-- that it is then able to write an "inspect" clause in the
+-- `nurbs_callback' feature.
+
+	frozen Eglu_nurbs_error: INTEGER is 1
+
+	frozen Eglu_nurbs_begin: INTEGER is 2
+
+	frozen Eglu_nurbs_begin_data: INTEGER is 3
+
+	frozen Eglu_nurbs_texture_coord: INTEGER is 4
+
+	frozen Eglu_nurbs_texture_coord_data: INTEGER is 5
+
+	frozen Eglu_nurbs_color: INTEGER is 6
+
+	frozen Eglu_nurbs_color_data: INTEGER is 7
+
+	frozen Eglu_nurbs_normal: INTEGER is 8
+
+	frozen Eglu_nurbs_normal_data: INTEGER is 9
+
+	frozen Eglu_nurbs_vertex: INTEGER is 10
+
+	frozen Eglu_nurbs_vertex_data: INTEGER is 11
+
+	frozen Eglu_nurbs_end: INTEGER is 12
+
+	frozen Eglu_nurbs_end_data: INTEGER is 13
+		
 feature {NONE} -- Implementation 	
 	
 	glu_api: expanded GLU 
