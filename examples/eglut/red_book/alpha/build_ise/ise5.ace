@@ -1,11 +1,11 @@
--- application: "alpha"
+-- application: "alpha3d"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
--- date: "$Date: 2002/09/11 07:32:09 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2002/12/08 11:28:12 $"
+-- revision: "$Revision: 1.2 $"
 
 system
-	alpha
+	alpha3d
 
 root
         APPLICATION (src_root): "make"
@@ -19,7 +19,7 @@ cluster
 	eifogl:				"$EIFOGL"
 
 	        -- Application
-	src_root:			"$EIFOGL\examples\eglut\red_book\alpha\src"
+	src_root:			"$EIFOGL\examples\eglut\red_book\alpha3d\src"
 
 		 -- EGL
 	all egl (eifogl):		"$\egl"
@@ -31,38 +31,44 @@ cluster
 
 		-- EGLUT     
 	eglut (eifogl):			"$\eglut"
-
-		-- EGLUT (Compiler specific "external" classes)
-	eglut_comp:			"$EIFOGL\spec\compiler\ise\eglut"
 		visible
 			EGLUT_APPLICATION
 				export
 					"main_application_callback"
 				end
 		end
+
+		-- EGLUT (Compiler specific "external" classes)
+	eglut_comp:			"$EIFOGL\spec\compiler\ise\eglut"
 	
 		-- C Wrap Utilities
-	cwrap:		  "$EIFOGL\utility\cwrap"
-	        exclude
-		        se
-		end
+	cwrap:		                "$EIFOGL\utility\cwrap"
+	cwrap_spec (cwrap):             "$EIFOGL\utility\cwrap\spec\ise"
 			
-		-- EiffelBase   
-	all base:         "$ISE_EIFFEL\library\base"
-	        exclude
-		        table_eiffel3
-		end
+	mixins:           "$EIFOGL\utility\mixins"
+			
+		-- GOBO
+	all gobo:         "$GOBO\library"
+	      exclude
+	            hact 
+		    se
+		    ve
+	      end
+	
+	        -- ISE Eiffel kernel
+	all ise_kernel:       "$ISE_EIFFEL\library\base\kernel"
+	all ise_support:      "$ISE_EIFFEL\library\base\support"
 	
 external
         include_path:   "$(GL)\include",
                         "$(GLUT)\include",
                         "$(EIFOGL)\egl\c\include",
-                        "$(EIFOGL)\eglut\include";
+                        "$(EIFOGL)\spec\compiler\ise\eglut\include";
 
         object:         "$(GL)\lib\opengl32.lib",
 			"$(GL)\lib\glu32.lib",
                         "$(GLUT)\lib\glut32.lib",
-                        "$(EIFOGL)\eglut\lib\eglut.lib";
+                        "$(EIFOGL)\spec\compiler\ise\eglut\lib\eglut.lib";
 
 end
 

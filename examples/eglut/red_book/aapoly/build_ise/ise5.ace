@@ -1,8 +1,8 @@
 -- application: "aapoly"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2001, 2002 Paul Cohen, see file forum.txt"
--- date: "$Date: 2002/11/25 20:35:01 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2002/12/08 11:26:42 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	aapoly
@@ -42,10 +42,8 @@ cluster
 	eglut_comp (eifogl):		"$\spec\compiler\ise\eglut"
 	
 		-- Utilities
-	cwrap:		  "$EIFOGL\utility\cwrap"
-	        exclude
-		          se
-		end
+	cwrap:		                "$EIFOGL\utility\cwrap"
+	cwrap_spec (cwrap):             "$EIFOGL\utility\cwrap\spec\ise"
 			  
 	mixins:           "$EIFOGL\utility\mixins"
 	
