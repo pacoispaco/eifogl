@@ -22,7 +22,7 @@
 <B>EiffelOpenGL</B>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#FFFFFF">
 <P>
-Currrent release 0.1.0 <BR> January 13, 2001
+Current release 0.1.0 <BR> January 13, 2001
 </P>
 </FONT>
 </TD>
@@ -181,8 +181,8 @@ time and features the following:
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2001/10/30 23:46:11 $" <BR>
-"$Revision: 1.3 $"
+"$Date: 2001/11/13 22:55:22 $" <BR>
+"$Revision: 1.4 $"
 </FONT>
 </TD></TR>
 
