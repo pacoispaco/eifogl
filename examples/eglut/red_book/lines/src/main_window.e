@@ -3,8 +3,8 @@ indexing
         application: "lines"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:35:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/12 21:32:31 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -46,7 +46,7 @@ feature -- Access
 
 	default_window_title: STRING is
 		once
-			Result := "EGLUT Red Book example: lines"
+			Result := "EGLUT: lines"
 		end
 		
 	default_width: INTEGER is 390
