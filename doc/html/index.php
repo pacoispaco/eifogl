@@ -150,7 +150,31 @@ created with EiffelOpenGL!
 
 <TR><TD BGCOLOR="#BBBBBB">
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
-<b>News</b>
+<b>News March 23, 2002</b>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<BR>
+New additions to EiffelOpenGL since 0.2.0 are:
+<UL>
+<LI>The gl_get_xxx commands</LI>
+<LI>A number of matrix manipulation commands</LI>
+<LI>2D texturing commands</LI>
+<LI>4 more translated example programs from the Red Book</LI>
+<LI>A neat example program using 2D texturing</LI>
+<LI>A bug in the EGL/WEL example programs has been fixed</LI>
+</UL>
+You can of course download a snapshot of the current source code tree
+via CVS. See the Download page for more information. Don't forget to set 
+your environment variables as described in the Installation section on
+the Download page!
+<BR><BR>
+</TD></TR>
+
+<TR><TD BGCOLOR="#BBBBBB">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<b>News January 8, 2002</b>
 </TD></TR>
 
 <TR><TD>
@@ -182,8 +206,8 @@ EiffelOpenGL 0.2.0 finally released! The important features of the new release a
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2002/01/08 18:38:30 $" <BR>
-"$Revision: 1.6 $"
+"$Date: 2002/03/23 13:34:12 $" <BR>
+"$Revision: 1.7 $"
 </FONT>
 </TD></TR>
 
