@@ -5,8 +5,8 @@ indexing
 	platforms: "Win32"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/11/11 15:27:47 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/01/19 22:28:14 $"
+	revision: "$Revision: 1.2 $"
 
 class OPENGL_RENDERING_CONTEXT
 
@@ -16,6 +16,11 @@ inherit
 			item as hglrc
 		export
 			{NONE} set_item
+		end
+	
+	WEL_ERROR
+		export
+			{NONE} all
 		end
 	
 creation
@@ -31,6 +36,7 @@ feature {NONE} -- Initialization
 			dc_has_pixel_format_set: dc.pixel_format_is_set
 		do
 			make_by_pointer (wgl.wgl_create_context (dc.item))
+			is_current := (hglrc /= Void)			
 		end
 	
 	create_from_current_context is
@@ -56,11 +62,29 @@ feature -- Basic operations
 	make_current (dc: EWGL_WIN32_DEVICE_CONTEXT) is
 			-- Make the rendering context current for the calling
 			-- thread.
+		require
+			not_current: is_current
 		local
 			ret_val: INTEGER
 		do
 			ret_val := wgl.wgl_make_current (dc.item, hglrc)
 			is_current := (ret_val = 1)
+		ensure
+			is_current: is_current
+		end
+	
+	make_not_current is
+			-- Make the rendering context not current for the
+			-- calling thread.
+		require
+			is_current: is_current
+		local
+			ret_val: INTEGER
+		do
+			ret_val := wgl.wgl_make_current (default_pointer, default_pointer)
+			is_current := not (ret_val = 1)
+		ensure
+			not_current: not is_current
 		end
 	
 	delete is
@@ -72,6 +96,8 @@ feature -- Basic operations
 		do
 			ret_val := wgl.wgl_delete_context (hglrc)
 			is_deleted := (ret_val = 1)
+		ensure
+			is_deleted: is_deleted
 		end
 	
 	destroy_item is
