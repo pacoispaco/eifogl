@@ -1,0 +1,134 @@
+system 
+        simple_red_box
+
+root
+	APPLICATION: make
+
+default
+	assertion(require)
+	assertion(ensure)
+	assertion(check)
+	assertion(loop)
+	assertion(invariant)
+	address_expression(no)
+	array_optimization(no)
+	console_application(no)
+	dead_code_removal(yes)
+	dynamic_runtime(no)
+	exception_trace(no)
+	inlining(no)
+	multithreaded(no)
+	check_vape(yes)
+	arguments(" ")
+	disabled_debug(yes)
+	disabled_debug("wel")
+	disabled_debug("win_dispatcher")
+	disabled_debug("gdi_count")
+	disabled_debug("wel_gdi_count")
+	disabled_debug("wel_gdi_references")
+	disabled_debug("dlg_dispatcher")
+	debug(no)
+	line_generation(no)
+	profile(no)
+	trace(no)
+
+
+-- application: "simple_red_box"
+-- author: "Paul Cohen"
+-- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
+-- date: "$Date: 2001/10/29 23:16:55 $"
+-- revision: "$Revision: 1.1 $"
+-- Eiffel OpenGL
+-- Application
+-- EGL
+-- EGL (Compiler specific)
+-- EWGL
+-- EWGL (Compiler specific)
+-- Platform library adaptions (WEL)
+-- WEL
+-- WEL (ISE 5.0)
+-- EiffelBase
+--	thread:			"$EIFFEL5\library\thread";
+
+cluster
+	eifogl:		"$EIFOGL"
+
+	src_root (eifogl):		"$\examples\egl\wel\simple_red_box\src"
+
+	egl (eifogl):		"$\egl"
+
+	egl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\egl"
+
+	gl_constants (egl_comp):		"$\gl_constants"
+
+	glu_constants (egl_comp):		"$\glu_constants"
+
+	ewgl (eifogl):		"$\ewgl"
+
+	ewgl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\ewgl"
+
+	ewgl_wel (eifogl):		"$\spec\platform_library_adaptions\wel"
+
+	wel_constants:		"$EIFFEL5\library\wel\consts"
+
+	wel_controls:		"$EIFFEL5\library\wel\controls"
+
+	wel_gdi:		"$EIFFEL5\library\wel\gdi"
+
+	wel_gdi_stocks:		"$EIFFEL5\library\wel\gdistock"
+
+	wel_messages:		"$EIFFEL5\library\wel\messages"
+
+	wel_standard_dialogs:		"$EIFFEL5\library\wel\stddlgs"
+
+	wel_structures:		"$EIFFEL5\library\wel\structs"
+
+	wel_support:		"$EIFFEL5\library\wel\support"
+
+	wel_windows:		"$EIFFEL5\library\wel\windows"
+
+	wel_shared:		"$EIFFEL5\library\wel\shared"
+
+	wel_new_consts:		"$EIFFEL5\library\wel\consts\new_consts"
+
+	kernel:		"$EIFFEL5\library\base\kernel"
+
+	support:		"$EIFFEL5\library\base\support"
+
+	access:		"$EIFFEL5\library\base\structures\access"
+
+	cursors:		"$EIFFEL5\library\base\structures\cursors"
+
+	cursor_tree:		"$EIFFEL5\library\base\structures\cursor_tree"
+
+	dispenser:		"$EIFFEL5\library\base\structures\dispenser"
+
+	iteration:		"$EIFFEL5\library\base\structures\iteration"
+
+	list:		"$EIFFEL5\library\base\structures\list"
+
+	set:		"$EIFFEL5\library\base\structures\set"
+
+	sort:		"$EIFFEL5\library\base\structures\sort"
+
+	storage:		"$EIFFEL5\library\base\structures\storage"
+
+	table:		"$EIFFEL5\library\base\structures\table"
+
+	traversing:		"$EIFFEL5\library\base\structures\traversing"
+
+	tree:		"$EIFFEL5\library\base\structures\tree"
+
+external
+
+	include_path:
+		"$(EIFFEL5)\library\wel\spec\windows\include",
+		"$(GL)\include",
+		"$(EIFOGL)\spec\compiler\$(EIFFEL_COMPILER)\ewgl\include"
+
+	object:
+		"$(EIFFEL5)\library\wel\spec\$(COMPILER)\lib\wel.lib",
+		"$(GL)\lib\opengl32.lib",
+		"$(GL)\lib\glu32.lib"
+
+end
