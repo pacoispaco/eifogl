@@ -1,0 +1,121 @@
+History of EiffelOpenGL releases
+================================
+
+Release 0.3.0 (2003-MM-DD)
+--------------------------
+
+Major changes compared to Release 0.2.0:
+
+* More GL, GLU and GLUT functions wrapped.
+* Some bugs fixed.
+* Added support for reading TGA/Targa image files.
+* More Red Book example programs translated to Eiffel.
+* An example program demonstrating the use of textures added.
+* Some refactoring and adaption to the Gobo library in order to make it easy to port to other Eiffel compilers.
+* Made to work with SmartEiffel.
+* Uses Gobo Geant tool to build example programs.
+
+Contents:
+* EGL. Eiffel wrapping of the OpenGL GL 1.1 C API 
+  ~75 functions (of ~200) and all constants.
+* EGLU. Eiffel wrapping of the OpenGL GLU C API.
+  ~16 functions (of ~50) and all constants.
+* EGLU. Eiffel wrapping of the OpenGL GLUT 3.6 C API.
+  ~26 functions and quite a few constants.
+* EWGL. Eiffel wrapping of the OpenGL extension library WGL C API.
+  11 functions (of 25), 1 C struct (of 5) and all constants.
+* EiffelOpenGL utility. Utility library containing among other things:
+  TGA_FILE class that supports reading of TGA/targa files.
+* EiffelOpenGL examples. A set of example programs.
+  2 EGL/EGLU + EWGL + WEL (ISE Eiffel) programs.
+  21 EGL/EGLU + EGLUT programs consisting of
+  - 1 simple GLUT program with a single window.
+  - 1 simple GLUT program with two windows, one of which contains a GLUT subwindow.
+  - 1 test/example program that uses GL primitives and stippling patterns.
+  - 16 translated C programs from the Red Book examples collection.
+  - 1 animated "chessboard flag" program based on an existing C program.
+  - 1 texture based program based on a Nehe C program using a TGA image file.
+
+Eiffel compilers supported:
+* ISE (yes: 5.2)
+* SmartEiffel (yes: 1.0)
+* Object Tools (no)
+* Halstenbach (no)
+
+Platforms supported:
+
+* Microsoft Win32 (yes)
+* Linux/X Window (no)
+  EGLUT should work as well as should EGL/EGLU on Mesa, but XGL is not wrapped yet.
+* MacOS (no)
+
+Release 0.2.0 (2002-01-01)
+--------------------------
+
+Major changes compared to Release 0.1.0:
+
+* A large number of OpenGL functions have been added to the main wrapper class EGL. 
+* More OpenGL GLU functions have been added to the GLU wrapper class EGLU.
+* Basic support for NURBS has been added. 
+* Wrapper classes for all the OpenGL primitives has been added. 
+* Support for stippling patterns has been added. 
+* An example program for testing the OpenGL primitives and stippling patterns. 
+* 7 example programs in C from the Red Book that have been translated to Eiffel. 
+* A few bugs have been fixed. 
+* A lot of code has been tidied up. 
+* I have stopped working on EGLAUX in order to focus on the wrappings of GLUT and OpenGL proper.
+
+Contents:
+* Eiffel wrapping of the OpenGL GL 1.1 C API
+  X functions (of ~200) and all constants.
+* Eiffel wrapping of the OpenGL GLU C API.
+  X functions (of ~50) and all constants.
+* Eiffel wrapping of the OpenGL GLUT 3.6 C API.
+  X functions and some constants.
+* Eiffel wrapping of the OpenGL extension library WGL C API.
+  X functions (of 25), 1 C struct (of 5) and all constants.
+* Set of example programs.
+  X ...
+
+Eiffel compilers supported:
+* ISE (yes: 5.0)
+* SmallEiffel (no)
+* Object Tools (no)
+* Halstenbach (no)
+
+Platforms supported:
+
+* Microsoft Win32 (yes)
+* Linux/X Window (no)
+* MacOS (no)
+
+Release 0.1.0 (2001-01-13)
+--------------------------
+
+Contents:
+* Eiffel wrapping of the OpenGL GL 1.1 C API
+  35 functions (of ~200) and all constants.
+* Eiffel wrapping of the OpenGL GLU C API.
+  10 functions (of ~50) and all constants.
+* Eiffel wrapping of the OpenGL Auxillary C API.
+  14 functions, 1 C struct (of 1) and some constants.
+* Eiffel wrapping of the OpenGL GLUT 3.6 C API.
+  18 functions and some constants.
+* Eiffel wrapping of the OpenGL extension library WGL C API.
+  11 functions (of 25), 1 C struct (of 5) and all constants.
+* Small set of example programs.
+
+Eiffel compilers supported:
+* ISE (yes: 4.5)
+* SmallEiffel (no)
+* Object Tools (no)
+* Halstenbach (no)
+
+Platforms supported:
+
+* Microsoft Win32 (yes)
+* Linux/X Window (no)
+* MacOS (no)
+
+
+
