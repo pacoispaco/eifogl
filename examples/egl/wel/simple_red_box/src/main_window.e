@@ -3,8 +3,8 @@ indexing
         application: "gl_test"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/11/11 15:33:48 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/01/19 22:31:29 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	MAIN_WINDOW
@@ -22,7 +22,7 @@ inherit
 			on_paint,
 			on_show,
 			on_size,
-			on_wm_destroy
+			on_destroy
 		end
 	
 	WEL_BIT_OPERATIONS
@@ -101,13 +101,11 @@ feature {NONE} -- Implementation (Window messages)
 			end
 		end
 	
-	on_wm_destroy is
+	on_destroy is
 			-- The window is about to be destroyed
 		do
-			rendering_context.make_current (gl_device_context)
 			rendering_context.delete
 			gl_device_context.release
-			destroy
 		end
 	
 	on_paint (paint_dc: WEL_PAINT_DC; invalid_rect: WEL_RECT) is
@@ -119,7 +117,7 @@ feature {NONE} -- Implementation (Window messages)
 			egl_rect_f (x1, y1, x1 + rsize, y1 + rsize)
 			
 			gl_device_context.swap_buffers	
-		
+			
 			validate_rect (client_rect)
 		end
 	
