@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:26:01 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/23 21:07:13 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class EGL_PRIMITIVE [G->NUMERIC]
 	
@@ -35,33 +35,33 @@ feature {NONE} -- Initialization
 			inspect no_of_vertice_coordinates
 			when 2 then
 				if g.generator.is_equal ("INTEGER") then
-					vertex_draw_procedure := ~egl_vertex_2i (?, ?)
+					vertex_draw_procedure := agent egl_vertex_2i (?, ?)
 				elseif g.generator.is_equal ("INTEGER_16") then
-					vertex_draw_procedure := ~egl_vertex_2s (?, ?)
+					vertex_draw_procedure := agent egl_vertex_2s (?, ?)
 				elseif g.generator.is_equal ("REAL") then
-					vertex_draw_procedure := ~egl_vertex_2f (?, ?)
+					vertex_draw_procedure := agent egl_vertex_2f (?, ?)
 				elseif g.generator.is_equal ("DOUBLE") then
-					vertex_draw_procedure := ~egl_vertex_2d (?, ?)
+					vertex_draw_procedure := agent egl_vertex_2d (?, ?)
 				end
 			when 3 then
 				if g.generator.is_equal ("INTEGER") then
-					vertex_draw_procedure := ~egl_vertex_3i (?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_3i (?, ?, ?)
 				elseif g.generator.is_equal ("INTEGER_16") then
-					vertex_draw_procedure := ~egl_vertex_3s (?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_3s (?, ?, ?)
 				elseif g.generator.is_equal ("REAL") then
-					vertex_draw_procedure := ~egl_vertex_3f (?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_3f (?, ?, ?)
 				elseif g.generator.is_equal ("DOUBLE") then
-					vertex_draw_procedure := ~egl_vertex_3d (?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_3d (?, ?, ?)
 				end
 			when 4 then
 				if g.generator.is_equal ("INTEGER") then
-					vertex_draw_procedure := ~egl_vertex_4i (?, ?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_4i (?, ?, ?, ?)
 				elseif g.generator.is_equal ("INTEGER_16") then
-					vertex_draw_procedure := ~egl_vertex_4s (?, ?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_4s (?, ?, ?, ?)
 				elseif g.generator.is_equal ("REAL") then
-					vertex_draw_procedure := ~egl_vertex_4f (?, ?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_4f (?, ?, ?, ?)
 				elseif g.generator.is_equal ("DOUBLE") then
-					vertex_draw_procedure := ~egl_vertex_4d (?, ?, ?, ?)
+					vertex_draw_procedure := agent egl_vertex_4d (?, ?, ?, ?)
 				end
 			end
 			!! vertices.make (1, resize_step)
