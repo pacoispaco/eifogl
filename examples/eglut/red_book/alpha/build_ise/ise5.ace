@@ -1,11 +1,11 @@
 -- application: "alpha3d"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
--- date: "$Date: 2002/12/08 11:28:12 $"
--- revision: "$Revision: 1.2 $"
+-- date: "$Date: 2003/01/27 19:23:31 $"
+-- revision: "$Revision: 1.3 $"
 
 system
-	alpha3d
+	alpha
 
 root
         APPLICATION (src_root): "make"
@@ -41,11 +41,12 @@ cluster
 		-- EGLUT (Compiler specific "external" classes)
 	eglut_comp:			"$EIFOGL\spec\compiler\ise\eglut"
 	
-		-- C Wrap Utilities
+		-- EiffelOpenGL utilities
 	cwrap:		                "$EIFOGL\utility\cwrap"
-	cwrap_spec (cwrap):             "$EIFOGL\utility\cwrap\spec\ise"
-			
-	mixins:           "$EIFOGL\utility\mixins"
+	cwrap_spec (cwrap):             "$\spec\ise"
+	tga:                            "$EIFOGL\utility\tga"
+	tga_spec (tga):                 "$\spec\ise"
+	mixins:                         "$EIFOGL\utility\mixins"
 			
 		-- GOBO
 	all gobo:         "$GOBO\library"
