@@ -5,14 +5,14 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/02/10 21:22:31 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/03/23 13:40:31 $"
+	revision: "$Revision: 1.4 $"
 
 class EGLU
 	
 inherit	
 	EGL_CONSTANTS
-	GLU_CONSTANTS
+	EGLU_CONSTANTS
 	
 feature -- Basic operations (Error handling)
 	

@@ -3,8 +3,8 @@ indexing
         application: "sphere_and_red_box"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/29 23:22:35 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/03/23 13:43:35 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLU_QUADRICS_CONTROL
 
@@ -18,7 +18,7 @@ inherit
 			on_size
 		end
 	
-	GLU_CONSTANTS
+	EGLU_CONSTANTS
 		export
 			{NONE} all
 		end
