@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:50:14 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/01/27 18:51:48 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLUT
 
@@ -53,9 +53,18 @@ feature	-- GLUT	pre-built models sub-API -- Could/should be put in separate clas
 			"glutWireSphere"
 		end
 	
+	glut_solid_cube (size: DOUBLE) is
+			-- Render a solid cube where `size' is the side of the
+			-- cube.
+		external
+			"C [macro <glut.h>] (GLdouble)"
+		alias
+			"glutSolidCube"
+		end
+		
 	glut_wire_cube (size: DOUBLE) is
-			-- Render a wire cube where
-			-- `size': Size or side of the cube
+			-- Render a wire cube where `size' is the side of the
+			-- cube.
 		external
 			"C [macro <glut.h>] (GLdouble)"
 		alias
