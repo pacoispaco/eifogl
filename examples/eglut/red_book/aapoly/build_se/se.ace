@@ -1,0 +1,78 @@
+-- application: "aapoly"
+-- author: "Paul Cohen"
+-- copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
+-- date: "$Date: 2002/03/23 20:04:17 $"
+-- revision: "$Revision: 1.1 $"
+
+system
+	aapoly
+
+root
+        APPLICATION (src_root): "make"
+
+default
+        assertion (all)
+	case_insensitive (yes)
+	trace (yes)
+	
+cluster
+
+ 	        -- Application
+	src_root:			"c:\proj\eifogl\examples\eglut\red_book\aapoly\src"
+			
+		-- Eiffel OpenGL
+	eifogl:				"c:\proj\eifogl"
+
+		 -- EGL
+	egl:		                "c:\proj\eifogl\egl"
+	
+		 -- EGL (Compiler specific "external" classes)
+	egl_comp:		        "c:\proj\eifogl\spec\compiler\se\egl"
+	egl_c_arrays:                   "c:\proj\eifogl\spec\compiler\se\egl\c_arrays"
+        gl_constants:	                "c:\proj\eifogl\spec\compiler\se\egl\gl_constants"
+        glu_constants:	                "c:\proj\eifogl\spec\compiler\se\egl\glu_constants"
+
+		 -- EGLUT     
+	eglut:			        "c:\proj\eifogl\eglut"
+
+		 -- EGLUT (Compiler specific "external" classes)
+	eglut_comp:			"c:\proj\eifogl\spec\compiler\se\eglut"
+		visible
+			EGLUT_APPLICATION
+				export
+					"main_application_callback"
+				end
+		end
+	
+		 -- Utilities
+	cwrap:		                 "c:\proj\eifogl\utility\cwrap"
+	        exclude
+		        "c_functions.e"
+	        end
+	cwrap_comp:                      "c:\proj\eifogl\utility\cwrap\spec\se"
+	mixins:                          "c:\proj\eifogl\utility\mixins"
+	
+		 -- Small Eiffel libraries
+	base:                            "c:\programs\elj-win32\SmallEiffel\lib\base"
+	kernel:                          "c:\programs\elj-win32\SmallEiffel\lib\kernel"
+	
+		 -- GOBO
+	gobo_kernel:                     "c:\programs\elj-win32\lib\gobo\library\kernel\spec\se"
+	gobo_support:                    "c:\programs\elj-win32\lib\gobo\library\structure\support"
+	gobo_table:                      "c:\programs\elj-win32\lib\gobo\library\structure\table"
+	gobo_container:                  "c:\programs\elj-win32\lib\gobo\library\structure\container" 
+	
+external
+	cecil ("c:\proj\eifogl\examples\eglut\red_book\aapoly\build_se\cecil.se")
+	
+	external_lib:      "c:\programs\elj-win32\lcc\lib\opengl32.lib c:\programs\elj-win32\lcc\lib\glu32.lib c:\home\paco\dev\glut\glut-3.7.6\lcclib\glut32.lib c:\proj\eifogl\eglut\lib\eglut.lib"
+generate
+
+--        c_compiler_options "-E -M -Ic:\proj\eifogl\utility\cwrap\include -Ic:\home\paco\dev\glut\glut-3.7.3\include -Ic:\programs\elj-win32\lcc\include\gl"
+--        c_compiler_options "-E"
+        c_compiler_options "-Ic:\proj\eifogl\egl\c\include -Ic:\proj\eifogl\spec\compiler\se\eglut\include -Ic:\proj\eifogl\utility\cwrap\include -Ic:\home\paco\dev\glut\glut-3.7.3\include -Ic:\programs\elj-win32\lcc\include\gl"
+end
+
+
+
+
