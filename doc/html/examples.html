@@ -50,7 +50,7 @@ Currrent release 0.1.0 <BR> January 13, 2001
 
 <BR><BR>
 
-<TR><TD><B><A HREF="index.html">
+<TR><TD><B><A HREF="index.php">
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
 <IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
 Home
@@ -95,7 +95,7 @@ Links
 <TR><TD><B>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
 <BR><BR>
-Contact:<A href="mailto:ericb@gobosoft.com"><BR>paco@ieee.org</A>
+Contact:<A href="mailto:paco@ieee.org"><BR>paco@ieee.org</A>
 </B></TD></TR>
 
 </TABLE>
@@ -118,15 +118,33 @@ translations of the C example programs in the Red Book.<P>
 All the programs are comprised of two classes; one class, called APPLICATION, 
 that inherits from EGLUT_APPLICATION that acts as the root class for the 
 program, and one class, called MAIN_WINDOW, that inherits from 
-EGLUT_TOP_LEVEL_WINDOW. In the MAIN_WINDOW most of the program
-code is located. Among other things it contains code for handling all GLUT
+EGLUT_TOP_LEVEL_WINDOW. The MAIN_WINDOW class contains most of the program
+code. Among other things it contains code for handling all GLUT
 events that can be recieved by the program. In the examples below the code
 for every MAIN_WINDOW can be viewed by clicking on the program screenshot.<P>
 
-<B>Example 1: lines.exe </B><P>
-This example illustrates the use of the OpenGL drawing primitive GL_LINES 
-and the use of line stippling.<P>
-<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_lines.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A>
+<B>Example 1: lines </B><P>
+This example demonstrates the use of the OpenGL <B>drawing primitive GL_LINES</B>
+and the use of <B>line stippling</B>.<P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_lines.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
+
+<B>Example 2: torus </B><P>
+This example demonstrates the use of OpenGL <B>display lists</B>. By pressing
+the 'x' and 'y' keys the torus can be made to rotate though the x and y axis
+respectively.<P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_torus.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
+
+<B>Example 3: cube </B><P>
+This example demonstrates a single modeling transformation, <B> egl_scale_f () </B>
+and a single viewing transformation. One can compare the <B> eglu_look_at ()</B>
+and <B> egl_translate_f () </B> functions for performing the viewing transformation. 
+One can also compare the <B>egl_frustum ()</B> and the <B>eglu_perspective ()</B> 
+functions for performing the ... A wireframe cube is rendered.<P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_cube.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
+
+<B>Example 4: planet </B><P>
+This example demonstrates     <P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_planet.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
 
 <TR><TD BGCOLOR="#BBBBBB">
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
@@ -135,7 +153,7 @@ and the use of line stippling.<P>
 
 <TR><TD>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
-Boogaloo
+When I get the time ...
 </BR>
 </TD></TR>
 
@@ -146,7 +164,7 @@ Boogaloo
 
 <TR><TD>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
-Shaggaloo
+When I get the time ...
 </BR>
 </TD></TR>
 
@@ -154,8 +172,8 @@ Shaggaloo
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2001/10/26 23:27:20 $" <BR>
-"$Revision: 1.1 $"
+"$Date: 2001/10/30 23:47:26 $" <BR>
+"$Revision: 1.2 $"
 </FONT>
 </TD></TR>
 
