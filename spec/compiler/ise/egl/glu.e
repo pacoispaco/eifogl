@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2003/03/08 21:27:04 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/04/27 06:44:21 $"
+	revision: "$Revision: 1.6 $"
 
 class GLU
 	
@@ -147,17 +147,52 @@ feature -- OpenGL glu API.
 			"gluNurbsSurface"
 		end
 	
+feature {EGLU} -- EGLU NURBS C interface	
+	
+	eglu_init_nurbs_api (eglu: EGLU) is
+			-- Initialize the GLU NURBS C API. The Eiffel object
+			-- `eglu' is needed to pass over to the C interface so
+			-- that it can make qualified calls back to Eiffel. 
+		require
+			eglu_not_void: eglu /= Void
+		do
+			eglu_set_nurbs_object (ceif_adopt (eglu))
+		end
+	
+	frozen eglu_set_nurbs_object (p: POINTER) is
+			-- Set the EGLU_NURBS object in the EGLU NURBS C
+			-- interface.
+		external
+			"C [macro <eglu_nurbs.h>] (EIF_OBJ)"
+		end	
+	
+	eglu_set_nurbs_error_callback_function (nurb: POINTER) is
+			-- Set the the GLU NURBS error callback function
+		external
+			"C [macro <eglu_nurbs.h>] (GLUnurbsObj *)"
+		alias
+			"eglu_set_nurbs_error_callback_function"
+		end
+	
+	eglu_set_nurbs_error_callback_function_to_null (nurb: POINTER) is
+			-- Set the the GLU NURBS error callback function
+		external
+			"C [macro <eglu_nurbs.h>] (GLUnurbsObj *)"
+		alias
+			"eglu_set_nurbs_error_callback_function_to_null"
+		end
+	
+feature {NONE} -- Implementation (CECIL stuff)
+
+	ceif_adopt (object: ANY): POINTER is
+		external
+			"C [macro <eif_eiffel.h>] (EIF_OBJ):EIF_POINTER"
+		alias
+			"eif_adopt"
+		end	
+	
 end -- class GLU
 
 -- begin dictionary
---| There is currently a problem with the ISE 4.3 and 4.5
---| versions of bench. If external features are declared
---| as proper external C functions the application will
---| not behave well when run in bench. It will compile  
---| and run nicely in finalized mode but it is difficult 
---| to debug and test if one cannot run the application
---| in frozen bench mode! :-( Therefore all external C 
---| function calls are temporarily changed to external 
---| C macros, which seems to work fine in both frozen
---| and finalized mode.
+--
 -- end dictionary

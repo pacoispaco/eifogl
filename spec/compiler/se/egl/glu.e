@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/23 21:19:29 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/04/27 06:44:29 $"
+	revision: "$Revision: 1.5 $"
 
 class GLU
 	
@@ -123,7 +123,7 @@ feature -- OpenGL glu API.
 --			"C [macro <glu.h>] (): GLUnurbsObj *"
 			"C use <glu.h>"		
 		alias
-			"gluNewNurbsRenderer()"
+			"gluNewNurbsRenderer"
 		end
 	
 	glu_nurbs_property (nurb: POINTER; property: INTEGER; value: DOUBLE) is
@@ -162,6 +162,41 @@ feature -- OpenGL glu API.
 			"C use <glu.h>"		
 		alias
 			"gluNurbsSurface"
+		end
+	
+feature {EGLU} -- EGLU NURBS C interface	
+	
+	eglu_init_nurbs_api (eglu: EGLU) is
+			-- Initialize the GLU NURBS C API. The Eiffel object
+			-- `eglu' is needed to pass over to the C interface so
+			-- that it can make qualified calls back to Eiffel. 
+		require
+			eglu_not_void: eglu /= Void
+		do
+			eglu_set_nurbs_object (eglu)
+		end
+	
+	frozen eglu_set_nurbs_object (p: EGLU) is
+			-- Set the EGLU_NURBS object in the EGLU NURBS C
+			-- interface.
+		external
+			"C macro use <eglu_nurbs.h>"
+		end	
+	
+	eglu_set_nurbs_error_callback_function (nurb: POINTER) is
+			-- Set the the GLU NURBS error callback function
+		external
+			"C macro use <eglu_nurbs.h>"
+		alias
+			"eglu_set_nurbs_error_callback_function"
+		end
+	
+	eglu_set_nurbs_error_callback_function_to_null (nurb: POINTER) is
+			-- Set the the GLU NURBS error callback function
+		external
+			"C macro use <eglu_nurbs.h>"
+		alias
+			"eglu_set_nurbs_error_callback_function_to_null"
 		end
 	
 end -- class GLU
