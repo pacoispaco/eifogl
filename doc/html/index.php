@@ -118,7 +118,7 @@ EiffelOpenGL is an open source project that aims to develop a complete
 Eiffel binding for OpenGL. The binding is implemented as an Eiffel wrapping
 of the OpenGL C API.
 <P>
-The aim of the project is to devlop a wrapping that:
+The aim of the project is to develop a wrapping that:
 <UL>
 <LI> Is a complete wrapping of the OpenGL and GLUT libraries. </LI>
 <LI> Runs on different platforms (primarily Win32 and X Window). </LI>
@@ -182,8 +182,8 @@ EiffelOpenGL 0.2.0 finally released! The important features of the new release a
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2002/01/07 23:03:29 $" <BR>
-"$Revision: 1.5 $"
+"$Date: 2002/01/08 18:38:30 $" <BR>
+"$Revision: 1.6 $"
 </FONT>
 </TD></TR>
 
