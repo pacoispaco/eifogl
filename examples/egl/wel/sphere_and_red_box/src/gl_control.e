@@ -3,8 +3,8 @@ indexing
         application: "sphere_and_red_box"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/29 23:23:03 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/11 08:25:16 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class GL_CONTROL
 
@@ -14,7 +14,7 @@ inherit
 		redefine
 			make_with_coordinates,
 			on_query_new_palette,
-			on_wm_destroy
+			on_destroy
 		end
 	
 	PFD_CONSTANTS
@@ -74,13 +74,11 @@ feature -- Initialization
 	
 feature -- Messages	
 	
-	on_wm_destroy is
+	on_destroy is
 			-- The control is about to be destroyed
 		do
-			rendering_context.make_current (gl_device_context)
 			rendering_context.delete
 			gl_device_context.release			
-			destroy
 		end
 
 	on_query_new_palette is
