@@ -1,17 +1,20 @@
 indexing
-	description: "OpenGL version 1.1"
+	description: "OpenGL version 1.1. Features marked with FINAL are tested and%
+	%are classed as fit for final release."
 	library: "EGL - Eiffel wrapping of OpenGL"
 	compilers: "All Eiffel compilers"
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/04/11 19:24:20 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/09/11 08:15:33 $"
+	revision: "$Revision: 1.8 $"
 
 class EGL
 	
 inherit	
 	EGL_CONSTANTS
+	
+	ARRAY_OPERATIONS
 	
 feature	-- Primitives (Contract predicates)
 	
@@ -24,7 +27,7 @@ feature -- Primitives (Specify vertices or rectangles)
 	
 	egl_begin (mode: INTEGER) is
 			-- Mark the beginning of a vertex-data list that
-			-- describes the geometric primitive `mode'.
+			-- describes the geometric primitive `mode'. FINAL
 		require
 			valid_state: not drawing_a_primitive  
 			valid_mode: is_valid_geometric_primitive (mode)
@@ -36,7 +39,7 @@ feature -- Primitives (Specify vertices or rectangles)
 		end
 	
 	egl_end is
-			-- Mark the end of a vertex-data list.
+			-- Mark the end of a vertex-data list. FINAL
 		require
 			valid_state: drawing_a_primitive			
 		do		
@@ -190,8 +193,11 @@ feature -- Primitives (Specify vertices or rectangles)
 			valid_state: drawing_a_primitive
 			v_not_void: v /= Void
 			two_coordinates: v.count = 3
+		local
+			c_array: EGL_GLFLOAT_C_ARRAY
 		do
-			-- TBD!
+			!! c_array.make_from_array (v)
+			gl_api.gl_vertex_3fv (c_array.pointer)
 		end
 	
 	egl_vertex_3d (x, y, z: DOUBLE) is
@@ -306,14 +312,14 @@ feature -- Primitives (Specify polygon edge treatment)
 			-- edge flag is `True' when a vertex is specified,
 			-- the vertex is marked as the start of a boundary
 			-- edge. Otherwise the vertex is marked as a nonboundary
-			-- edge. 		
-		require
-			valid_state: drawing_a_primitive			
+			-- edge. FINAL
 		do
 			gl_api.gl_edge_flag (flag)
+		ensure
+			edge_flag_set: egl_get_boolean_v (Gl_edge_flag) @ 1 = flag
 		end
 
-	egl_edge_flagv (flag: ARRAY [BOOLEAN]) is
+	egl_edge_flag_v (flag: ARRAY [BOOLEAN]) is
 			-- Indicates weather a vertex should be considered as
 			-- initializing a boundary edge of a polygon.
 		require
@@ -328,19 +334,19 @@ feature -- Primitives (Specify polygon offset)
 	
 	egl_polygon_offset (factor, units: REAL) is
 			-- Set the scale `factor' and `units' used to calculate
-			-- depth values for polygons.
+			-- depth values for polygons. FINAL
 		require
 			valid_state: not drawing_a_primitive			
 		do
 			gl_api.gl_polygon_offset (factor, units)
 		ensure
---			offset_factor_set: gl_get (Gl_polygon_offset_factor) = factor
---			units_set: gl_get (Gl_polygon_offset_units) = units
+			offset_factor_set: egl_get_float_v (Gl_polygon_offset_factor) @ 1 = factor
+			units_set: egl_get_float_v (Gl_polygon_offset_units) @ 1 = units
 		end
 	
 feature -- Vertex Arrays (Specify vertex arrays)	
 	
-	egl_vertex_pointer_integer (size, stride: INTEGER; array: ARRAY [INTEGER]) is
+	egl_vertex_pointer_integer (size, stride: INTEGER; array: ARRAY [INTEGER]) is 
 			-- Specify an `array' of vertex data. `size' is the
 			-- number of coordinates per vertex. `stride' is the
 			-- byte offset between consectutive vertices.
@@ -372,7 +378,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
 --			gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
 		end
 	
-	egl_vertex_pointer_float (size, stride: INTEGER; array: ARRAY [REAL]) is
+	egl_vertex_pointer_float (size, stride: INTEGER; array: ARRAY [REAL]) is 
 			-- Specify an `array' of vertex data. `size' is the
 			-- number of coordinates per vertex. `stride' is the
 			-- byte offset between consectutive vertices.
@@ -388,7 +394,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
 --			gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
 		end
 	
-	egl_vertex_pointer_double (size, stride: INTEGER; array: ARRAY [DOUBLE]) is
+	egl_vertex_pointer_double (size, stride: INTEGER; array: ARRAY [DOUBLE]) is 
 			-- Specify an `array' of vertex data. `size' is the
 			-- number of coordinates per vertex. `stride' is the
 			-- byte offset between consectutive vertices.
@@ -415,7 +421,6 @@ feature -- Vertex Arrays (Specify vertex arrays)
 			-- number of color components per color. `stride' is the
 			-- byte offset bewteen consecutive colors. 
 		require
-			valid_state: not drawing_a_primitive
 			valid_size: size = 3 or size = 4
 			valid_stride: stride >= 0
 			array_not_void: array /= Void
@@ -431,7 +436,6 @@ feature -- Vertex Arrays (Specify vertex arrays)
 			-- number of color components per color. `stride' is the
 			-- byte offset bewteen consecutive colors. 
 		require
-			valid_state: not drawing_a_primitive
 			valid_size: size = 3 or size = 4
 			valid_stride: stride >= 0
 			array_not_void: array /= Void
@@ -447,7 +451,6 @@ feature -- Vertex Arrays (Specify vertex arrays)
 			-- number of color components per color. `stride' is the
 			-- byte offset bewteen consecutive colors. 
 		require
-			valid_state: not drawing_a_primitive
 			valid_size: size = 3 or size = 4
 			valid_stride: stride >= 0
 			array_not_void: array /= Void
@@ -463,7 +466,6 @@ feature -- Vertex Arrays (Specify vertex arrays)
 			-- number of color components per color. `stride' is the
 			-- byte offset bewteen consecutive colors. 
 		require
-			valid_state: not drawing_a_primitive
 			valid_size: size = 3 or size = 4
 			valid_stride: stride >= 0
 			array_not_void: array /= Void
@@ -489,24 +491,28 @@ feature -- Vertex Arrays (Control drawing of arrays and their components)
 --	egl_array_element TBD!
 	
 	egl_disable_client_state (array: INTEGER) is
-			-- Disable a client state vector capability of type `array'. 
+			-- Disable a client state vector capability of type `array'. FINAL
 		require
 			valid_state: not drawing_a_primitive
 			is_valid_client_state_array (array)
 		do
 			gl_api.gl_disable_client_state (array)
+		ensure
+			-- client_state_disabled: No way to check this!
 		end
 	
 	egl_enable_client_state (array: INTEGER) is
-			-- Enable a client state vector capability of type `array'. 
+			-- Enable a client state vector capability of type `array'. FINAL
 		require
 			valid_state: not drawing_a_primitive
 			is_valid_client_state_array (array)
 		do
 			gl_api.gl_enable_client_state (array)
+		ensure
+			-- client_state_enabled: No way to check this!
 		end
 	
-	egl_draw_elements_integer (mode: INTEGER; indices: ARRAY [INTEGER]) is
+	egl_draw_elements_integer (mode: INTEGER; indices: ARRAY [INTEGER]) is 			
 			-- Draw a sequence of geometric primitives, whose
 			-- indices are stored in the array `indices'.
 		require
@@ -519,9 +525,7 @@ feature -- Vertex Arrays (Control drawing of arrays and their components)
 			!! indices_c_array.make_from_array (indices)
 			gl_api.gl_draw_elements (mode, indices_c_array.count, indices_c_array.gl_type, indices_c_array.pointer)
 		end
-	
---	egl_draw_elements_xxx TBD!
-	
+		
 --	egl_draw_range_elements_xxx TBD!
 --	egl_draw_arrays TBD!
 	
@@ -779,30 +783,45 @@ feature -- Coordinate Transformation (Manipulate the current matrix)
 	
 	egl_matrix_mode (mode: INTEGER) is
 			-- Specify which matrix is the current matrix where
-			-- `mode' denotes the matrix.
+			-- `mode' denotes the matrix. FINAL
 		require		
 			valid_state: not drawing_a_primitive
 			valid_mode: is_valid_matrix_mode (mode)
 		do
 			gl_api.gl_matrix_mode (mode)
 		ensure
---			current_matrix_set: gl_get (Gl_matrix_mode) = mode
+			current_matrix_set: egl_get_integer_v (Gl_matrix_mode) @ 1 = mode
 		end
 	
 	egl_push_matrix is
-			-- Push the current matrix onto the matrix stack.
+			-- Push the current matrix onto the matrix stack. FINAL
 		require
 			valid_state: not drawing_a_primitive
---			stack_not_full: gl_get (Gl_matrix_mode) = Gl_modelview_matrix implies 
---					gl_get (Gl_modelview_stack_depth) < gl_get (Gl_max_modelview_stack_depth) and
---					gl_get (Gl_matrix_mode) = Gl_projection_matrix implies	
---				        gl_get (Gl_projection_stack_depth) < gl_get (Gl_max_projection_stack_depth) and
---					gl_get (Gl_matrix_mode) = Gl_texture_matrix implies	
---				        gl_get (Gl_texture_stack_depth) < gl_get (Gl_max_texture_stack_depth)
+			-- The following preconditions depend on which matrix is
+			-- current
+			modelview_matrix_stack_not_full: (egl_get_integer_v (Gl_matrix_mode) @ 1 = Gl_modelview implies 
+							  egl_get_integer_v (Gl_modelview_stack_depth) @ 1 < 
+							  egl_get_integer_v (Gl_max_modelview_stack_depth) @ 1)
+			projection_matrix_stack_not_full: (egl_get_integer_v (Gl_matrix_mode) @ 1 = Gl_projection implies
+							   egl_get_integer_v (Gl_projection_stack_depth) @ 1 < 
+							   egl_get_integer_v (Gl_max_projection_stack_depth) @ 1)
+			texture_matrix_stack_not_full: (egl_get_integer_v (Gl_matrix_mode) @ 1 = Gl_texture implies
+							egl_get_integer_v (Gl_texture_stack_depth) @ 1 < 
+							egl_get_integer_v (Gl_max_texture_stack_depth) @ 1)
 		do
 			gl_api.gl_push_matrix
 		ensure
-			-- Stack count incremented for the appropriate stack
+			-- The following postconditions depend on which matrix is
+			-- current 
+			modelview_matrix_stack_incremented: (egl_get_integer_v (Gl_matrix_mode) @ 1 = Gl_modelview implies 
+							     egl_get_integer_v (Gl_modelview_stack_depth) @ 1 =  
+							     old egl_get_integer_v (Gl_modelview_stack_depth) @ 1 + 1)
+			projection_matrix_stack_incremented: (egl_get_integer_v (Gl_matrix_mode) @ 1 = Gl_projection implies
+							      egl_get_integer_v (Gl_projection_stack_depth) @ 1 < 
+							      old egl_get_integer_v (Gl_projection_stack_depth) @ 1 + 1)
+			texture_matrix_stack_incremented: (egl_get_integer_v (Gl_matrix_mode) @ 1= Gl_texture implies
+							   egl_get_integer_v (Gl_texture_stack_depth) @ 1 < 
+							   old egl_get_integer_v (Gl_texture_stack_depth) @ 1 + 1)
 		end
 	
 	egl_pop_matrix is
@@ -843,15 +862,27 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
 	
 	-- LOTS OF egl_color_xxx functions TBD!
 	
-	egl_color_3f (r, g, b: REAL) is
+	egl_color_3f (red, green, blue: REAL) is
 			-- Set drawing color. Alpha is set to 1.0.
 		require		
-			valid_state: not drawing_a_primitive
-			valid_red_value: r >= 0.0 and r <= 1.0
-			valid_green_value: g >= 0.0 and g <= 1.0
-			valid_blue_value: b >= 0.0 and b <= 1.0
+			valid_red_value: red >= 0.0 and red <= 1.0
+			valid_green_value: green >= 0.0 and green <= 1.0
+			valid_blue_value: blue >= 0.0 and blue <= 1.0
 		do			
-			gl_api.gl_color_3f (r, g, b)
+			gl_api.gl_color_3f (red, green, blue)
+		ensure
+			-- Color is set
+		end
+	
+	egl_color_4f (red, green, blue, alpha: REAL) is
+			-- Set drawing color.
+		require
+			valid_red_value: red >= 0.0 and red <= 1.0
+			valid_green_value: green >= 0.0 and blue <= 1.0
+			valid_blue_value: blue >= 0.0 and green <= 1.0
+			valid_alpha_value: alpha >= 0.0 and alpha <= 1.0
+		do
+			gl_api.gl_color_4f (red, green , blue, alpha)
 		ensure
 			-- Color is set
 		end
@@ -859,7 +890,6 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
 	egl_color_4fv (fv: ARRAY [REAL]) is
 			-- Set drawing color.
 		require
-			valid_state: not drawing_a_primitive
 			fv_not_void: fv /= Void
 			fv_has_4_reals: fv.count = 4
 			fv_lower_index_equals_1: fv.lower = 1
@@ -879,6 +909,22 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
 	
 --	egl_index_xxx TBD!	
 	
+	egl_index_i (c: INTEGER) is
+			-- Set the current color index. The current index is
+			-- stored as a floating-point value. Index values
+			-- outside the representable range of the color index
+			-- are not clamped. However before an index is dithered
+			-- (if enabled) and written to the frame buffer, it is
+			-- converted to fixed-point format. Any bits in the
+			-- integer portion of the resulting fixed-point value
+			-- that do not correspond to bits in the frame buffer
+			-- are masked out.
+		require
+			valid_state: True
+		do
+			gl_api.gl_index_i (c)
+		end
+		
 --	egl_normal_xxx TBD!	
 	
 	egl_normal_3f (nx, ny, nz: REAL) is
@@ -1382,23 +1428,56 @@ feature -- Frame Buffer Operations (Clear some or all buffers)
 	
 feature -- Frame Buffer Operations (Specify color, depth, and stencil values for clear operations)
 	
---	egl_clear_accum TBD!
-	
-	egl_clear_color (r, g, b, a: REAL) is
-			-- Sets the color and alpha values to use for clearing
-			-- the color buffers.
+	egl_clear_accum (red, green, blue, alpha: REAL) is
+			-- Specify the red, green, blue and alpha values used
+			-- when the color buffers are cleared. The initial
+			-- values are all 0.
 		require
 			valid_state: drawing_a_primitive or not drawing_a_primitive
-			valid_red_value: r >= 0.0 and r <= 1.0
-			valid_green_value: g >= 0.0 and g <= 1.0
-			valid_blue_value: b >= 0.0 and b <= 1.0
-			valid_alpha_value: a >= 0.0 and a <= 1.0
+			valid_red_value: red >= -1.0 and red <= 1.0
+			valid_green_value: green >= -1.0 and green <= 1.0
+			valid_blue_value: blue >= -1.0 and blue <= 1.0
+			valid_alpha_value: alpha >= -1.0 and alpha <= 1.0
 		do
-			gl_api.gl_clear_color (r, g, b, a)
+			gl_api.gl_clear_accum (red, green, blue, alpha)
+		ensure
+			-- Clear color value is set
+		end 
+	
+	egl_clear_color (red, green, blue, alpha: REAL) is
+			-- Specify the red, green, blue and alpha values used
+			-- when the color buffers are cleared. The initial
+			-- values are all 0.
+		require
+			valid_state: drawing_a_primitive or not drawing_a_primitive
+			valid_red_value: red >= 0.0 and red <= 1.0
+			valid_green_value: green >= 0.0 and green <= 1.0
+			valid_blue_value: blue >= 0.0 and blue <= 1.0
+			valid_alpha_value: alpha >= 0.0 and alpha <= 1.0
+		do
+			gl_api.gl_clear_color (red, green, blue, alpha)
+		ensure
+			-- Clear color value is set
 		end
 	
 --	egl_clear_depth TBD!
---	egl_clear_index TBD!
+	
+	egl_clear_index (c: REAL) is
+			-- Specifies the index used when the color index buffers
+			-- are cleared. The initial values is 0. `c' is not
+			-- clamped. Rather, `c' is converted to a fixed-point
+			-- value with unspecified precision to the right of the
+			-- binary point. The integer part of this value is then
+			-- masked with 2**m-1, where m is the number of bits in
+			-- a color index stored in the frame buffer.
+		require
+			valid_state: not drawing_a_primitive
+		do
+			gl_api.gl_clear_index (c)
+		ensure
+			-- Clear index value is set
+		end		
+		
 --	egl_clear_stencil TBD!
 	
 feature -- Frame Buffer Operations (Control buffers for writing)
@@ -1420,11 +1499,59 @@ feature -- Frame Buffer Operations (Control buffers for writing)
 	
 feature -- Frame Buffer Operations (Operate on the accumulation buffer)
 	
---	egl_accum TBD!
+	egl_accum (op: INTEGER; value: REAL) is
+			-- Execute the specified operation `op' with the given
+			-- `value' on the accumulation buffer.  
+		require
+			valid_state: not drawing_a_primitive
+			valid_operation: op = Gl_accum or
+					 op = Gl_load or
+					 op = Gl_add or
+					 op = Gl_mult or
+					 op = Gl_return
+		        -- accumulation_buffer_exists:
+		do
+			gl_api.gl_accum (op, value)
+		end
 	
 feature -- Evaluators (Define a one- or two-dimensional evaluator)	
 	
 --	egl_map_1_xxx TBD!
+	
+	egl_map_1f (target: INTEGER; u1, u2: DOUBLE; points: ARRAY [ARRAY [REAL]]) is
+			-- Define a one-dimensional evaluator (based on
+			-- Bernstein polynomials). `target' specifies the kind
+			-- of values that are generated by the evaluator. `u1'
+			-- and `u2' specify the linear mapping. `points'
+			-- contains the control points.
+		require
+			valid_state: not drawing_a_primitive
+			valid_target: target = Gl_map1_vertex_3 or
+				      target = Gl_map1_vertex_4 or
+				      target = Gl_map1_index or
+				      target = Gl_map1_color_4 or
+				      target = Gl_map1_normal or
+				      target = Gl_map1_texture_coord_1 or
+				      target = Gl_map1_texture_coord_2 or
+				      target = Gl_map1_texture_coord_3 or
+				      target = Gl_map1_texture_coord_4
+			u1_not_equal_to_u2: u1 /= u2
+			valid_no_of_points: 1 <= points.count and
+					    points.count <= egl_get_integer_v (Gl_max_eval_order) @ 1
+		local
+			a: ARRAY [REAL]
+			stride: INTEGER
+			c_array: EGL_GLFLOAT_C_ARRAY
+		do
+			a := flattened_array_of_real (points)
+			!! c_array.make_from_array (a)
+			-- Find out the number of coordinates used for the
+			-- points (assuming all points have the same number of
+			-- coordinates as the first point) 
+			stride := (points @ 1).count
+			gl_api.gl_map_1f (target, u1, u2, stride, points.count, c_array.pointer)
+		end
+	
 --	egl_map_2_xxx TBD!
 	
 feature -- Evaluators (Generate and evaluate a series of map domain values)
@@ -1439,6 +1566,17 @@ feature -- Evaluators (Generate and evaluate a series of map domain values)
 feature -- Evaluators (Evaluate one- and two-dimensional maps at a specified domain coordinate)
 	
 --	egl_eval_coord_1_xxx TBD!
+	
+	egl_eval_coord_1f (u: REAL) is
+			-- Evaluate an enabled one-dimensional map where `u' 
+			-- is the domain coordinate to the basis function
+			-- defined in a previous gl_map_1* command.
+		require
+			-- Nothing specified in the "OpenGL Reference Manual"!
+		do
+			gl_api.gl_eval_coord_1f (u)
+		end
+	
 --	egl_eval_coord_2_xxx TBD!
 	
 feature -- Evaluators (Obtain evaluator parameter values)
@@ -1664,7 +1802,21 @@ feature -- State Queries (Obtain information about an error or the current OpenG
 	
 feature -- State Queries (Obtain information about an error or the current OpenGL connection)
 	
---	egl_get_boolean_v TBD!
+	egl_get_boolean_v (pname: INTEGER): ARRAY [BOOLEAN] is 
+			-- Return the value(s) of selected parameter `pname'.
+		require
+			valid_state: not drawing_a_primitive
+			-- valid_pname: is_valid_get_boolean_parameter (pname)
+			-- (to be implemented in egl_constants)
+		local
+			c_array: EGL_GLBOOLEAN_C_ARRAY
+		do
+			!! c_array.make_empty (16)
+			gl_api.gl_get_boolean_v (pname, c_array.pointer)
+			Result := c_array.contents
+		ensure
+			valid_result: Result /= Void and then Result.count >= 1
+		end
 	
 	egl_get_double_v (pname: INTEGER): ARRAY [DOUBLE] is
 			-- Return the value(s) of selected parameter `pname'.
