@@ -3,8 +3,8 @@ indexing
         application: "sphere_and_red_box"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/11 08:26:36 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	MAIN_WINDOW
@@ -20,7 +20,6 @@ inherit
 	WEL_FRAME_WINDOW
 		redefine
 			class_background,
-			class_icon,
 			default_process_message,
 			default_style,
 			default_x,
@@ -71,9 +70,9 @@ feature {NONE} -- Initialization
 			
 			init_quadrics_control
 
-            -- Set a timer to stop the application.
-            -- This is only used for profiling runs. 
-            set_timer (1, 300000)
+			-- Set a timer to stop the application.
+			-- This is only used for profiling runs. 
+			set_timer (1, 300000)
 		end
 	
 	set_status_window is
@@ -85,51 +84,8 @@ feature {NONE} -- Initialization
 
 	set_toolbar is
 			-- Create and initialize the toolbar
-		local
---			bitmap_index1, bitmap_index2, bitmap_index3: INTEGER
---			tool_bar_button1, tool_bar_button2, tool_bar_button3,
---			tool_bar_button4, tool_bar_button5, tool_bar_button6,
---			tool_bar_button1a, tool_bar_button1h, tool_bar_button1b, 
---			tool_bar_button2a, tool_bar_button2h, tool_bar_button2b, 
---			tool_bar_button3a, tool_bar_button3h, tool_bar_button3b: WEL_TOOL_BAR_BUTTON
---			standard_tool_bar_bitmap, tool_bar_bitmap: WEL_TOOL_BAR_BITMAP	
 		do
 			!! toolbar.make (Current, -1)
---			!! standard_tool_bar_bitmap.make_by_predefined_id (Idb_std_small_color)
---			!! tool_bar_bitmap.make (Test_toolbar_bmp)
---			toolbar.add_bitmaps (standard_tool_bar_bitmap, 1)
---			bitmap_index1 := toolbar.last_bitmap_index
---			toolbar.add_bitmaps (tool_bar_bitmap, 1)
---			bitmap_index2 := toolbar.last_bitmap_index
-
---			!! tool_bar_button1a.make_button (Std_filenew, Cmd_nytt_ae)
---			!! tool_bar_button1h.make_button (Std_filenew, Cmd_nytt_h)
---			!! tool_bar_button1.make_separator
---			!! tool_bar_button2a.make_button (Std_fileopen, Cmd_open_ae)
---			!! tool_bar_button2h.make_button (Std_fileopen, Cmd_open_h)
---			!! tool_bar_button2b.make_button (Std_fileopen, Cmd_open_b)
---			!! tool_bar_button2.make_separator
---			!! tool_bar_button3a.make_button (Std_filesave, Cmd_spara_ae)
---			!! tool_bar_button3h.make_button (Std_filesave, Cmd_spara_h)
---			!! tool_bar_button3b.make_button (Std_filesave, Cmd_spara_b)
---			!! tool_bar_button3.make_separator
---			!! tool_bar_button4.make_button (Std_print, Cmd_skriv_ae)
---			!! tool_bar_button5.make_button (bitmap_index2, Cmd_logg_ae)
---			toolbar.add_buttons (<< tool_bar_button1a, tool_bar_button1h, tool_bar_button1,
---						tool_bar_button2a, tool_bar_button2h, tool_bar_button2b, tool_bar_button2, 
---						tool_bar_button3a, tool_bar_button3h, tool_bar_button3b, tool_bar_button3, 
---						tool_bar_button4, tool_bar_button5>>)
---			!! toolbar_buttons.make (20)
---			toolbar_buttons.force (tool_bar_button1a, Cmd_nytt_ae)
---			toolbar_buttons.force (tool_bar_button1h, Cmd_nytt_h)
---			toolbar_buttons.force (tool_bar_button2a, Cmd_open_ae)
---			toolbar_buttons.force (tool_bar_button2h, Cmd_open_h)
---			toolbar_buttons.force (tool_bar_button2b, Cmd_open_b)
---			toolbar_buttons.force (tool_bar_button3a, Cmd_spara_ae)
---			toolbar_buttons.force (tool_bar_button3h, Cmd_spara_h)
---			toolbar_buttons.force (tool_bar_button3b, Cmd_spara_b)
---			toolbar_buttons.force (tool_bar_button4, Cmd_skriv_ae)
---			toolbar_buttons.force (tool_bar_button5, Cmd_logg_ae)
 		end
 
 	main_menu: WEL_MENU is
@@ -372,13 +328,6 @@ feature {NONE} -- Implementation (Basic operations)
 			s_list: LIST [STRING]
 			wmb: WEL_MSG_BOX
 		do
---			if opengl_info_dialog = Void then
---				!! opengl_info_dialog.make (Current, toolbar.font)
---			end
---			if not opengl_info_dialog.exists then
---				opengl_info_dialog.activate
---			end
-			
 			!! s.make (0)
 			s.append ("Vendor:   ")
 			s.append (egl_get_string (Gl_vendor))
@@ -416,12 +365,6 @@ feature {NONE} -- Implementation (Window class attributes)
 			-- Set background to light gray
 		once
 			!WEL_LIGHT_GRAY_BRUSH! Result.make
-		end
-	
-	class_icon: WEL_ICON is
-			-- The window's icon
-		once
-			!! Result.make_by_id (Eiffel_opengl_icon_id)
 		end
 	
 feature {NONE} -- Implementation (Window default values)	
