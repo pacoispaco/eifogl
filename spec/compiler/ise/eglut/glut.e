@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/25 20:48:58 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/08 11:43:15 $"
+	revision: "$Revision: 1.3 $"
 
 class GLUT
 	
@@ -215,14 +215,12 @@ feature	{EGLUT_APPLICATION} -- EGLUT C interface
 		require
 			app_not_void: app /= Void
 		local
-			a: CHAR_PP
-			s: SPECIAL [POINTER]
 			i: INTEGER
+			a: ANY
 		do
-			!! a.make (argument_array)
-			s := a.area
 			i := argument_count + 1
-			glut_init ($i, $s)
+			a := argument_array.to_c
+			glut_init ($i, $a)
 			eglut_set_application_object (ceif_adopt (app))
 		end
 		
