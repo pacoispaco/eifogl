@@ -2,8 +2,8 @@
 # Description:	Python module for building ISE Eiffel systems
 # Author:	Paul Cohen
 # Copyright:	Copyright (c) 2001 Paul Cohen
-# Date:		$Date: 2001/11/11 14:30:56 $
-# Revision:	$Revision: 1.4 $
+# Date:		$Date: 2002/01/08 22:26:28 $
+# Revision:	$Revision: 1.5 $
 ####################################################################
 
 import os
@@ -846,18 +846,18 @@ def start_building (ebuild_file):
 					print " (" + str (len (output.error_messages ())) + " errors)."
 			else:
 				esb.e_freeze ()
-				output_lines = esb.e_freeze_message ()
+				output_lines = esb.e_freezing_message ()
 				for line in output_lines:
 					print line
-				if esb.e_freeze_successful ():
+				if esb.e_freezing_successful ():
 					esb.c_freeze ()
-					output_lines = esb.c_freeze_message ()
+					output_lines = esb.c_freezing_message ()
 					for line in output_lines:
 						print line
-					if not esb.c_freeze_successful ():
+					if not esb.c_freezing_successful ():
 						print "C compilation failed."
 						msg = msg + "C compilation failed."
-						output = esb.c_freeze_output ()
+						output = esb.c_freezing_output ()
 						for line in output:
 							print line
 					else:
@@ -867,7 +867,7 @@ def start_building (ebuild_file):
 						msg = msg + "Size of binary \"" + esb.binary_name () + "\": "
 						msg = msg + str (esb.binary_size ()) + " bytes." 
 				else:
-					output = ISEOutput (esb.e_freeze_output ())
+					output = ISEOutput (esb.e_freezing_output ())
 					print "Failed at degree: " + output.compilation_failure_degree ()
 					print "Number of errors: " + str (len (output.error_messages ()))
 					print "First error: "
