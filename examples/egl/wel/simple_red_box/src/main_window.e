@@ -3,8 +3,8 @@ indexing
         application: "gl_test"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/11 15:33:48 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	MAIN_WINDOW
@@ -81,8 +81,6 @@ feature {NONE} -- Implementation (Window messages)
 	on_show is
 			-- Create and get a OpenGL DC the first time the window is
 			-- shown.
-		local
-			i: INTEGER
 		do
 			if gl_device_context = Void then
 				-- Get a device context
@@ -114,8 +112,6 @@ feature {NONE} -- Implementation (Window messages)
 	
 	on_paint (paint_dc: WEL_PAINT_DC; invalid_rect: WEL_RECT) is
 			-- Do some rendering
-		local
-			ret_val: INTEGER
 		do
 			egl_clear_color (0.0, 0.0, 1.0, 0.0)
 			egl_clear (Gl_color_buffer_bit)
@@ -237,12 +233,10 @@ feature {NONE} -- Implementation
 			-- context listed.
 		local
 			pfd: PIXEL_FORMAT_DESCRIPTOR
-			i: INTEGER
 			wp_332: PALETTE_332
 		do
 			-- Get detailed info on our dc's pixel format
 			!! pfd.make
---			i := describe_pixel_format(dc.item, pfd_index, pfd.structure_size, pfd.item)
 			if flag_set (pfd.dw_flags, Pfd_Need_Palette) then
 				!! wp_332.make_evenly_distributed		
 				gl_device_context.select_palette (wp_332)
