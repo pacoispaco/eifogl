@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:01:20 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/01/27 18:48:02 $"
+	revision: "$Revision: 1.3 $"
 
 class EGL_CONSTANTS
 
@@ -204,15 +204,29 @@ feature -- Status report
 				(factor = Gl_src_alpha) or
 				(factor = Gl_one_minus_src_alpha) or
 				(factor = Gl_dst_alpha) or
-				(factor = Gl_one_minus_dst_alpha)
+				(factor = Gl_one_minus_dst_alpha) --or
+--				(factor = Gl_constant_color) or
+--				(factor = Gl_one_minus_constant_color) or
+--				(factor = Gl_constant_alpha) or
+--				(factor = Gl_one_minus_constant_alpha) 
 		end
 	
 	is_valid_source_blending_factor (factor: INTEGER): BOOLEAN is
 			-- Is ´factor' a valid source blending factor constant?
 		do
-			Result := (factor = Gl_dst_color) or
+			Result := (factor = Gl_zero) or
+				(factor = Gl_one) or
+				(factor = Gl_dst_color) or
 				(factor = Gl_one_minus_dst_color) or
-				(factor = Gl_src_alpha_saturate)
+				(factor = Gl_src_alpha) or
+				(factor = Gl_one_minus_src_alpha) or
+				(factor = Gl_dst_alpha) or
+				(factor = Gl_one_minus_dst_alpha) or
+				(factor = Gl_src_alpha_saturate) --or
+--				(factor = Gl_constant_color) or
+--				(factor = Gl_one_minus_constant_color) or
+--				(factor = Gl_constant_alpha) or
+--				(factor = Gl_one_minus_constant_alpha) 
 		end	
 	
 	is_valid_client_state_array (array: INTEGER): BOOLEAN is
@@ -224,6 +238,53 @@ feature -- Status report
 				(array = Gl_normal_array) or
 				(array = Gl_texture_coord_array) or
 				(array = Gl_edge_flag_array)
+		end
+	
+	is_valid_pixel_storage_parameter (name: INTEGER): BOOLEAN is
+			-- Is `name' a valid pixel storage parameter name?
+		do
+			Result := (name = Gl_unpack_swap_bytes) or
+				(name = Gl_pack_swap_bytes) or
+				(name = Gl_unpack_lsb_first) or
+				(name = Gl_pack_lsb_first) or
+				(name = Gl_unpack_row_length) or
+				(name = Gl_pack_row_length) or
+				(name = Gl_unpack_skip_rows) or
+				(name = Gl_pack_skip_rows) or
+				(name = Gl_unpack_skip_pixels) or
+				(name = Gl_pack_skip_pixels) or
+				(name = Gl_unpack_alignment) or
+				(name = Gl_pack_alignment)
+--				(name = Gl_unpack_image_height) or
+--				(name = Gl_pack_image_height) or
+--				(name = Gl_unpack_skip_images) or
+--				(name = Gl_pack_skip_images)
+		end
+	
+	is_valid_attrib_mask (mask: INTEGER): BOOLEAN is
+			-- Is `mask' a valid attribute mask?
+		do
+			Result := (mask = Gl_accum_buffer_bit) or
+				(mask = Gl_all_attrib_bits) or
+				(mask = Gl_color_buffer_bit) or
+				(mask = Gl_current_bit) or
+				(mask = Gl_depth_buffer_bit) or
+				(mask = Gl_enable_bit) or
+				(mask = Gl_eval_bit) or
+				(mask = Gl_fog_bit) or
+				(mask = Gl_hint_bit) or
+				(mask = Gl_lighting_bit) or
+				(mask = Gl_line_bit) or
+				(mask = Gl_list_bit) or
+				(mask = Gl_pixel_mode_bit) or
+				(mask = Gl_point_bit) or
+				(mask = Gl_polygon_bit) or
+				(mask = Gl_polygon_stipple_bit) or
+				(mask = Gl_scissor_bit) or
+				(mask = Gl_stencil_buffer_bit) or
+				(mask = Gl_texture_bit) or
+				(mask = Gl_transform_bit) or
+				(mask = Gl_viewport_bit)
 		end
 	
 end -- class EGL_CONSTANTS
