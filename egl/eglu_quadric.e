@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:13:47 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/04/26 21:20:54 $"
+	revision: "$Revision: 1.4 $"
 
 class EGLU_QUADRIC
 	
@@ -86,9 +86,6 @@ feature {NONE} -- Implementation
 	
 	glu_api: GLU is 
 			-- The raw Eiffel encapsulation of the OpenGL glu API.
-			-- NOTA BENE! This solution should probably be skipped
-			-- in favor of having the needed raw glu wrappers in 
-                        -- this class!
 		once
 			!! Result
 		end
