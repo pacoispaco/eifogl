@@ -5,13 +5,20 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/26 22:48:13 $"
+	revision: "$Revision: 1.2 $"
 
 class GLU
 	
 feature -- OpenGL glu API.
 	
+	glu_ortho_2d (left, right, bottom, top: DOUBLE) is
+		external
+			"C [macro <glu.h>] (GLdouble, GLdouble, GLdouble, GLdouble)"
+		alias
+			"gluOrtho2D"
+		end
+		
 	glu_new_quadric: POINTER is
 		external
 			"C [macro <glu.h>] (): GLUquadricObj *"
@@ -81,7 +88,48 @@ feature -- OpenGL glu API.
 		alias
 			"gluErrorString"
 		end
-
+	
+	glu_new_nurbs_renderer: POINTER is
+		external
+			"C [macro <glu.h>] (): GLUnurbsObj *"
+		alias
+			"gluNewNurbsRenderer()"
+		end
+	
+	glu_nurbs_property (nurb: POINTER; property: INTEGER; value: DOUBLE) is
+		external
+			"C [macro <glu.h>] (GLUnurbsObj *, GLenum, GLfloat)"
+		alias
+			"gluNurbsProperty"
+		end
+	
+	glu_begin_surface (nurb: POINTER) is
+		external
+			"C [macro <glu.h>] (GLUnurbsObj *)"
+		alias
+			"gluBeginSurface"
+		end
+	
+	glu_end_surface (nurb: POINTER) is
+		external
+			"C [macro <glu.h>] (GLUnurbsObj *)"
+		alias
+			"gluEndSurface"
+		end
+	
+	glu_nurbs_surface (nurb: POINTER; 
+			    u_knot_count: INTEGER; u_knot: POINTER;
+			    v_knot_count: INTEGER; v_knot: POINTER; 
+			    u_knot_stride, v_knot_stride: INTEGER; 
+			    ctl_array: POINTER; 
+			    u_order, v_order: INTEGER; 
+			    type: INTEGER) is
+		external
+			"C [macro <glu.h>] (GLUnurbsObj *, GLint, GLfloat *, GLint, GLfloat *, GLint, GLint, GLfloat *, GLint, GLint, GLenum)"
+		alias
+			"gluNurbsSurface"
+		end
+	
 end -- class GLU
 
 -- begin dictionary
