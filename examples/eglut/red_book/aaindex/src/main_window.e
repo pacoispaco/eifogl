@@ -3,8 +3,8 @@ indexing
         application: "aaindex"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/09/11 07:12:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/01/27 18:30:10 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -26,6 +26,8 @@ inherit
 	EGLU
 	
 	ARRAY_OPERATIONS
+	
+	BASIC_MATH
 	
 creation
 	make
@@ -54,7 +56,7 @@ feature {NONE} -- Initialization
 			until
 				i = Rampsize
 			loop
-				shade := i / Rampsize
+				shade := double_to_real (i / Rampsize)
 				glut_set_color (Ramp1start + i, 0.0, shade, 0.0)
 				glut_set_color (Ramp2start + i, 0.0, 0.0, shade)
 				i := i + 1
