@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/09/11 08:32:44 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/12/08 11:41:47 $"
+	revision: "$Revision: 1.8 $"
 
 class GL
 		
@@ -274,7 +274,15 @@ feature -- OpenGL API
 --			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
 			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble)"
 		alias
-			"glVertex3f"
+			"glVertex3d"
+		end
+	
+	gl_vertex_3dv (v: POINTER) is
+		external
+--			"C (const GLdouble *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLdouble *)"
+		alias
+			"glVertex3dv"
 		end
 	
 	gl_vertex_4i (x, y, z, w: INTEGER) is
@@ -713,6 +721,14 @@ feature -- OpenGL API
 			"glNormal3f"
 		end
 		
+	gl_normal_3fv (p: POINTER) is
+		external
+--			"C (const GLfloat *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLfloat *)"
+		alias
+			"glNormal3fv"
+		end
+	
 	gl_normal_3d (nx, ny, nz: DOUBLE) is
 		external
 --			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
@@ -721,12 +737,12 @@ feature -- OpenGL API
 			"glNormal3d"
 		end
 		
-	gl_normal_3fv (p: POINTER) is
+	gl_normal_3dv (p: POINTER) is
 		external
---			"C (const GLfloat *) | <gl.h>" 
-			"C [macro <gl.h>] (const GLfloat *)"
+--			"C (const GLdouble *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLdouble *)"
 		alias
-			"glNormal3fv"
+			"glNormal3dv"
 		end
 	
 	gl_push_matrix is
