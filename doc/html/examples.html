@@ -35,15 +35,16 @@ Currrent release 0.1.0 <BR> January 13, 2001
 
 <!-- Top right square with various icons -->
 <TD WIDTH="100" ALIGN=CENTER VALIGN=CENTER>
-<A HREF="http://sourceforge.net"><IMG SRC="http://sourceforge.net/sflogo.php?group_id=10172" WIDTH="88" HEIGHT="31" BORDER="0" ALT="sourceforge.net"></A>
-<A HREF="http://www.opengl.org"><IMG SRC="images/OGL_sm.gif" WIDTH="68" HEIGHT="32" BORDER="0" ALT="www.opengl.org"></A>
+<A HREF="http://sourceforge.net"><IMG
+SRC="http://sourceforge.net/sflogo.php?group_id=10172" WIDTH="88" HEIGHT="31" BORDER="0" ALT="sourceforge.net" VSPACE=3></A><BR>
+<A HREF="http://www.opengl.org"><IMG SRC="images/OGL_sm.gif" WIDTH="68" HEIGHT="32" BORDER="1" ALT="www.opengl.org" VSPACE=3></A>
 </TD>
 
 </TR>
 <!-- End of top row! -->
 
 <TR>
-<TD WIDTH="100" ALIGN=LEFT VALIGN=TOP>
+<TD WIDTH="160" ALIGN=LEFT VALIGN=TOP>
 
 <!-- Add a table for the table of contents on the left side of the page -->
 <TABLE BORDER=0 CELLSPACING=3 CELLPADDING=3 COLS=1 WIDTH="160" NOSAVE>
@@ -120,31 +121,112 @@ that inherits from EGLUT_APPLICATION that acts as the root class for the
 program, and one class, called MAIN_WINDOW, that inherits from 
 EGLUT_TOP_LEVEL_WINDOW. The MAIN_WINDOW class contains most of the program
 code. Among other things it contains code for handling all GLUT
-events that can be recieved by the program. In the examples below the code
-for every MAIN_WINDOW can be viewed by clicking on the program screenshot.<P>
+events that can be recieved by the program. In the examples below the source
+code for every application can be viewed by clicking on the program screenshot.<P>
+</TD></TR>
 
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <B>Example 1: lines </B><P>
-This example demonstrates the use of the OpenGL <B>drawing primitive GL_LINES</B>
-and the use of <B>line stippling</B>.<P>
-<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_lines.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
+This example demonstrates the use of the OpenGL <B>drawing primitive
+GL_LINES</B> and the use of <B>line stippling</B>. <P> 
+Specific EGL features used:<P>
+<B> egl_begin () </B><BR>
+<B> egl_end </B><BR>
+<B> egl_line_stipple () </B>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_lines.jpg" BORDER="0" ALT="Eiffel source code" VSPACE="10" HSPACE="0"></A>
+</TD></TR>
 
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <B>Example 2: torus </B><P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_torus.jpg" BORDER="0" ALT="Eiffel source code" ALIGN=RIGHT VSPACE="0" HSPACE="10"></A>
 This example demonstrates the use of OpenGL <B>display lists</B>. By pressing
 the 'x' and 'y' keys the torus can be made to rotate though the x and y axis
-respectively.<P>
-<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_torus.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
+respectively.<P> 
+Specific EGL features used:<P>
+<B> egl_new_list ()</B><BR>
+<B> egl_end_list </B><BR>
+<B> egl_call_list ()</B>
+</TD></TR>
 
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <B>Example 3: cube </B><P>
-This example demonstrates a single modeling transformation, <B> egl_scale_f () </B>
-and a single viewing transformation. One can compare the <B> eglu_look_at ()</B>
-and <B> egl_translate_f () </B> functions for performing the viewing transformation. 
-One can also compare the <B>egl_frustum ()</B> and the <B>eglu_perspective ()</B> 
-functions for performing the ... A wireframe cube is rendered.<P>
-<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_cube.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_cube.jpg" BORDER="0" ALT="Eiffel source code" ALIGN=RIGHT VSPACE="0" HSPACE="10"></A>
+This example demonstrates a single <B> modeling transformation </B> and a 
+single <B> viewing transformation</B>. A wireframe cube is rendered.<P>
+Specific EGL features used:<P>
+<B> egl_scale_f () </B><BR>
+<B> eglu_look_at () </B><BR>
+<B> egl_translate_f () </B><BR>
+<B> egl_frustum () </B><BR>
+<B> eglu_perspective ()</B>
+</TD></TR>
 
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <B>Example 4: planet </B><P>
-This example demonstrates     <P>
-<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_planet.jpg" BORDER="0" ALT="class MAIN_WINDOW"> </A><P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_planet.jpg" BORDER="0" ALT="Eiffel source code" ALIGN=RIGHT VSPACE="0" HSPACE="10"></A>
+This example demonstrates shows how to do simpler <B> composite modeling
+transformations </B>
+and how to draw <B> translated </B> and <B> rotated models </B>. By pressing the 
+'d', 'h' and 'm' keys the planet and moon can be made to raotate around the sun 
+and the planet respectively.<P>
+Specific EGL and EGLUT features used:<P>
+<B> glut_wire_sphere () </B><BR>
+<B> egl_rotate_f () </B><BR>
+<B> egl_translate_f () </B><BR>
+<B> egl_push_matrix </B><BR>
+<B> egl_pop_matrix </B>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<B>Example 5: teapots </B><P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_teapots.jpg" BORDER="0" ALT="Eiffel source code" ALIGN=RIGHT VSPACE="0" HSPACE="10"></A>
+This example demonstrates how to draw objects with different material
+properties. A single light source illuminates the objects. <P>
+Specific EGL and EGLUT features used:<P>
+<B> egl_material_fv () </B><BR>
+<B> egl_material_f () </B><BR>
+<B> glut_solid_teapot () </B>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<B>Example 6: aapoly </B><P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_aapoly.jpg" BORDER="0" ALT="Eiffel source code" ALIGN=RIGHT VSPACE="0" HSPACE="10"></A>
+This example draws filled polygons with <B> antialiased </B> edges. The special 
+<B> GL_SRC_ALPHA_SATURATE </B> blending function is used. Pressing the 't' 
+key turns the antialiasing on and off. <P>
+Specific EGL features used:<P>
+<B> egl_blend_func () </B><BR>
+<B> egl_cull_face () </B><BR>
+<B> egl_enable () </B><BR>
+<B> egl_disable () </B><BR>
+<B> egl_enable_client_state () </B><BR>
+<B> egl_disable_client_state () </B><BR>
+<B> egl_vertex_pointer_double () </B><BR>
+<B> egl_color_pointer_double () </B><BR>
+<B> egl_draw_elements_integer () </B>
+</TD></TR>
+
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<B>Example 7: surface </B><P>
+<A HREF="../../examples/eglut/red_book/lines/src/main_window.txt"> <IMG SRC="images/rb_surface.jpg" BORDER="0" ALT="Eiffel source code" ALIGN=RIGHT VSPACE="0" HSPACE="10"></A>
+This example draws a <B> NURBS surface </B> in the shape of a symmetrical hill.  
+The 'c' keyboard key allows you to toggle the visibility of the control points 
+themselves. Note that some of the control points are hidden by the surface 
+itself. <P>
+Specific EGL features used:<P>
+<B> eglu_new_nurbs_renderer </B><BR>
+<B> eglu_nurbs_property </B><BR>
+<B> eglu_nurbs_surface </B><BR>
+<B> activate_nurbs_error_callback </B><BR>
+<B> on_nurbs_error </B>
+</TD></TR>
 
 <TR><TD BGCOLOR="#BBBBBB">
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
@@ -153,8 +235,7 @@ This example demonstrates     <P>
 
 <TR><TD>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
-When I get the time ...
-</BR>
+When I get the time ... Take a look in the source code examples directory!
 </TD></TR>
 
 <TR><TD BGCOLOR="#BBBBBB">
@@ -164,16 +245,15 @@ When I get the time ...
 
 <TR><TD>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
-When I get the time ...
-</BR>
+When I get the time ... Take a look in the source code examples directory!
 </TD></TR>
 
 <TR><TD>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2001/10/30 23:47:26 $" <BR>
-"$Revision: 1.2 $"
+"$Date: 2001/11/12 21:21:45 $" <BR>
+"$Revision: 1.3 $"
 </FONT>
 </TD></TR>
 
