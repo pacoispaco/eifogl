@@ -3,16 +3,14 @@ indexing
         application: "multi_sphere"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 22:24:50 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/23 21:16:29 $"
+	revision: "$Revision: 1.3 $"
 
 
 class MAIN_WINDOW
 
 inherit
 	EGLUT_TOP_LEVEL_WINDOW
-		export
-			{NONE} all
 		redefine
 			init,
 			on_display,

@@ -7,8 +7,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/25 17:33:54 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/12/23 21:10:13 $"
+	revision: "$Revision: 1.4 $"
 
 class EGLUT_APPLICATION_CONTEXT
 	
@@ -24,8 +24,6 @@ feature -- Access
 		do
 			Result := windows @ glut_get_window
 		end		
-	
-feature {NONE} -- Implementation 
 	
 	frozen windows: DS_HASH_TABLE [EGLUT_WINDOW, INTEGER] is
 			-- Hash table containing all the applications EGLUT

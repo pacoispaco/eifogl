@@ -3,16 +3,14 @@ indexing
         application: "multi_sphere"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/23 21:16:29 $"
+	revision: "$Revision: 1.2 $"
 
 
 class SUB_WINDOW
 
 inherit
 	EGLUT_SUB_WINDOW
-		export
-			{NONE} all
 		redefine
 			make,
 			on_display,
@@ -123,5 +121,5 @@ feature -- Implementation
 	diffuse_material: ARRAY [REAL]
 			-- Diffuse material
 
-end -- class WINDOW
+end -- class SUB_WINDOW
 

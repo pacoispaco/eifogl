@@ -3,15 +3,13 @@ indexing
         application: "single_sphere"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 22:50:49 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/23 21:15:03 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
 inherit
 	EGLUT_TOP_LEVEL_WINDOW
-		export
-			{NONE} all
 		redefine
 			init,
 			on_display,

@@ -8,16 +8,13 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999, 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/25 17:35:42 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/23 21:10:47 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLUT_TOP_LEVEL_WINDOW
 
 inherit
 	EGLUT_WINDOW
-		export
-			{NONE} all
-		end
 	
 creation	
 	make

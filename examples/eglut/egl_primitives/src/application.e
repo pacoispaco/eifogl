@@ -3,8 +3,8 @@ indexing
         application: "egl_primitives"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 22:50:49 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/23 21:15:03 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	APPLICATION
@@ -12,8 +12,6 @@ class
 inherit
 	
 	EGLUT_APPLICATION
-		export
-			{NONE} all
 		redefine
 			main_window
 		end
