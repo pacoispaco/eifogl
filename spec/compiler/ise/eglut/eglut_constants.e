@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/26 22:52:07 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLUT_CONSTANTS
 
@@ -56,9 +56,22 @@ feature -- Access (Display mode bit masks)
 		alias
 			"GLUT_DOUBLE"
 		end
-
---#define GLUT_ACCUM			4
---#define GLUT_ALPHA			8
+	
+	glut_accum: INTEGER is
+			-- #define GLUT_ACCUM			4
+		external
+			"C [macro <glut.h>]: INTEGER"
+		alias
+			"GLUT_ACCUM"
+		end
+	
+	glut_alpha: INTEGER is
+			--#define GLUT_ALPHA			8
+		external
+			"C [macro <glut.h>]: INTEGER"
+		alias
+			"GLUT_ALPHA"
+		end
 	
 	glut_depth: INTEGER is
 			-- Bit mask to select a window with a depth buffer
@@ -68,11 +81,38 @@ feature -- Access (Display mode bit masks)
 			"GLUT_DEPTH"
 		end
 	
---#define GLUT_STENCIL			32
---#define GLUT_MULTISAMPLE		128
---#define GLUT_STEREO			256
---#define GLUT_LUMINANCE		512
-	
+	glut_stencil: INTEGER is
+			--#define GLUT_STENCIL			32
+		external
+			"C [macro <glut.h>]: INTEGER"
+		alias
+			"GLUT_STENCIL"
+		end
+			
+	glut_multisample: INTEGER is	
+			--#define GLUT_MULTISAMPLE		128
+		external
+			"C [macro <glut.h>]: INTEGER"
+		alias
+			"GLUT_MULTISAMPLE"
+		end
+			
+	glut_stereo: INTEGER is	
+			--#define GLUT_STEREO			256
+		external
+			"C [macro <glut.h>]: INTEGER"
+		alias
+			"GLUT_STEREO"
+		end
+			
+	glut_luminance: INTEGER is	
+			--#define GLUT_LUMINANCE		512
+		external
+			"C [macro <glut.h>]: INTEGER"
+		alias
+			"GLUT_LUMINANCE"
+		end
+		
 feature -- Access (Mouse buttons)
 	
 	Glut_left_button: INTEGER is
