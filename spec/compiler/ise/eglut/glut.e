@@ -1,15 +1,21 @@
 indexing
 	description: "Raw wrapper class for GLUT"
 	library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
-	compilers: "ISE 5.0, ISE 5.2"
+	compilers: "ISE 5.2"
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/13 17:02:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/11/25 20:48:58 $"
+	revision: "$Revision: 1.2 $"
 
 class GLUT
-
+	
+inherit
+	ARGUMENTS
+		export
+			{NONE} all
+		end
+	
 feature -- Raw GLUT API
 	
 	glut_init (argcp, argv: POINTER) is
@@ -191,18 +197,54 @@ feature	-- EGLUT C interface
 	
 feature	{EGLUT_APPLICATION} -- EGLUT C interface 
 	
-	eglut_initialize_c_interface (app: EGLUT_APPLICATION) is
-			-- Initialize the C interface
+	eglut_init (app: EGLUT_APPLICATION) is
+			-- Initialize the GLUT library. The Eiffel object `app'
+			-- is needed to pass over the C interface so that it
+			-- can make qualified calls back to Eiffel.
+			-- Note that GLUT library extracts any command line
+			-- options intended for the GLUT library, and will
+			-- modify both `argcp' and `argv'. Nice isn't it!? X
+			-- Window specific command line options are:
+			-- -display DISPLAY
+			-- -geometry WxH+X+Y
+			-- -iconic
+			-- -indirect
+			-- -direct
+			-- -gldebug
+			-- -sync
+		require
+			app_not_void: app /= Void
+		local
+			a: CHAR_PP
+			s: SPECIAL [POINTER]
+			i: INTEGER
 		do
+			!! a.make (argument_array)
+			s := a.area
+			i := argument_count + 1
+			glut_init ($i, $s)
 			eglut_set_application_object (ceif_adopt (app))
 		end
-	
+		
 	frozen eglut_set_application_object (p: POINTER) is
 			-- Set the application object in the EGLUT C interface
 		external
 			"C [macro <eglut.h>] (EIF_OBJ)"
 		end
 	
+feature {EGLUT_TOP_LEVEL_WINDOW} -- EGLUT C interface
+	
+	eglut_create_window (title: STRING):INTEGER is
+			-- Create a top level window with the given `title'.
+		require
+			title_not_void: title /= Void
+		local
+			a: ANY
+		do
+			a := title.to_c
+			Result := glut_create_window ($a)
+		end
+
 feature	{EGLUT_WINDOW} -- EGLUT C interface 
 	
 	eglut_set_display_func is
@@ -225,7 +267,7 @@ feature	{EGLUT_WINDOW} -- EGLUT C interface
 			"C [macro <eglut.h>]"
 		end
 	
-	 eglut_set_motion_func is
+	eglut_set_motion_func is
 			-- Set the the motion callback function
 		external
 			"C [macro <eglut.h>]"
