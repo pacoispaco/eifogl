@@ -3,8 +3,8 @@ indexing
         application: "cube"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:34:19 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/12 21:33:41 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -44,10 +44,10 @@ feature -- Access
 
 	default_window_title: STRING is
 		once
-			Result := "EGLUT cube"
+			Result := "EGLUT: cube"
 		end
 		
-	default_width: INTEGER is 280
+	default_width: INTEGER is 150
 	
 	default_height: INTEGER is 150
 

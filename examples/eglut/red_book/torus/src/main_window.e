@@ -3,8 +3,8 @@ indexing
         application: "torus"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2000 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:25:10 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/12 21:33:14 $"
+	revision: "$Revision: 1.3 $"
 
 class MAIN_WINDOW
 
@@ -60,10 +60,10 @@ feature -- Access
 
 	default_window_title: STRING is
 		once
-			Result := "EGLUT Red Book example: torus"
+			Result := "EGLUT: torus"
 		end
 		
-	default_width: INTEGER is 390
+	default_width: INTEGER is 150
 	
 	default_height: INTEGER is 150
 
