@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/04/11 19:25:09 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/11 08:32:44 $"
+	revision: "$Revision: 1.7 $"
 
 class GL
 		
@@ -68,6 +68,14 @@ feature -- OpenGL API
 			"glPolygonStipple"
 		end
 
+	gl_get_boolean_v (pname: INTEGER; params: POINTER) is
+		external
+--			"C (GLenum, GLboolean *) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLboolean *)"
+		alias
+			"glGetBooleanv"
+		end
+	
 	gl_get_float_v (pname: INTEGER; params: POINTER) is
 		external
 --			"C (GLenum, GLfloat *) | <gl.h>" 
@@ -92,12 +100,28 @@ feature -- OpenGL API
 			"glGetIntegerv"
 		end	
 	
-	gl_clear_color (r, g, b, a: REAL) is
+	gl_clear_accum (r, g, b, a: REAL) is
+		external
+--			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h> "
+			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
+		alias
+			"glClearAccum"
+		end
+	
+	gl_clear_color (red, green, blue, alpha: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h> "
 			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
 		alias
 			"glClearColor"
+		end
+	
+	gl_clear_index (c: REAL) is
+		external
+--			"C (GLfloat) | <gl.h> "
+			"C [macro <gl.h>] (GLfloat)"
+		alias
+			"glClearIndex"
 		end
 	
 	gl_clear (buffer: INTEGER) is
@@ -108,12 +132,20 @@ feature -- OpenGL API
 			"glClear"
 		end
 	
-	gl_color_3f (r, g, b: REAL) is
+	gl_color_3f (red, green, blue: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>"
 			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
 		alias
 			"glColor3f"
+		end
+	
+	gl_color_4f (red, green, blue, alpha: REAL) is
+		external
+--			"C (GLfloat, GLfloat, GLfloat, GLfloat,) | <gl.h>"
+			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
+		alias
+			"glColor4f"
 		end
 	
 	gl_color_4fv (v: POINTER) is
@@ -132,6 +164,30 @@ feature -- OpenGL API
 			"glDepthMask"
 		end
 		
+	gl_accum (op: INTEGER; value: REAL) is
+		external
+--			"C (GLenum, GLfloat) | <gl.h>"
+			"C [macro <gl.h>] (GLenum, GLfloat)"
+		alias
+			"glAccum"
+		end
+	
+	gl_map_1f (target: INTEGER; u1, u2: DOUBLE; stride, order: INTEGER; points: POINTER) is
+		external
+--			"C (GLenum, GLfloat, GLfloat, GLint, GLint, const GLfloat *) | <gl.h>"
+			"C [macro <gl.h>] (GLenum, GLfloat, GLfloat, GLint, GLint, const GLfloat *)"
+		alias
+			"glMap1f"
+		end
+		
+	gl_eval_coord_1f (u: REAL) is
+		external
+--			"C (GLfloat) | <gl.h>"
+			"C [macro <gl.h>] (GLfloat)"
+		alias
+			"glEvalCoord1f"
+		end
+	
 	gl_flush is
 		external
 --			"C | <gl.h>"
@@ -203,6 +259,14 @@ feature -- OpenGL API
 			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
 		alias
 			"glVertex3f"
+		end
+	
+	gl_vertex_3fv (v: POINTER) is
+		external
+--			"C (const GLfloat *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLfloat *)"
+		alias
+			"glVertex3fv"
 		end
 	
 	gl_vertex_3d (x, y, z: DOUBLE) is
@@ -633,6 +697,14 @@ feature -- OpenGL API
 			"glFinish()"
 		end
 	
+	gl_index_i (c: INTEGER) is
+		external
+--			"C (GLint) | <gl.h>" 
+			"C [macro <gl.h>] (GLint)"		
+		alias
+			"glIndexi"
+		end
+		
 	gl_normal_3f (nx, ny, nz: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
