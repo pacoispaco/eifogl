@@ -4,18 +4,15 @@ indexing
 	compiler: "All"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/23 21:41:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/01/08 16:52:52 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	TGA_FILE
 	
 inherit	
 	
-	KL_BINARY_INPUT_FILE
-		rename
-			read_character as read_byte,
-			last_character as last_byte
+	KL_BYTE_INPUT_FILE
 		redefine
 			make
 		end
@@ -70,79 +67,79 @@ feature {NONE} -- Basic operations
 		do
 			-- Field 1 (ID Length)
                         read_byte
-			id_length := last_byte.code		
+			id_length := last_byte		
 			if id_length > 0 then
 				image_id_included := True
 			end
 			
 			-- Field 2 (Color Map Type)
                         read_byte
-			color_map_type := last_byte.code
+			color_map_type := last_byte
 			if color_map_type = 1 then
 				color_map_included := True
 			end
 			
 			-- Field 3 (Image Type)
                         read_byte
-			image_type := last_byte.code
+			image_type := last_byte
 			
 			-- Field 4 (Color Map Specification)
 			-- Field 4.1 (Color Map Entry Index)
 			read_byte
-			byte1 := last_byte.code
+			byte1 := last_byte
 			read_byte
-			byte2 := last_byte.code
+			byte2 := last_byte
 			color_map_first_entry_index := byte2 * 256 + byte1
 		
 			-- Field 4.2 (Color Map Length) 
 			read_byte
-			byte1 := last_byte.code
+			byte1 := last_byte
 			read_byte
-			byte2 := last_byte.code
+			byte2 := last_byte
 			color_map_length := byte2 * 256 + byte1
 
 			-- Field 4.3 (Color Map Entry Size)
 			read_byte
-			color_map_entry_size := last_byte.code
+			color_map_entry_size := last_byte
 			
 			-- Field 5 (Image Specification)
 			-- Field 5.1 (X-origin of Image)
 			read_byte
-			byte1 := last_byte.code
+			byte1 := last_byte
 			read_byte
-			byte2 := last_byte.code
+			byte2 := last_byte
 			image_spec_x_origin := byte2 * 256 + byte1
 
 			-- Field 5.2 (Y-origin of Image)
 			read_byte
-			byte1 := last_byte.code
+			byte1 := last_byte
 			read_byte
-			byte2 := last_byte.code
+			byte2 := last_byte
 			image_spec_y_origin := byte2 * 256 + byte1
 			
 			-- Field 5.3 (Image Width)
 			read_byte
-			byte1 := last_byte.code
+			byte1 := last_byte
 			read_byte
-			byte2 := last_byte.code
+			byte2 := last_byte
 			image_spec_width := byte2 * 256 + byte1
 			
 			-- Field 5.4 (Image Height)
 			read_byte
-			byte1 := last_byte.code
+			byte1 := last_byte
 			read_byte
-			byte2 := last_byte.code
+			byte2 := last_byte
 			image_spec_height := byte2 * 256 + byte1
 
 			-- Field 5.5 (Pixel Depth)
 			read_byte
-			image_spec_pixel_depth := last_byte.code
+			image_spec_pixel_depth := last_byte
 		
 			-- Field 5.6 (Image Descriptors)
 			-- This byte-field is divided into three bit-level
 			-- sections as follows:
 			read_byte
-			byte1 := last_byte.code
+			byte1 := last_byte
 			image_spec_desc_unused := byte1.bit_test (7).to_integer * 2 +
 				                  byte1.bit_test (6).to_integer
 			image_spec_desc_image_origin := byte1.bit_test (5).to_integer * 2 +
@@ -154,8 +151,8 @@ feature {NONE} -- Basic operations
 						      
 			-- Field 6 (Image ID)
 			if image_id_included then
-				read_string (id_length)
-				image_id := clone (last_string)
+				read_bytes (id_length)
+				image_id := clone (last_bytes)
 			end			
 		end
 	
@@ -164,8 +161,8 @@ feature {NONE} -- Basic operations
 		do
 			-- Field 7 (Color Map)
 			if color_map_included then
-				read_string (color_map_length * color_map_entry_size)
-				color_map_data := clone (last_string)
+				read_bytes (color_map_length * color_map_entry_size)
+				color_map_data := clone (last_bytes)
 			end
 		end
 	
@@ -173,8 +170,8 @@ feature {NONE} -- Basic operations
 			-- Read the image data.
 		do
 			-- Field 8 (Image Data)
-			read_string (image_size)
-                        create image_data.make_from_string (last_string, image_spec_width, 
+			read_bytes (image_size)
+                        create image_data.make_from_string (last_bytes, image_spec_width, 
                                                             image_spec_height, image_spec_pixel_depth,
 					                    image_spec_desc_alpha_channel_bits)		
 		end
@@ -186,8 +183,8 @@ feature {NONE} -- Basic operations
 		do
 			if developer_area_included then
 				go (developer_directory_offset)
-				read_string (size - footer_size - extension_size)
-				developer_area := clone (last_string)			
+				read_bytes (size - footer_size - extension_size)
+				developer_area := clone (last_bytes)
 			end
 		end
 	
@@ -202,16 +199,16 @@ feature {NONE} -- Basic operations
 				go (extension_area_offset)
 				
 				read_byte
-				byte1 := last_byte.code
+				byte1 := last_byte
 				read_byte
-				byte2 := last_byte.code
+				byte2 := last_byte
 				extension_size := byte2 * 255 + byte1
 				
-				read_string (41)
-				author_name := clone (last_string)
+				read_bytes (41)
+				author_name := clone (last_bytes)
 				
-				read_string (324)
-				author_comments := clone (last_string)
+				read_bytes (324)
+				author_comments := clone (last_bytes)
 				
 				-- More TBD!
 			end
@@ -234,14 +231,14 @@ feature {NONE} -- Basic operations
 				developer_area_included := True
 			end
 			
-			read_string (16)
-			signature := clone (last_string)
+			read_bytes (16)
+			signature := clone (last_bytes)
 			
-			read_byte
-			reserved_character := last_byte
+			read_character
+			reserved_character := last_character
 			
-			read_byte
-			binary_string_zero_terminator := last_byte
+			read_character
+			binary_string_zero_terminator := last_character
 			
 			footer_read := True
 		ensure
@@ -700,7 +697,7 @@ invariant
 	valid_image_spec_desc_alpha_channel_bits: 0 <= image_spec_desc_alpha_channel_bits and
 	                                          image_spec_desc_alpha_channel_bits <= 15
 	consistent_image_id_info: id_length > 0 implies 
-	                          image_id /= Void and image_id.count = id_length
+	                          image_id /= Void and then image_id.count = id_length
 	                          
 
 end -- class TGA_FILE
