@@ -5,8 +5,8 @@
  * library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
  * author: "Paul Cohen"
  * copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
- * date: "$Date: 2002/01/14 22:36:19 $"
- * revision: "$Revision: 1.2 $"
+ * date: "$Date: 2002/03/30 09:37:37 $"
+ * revision: "$Revision: 1.3 $"
  */
 
 #ifndef __EGLUT__
@@ -19,11 +19,6 @@
 #ifndef __glut_h__
 #include <glut.h>
 #endif
-
-/* External functions 
-external EIF_PROCEDURE eifproc (const char *, EIF_TYPE_ID);
-external void eif_panic (const char *);
-external EIF_TYPE_ID eif_type_id (const char *); */
 
 /* Callback event constants */
 #define EGLUT_DISPLAY_EVENT 1
@@ -59,14 +54,14 @@ external EIF_TYPE_ID eif_type_id (const char *); */
 #define eglut_set_idle_func_to_null glutIdleFunc(NULL)
 #define eglut_set_idle_func glutIdleFunc(eglut_idle_function)
 
+/* Set macro for the EGLUT_APPLICATION object */
+#define eglut_set_application_object(_addr_) (eglut_app=(EIF_OBJ)_addr_)
+
 /* Macro for quitting the application */
 #define eglut_quit(_exitcode_) exit(_exitcode_)
 
 extern EIF_OBJ eglut_app;
 /* Address of the Eiffel object EGLUT_APPLICATION created for each application. */
-
-/* EGLUT init function prototype */
-void eglut_initialize_library (EIF_OBJ);
 
 /* EGLUT global function prototypes */
 void eglut_display_function (void);
@@ -81,3 +76,4 @@ void eglut_special_function (int, int, int);
 void eglut_idle_function (void);
 
 #endif
+
