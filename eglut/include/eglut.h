@@ -4,9 +4,9 @@
  * desciption: "Header file for EGLUT.C"
  * library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
  * author: "Paul Cohen"
- * copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
- * date: "$Date: 2002/11/13 16:38:43 $"
- * revision: "$Revision: 1.5 $"
+ * copyright: "Copyright (c) 1999, 2002 Paul Cohen, see file forum.txt"
+ * date: "$Date: 2002/11/13 16:49:47 $"
+ * revision: "$Revision: 1.6 $"
  */
 
 #ifndef __EGLUT__
