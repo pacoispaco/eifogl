@@ -5,8 +5,8 @@ indexing
 	platforms: "Win32"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:41 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/01/02 21:44:57 $"
+	revision: "$Revision: 1.2 $"
 
 class PFD_CONSTANTS
 
@@ -30,7 +30,7 @@ feature -- Access (dwFlags constants)
 		end
 
 	Pfd_support_gdi: INTEGER is
-			-- The buffer supportingg GDI drawing. This flag is
+			-- The buffer supporting GDI drawing. This flag is
 			-- mutually exclusive with `Pfd_doublebuffer'
 		external
 			"C [macro <wingdi.h>]"
