@@ -1,14 +1,14 @@
 -- application: "sphere_and_red_box"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/10/29 23:20:15 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2001/11/11 15:48:03 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	sphere_and_red_box
 
 root
-	APPLICATION (src_root): "make"
+	APPLICATION (src): "make"
 
 default
 	assertion (all);
@@ -16,76 +16,51 @@ default
 
 cluster
 
-		-- Eiffel OpenGL
-	eifogl:			"$EIFOGL";
-
 	        -- Application
-	src_root (eifogl):	"$\examples\egl\wel\sphere_and_red_box\src";
+        src:                    "$EIFOGL\examples\egl\wel\sphere_and_red_box\src"
+
+		-- Eiffel OpenGL
+	eifogl:			"$EIFOGL"
 
 		-- EGL
-	all egl (eifogl):		"$\egl";
+	all egl (eifogl):	"$\egl"
+	all egl_comp (eifogl):	"$\spec\compiler\$EIFFEL_COMPILER\egl"
 
-		-- EGL (Compiler specific)
-	egl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\egl";
-        gl_constants (egl_comp):	"$\gl_constants";
-        glu_constants (egl_comp):	"$\glu_constants";
-
-		-- EWGL
-	ewgl (eifogl):			"$\ewgl";
-
-		-- EWGL (Compiler specific)
-	ewgl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\ewgl";
-
-		-- Platform library adaptions (WEL)
-	ewgl_wel (eifogl):		"$\spec\platform_library_adaptions\wel";
-
-	        -- STRING utilities
-        utility (eifogl):     		"$\utility\string";
-		
+	         -- EWGL
+	ewgl (eifogl):		"$\spec\platform\ewgl"
+	ewgl_comp (eifogl):	"$\spec\compiler\$EIFFEL_COMPILER\ewgl"
+	
+		 -- Eiffel OpenGL WEL adaptions	
+	wel_adaptions (eifogl):	"$\spec\platform_library_adaptions\wel"
+	
 		-- C Wrap Utilities
-	cwrap:		"$EIFOGL\utility\cwrap";
-
-		-- WEL extensions
-	wel_ext (eifogl):		"$\utility\wel_extensions";
-
+	cwrap:		        "$EIFOGL\utility\cwrap"	
+			
+		-- STRING utilities
+        utility (eifogl):     	"$\utility\string"
+	
+	        -- Utility WEL extensions
+	wel_ext (eifogl):       "$\utility\wel_extensions"
 		-- WEL
-	wel_constants:		"$EIFFEL5\library\wel\consts";
-	wel_controls:		"$EIFFEL5\library\wel\controls";
-	wel_gdi:		"$EIFFEL5\library\wel\gdi";
-	wel_gdi_stocks: 	"$EIFFEL5\library\wel\gdistock";
-	wel_messages:		"$EIFFEL5\library\wel\messages";
-	wel_standard_dialogs:	"$EIFFEL5\library\wel\stddlgs";
-	wel_structures: 	"$EIFFEL5\library\wel\structs";
-	wel_support:		"$EIFFEL5\library\wel\support";
-	wel_windows:		"$EIFFEL5\library\wel\windows";
-	wel_shared:		"$EIFFEL5\library\wel\shared";
-	wel_new_consts:		"$EIFFEL5\library\wel\consts\new_consts";
-
-		-- EiffelBase
-	kernel:			"$EIFFEL5\library\base\kernel";
-	support:		"$EIFFEL5\library\base\support";
-	access:			"$EIFFEL5\library\base\structures\access";
-	cursors:		"$EIFFEL5\library\base\structures\cursors";
-	cursor_tree:		"$EIFFEL5\library\base\structures\cursor_tree";
-	dispenser:		"$EIFFEL5\library\base\structures\dispenser";
-	iteration:		"$EIFFEL5\library\base\structures\iteration";
-	list:			"$EIFFEL5\library\base\structures\list";
-	set:			"$EIFFEL5\library\base\structures\set";
-	sort:			"$EIFFEL5\library\base\structures\sort";
-	storage:		"$EIFFEL5\library\base\structures\storage";
-	table:			"$EIFFEL5\library\base\structures\table";
-	traversing:		"$EIFFEL5\library\base\structures\traversing";
-	tree:			"$EIFFEL5\library\base\structures\tree";
-
+	all wel:		"$EIFFEL5\library\wel"
+			
+			-- EiffelBase   
+	all base:               "$ISE_EIFFEL\library\base"
+	        exclude
+		        table_eiffel3
+		end
+	
 external
-	include_path:		"$(EIFFEL5)\library\wel\spec\windows\include",
-				"$(GL)\include",
-				"$(EIFOGL)\egl\include",
-				"$(EIFOGL)\spec\compiler\$(EIFFEL_COMPILER)\ewgl\include";
+	include_path:
+	        "$(EIFFEL5)\library\wel\spec\windows\include",
+		"$(GL)\include",
+		"$(EIFOGL)\egl\c\include",
+		"$(EIFOGL)\spec\compiler\$(EIFFEL_COMPILER)\ewgl\include";
 
-	object:			"$(EIFFEL5)\library\wel\spec\$(COMPILER)\lib\wel.lib",
-				"$(GL)\lib\opengl32.lib",
-				"$(GL)\lib\glu32.lib";
+	object:	
+		"$(EIFFEL5)\library\wel\spec\$(COMPILER)\lib\wel.lib",
+		"$(GL)\lib\opengl32.lib",
+		"$(GL)\lib\glu32.lib";
 	
 end
 
