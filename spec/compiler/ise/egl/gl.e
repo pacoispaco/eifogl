@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/02/10 21:26:04 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2002/04/11 19:25:09 $"
+	revision: "$Revision: 1.6 $"
 
 class GL
 		
@@ -509,7 +509,15 @@ feature -- OpenGL API
 		alias
 			"glGenTextures"
 		end
-			
+	
+        gl_clip_plane (plane: INTEGER; e: POINTER) is
+                external
+--                      "C (GLenum, const GLdouble *) | <gl.h>"
+                        "C [macro <gl.h>] (GLenum, const GLdouble *)"
+                alias
+                        "glClipPlane"
+                end	
+	
 	gl_raster_pos_2i (x, y: INTEGER) is
 		external		
 --			"C (GLint, GLint) | <gl.h>" 
