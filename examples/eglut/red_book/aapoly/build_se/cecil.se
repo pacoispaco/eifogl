@@ -1,6 +1,0 @@
--- Name of h file to create:
-eglut_application.h
--- name of feature to be called from eglut:
-EGLUT_APPLICATION_main_application_callback	EGLUT_APPLICATION	main_application_callback
-EIF_STUFF_ceif_adopt	EIF_STUFF ceif_adopt
-EIF_STUFF_ceif_wean	EIF_STUFF ceif_wean
