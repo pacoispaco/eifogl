@@ -1,12 +1,12 @@
 indexing
-	description: "OpenGL version 1.2"
+	description: "OpenGL version 1.1"
 	library: "EGL - Eiffel wrapping of OpenGL"
 	compilers: "All Eiffel compilers"
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/02/07 12:58:52 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2002/02/10 21:19:29 $"
+	revision: "$Revision: 1.6 $"
 
 class EGL
 	
@@ -326,7 +326,17 @@ feature -- Primitives (Specify polygon edge treatment)
 
 feature -- Primitives (Specify polygon offset)	
 	
---	egl_polygon_offset TBD!
+	egl_polygon_offset (factor, units: REAL) is
+			-- Set the scale `factor' and `units' used to calculate
+			-- depth values for polygons.
+		require
+			valid_state: not drawing_a_primitive			
+		do
+			gl_api.gl_polygon_offset (factor, units)
+		ensure
+--			offset_factor_set: gl_get (Gl_polygon_offset_factor) = factor
+--			units_set: gl_get (Gl_polygon_offset_units) = units
+		end
 	
 feature -- Vertex Arrays (Specify vertex arrays)	
 	
@@ -555,7 +565,7 @@ feature -- Coordinate transformation (Transform the current matrix)
 		require
 			valid_state: not drawing_a_primitive		
 		do
-			-- TBD!
+			gl_api.gl_translate_d (x, y, z)
 		end
 	
 	egl_scale_f (x, y, z: REAL) is
@@ -578,7 +588,31 @@ feature -- Coordinate transformation (Transform the current matrix)
 			-- TBD!
 		end	
 	
---	egl_mult_matrix{fd} TBD!
+	egl_mult_matrix_f (m: ARRAY [REAL]) is
+			-- Multiply the current matrix by the matrix `m'.
+		require
+			valid_state: not drawing_a_primitive		
+			m_not_void: m /= Void
+			m_is_4x4_matrix: m.count = 16
+		local
+			c_array: EGL_GLFLOAT_C_ARRAY
+		do
+			!! c_array.make_from_array (m)
+			gl_api.gl_mult_matrix_f (c_array.pointer)
+		end
+
+	egl_mult_matrix_d (m: ARRAY [DOUBLE]) is
+			-- Multiply the current matrix by the matrix `m'.
+		require
+			valid_state: not drawing_a_primitive		
+			m_not_void: m /= Void
+			m_is_4x4_matrix: m.count = 16
+		local
+			c_array: EGL_GLDOUBLE_C_ARRAY
+		do
+			!! c_array.make_from_array (m)
+			gl_api.gl_mult_matrix_d (c_array.pointer)
+		end	
 	
 	egl_frustum (left, right, bottom, top, near, far: DOUBLE) is
 			-- Multiply the current matrix by a perspective matrix.
@@ -617,6 +651,89 @@ feature -- Coordinate transformation (Transform the current matrix)
 			gl_api.gl_ortho (left, right, bottom, top, near, far)
 		end
 	
+feature	-- Coordinate Transformation (Replace the current matrix - contract predicates)
+	
+	current_matrix_equals_f (m: ARRAY [REAL]) : BOOLEAN is
+			-- Does current matrix equal `m'? The matrix `m' is
+			-- compared to one of the three possible current
+			-- matrices: Modelview, Projection or Texture
+		require
+			m_not_void: m /= Void
+			m_is_4x4_matrix: m.count = 16
+		local
+			c: ARRAY [REAL]
+			ci, mi: REAL
+                        iv: ARRAY [INTEGER]
+			i, mode: INTEGER
+		do
+                        iv := egl_get_integer_v (Gl_matrix_mode)
+                        mode := iv.item (1)
+                        if mode = Gl_modelview then
+				c := egl_get_float_v (Gl_modelview_matrix)
+			elseif mode = Gl_projection then
+				c := egl_get_float_v (Gl_projection_matrix)
+                        elseif mode = Gl_texture then
+				c := egl_get_float_v (Gl_texture_matrix)
+                        end
+			Result := True
+			from
+				i := 1
+			until
+				i > 16
+			loop
+				ci := c.item (i)
+				mi := m.item (i)
+				if ci /= mi then
+					Result := False
+					i := 16
+				end
+				i := i + 1
+			end
+		end
+	
+	current_matrix_equals_d (m: ARRAY [DOUBLE]) : BOOLEAN is
+			-- Does current matrix equal `m'? The matrix `m' is
+			-- compared to one of the three possible current
+			-- matrices: Modelview, Projection or Texture
+		require
+			m_not_void: m /= Void
+			m_is_4x4_matrix: m.count = 16
+		local
+			c: ARRAY [DOUBLE]
+			ci, mi: REAL
+                        iv: ARRAY [INTEGER]
+			i, mode: INTEGER
+		do
+                        iv := egl_get_integer_v (Gl_matrix_mode)
+                        mode := iv.item (1)
+                        if mode = Gl_modelview then
+				c := egl_get_double_v (Gl_modelview_matrix)
+                        elseif mode = Gl_projection then
+				c := egl_get_double_v (Gl_projection_matrix)
+                        elseif mode = Gl_texture then
+				c := egl_get_double_v (Gl_texture_matrix)
+                        end
+			Result := True
+			from
+				i := 1
+			until
+				i > 16
+			loop
+				-- It seems that OpenGL stores matrix values
+				-- with REAL precision (not DOUBLE), so
+				-- convert to REAL before comparing ...
+				-- (this however ensures only about 6 or 7
+				-- digits precision)
+				ci := c.item (i).truncated_to_real
+				mi := m.item (i).truncated_to_real
+				if ci /= mi then
+					Result := False
+					i := 16
+				end
+				i := i + 1
+			end
+		end	
+	
 feature -- Coordinate Transformation (Replace the current matrix)	
 	
 	egl_load_identity is
@@ -633,17 +750,14 @@ feature -- Coordinate Transformation (Replace the current matrix)
 		require
 			valid_state: not drawing_a_primitive		
 			m_not_void: m /= Void
-			valid_m_size: m.count = 16
+			m_is_4x4_matrix: m.count = 16
 		local
 			c_array: EGL_GLFLOAT_C_ARRAY
 		do
 			!! c_array.make_from_array (m)
 			gl_api.gl_load_matrix_f (c_array.pointer)
 		ensure
-			--matrix_is_set: check that current matrix equals `m'
-			-- Implementation: e.g. use egl_get_float_v (when
-			-- it will be available) to obtain current matrix,
-			-- and verify term-by-term that it coincides with m.
+			matrix_is_set: current_matrix_equals_f (m)
 		end
 
 	egl_load_matrix_d (m: ARRAY [DOUBLE]) is
@@ -651,17 +765,14 @@ feature -- Coordinate Transformation (Replace the current matrix)
 		require
 			valid_state: not drawing_a_primitive		
 			m_not_void: m /= Void
-			valid_m_size: m.count = 16
+			m_is_4x4_matrix: m.count = 16
 		local
 			c_array: EGL_GLDOUBLE_C_ARRAY
 		do
 			!! c_array.make_from_array (m)
 			gl_api.gl_load_matrix_d (c_array.pointer)
 		ensure
-			--matrix_is_set: check that current matrix equals `m'
-			-- Implementation: e.g. use egl_get_double_v (when
-			-- it will be available) to obtain current matrix,
-			-- and verify term-by-term that it coincides with m.
+			matrix_is_set: current_matrix_equals_d (m)
 		end
 	
 feature -- Coordinate Transformation (Manipulate the current matrix)	
@@ -1095,14 +1206,38 @@ feature -- Pixel Operations (Control pixel rasterization)
 feature -- Textures (Control how a texture is applied to a fragment)	
 	
 --	egl_tex_parameter_xxx TBD!
+	
+	egl_tex_parameter_i (target, pname, param: INTEGER) is
+			-- Set the texture parameter `pname' to the values
+			-- `param'.  
+		require
+			valid_state: not drawing_a_primitive
+			valid_target: target = Gl_texture_1D or
+				      target = Gl_texture_2D --or
+--				      target = Gl_texture_3D
+--			valid_pname: valid_single_valued_texture_parameter (pname)
+--			valid_param:
+		do
+			gl_api.gl_tex_parameter_i (target, pname, param)
+		end
+	
 --	egl_tex_env_xxx TBD!
 	
 feature -- Textures (Set the current texture coordinates)
 	
---	egl_tex_coord1_xxx TBD!
---	egl_tex_coord2_xxx TBD!
---	egl_tex_coord3_xxx TBD!
---	egl_tex_coord4_xxx TBD!
+--	egl_tex_coord_1_xxx TBD!
+--	egl_tex_coord_2_xxx TBD!
+	
+	egl_tex_coord_2f (s, t: REAL) is
+			-- Set the current texture coordinates.
+		require
+			valid_state: True
+		do
+			gl_api.gl_tex_coord_2f (s, t)
+		end
+	
+--	egl_tex_coord_3_xxx TBD!
+--	egl_tex_coord_4_xxx TBD!
 	
 feature -- Textures (Control the generation of texture coordinates)
 	
@@ -1110,12 +1245,29 @@ feature -- Textures (Control the generation of texture coordinates)
 	
 feature -- Textures (Specify a one-, two- or threedimensional texture image or subimage)
 	
---	egl_tex_image1D TBD!
---	egl_tex_image2D TBD!
---	egl_tex_image3D TBD!
---	egl_tex_sub_image1D TBD!
---	egl_tex_sub_image2D TBD!
---	egl_tex_sub_image3D TBD!
+--	egl_tex_image_1D TBD!
+	
+	egl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type: INTEGER; pixels: POINTER) is
+			-- Specify a two_dimensional texture image.
+		require
+			valid_state: not drawing_a_primitive
+--			valid_target: target = Gl_texture_2D or target = Gl_proxy_target_2D
+			valid_level: level >= 0
+--			valid_internal_format: is_valid_internal_texture_format (internal_format)
+--			valid_width: width = 2^n + 2
+--			valid_height: height = 2^m + 2
+			valid_border: border = 1 or border = 0
+--			valid_format: valid_pixel_format (format)
+--			valid_type: valid_pixel_data_type (type)
+			valid_pixels: pixels /= default_pointer
+		do
+			gl_api.gl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type, pixels)
+		end
+	
+--	egl_tex_image_3D TBD!
+--	egl_tex_sub_image_1D TBD!
+--	egl_tex_sub_image_2D TBD!
+--	egl_tex_sub_image_3D TBD!
 	
 feature -- Textures (Test whether a name corresponds to a texture and obtain texture-related parameter values)
 	
@@ -1136,10 +1288,36 @@ feature -- Textures (Copy a texture or part of it)
 	
 feature -- Textures (Create a named texture and prioritize texture memory residence)
 	
---	egl_bind_texture TBD!
+	egl_bind_texture (target, texture: INTEGER) is
+			-- Bind a named texture to a texturing target.
+		require
+			valid_state: not drawing_a_primitive
+			valid_target: target = Gl_texture_1D or
+				      target = Gl_texture_2D --or
+--				      target = Gl_texture_3D
+--			valid_texture: texture has a dimensinality that matches target!
+		do
+			gl_api.gl_bind_texture (target, texture)
+		end
+	
 --	egl_delete_textures TBD!
 --	egl_are_textures_resident TBD!
---	egl_gen_textures TBD!
+	
+	egl_gen_textures (n: INTEGER): ARRAY [INTEGER] is
+			-- Generate texture names.
+		require
+			valid_state: not drawing_a_primitive
+			valid_n: n >= 0
+		local
+			c_array: EGL_GLUINT_C_ARRAY
+		do
+			!! c_array.make_empty (n)
+			gl_api.gl_gen_textures (n, c_array.pointer)
+			Result := c_array.contents
+		ensure
+			result_not_void: Result /= Void
+		end
+	
 --	egl_prioritize_textures TBD!
 	
 feature -- Fog (Set fog parameters)	
@@ -1432,7 +1610,17 @@ feature -- Modes and Execution (Force all issued OpenGL commands to be executed)
 	
 feature -- Modes and Execution (Spcify hints for OpenGL operation)
 	
---	egl_hint TBD!
+	egl_hint (target, mode: INTEGER) is
+			-- Specify implementation-specific hints.
+		require
+			valid_state: not drawing_a_primitive
+--			valid_target: is_valid_hint (hint)
+			valid_mode: mode = Gl_fastest or
+				    mode = Gl_nicest or
+				    mode = Gl_dont_care
+		do
+			gl_api.gl_hint (target, mode)
+		end
 	
 feature -- State Queries (Obtain information about an error or the current OpenGL connection)
 	
@@ -1493,7 +1681,21 @@ feature -- State Queries (Obtain information about an error or the current OpenG
 			valid_result: Result /= Void and then Result.count >= 1
 		end
         
---	egl_get_integer_v TBD!
+	egl_get_integer_v (pname: INTEGER): ARRAY [INTEGER] is
+			-- Return the value(s) of selected parameter `pname'. 
+		require
+			valid_state: not drawing_a_primitive
+			-- valid_pname: is_valid_get_integer_parameter (pname)
+			-- (to be implemented in egl_constants)
+		local
+			c_array: EGL_GLINT_C_ARRAY
+		do
+			!! c_array.make_empty (16)
+			gl_api.gl_get_integer_v (pname, c_array.pointer)
+			Result := c_array.contents
+		ensure
+			valid_result: Result /= Void and then Result.count >= 1
+		end
 	
 feature -- State Queries (Save and restore sets of state variables)
 	
@@ -1506,6 +1708,8 @@ feature -- State Queries (Save and restore sets of state variables)
 			-- Attrib stack not full
 		do
 			gl_api.gl_push_attrib (mask)
+		ensure
+			-- Attrib stack count incremented by one
 		end
 	
 	egl_pop_attrib is
@@ -1513,9 +1717,11 @@ feature -- State Queries (Save and restore sets of state variables)
 			-- popping them from the attribute stack.
 		require
 			valid_state: not drawing_a_primitive
---			more_than_one_attribute_on_the_stack:
+			-- At least one attrib on the stack
 		do
 			gl_api.gl_pop_attrib
+		ensure
+			-- Attrib stack count decremented by one
 		end
 	
 feature -- ARB Extensions - Multitexture (Set the current texture coordinates)	
