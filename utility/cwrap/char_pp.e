@@ -1,17 +1,19 @@
 indexing
-	description: "An encapsulation of a char **"
+	description: "An encapsulation of a char **. This is used to pass argv to glut_init"
 	library: "Eiffel C wrapper utilities"
+	compilers: "ISE 4.5 and above. TO_SPECIAL and SPECIAL are ISE specific classes"
+	platforms: "All platforms"
 	author: "Paul Cohen"
-	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:41 $"
-	revision: "$Revision: 1.1 $"
+	copyright: "Copyright (c) 1999, 2002 Paul Cohen, see file forum.txt"
+	date: "$Date: 2002/03/23 17:01:31 $"
+	revision: "$Revision: 1.2 $"
 
 class CHAR_PP
 
 inherit
 	
 	TO_SPECIAL [POINTER]
-
+	
 creation
 	make
 	
@@ -36,7 +38,7 @@ feature {NONE} -- Initialization
 				i := i + 1
 			end
 		end
-
+	
 end -- class CHAR_PP
 
 -- begin documentation
