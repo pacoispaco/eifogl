@@ -3,8 +3,8 @@ indexing
         application: "torus"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2000 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/30 23:25:10 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -14,6 +14,8 @@ inherit
 			{NONE} all
 		redefine
 			default_window_title,
+			default_width,
+			default_height,
 			init,
 			on_display,
 			on_reshape,
@@ -51,17 +53,27 @@ feature {NONE} -- Initialization
 			egl_end_list
 			
 			egl_clear_color (0.0, 0.0, 0.0, 0.0)
-			egl_shade_model (Gl_flat)
+			egl_shade_model (Gl_smooth)
 		end
 			
+feature -- Access	
+
+	default_window_title: STRING is
+		once
+			Result := "EGLUT Red Book example: torus"
+		end
+		
+	default_width: INTEGER is 390
+	
+	default_height: INTEGER is 150
+
 feature {NONE} -- Implementation (GLUT callbacks)	
 	
 	on_display is
 			-- The window has been displayed
 		do
---                        precursor
 			egl_clear (Gl_color_buffer_bit)
-			egl_color_3f (1.0, 1.0, 1.0)
+			egl_color_3f (0.5, 0.8, 0.8)
 			egl_call_list (the_torus)
 			egl_flush
 		end
@@ -69,7 +81,6 @@ feature {NONE} -- Implementation (GLUT callbacks)
 	on_reshape (width, height: INTEGER) is
 			-- The window has been reshaped
 		do
---                        precursor (width, height)
 			egl_viewport (0, 0, width, height)
 			egl_matrix_mode (Gl_projection)
 			egl_load_identity
@@ -85,7 +96,6 @@ feature {NONE} -- Implementation (GLUT callbacks)
 			-- Rotate about y-axis when 'y' typed.
 			-- Return torus to original view when 'i' typed.
 		do
---                        precursor (char, modifier, x, y)
 			inspect char
 			when 'x', 'X' then
 				egl_rotate_f (30.0, 1.0, 0.0, 0.0)
@@ -106,7 +116,6 @@ feature {NONE} -- Implementation (GLUT callbacks)
 	
 	on_visibility (state: INTEGER) is
 		do
---                        precursor (state)
 			glut_post_redisplay
 		end
 	
@@ -151,12 +160,6 @@ feature {NONE} -- Implementation
 				egl_end
 				i := i + 1
 			end
-		end
-	
-	default_window_title: STRING is
-			-- Default window title
-		once
-			Result := "Red Book torus program"
 		end
 
 end -- class MAIN_WINDOW

@@ -1,8 +1,8 @@
 -- application: "torus"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/01/14 14:23:39 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2001/10/30 23:22:16 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	torus
@@ -71,12 +71,12 @@ external
         include_path:   "$(EIFFEL4)\library\wel\spec\windows\include",
 			"$(GL)\include",
                         "$(GLUT)\include",
-                        "$(EOPENGL)\eglut\include";
+                        "$(EIFOGL)\eglut\include";
 
         object:         "$(GL)\lib\opengl32.lib",
                         "$(GL)\lib\glu32.lib",
 			"$(GLUT)\lib\glut32.lib",
-                        "$(EOPENGL)\eglut\lib\eglut.lib";
+                        "$(EIFOGL)\eglut\lib\eglut.lib";
 
 end
 
