@@ -3,8 +3,8 @@ indexing
         application: "teapots"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:40:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/12 21:34:52 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -13,6 +13,7 @@ inherit
 		export
 			{NONE} all
 		redefine
+			default_window_title,
 			default_width,
 			default_height,
 			init,
@@ -74,9 +75,14 @@ feature {NONE} -- Initialization
 	
 feature -- Access	
 	
-	default_width: INTEGER is 500
+	default_window_title: STRING is
+		once
+			Result := "EGLUT: teapots"
+		end
 	
-	default_height: INTEGER is 600
+	default_width: INTEGER is 150
+	
+	default_height: INTEGER is 150
 	
 feature {NONE} -- Implementation (GLUT callbacks)	
 	

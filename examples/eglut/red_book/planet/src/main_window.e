@@ -3,8 +3,8 @@ indexing
         application: "planet"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/30 23:37:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/12 21:34:14 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -50,12 +50,12 @@ feature -- Access
 	
 	default_window_title: STRING is
 		once
-			Result := "EGLUT planet"
+			Result := "EGLUT: planet"
 		end
 		
-	default_width: INTEGER is 200
+	default_width: INTEGER is 150
 	
-	default_height: INTEGER is 200
+	default_height: INTEGER is 150
 	
 
 feature {NONE} -- Implementation (GLUT callbacks)	
