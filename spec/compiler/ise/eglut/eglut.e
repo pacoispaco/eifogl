@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/01/27 18:51:48 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/09/11 08:34:21 $"
+	revision: "$Revision: 1.4 $"
 
 class EGLUT
 
@@ -71,9 +71,26 @@ feature	-- GLUT	pre-built models sub-API -- Could/should be put in separate clas
 			"glutWireCube"
 		end
 		
+	glut_solid_torus (inner_radius, outer_radius: DOUBLE; nsides, rings: INTEGER) is
+			-- Render a solid torus with the given `inner_radius',
+			-- `outer_radius', `nsides' and `rings'.
+		external
+			"C [macro <glut.h>] (GLdouble, GLdouble, GLint, GLint)"
+		alias
+			"glutSolidTorus"
+		end
+	
+	glut_solid_octahedron is
+			-- Render a solid octahedron.
+		external
+			"C [macro <glut.h>] ()"
+		alias
+			"glutSolidOctahedron()"
+		end
+	
 	glut_solid_teapot (size: DOUBLE) is
-			-- Render a solid teapot where
-			-- `size': Size of the teapot
+			-- Render a solid teapot where `size': Size of the
+			-- teapot.
 		external
 			"C [macro <glut.h>] (GLdouble)"
 		alias
@@ -88,7 +105,17 @@ feature	-- GLUT	pre-built models sub-API -- Could/should be put in separate clas
 			"glutSwapBuffers()"
 		end
 	
-	
+	glut_set_color (index: INTEGER; red, green, blue: REAL) is
+			-- Sets the color in the color map of the entry at
+			-- position `index'. Note: the values of `red', `green'
+			-- and `blue' are normalized to lie in the range 
+			-- [0.0, 1.0]. 
+		external
+			"C [macro <glut.h>] (GLint, GLfloat, GLfloat, GLfloat)"
+		alias
+			"glutSetColor"
+		end
+		
 end -- class EGLUT
 
 -- begin documentation
