@@ -8,8 +8,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/04/03 20:56:21 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/03 21:26:26 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EGLUT_APPLICATION
@@ -205,7 +205,7 @@ feature {NONE} -- Implementation (GLUT wrappers)
 			"C macro use <glut.h>"
 		alias
 --			"glutGetModifiers ()"
-			"GlutGetModifiers"
+			"glutGetModifiers()"
 		end
 	
 	eglut_init (argc: INTEGER; argv: ARRAY [STRING]) is
