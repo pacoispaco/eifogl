@@ -5,18 +5,12 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:06:04 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/10/26 22:13:47 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLU_QUADRIC
 	
 inherit	
-	--	WEL_ANY
-	--		export
-	--			{NONE} set_shared,
-	--			set_unshared
-	--		end
-	
 	C_STRUCTURE
 		redefine
 			dispose
