@@ -3,8 +3,8 @@ indexing
 	library: "EGL"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:32:13 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/02/10 21:24:25 $"
+	revision: "$Revision: 1.2 $"
 
 class EGL_GLUINT_C_ARRAY
 	
@@ -13,9 +13,19 @@ inherit
 	EGL_CONSTANTS
 	
 creation
-	make_from_array
+	make_empty, make_from_array
 	
 feature {NONE} -- Initialization
+	
+	make_empty (size: INTEGER) is
+			-- Create an empty GLuint C array with the given `size'. 
+		require
+			valid_size: size > 0
+		do
+			count := size
+			c_array_size := count * gl_type_size
+			make
+		end
 	
 	make_from_array (a: ARRAY [INTEGER]) is
 			-- Create from the Eiffel ARRAY `a'.
@@ -55,6 +65,22 @@ feature -- Access
 			-- OpenGL Type
 		do
 			Result := Gl_unsigned_int
+		end
+
+	contents : ARRAY [INTEGER] is
+			-- Contents
+		local
+			i: INTEGER
+		do
+			!! Result.make (1, count)
+			from
+				i := 0
+			until
+				i = count
+			loop
+				Result.put (c_integer_in_gluint_array (pointer, i), i + 1)
+				i := i + 1
+			end			
 		end
 
 feature {NONE} -- Implementation	
