@@ -3,15 +3,13 @@ indexing
         application: "dragnet2k"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/08 11:23:37 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/23 21:13:12 $"
+	revision: "$Revision: 1.3 $"
 
 class MAIN_WINDOW
 
 inherit
 	EGLUT_TOP_LEVEL_WINDOW
-		export
-			{NONE} all
 		redefine
 			default_height,
 			default_width,
@@ -25,14 +23,8 @@ inherit
 		end
 	
 	GLU
-		export
-			{NONE} all
-		end
 	
 	DOUBLE_MATH
-		export
-			{NONE} all
-		end
 	
 creation
 	make
@@ -118,9 +110,9 @@ feature {NONE} -- Implementation (GLUT callbacks)
 		do
 			egl_clear (Gl_color_buffer_bit + Gl_depth_buffer_bit)
 			egl_push_matrix
-			egl_rotate_f (spin_y, 1.0, 0.0, 0.0)
-			egl_rotate_f (spin_x, 0.0, 1.0, 0.0)
-			egl_rotate_f (spin_z, 0.0, 0.0, 1.0)
+			egl_rotate_d (spin_y, 1.0, 0.0, 0.0)
+			egl_rotate_d (spin_x, 0.0, 1.0, 0.0)
+			egl_rotate_d (spin_z, 0.0, 0.0, 1.0)
 			egl_call_list (disp_list)
 			egl_pop_matrix
 			egl_finish
@@ -450,12 +442,17 @@ feature {NONE} -- Implementation (Application constants)
 	
 feature {NONE} -- Implementation (Application entities)
 	
-	points: ARRAY2 [POINT_3D] is
-			-- p in dragnet2k.c
-		once
-			!! Result.make (Points_per_side, Points_per_side)
-		end
+--	points: ARRAY2 [POINT_3D] is
+--			-- p in dragnet2k.c
+--		once
+--			!! Result.make (Points_per_side, Points_per_side)
+--		end
 	
+	points: ARRAY_2 [POINT_3D] is
+		once
+			!! Result.make (1, Points_per_side, 1, Points_per_side)
+		end
+			
 	material_1: ARRAY [REAL] is 
 		once
 			Result := <<0.1, 0.5, 0.8, 1.0>>
