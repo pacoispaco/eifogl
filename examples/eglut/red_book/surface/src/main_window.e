@@ -3,8 +3,8 @@ indexing
         application: "surface"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/11/12 21:37:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/04/27 06:40:02 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -23,7 +23,7 @@ inherit
 			on_visibility
 		end
 	
-	EGLU_NURBS
+	EGLU
 	        redefine
 			on_nurbs_error
 		end
@@ -62,7 +62,7 @@ feature {NONE} -- Initialization
 			
 			init_surface
 			
-			init_nurbs_c_interface
+			eglu_init_nurbs_api
 			the_nurb := eglu_new_nurbs_renderer
 			activate_nurbs_error_callback (the_nurb)
 			eglu_nurbs_property (the_nurb, Glu_sampling_tolerance, 25.0)
@@ -178,7 +178,7 @@ feature {NONE} -- Implementation
 	
 	show_points: BOOLEAN
 	
-	the_nurb: EGLU_NURBS_OBJ
+	the_nurb: EGLU_NURBS
 
 	init_surface is
 			-- Initializes the control points of the surface to a small hill.
