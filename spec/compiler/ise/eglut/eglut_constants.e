@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:52:07 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/02/10 21:27:44 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLUT_CONSTANTS
 
@@ -159,8 +159,176 @@ feature -- Access (Mouse button callback states)
 	
 feature -- Access (Function keys)	
 	
+	Glut_key_f1: INTEGER is
+			-- #define GLUT_KEY_F1			1
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F1"
+		end
+	
+	Glut_key_f2: INTEGER is
+			-- #define GLUT_KEY_F2			2
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F2"
+		end
+	
+	Glut_key_f3: INTEGER is
+			-- #define GLUT_KEY_F3			3
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F3"
+		end
+	
+	Glut_key_f4: INTEGER is
+			-- #define GLUT_KEY_F4			4
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F4"
+		end
+	
+	Glut_key_f5: INTEGER is
+			-- #define GLUT_KEY_F5			5
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F5"
+		end
+	
+	Glut_key_f6: INTEGER is
+			-- #define GLUT_KEY_F6			6
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F6"
+		end
+	
+	Glut_key_f7: INTEGER is
+			-- #define GLUT_KEY_F7			7
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F7"
+		end
+	
+	Glut_key_f8: INTEGER is
+			-- #define GLUT_KEY_F8			8
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F8"
+		end
+	
+	Glut_key_f9: INTEGER is
+			-- #define GLUT_KEY_F9			9
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F9"
+		end
+	
+	Glut_key_f10: INTEGER is
+			-- #define GLUT_KEY_F10			10
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F10"
+		end
+	
+	Glut_key_f11: INTEGER is
+			-- #define GLUT_KEY_F11			11
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F11"
+		end
+	
+	Glut_key_f12: INTEGER is
+			-- #define GLUT_KEY_F12			12
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_F12"
+		end
+		
 feature -- Access (Directional keys)	
-
+	
+	Glut_key_left: INTEGER is
+			-- #define GLUT_KEY_LEFT			100
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_LEFT"
+		end
+	
+	Glut_key_up: INTEGER is
+			-- #define GLUT_KEY_UP			101
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_UP"
+		end
+	
+	Glut_key_right: INTEGER is
+			-- #define GLUT_KEY_RIGHT			102
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_RIGHT"
+		end
+	
+	Glut_key_down: INTEGER is
+			-- #define GLUT_KEY_DOWN			103
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_DOWN"
+		end
+	
+	Glut_key_page_up: INTEGER is
+			-- #define GLUT_KEY_PAGE_UP		104
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_PAGE_UP"
+		end
+	
+	Glut_key_page_down: INTEGER is
+			-- #define GLUT_KEY_PAGE_DOWN		105
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_PAGE_DOWN"
+		end
+	
+	Glut_key_home: INTEGER is
+			-- #define GLUT_KEY_HOME			106
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_HOME"
+		end
+	
+	Glut_key_end: INTEGER is
+			-- #define GLUT_KEY_END			107
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_END"
+		end
+	
+	Glut_key_insert: INTEGER is
+			-- #define GLUT_KEY_INSERT			108
+		external
+			"C [macro <glut.h>]"
+		alias
+			"GLUT_KEY_INSERT"
+		end
+	
 feature -- Access (Entry/exit callback states)	
 
 feature -- Access (Visibility callback states)	
