@@ -3,8 +3,8 @@ indexing
         application: "multi_sphere"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/30 22:24:50 $"
+	revision: "$Revision: 1.2 $"
 
 
 class MAIN_WINDOW
@@ -38,8 +38,6 @@ feature {NONE} -- Initialization
 			subscribe_to_keyboard_events
 			subscribe_to_visibility_events
 
---			glut_init_displaymode (Glut_double + Glut_rgb + Glut_depth)
-			
 			diffuse_material := <<0.5, 0.5, 0.5, 1.0>>
 			mat_specular := <<1.0, 1.0, 1.0, 1.0>>
 			light_position := <<1.0, 1.0, 0.0, 0.0>>

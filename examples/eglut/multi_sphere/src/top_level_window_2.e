@@ -3,8 +3,8 @@ indexing
         application: "multi_sphere"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/30 22:24:50 $"
+	revision: "$Revision: 1.2 $"
 
 
 class TOP_LEVEL_WINDOW_2
@@ -39,8 +39,8 @@ feature -- Initialization
 			subscribe_to_mouse_events
 			subscribe_to_keyboard_events
 			
-			diffuse_material := <<0.5, 0.5, 0.5, 1.0>>
-			mat_specular := <<1.0, 1.0, 1.0, 1.0>>
+			diffuse_material := <<0.0, 0.0, 1.0, 1.0>>
+			mat_specular := <<0.5, 0.5, 0.5, 1.0>>
 			light_position := <<1.0, 1.0, 1.0, 0.0>>
 			
 			egl_clear_color (0.0, 0.0, 0.0, 0.0)
@@ -48,10 +48,15 @@ feature -- Initialization
 			egl_enable (Gl_depth_test)
 			egl_material_fv (Gl_front, Gl_diffuse, diffuse_material)
 			egl_material_fv (Gl_front, Gl_specular, mat_specular)
-			egl_material_f (Gl_front, Gl_shininess, 25.0)
+			egl_material_f (Gl_front, Gl_shininess, 50.0)
 			egl_light_fv (Gl_light0, Gl_position, light_position)
 			egl_enable (Gl_lighting)
 			egl_enable (Gl_light0)
+			
+			-- Modifications for web bullets!
+			egl_enable (Gl_light1)
+			egl_light_fv (Gl_light1, Gl_ambient, <<1.0, 1.0, 1.0, 1.0>>)
+			egl_light_fv (Gl_light1, Gl_position, <<0.0, 5.0, 0.0, 0.0>>)
 			
 			egl_color_material (Gl_front, Gl_diffuse)
 			egl_enable (Gl_color_material)
