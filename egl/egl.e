@@ -5,13 +5,13 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:38 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/26 21:57:33 $"
+	revision: "$Revision: 1.2 $"
 
 class EGL
 	
 inherit	
-	GL_CONSTANTS
+	EGL_CONSTANTS
 	
 feature	-- EGL contract predicates
 	
@@ -30,31 +30,91 @@ feature -- EGL attributes
 	current_list: INTEGER
 			-- The current list being specified
 	
+feature -- OpenGL states	
+	
+	egl_edge_flag (flag: BOOLEAN) is
+			-- Indicates weather a vertex should be considered as
+			-- initializing a boundary edge of a polygon.
+		do
+			gl_api.gl_edge_flag (flag)
+		end
+	
+	egl_point_size (size: REAL) is
+			-- Set the size in pixels for rendered points.
+		require
+			valid_size: size > 0.0
+		do
+			gl_api.gl_point_size (size)
+		end
+		
+	egl_line_width (width: REAL) is
+			-- Set the width in pixels for rendered lines.
+		require
+			valid_width: width > 0.0
+		do
+			gl_api.gl_line_width (width)
+		end
+	
+	egl_line_stipple (factor: INTEGER; pattern: BIT 16) is
+			-- Set the current stippling pattern for lines. The
+			-- `pattern' can be stretched out by using `factor',
+			-- which multiplies each subseries of consecutive 1s and
+			-- 0s. 
+		require
+			valid_factor: factor >= 1 and factor <= 256
+		do
+			gl_api.gl_line_stipple (factor, bit16_to_integer (pattern))
+		end
+	
+	egl_polygon_mode (face, mode: INTEGER) is
+			-- Set the drawing mode for the front and/or back faces
+			-- of rendered polygons.
+		require
+			valid_face: face = Gl_front or
+				    face = Gl_front_and_back or
+				    face = Gl_back
+			valid_mode: mode = Gl_point or
+				    mode = Gl_line or
+				    mode = Gl_fill
+		do
+			gl_api.gl_polygon_mode (face, mode)
+		end
+	
+	egl_polygon_stipple (mask: EGL_POLYGON_STIPPLE_PATTERN) is
+			-- Set the current stipple pattern for filled polygons
+		require
+			mask_not_void: mask /= Void
+		local
+			a: ANY
+		do
+			a := mask.glubyte_string.to_c
+			gl_api.gl_polygon_stipple ($a)
+		end
+	
+	egl_front_face (mode: INTEGER) is
+			-- Set how the front of a polygon is determined. By
+			-- default `mode' is set to Gl_ccw, which means that the
+			-- front of a polygon is determined by the
+			-- counterclockwise orientation of the ordered vertices
+			-- defining the polygon. 
+		require
+			valid_mode: is_valid_orientation_mode (mode)
+		do
+			gl_api.gl_front_face (mode)
+		end
+	
+	egl_cull_face (mode: INTEGER) is
+			-- Set which polygons should be discarded (culled)
+			-- before they´re coverted to screen coordinates. `mode'
+			-- can be one of `Gl_front', `Gl_back' or
+			-- `Gl_front_and_back'. 
+		require
+			valid_mode: is_valid_face (mode)
+		do
+			gl_api.gl_cull_face (mode)
+		end
+	
 feature -- Drawing geometric objects	
-	
-	egl_clear_color (r, g, b, a: REAL) is
-			-- Sets the color and alpha values to use for clearing
-			-- the color buffers.
-		require
-			valid_state: drawing_a_primitive or not drawing_a_primitive
-			valid_red_value: r >= 0.0 and r <= 1.0
-			valid_green_value: g >= 0.0 and g <= 1.0
-			valid_blue_value: b >= 0.0 and b <= 1.0
-			valid_alpha_value: a >= 0.0 and a <= 1.0
-		do
-			gl_api.gl_clear_color (r, g, b, a)
-		end
-	
-	egl_clear (buffer: INTEGER) is
-			-- Clears the `buffer' to its current clearing
-			-- color. See GL_BUFFER_CONSTANTS for valid values of
-			-- `buffer'.
-		require
-			valid_state: not drawing_a_primitive			
---			valid_buffer: is_valid_buffer (buffer)
-		do
-			gl_api.gl_clear (buffer)
-		end
 	
 	egl_flush is
 			-- Forces execution of OpenGL functions in finite time.
@@ -73,14 +133,113 @@ feature -- Drawing geometric objects
 		do			
 			gl_api.gl_finish
 		end
-
-	egl_vertex_3f (x, y, z: REAL) is
-			-- Specifies the 3D coordinates of a vertex.
+	
+	egl_vertex_2i (x, y: INTEGER) is
+			-- Specifies the 2D coordinates of a vertex in integer
+			-- values. 
 		require
-			valid_state: drawing_a_primitive or not drawing_a_primitive
-				     specifying_a_display_list
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_2i (x, y)
+		end
+			
+	egl_vertex_2s (x, y: INTEGER_16) is
+			-- Specifies the 2D coordinates of a vertex in short
+			-- integer (OpenGL type GLshort) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_2s (x, y)
+		end
+	
+	egl_vertex_2f (x, y: REAL) is
+			-- Specifies the 2D coordinates of a vertex in floating
+			-- point (OpenGL type GLfloat) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_2f (x, y)
+		end
+			
+	egl_vertex_2d (x, y: DOUBLE) is
+			-- Specifies the 2D coordinates of a vertex in floating
+			-- point (OpenGL type GLdouble) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_2d (x, y)
+		end
+			
+	egl_vertex_3i (x, y, z: INTEGER) is
+			-- Specifies the 3D coordinates of a vertex in integer 
+			-- values. 
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_3i (x, y, z)
+		end
+			
+	egl_vertex_3s (x, y, z: INTEGER_16) is
+			-- Specifies the 3D coordinates of a vertex in short
+			-- integer (OpenGL type GLshort) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_3s (x, y, z)
+		end
+	
+	egl_vertex_3f (x, y, z: REAL) is
+			-- Specifies the 3D coordinates of a vertex in floating
+			-- point (OpenGL type GLfloat) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
 		do
 			gl_api.gl_vertex_3f (x, y, z)
+		end
+	
+	egl_vertex_3d (x, y, z: DOUBLE) is
+			-- Specifies the 3D coordinates of a vertex in floating
+			-- point (OpenGL type GLdouble) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_3d (x, y, z)
+		end
+	
+	egl_vertex_4i (x, y, z, w: INTEGER) is
+			-- Specifies the homogeneous 3D coordinates of a vertex
+			-- in integer values. 
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_4i (x, y, z, w)
+		end
+			
+	egl_vertex_4s (x, y, z, w: INTEGER_16) is
+			-- Specifies the homogeneous 3D coordinates of a vertex
+			-- in short integer (OpenGL type GLshort) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_4s (x, y, z, w)
+		end
+	
+	egl_vertex_4f (x, y, z, w: REAL) is
+			-- Specifies the homogeneous 3D coordinates of a vertex
+			-- in floating point (OpenGL type GLfloat) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_4f (x, y, z, w)
+		end
+	
+	egl_vertex_4d (x, y, z, w: DOUBLE) is
+			-- Specifies the homogeneous 3D coordinates of a vertex
+			-- in floating point (OpenGL type GLdouble) values.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+		do
+			gl_api.gl_vertex_4d (x, y, z, w)
 		end
 	
 	egl_rect_f (x1, y1, x2, y2: REAL) is
@@ -96,16 +255,24 @@ feature -- Drawing geometric objects
 	egl_normal_3f (nx, ny, nz: REAL) is
 			-- Defines a surface normal for the next vertex specified.
 		require
-			valid_state: drawing_a_primitive or not drawing_a_primitive			
+--			valid_state: drawing_a_primitive or not drawing_a_primitive			
 		do
 			gl_api.gl_normal_3f (nx, ny, nz)
+		end
+		
+	egl_normal_3d (nx, ny, nz: DOUBLE) is
+			-- Defines a surface normal for the next vertex specified.
+		require
+--			valid_state: drawing_a_primitive or not drawing_a_primitive			
+		do
+			gl_api.gl_normal_3d (nx, ny, nz)
 		end
 		
 	egl_normal_3fv (fv: ARRAY [REAL]) is
 			-- Defines a surface normal for the next set of
 			-- vertices specified.
 		require
-			valid_state: drawing_a_primitive or not drawing_a_primitive
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
 			fv_not_void: fv /= Void
 			fv_has_3_reals: fv.count = 3
 		local
@@ -116,9 +283,11 @@ feature -- Drawing geometric objects
 		end
 	
 	egl_begin (mode: INTEGER) is
+			-- Mark the beginning of a vertex-data list that
+			-- describes the geometric primitive `mode'.
 		require
 			valid_state: not drawing_a_primitive  
---			valid_geometric_primitive: is_valid_geometric_primitive (mode)
+			valid_geometric_primitive: is_valid_geometric_primitive (mode)
 		do		
 			drawing_a_primitive := True
 			gl_api.gl_begin (mode)
@@ -127,6 +296,7 @@ feature -- Drawing geometric objects
 		end
 	
 	egl_end is
+			-- Mark the end of a vertex-data list.
 		require
 			valid_state: drawing_a_primitive			
 		do		
@@ -136,19 +306,54 @@ feature -- Drawing geometric objects
 			correct_state: not drawing_a_primitive
 		end
 	
+	egl_draw_elements_integer (mode: INTEGER; indices: ARRAY [INTEGER]) is
+			-- Draw a sequence of geometric primitives, whose
+			-- indices are stored in the array `indices'.
+		require
+			valid_mode: is_valid_geometric_primitive (mode)
+			indices_not_void: indices /= Void
+		local
+			indices_c_array: EGL_GLUINT_C_ARRAY
+		do
+			!! indices_c_array.make_from_array (indices)
+			gl_api.gl_draw_elements (mode, indices_c_array.count, indices_c_array.gl_type, indices_c_array.pointer)
+		end
+					  
 feature -- Viewing
 	
-	egl_viewport (x, y, w, h: INTEGER) is
-			-- Sets the potion of the window that can be drawn in
-			-- by OpenGL.
+	egl_viewport (x, y, width, height: INTEGER) is
+			-- Define a pixel rectangle in the window into which
+			-- the final image is mapped. The `x', `y' parameters
+			-- specify the lower left corner of the viewport and
+			-- `width' and `height' are the size of the viewport
+			-- rectangle. By default the initial viewport values are
+			-- (0, 0, winWidth, winHeight), where `winWidth' and
+			-- `winHeight' specify the size of teh window.
 		require
 			valid_state: not drawing_a_primitive
 		do
-			gl_api.gl_viewport (x, y, w, h)
+			gl_api.gl_viewport (x, y, width, height)
 		end
-			
+	
+	egl_frustum (left, right, bottom, top, near, far: DOUBLE) is
+			-- Create a matrix for a perspective-view frustum and
+			-- multiplies the current matrix by it. The frustum's
+			-- viewing volume is defined by the following
+			-- parameters; `left', `bottom' and `near' define the
+			-- coordinates of the lower left corner and `right',
+			-- `top', `near' define the upper right corner of the
+			-- near clipping plane. `near' and `far' are the
+			-- distances from the viewpoint to the near and far
+			-- clipping planes.
+		require
+			valid_near_value: near >= 0
+			valid_far_value: far >= 0
+		do
+			gl_api.gl_frustum (left, right, bottom, top, near, far)
+		end
+	
 	egl_load_identity is
-			-- Set the current matrix to identity.
+			-- Set the current matrix to the 4x4 identity matrix.
 		require
 			valid_state: not drawing_a_primitive		
 		do
@@ -156,38 +361,30 @@ feature -- Viewing
 		end
 			
 	egl_ortho (left, right, bottom, top, near, far: DOUBLE) is
-			-- Sets or modifies the clipping volume extents.
+			-- Create a matrix for an orthographic parallel viewing
+			-- volume and multiplies the current matrix by
+			-- it. (`left', `bottom' and `near') and (`right', `top'
+			-- and `near') are points on the near clipping plane
+			-- that are mapped to the lower left and upper right
+			-- corners of the viewport window, respectively. `far'
+			-- defines th distance to the far clipping plane.
 		require
 			valid_state: not drawing_a_primitive
+			near_not_equal_to_far: near /= far
 		do
---			debug ("egl")
---				print ("left = ")
---				print (left)
---				print ("%Nright = ")
---				print (right)
---				print ("%Nbottom = ")
---				print (bottom)
---				print ("%Ntop = ")
---				print (top)
---				print ("%Nnear = ")
---				print (near)
---				print ("%Nfar = ")
---				print (far)
---				print ("%N")
---			end
 			gl_api.gl_ortho (left, right, bottom, top, near, far)
 		end
 	
 	egl_matrix_mode (mode: INTEGER) is
 		require		
 			valid_state: not drawing_a_primitive
---			valid_matrix_mode: is_valid_matrix_mode (mode)
+			valid_matrix_mode: is_valid_matrix_mode (mode)
 		do
 			gl_api.gl_matrix_mode (mode)
 		end
 	
 	egl_translate_f (x, y, z: REAL) is
-			-- Multiplies the current matrix by a translation matrix.
+			-- Multiply the current matrix by a translation matrix.
 		require
 			valid_state: not drawing_a_primitive		
 		do
@@ -195,15 +392,23 @@ feature -- Viewing
 		end
 	
 	egl_rotate_f (angle, x, y, z: REAL) is
-			-- Rotates the current matrix by a Rotation matrix
+			-- Rotate the current matrix by a Rotation matrix
 		require		
 			valid_state: not drawing_a_primitive
 		do
 			gl_api.gl_rotate_f (angle, x, y, z)
 		end
 	
+	egl_scale_f (x, y, z: REAL) is
+			-- Multiply the current matrix by a matrix that
+			-- stretches, shrinks, or reflects an object along the
+			-- axes. 
+		do
+			gl_api.gl_scale_f (x, y, z)
+		end
+	
 	egl_push_matrix is
-			-- Pushes the current matrix onto the matrix stack
+			-- Push the current matrix onto the matrix stack.
 		require
 			valid_state: not drawing_a_primitive
 --			not_too_many_matrices_on_the_stack
@@ -212,7 +417,7 @@ feature -- Viewing
 		end
 	
 	egl_pop_matrix is
-			-- Pops the current matrix from the matrix stack
+			-- Pop the current matrix from the matrix stack.
 		require
 			valid_state: not drawing_a_primitive
 --			more_than_one_matrix_on_the_stack:
@@ -221,6 +426,29 @@ feature -- Viewing
 		end
 	
 feature -- Color	
+	
+	egl_clear_color (r, g, b, a: REAL) is
+			-- Sets the color and alpha values to use for clearing
+			-- the color buffers.
+		require
+			valid_state: drawing_a_primitive or not drawing_a_primitive
+			valid_red_value: r >= 0.0 and r <= 1.0
+			valid_green_value: g >= 0.0 and g <= 1.0
+			valid_blue_value: b >= 0.0 and b <= 1.0
+			valid_alpha_value: a >= 0.0 and a <= 1.0
+		do
+			gl_api.gl_clear_color (r, g, b, a)
+		end
+	
+	egl_clear (buffer: INTEGER) is
+			-- Clears the `buffer' to its current clearing
+			-- color. 
+		require
+			valid_state: not drawing_a_primitive			
+			valid_buffer: is_valid_clearing_buffer (buffer)
+		do
+			gl_api.gl_clear (buffer)
+		end
 	
 	egl_color_3f (r, g, b: REAL) is
 			-- Set drawing color.
@@ -252,12 +480,11 @@ feature -- Color
 	
 	egl_shade_model (mode: INTEGER) is
 			-- Selects flat or smooth shading. `mode' is a symbolic
-			-- value representing a shading technique. Accepted
-			-- values are GL_FLAT and GL_SMOOTH. The default is
-			-- GL_SMOOTH.
+			-- value representing a shading technique. The default
+			-- value is `Gl_smooth'.
 		require
 			valid_state: not drawing_a_primitive
---			valid_shading_mode: is_valid_shading_mode (mode)
+			valid_shading_mode: is_valid_shading_mode (mode)
 		do
 			gl_api.gl_shade_model (mode)
 		end
@@ -285,15 +512,95 @@ feature -- State management
 		do
 			gl_api.gl_disable (cap)
 		end
+	
+	egl_enable_client_state (array: INTEGER) is
+			-- Enable a client state vector for the given `array'. 
+		require
+			is_valid_client_state_array (array)
+		do
+			gl_api.gl_enable_client_state (array)
+		end
+	
+	egl_disable_client_state (array: INTEGER) is
+			-- Disable a client state vector for the given `array'. 
+		require
+			is_valid_client_state_array (array)
+		do
+			gl_api.gl_disable_client_state (array)
+		end
+	
+	egl_vertex_pointer_double (size, stride: INTEGER; array: ARRAY [DOUBLE]) is
+			-- Specify an `array' where vertex data can be
+			-- accessed. `size' is the number of coordinates per
+			-- vertex. `stride' is the byte offset between
+			-- consectutive vertices.  
+		require
+			valid_size: size = 2 or size = 3 or size = 4
+			valid_stride:  stride >= 0
+			array_not_void: array /= Void
+		local
+			c_array: EGL_GLDOUBLE_C_ARRAY
+		do
+			!! c_array.make_from_array (array)
+			gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
+		end
+	
+	egl_vertex_pointer_integer (size, stride: INTEGER; array: ARRAY [INTEGER]) is
+			-- Specify an `array' where vertex data can be
+			-- accessed. `size' is the number of coordinates per
+			-- vertex. `stride' is the byte offset between
+			-- consectutive vertices.  
+		require
+			valid_size: size = 2 or size = 3 or size = 4
+			valid_stride:  stride >= 0
+			array_not_void: array /= Void
+		local
+			c_array: EGL_GLINT_C_ARRAY
+		do
+			!! c_array.make_from_array (array)
+			gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
+		end
+	
+	egl_color_pointer_integer (size, stride: INTEGER; array: ARRAY [INTEGER]) is
+			-- Specify an `array' where color data can be
+			-- accessed. `size ' is the number of color components
+			-- per color. `stride' is the byte offset bewteen
+			-- consecutive colors. 
+		require
+			valid_size: size = 3 or size = 4
+			valid_stride: stride >= 0
+			array_not_void: array /= Void
+		local
+			c_array: EGL_GLINT_C_ARRAY
+		do
+			!! c_array.make_from_array (array)
+			gl_api.gl_color_pointer (size, c_array.gl_type, stride, c_array.pointer)
+		end
+	
+	egl_color_pointer_double (size, stride: INTEGER; array: ARRAY [DOUBLE]) is
+			-- Specify an `array' where color data can be
+			-- accessed. `size ' is the number of color components
+			-- per color. `stride' is the byte offset bewteen
+			-- consecutive colors. 
+		require
+			valid_size: size = 3 or size = 4
+			valid_stride: stride >= 0
+			array_not_void: array /= Void
+		local
+			c_array: EGL_GLDOUBLE_C_ARRAY
+		do
+			!! c_array.make_from_array (array)
+			gl_api.gl_color_pointer (size, c_array.gl_type, stride, c_array.pointer)
+		end
 
 feature -- Lighting	
 	
 	egl_material_fv (face, property: INTEGER; params: ARRAY [REAL]) is
 			-- Specify material parameters for the lighting model.
 		require
- 			valid_state: drawing_a_primitive or not drawing_a_primitive
---			valid_face: is_valid_face (face)
---			valid_material_property: is_valid_material_property (property)
+ --			valid_state: drawing_a_primitive or not drawing_a_primitive
+			valid_face: is_valid_face (face)
+			valid_material_property: is_valid_material_property (property)
 		local
 			s: SPECIAL [REAL]
 		do
@@ -304,43 +611,61 @@ feature -- Lighting
 	egl_material_f (face, property: INTEGER; param: REAL) is
 			-- Specify material parameters for the lighting model.
 		require
-			valid_state: drawing_a_primitive or not drawing_a_primitive
---			valid_face: is_valid_face (face)
---			valid_material_property: property = Gl_shininess
+--			valid_state: drawing_a_primitive or not drawing_a_primitive
+			valid_face: is_valid_face (face)
+			valid_material_property: property = Gl_shininess
 		do
 			gl_api.gl_material_f (face, property, param)
 		end
 	
-	egl_light_fv (light, pname: INTEGER; params: ARRAY [REAL]) is
-			-- Set light source parameters.
-		require
-			valid_state: not drawing_a_primitive		
-		local
-			s: SPECIAL [REAL]
-		do
-			s := params.area
-			gl_api.gl_light_fv (light, pname, $s)
-		end
-	
-	egl_light_model_fv (pname: INTEGER; params: ARRAY [REAL]) is
-			-- Set light source parameters.
+	egl_light_fv (light, property: INTEGER; params: ARRAY [REAL]) is
+			-- Set the `property' of `light' to `params'.
 		require
 			valid_state: not drawing_a_primitive
---			valid_pname: is_valid_pname (pname)
+			valid_light: is_valid_light (light)
+			valid_property: is_valid_light_property (property)
 		local
 			s: SPECIAL [REAL]
 		do
 			s := params.area
-			gl_api.gl_light_model_fv (pname, $s)
+			gl_api.gl_light_fv (light, property, $s)
+		end
+	
+	egl_light_model_fv (property: INTEGER; params: ARRAY [REAL]) is
+			-- Set a `property' of the lighting model to `params'.
+		require
+			valid_state: not drawing_a_primitive
+			valid_property: is_valid_light_model_property (property)
+		local
+			s: SPECIAL [REAL]
+		do
+			s := params.area
+			gl_api.gl_light_model_fv (property, $s)
 		end
 	
 	egl_color_material (face, mode: INTEGER) is
 		require			
 			valid_state: not drawing_a_primitive			
---			valid_face: is_valid_face (face)
---			valid_color_mode: is_valid_color_mode (mode)
+			valid_face: is_valid_face (face)
+			valid_color_mode: is_valid_material_color_mode (mode)
 		do
 			gl_api.gl_color_material (face, mode)
+		end
+	
+feature -- Blending, antialiasing, fog and polygon offset	
+	
+	egl_blend_func (sfactor, dfactor: INTEGER) is
+			-- Control how color values in the fragment being
+			-- processed (the source) are combined with those
+			-- already stored in the framebuffer (the
+			-- destination). Teh argument `sfactor' indicates how to
+			-- compute a source blending factor and `dfactor'
+			-- indicates how to compute a destination blending factor.
+		require
+			valid_source_blending_factor: is_valid_source_blending_factor (sfactor)
+			valid_destination_blending_factor: is_valid_destination_blending_factor (dfactor)
+		do
+			gl_api.gl_blend_func (sfactor, dfactor)
 		end
 	
 feature -- Display lists
@@ -348,7 +673,7 @@ feature -- Display lists
 	egl_gen_lists (range: INTEGER): INTEGER is
 			-- Allocates `range' number of contiguous, previously
 			-- unallocated display list indices. The integer
-			-- returned is the index taht marks the beginning of a
+			-- returned is the index that marks the beginning of a
 			-- continuous block of empty display list indices. if
 			-- the requested number of indices isn't available, or
 			-- if range = 0, 0 is returned.
@@ -436,7 +761,25 @@ feature {NONE} -- Implementation
 		once
 			!! Result
 		end	
-
+	
+feature {NONE} -- Implementation (Uitilities)	
+	
+	bit16_to_integer (b: BIT 16): INTEGER is
+		local
+			i: INTEGER
+		do
+			from  
+				i := 1
+			until
+				i > 16
+			loop
+				if b.item (i) then
+					Result := Result + (2^(16-i)).truncated_to_integer
+				end
+				i := i + 1
+			end
+		end
+	
 end -- class EGL
 
 --| begin documentation
