@@ -60,5 +60,33 @@ feature -- Access
 		alias
 			"GL_ONE_MINUS_DST_ALPHA"
 		end
-
+	
+--	gl_constant_color: INTEGER is
+--		external
+--			"C [macro <gl.h>]"
+--		alias
+--			"GL_CONSTANT_COLOR"
+--		end
+	
+--	gl_one_minus_constant_color: INTEGER is
+--		external
+--			"C [macro <gl.h>]"
+--		alias
+--			"GL_ONE_MINUS_CONSTANT_COLOR"
+--		end
+	
+--	gl_constant_alpha: INTEGER is
+--		external
+--			"C [macro <gl.h>]"
+--		alias
+--			"GL_CONSTANT_ALPHA"
+--		end
+	
+--	gl_one_minus_constant_alpha: INTEGER is
+--		external
+--			"C [macro <gl.h>]"
+--		alias
+--			"GL_ONE_MINUS_CONSTANT_ALPHA"
+--		end
+	
 end -- class BLENDING_FACTOR_DEST_CONSTANTS
