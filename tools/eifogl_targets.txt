@@ -1,8 +1,8 @@
 -- Description: "ebuild instructions for eifogl"
 -- Author: "Paul Cohen"
 -- Copyright: "Copyright (c) 2001 Paul Cohen"
--- Date: "$Date: 2001/11/01 20:15:56 $"
--- Revision: "$Revision: 1.2 $"
+-- Date: "$Date: 2001/11/11 14:32:02 $"
+-- Revision: "$Revision: 1.3 $"
 
 target EGL_WEL_simple_red_box 
        compiler: ec
@@ -14,9 +14,9 @@ target EGL_WEL_sphere_and_red_box
        ace_file: $EIFOGL\examples\egl\wel\sphere_and_red_box\build_ise\ise50.ace
        build_type: finalize
 
-target EGLUT_3d_model_displayer 
+target EGLUT_simple_model_displayer 
        compiler: ec
-       ace_file: $EIFOGL\examples\eglut\3d_model_displayer\build_ise\ise50.ace
+       ace_file: $EIFOGL\examples\eglut\simple_model_displayer\build_ise\ise50.ace
        build_type: finalize
 
 target EGLUT_edragnet 
@@ -41,32 +41,32 @@ target EGLUT_single_sphere
 
 target EGLUT_rb_aapoly 
        compiler: ec
-       ace_file: $EIFOGL\examples\eglut\red_book\aapoly\build\ise50.ace
+       ace_file: $EIFOGL\examples\eglut\red_book\aapoly\build_ise\ise50.ace
        build_type: finalize
 
 target EGLUT_rb_cube 
        compiler: ec
-       ace_file: $EIFOGL\examples\eglut\red_book\cube\build\ise50.ace
+       ace_file: $EIFOGL\examples\eglut\red_book\cube\build_ise\ise50.ace
        build_type: finalize
 
 target EGLUT_rb_lines 
        compiler: ec
-       ace_file: $EIFOGL\examples\eglut\red_book\lines\build\ise50.ace
+       ace_file: $EIFOGL\examples\eglut\red_book\lines\build_ise\ise50.ace
        build_type: finalize
 
 target EGLUT_rb_planet 
        compiler: ec
-       ace_file: $EIFOGL\examples\eglut\red_book\planet\build\ise50.ace
+       ace_file: $EIFOGL\examples\eglut\red_book\planet\build_ise\ise50.ace
        build_type: finalize
 
 target EGLUT_rb_surface 
        compiler: ec
-       ace_file: $EIFOGL\examples\eglut\red_book\surface\build\ise50.ace
+       ace_file: $EIFOGL\examples\eglut\red_book\surface\build_ise\ise50.ace
        build_type: finalize
 
 target EGLUT_rb_teapots 
        compiler: ec
-       ace_file: $EIFOGL\examples\eglut\red_book\teapots\build\ise50.ace
+       ace_file: $EIFOGL\examples\eglut\red_book\teapots\build_ise\ise50.ace
        build_type: finalize
 
 target EGLUT_rb_torus 
