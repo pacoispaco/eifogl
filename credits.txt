@@ -1,0 +1,38 @@
+Main developers
+---------------
+
+* Paul Cohen <paco@enea.se>
+
+Substantial feedback and/or minor code additions
+------------------------------------------------
+
+* Folco Casadei <folco.casadei@jrc.it>
+
+Valuable feedback and comments (in no particular order)
+-------------------------------------------------------
+
+* Mark A Bolstad
+* Gary M. Smithrud
+* Ben Breen
+* Christel Blossier
+* Guillaume Dorchies
+* Vincent Bousquet
+* Sven Ehrke
+
+Other credits 
+-------------
+
+* ISE Eiffel (http://www.eiffel.com). Provided me with a free ISE Eiffel 
+  license for this project.
+* SmartEiffel (http://smarteiffel.loria.fr). Also provided me with a free 
+  SmartEiffel license! ;-)
+* Object Tools (http://www.object-tools.com). Provided me with a free Visual 
+  Eiffel license. I have not yet used this to ensure EiffelOpenGL works with 
+  Visual Eiffel. I hope to find the time some day!
+* Gobo (http://www.gobosoft.com/eiffel/gobo/index.html). The portable Eiffel 
+  library project, without which it would have been very difficult to provide 
+  EiffelOpenGL for more than one Eiffel compiler.
+* ELJ (http://elj.sourceforge.net). Provides a neat package of SmartEiffel, 
+  lcc-win32 and lots of class libraries for the Win32 platform.
+* Roger Wetzel. Original author of the C version of dragnet.  
+* Matthias Brückner. Author of libtga.

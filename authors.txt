@@ -1,0 +1,13 @@
+EiffelOpenGL was written and is maintained by Paul Cohen <paco@enea.se>.
+
+EiffelOpenGl was begun as a spare time project for learning OpenGL using Eiffel.
+
+The EiffelOpenGL library and example programs were written by Paul Cohen and
+are Copyright (c) 1999, 2000, 2001, 2002 Paul Cohen, see the file license.txt
+for more information. 
+
+Bug fixes, code additions and suggestions have been submitted by a number
+of other people. See the file "credits.txt" for more information. I'd like
+to take this opportunity to thank all of them!
+
+
