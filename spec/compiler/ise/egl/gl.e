@@ -1,16 +1,24 @@
 indexing
-	description: "Raw wrapper class for the OpenGL GL library."
+	description: "Wrapper class for the OpenGL API"
 	library: "EGL - Eiffel wrapping of OpenGL"
-	compilers: "ISE 4.3, ISE4.5"
+	compilers: "ISE 4.3, ISE 4.5, ISE 5.0 (MSVC++ 6.0)"
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/02/03 17:42:50 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/02/10 21:26:04 $"
+	revision: "$Revision: 1.5 $"
 
 class GL
 		
 feature -- OpenGL API
+	
+	gl_polygon_offset (factor, units: REAL) is
+		external
+--			"C (GLfloat, GLfloat) | <gl.h>" 
+			"C [macro <gl.h>] (GLfloat, GLfloat)"
+		alias
+			"glPolygonOffset"
+	 	end
 	
 	gl_edge_flag (flag: BOOLEAN) is
 		external
@@ -76,6 +84,14 @@ feature -- OpenGL API
 			"glGetDoublev"
   		end
 	
+	gl_get_integer_v (pname: INTEGER; params: POINTER) is
+		external
+--			"C (GLenum, GLint *) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLint *)"
+		alias
+			"glGetIntegerv"
+		end	
+	
 	gl_clear_color (r, g, b, a: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h> "
@@ -125,6 +141,14 @@ feature -- OpenGL API
 			"glFlush()"
 		end
 	
+	gl_hint (target, mode: INTEGER) is
+		external
+--			"C (GLenum, GLenum) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLenum)"
+		alias
+			"glHint"
+		end
+		
 	gl_vertex_2i (x, y: INTEGER) is
 		external
 --			"C (GLint, GLint) | <gl.h>" 
@@ -286,6 +310,22 @@ feature -- OpenGL API
 			"glLoadMatrixd"
 		end
 	
+	gl_mult_matrix_f (m: POINTER) is
+		external
+--			"C (const GLfloat *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLfloat *)"
+		alias
+			"glMultMatrixf"
+		end
+	
+	gl_mult_matrix_d (m: POINTER) is
+		external
+--			"C (const GLdouble *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLdouble *)"
+		alias
+			"glMultMatrixd"
+		end	
+	
 	gl_ortho (left, right, bottom, top, near, far: DOUBLE) is
 		external
 --			"C (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble) | <gl.h>" 
@@ -406,6 +446,14 @@ feature -- OpenGL API
 			"glTranslatef"
 		end
 	
+	gl_translate_d (x, y, z: DOUBLE) is
+		external
+--			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
+			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble)"
+		alias
+			"glTranslated"
+		end	
+	
 	gl_scale_f (x, y, z: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
@@ -422,6 +470,46 @@ feature -- OpenGL API
 			"glPixelStorei"
 		end
 	
+	gl_tex_parameter_i (target, pname, param: INTEGER) is
+		external
+--			"C (GLenum, GLenum, GLint) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLenum, GLint)"
+		alias
+			"glTexParameteri"
+		end		
+
+	gl_tex_coord_2f (s, t: REAL) is
+		external
+--			"C (GLfloat, GLfloat) | <gl.h>" 
+			"C [macro <gl.h>] (GLfloat, GLfloat)"
+		alias
+			"glTexCoord2f"
+		end		
+		
+	gl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type: INTEGER; pixels: POINTER) is
+		external
+--			"C (GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid *) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid *)"
+		alias
+			"glTexImage2D"
+		end
+	
+	gl_bind_texture (target, texture: INTEGER) is
+		external
+--			"C (GLenum, GLuint) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLuint)"
+		alias
+			"glBindTexture"
+		end
+		
+	gl_gen_textures (n: INTEGER; textures: POINTER) is
+		external
+--			"C (GLsizei, GLuint *) | <gl.h>" 
+			"C [macro <gl.h>] (GLsizei, GLuint *)"
+		alias
+			"glGenTextures"
+		end
+			
 	gl_raster_pos_2i (x, y: INTEGER) is
 		external		
 --			"C (GLint, GLint) | <gl.h>" 
