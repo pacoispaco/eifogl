@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/03/23 20:33:51 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/02 08:43:44 $"
+	revision: "$Revision: 1.2 $"
 
 class EGL_GLINT_C_ARRAY
 	
@@ -120,7 +120,7 @@ feature {NONE} -- Implementation
 			valid_i: i >= 0 and i < count
 		external
 --			"C [macro <egl.h>] (GLuint **, long , GLuint)"
-			"C macro use <gl.h>"
+			"C macro use <egl.h>"
 		alias
 			"c_put_integer_in_gluint_array"		
 		end
@@ -133,7 +133,7 @@ feature {NONE} -- Implementation
 			valid_i: i >= 0 and i < count
 		external
 --			"C [macro <egl.h>] (GLuint **, long): GLuint"
-			"C macro use <gl.h>"
+			"C macro use <egl.h>"
 		alias
 			"c_integer_in_gluint_array"
 		end
