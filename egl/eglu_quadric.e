@@ -5,16 +5,21 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:38 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/26 22:06:04 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLU_QUADRIC
 	
 inherit	
-	WEL_ANY
-		export
-			{NONE} set_shared,
-			set_unshared
+	--	WEL_ANY
+	--		export
+	--			{NONE} set_shared,
+	--			set_unshared
+	--		end
+	
+	C_STRUCTURE
+		redefine
+			dispose
 		end
 	
 	EXCEPTIONS
@@ -27,18 +32,22 @@ feature -- Initialization
 	eglu_new_quadric is
 			-- Create a new quadrics object. 
 		do
-			make_by_pointer (glu_api.glu_new_quadric)
+			make_unshared (glu_api.glu_new_quadric)
+			
 			if not exists then
 				raise ("failed_to_create_new_quadric")
 			end
-			
-			-- Ensure that `destroy_item' is called when this
-			-- object is disposed of by the garbage collector!
-			set_unshared
 		ensure
 			exists: exists
 		end
 	
+feature -- Access	
+	
+	structure_size: INTEGER is
+		do
+			Result := 0
+		end
+		
 feature -- Basic operations
 	
 	eglu_quadric_draw_style (draw_style: INTEGER) is
@@ -48,7 +57,7 @@ feature -- Basic operations
 			exists: exists
 --			valid_draw_style: is_valid_draw_style (draw_style)
 		do
-			glu_api.glu_quadric_draw_style (item, draw_style)
+			glu_api.glu_quadric_draw_style (pointer, draw_style)
 		end
 	
 	eglu_quadric_orientation (orientation: INTEGER) is
@@ -58,7 +67,7 @@ feature -- Basic operations
 			exists: exists
 --			valid_orientation: is_valid_orientation (orientation)
 		do
-			glu_api.glu_quadric_orientation (item, orientation)
+			glu_api.glu_quadric_orientation (pointer, orientation)
 		end
 	
 	eglu_quadric_normals (normals: INTEGER) is
@@ -68,42 +77,28 @@ feature -- Basic operations
 			exists: exists
 --			valid_normals: is_valid_normals (normals)
 		do
-			glu_api.glu_quadric_normals (item, normals)
-		end
-	
-	eglu_delete_quadric is
-			-- Delete the quadrics object and free the memory in
-			-- the glu lib. The user does not *have* to call this
-			-- function since the garbage collector will take care
-			-- of freeing the memory anyway!
-		require
-			exists: exists
-		do
-			glu_api.glu_delete_quadric (item)
-		ensure
-			not_exists: not exists
+			glu_api.glu_quadric_normals (pointer, normals)
 		end
 	
 feature {NONE} -- Removal
 	
-	destroy_item is
-			-- Called by the `dispose' routine to destroy `item' by
-			-- calling the corresponding glu function and free the
-			-- memory.
+	dispose is
 		do
-			if exists then
-				eglu_delete_quadric
-			end
+			glu_api.glu_delete_quadric (pointer)
+			precursor
 		end
 	
 feature {NONE} -- Implementation 	
 	
-	glu_api: expanded GLU 
+	glu_api: GLU is 
 			-- The raw Eiffel encapsulation of the OpenGL glu API.
 			-- NOTA BENE! This solution should probably be skipped
 			-- in favor of having the needed raw glu wrappers in 
                         -- this class!
-
+		once
+			!! Result
+		end
+	
 end -- class EGLU_QUADRIC
 
 -- begin dictionary
