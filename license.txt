@@ -1,0 +1,12 @@
+License for EiffelOpenGL
+
+EiffelOpenGL is licensed under the EFFL license as formulated
+in the file "forum.txt".
+
+There exists one package in EiffelOpenGL that is not licensed
+under the EFFL license and that is the files in the directory
+"utility/string". Those files may not be used for any other 
+pupose than compiling the EiffelOpenGL example programs. They
+may not be copied, modified or distributed or used for any other 
+purpose than above stated.
+

@@ -1,0 +1,82 @@
+-- application: "simple_red_box"
+-- author: "Paul Cohen"
+-- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
+-- date: "$Date: 2001/01/14 14:23:39 $"
+-- revision: "$Revision: 1.1 $"
+
+system
+	simple_red_box
+
+root
+	APPLICATION (src_root): "make"
+
+default
+	assertion (all);
+
+cluster
+
+		-- Eiffel OpenGL
+	eifogl:			"$EIFOGL";
+
+	        -- Application
+	src_root (eifogl):	"$\examples\egl\wel\simple_red_box\src";
+
+		-- EGL
+	egl (eifogl):			"$\egl";
+
+		-- EGL (Compiler specific)
+	egl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\egl";
+        gl_constants (egl_comp):	"$\gl_constants";
+        glu_constants (egl_comp):	"$\glu_constants";
+
+		-- EWGL
+	ewgl (eifogl):			"$\ewgl";
+
+		-- EWGL (Compiler specific)
+	ewgl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\ewgl";
+
+		-- Platform library adaptions (WEL)
+	ewgl_wel (eifogl):		"$\spec\platform_library_adaptions\wel";
+
+	        -- WEL
+	wel_constants:		"$EIFFEL4\library\wel\consts";
+	wel_controls:		"$EIFFEL4\library\wel\controls";
+	wel_gdi:		"$EIFFEL4\library\wel\gdi";
+	wel_gdi_stocks: 	"$EIFFEL4\library\wel\gdistock";
+	wel_messages:		"$EIFFEL4\library\wel\messages";
+	wel_standard_dialogs:	"$EIFFEL4\library\wel\stddlgs";
+	wel_structures: 	"$EIFFEL4\library\wel\structs";
+	wel_support:		"$EIFFEL4\library\wel\support";
+	wel_windows:		"$EIFFEL4\library\wel\windows";
+
+		-- EiffelBase
+	kernel:			"$EIFFEL4\library\base\kernel";
+	support:		"$EIFFEL4\library\base\support";
+	access:			"$EIFFEL4\library\base\structures\access";
+	cursors:		"$EIFFEL4\library\base\structures\cursors";
+	cursor_tree:		"$EIFFEL4\library\base\structures\cursor_tree";
+	dispenser:		"$EIFFEL4\library\base\structures\dispenser";
+	iteration:		"$EIFFEL4\library\base\structures\iteration";
+	list:			"$EIFFEL4\library\base\structures\list";
+	set:			"$EIFFEL4\library\base\structures\set";
+	sort:			"$EIFFEL4\library\base\structures\sort";
+	storage:		"$EIFFEL4\library\base\structures\storage";
+	table:			"$EIFFEL4\library\base\structures\table";
+	traversing:		"$EIFFEL4\library\base\structures\traversing";
+	tree:			"$EIFFEL4\library\base\structures\tree";
+--	thread:			"$EIFFEL4\library\thread";
+
+external
+	include_path:		"$(EIFFEL4)\library\wel\spec\windows\include",
+				"$(GL)\include",
+				"$(EIFOGL)\spec\compiler\$(EIFFEL_COMPILER)\ewgl\include";
+
+	object:			"$(EIFFEL4)\library\wel\spec\$(COMPILER)\lib\wel.lib",
+				"$(GL)\lib\opengl32.lib",
+				"$(GL)\lib\glu32.lib";
+	
+end
+
+
+
+

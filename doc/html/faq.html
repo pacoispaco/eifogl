@@ -1,0 +1,154 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Paul Cohen">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; I) [Netscape]">
+   <title>EOpenGL Information</title>
+</head>
+<body>
+
+<h1>
+EiffelOpenGL FAQ</h1>
+author: Paul Cohen (paco@enea.se)
+<br>date: "$Date: 2001/01/14 14:23:38 $"
+<br>revision: "$Revision: 1.1 $"
+<h3>
+1. What is EiffelOpenGL?</h3>
+EiffelOpenGL is the collective name for EGL, EGLUT and EGLAUX.
+<ul>
+<li>
+EGL stands for <b>Eiffel</b> Open<b>GL</b> and is an Eiffel encapsulation
+of OpenGL (ie. the GL and GLU libraries).</li>
+
+<li>
+EGLUT stands for <b>E</b>iffel <b>GLUT</b> and is an Eiffel encapsulation
+of GLUT (OpenGL Utility Toolkit library).</li>
+
+<li>
+EGLAUX stands for<b> E</b>iffel Open<b>GL AUX</b> and is an Eiffel encapsulation
+of the OpenGL AUX (Auxillary) library.</li>
+</ul>
+
+<h3>
+2. What inplementations of OpenGL, GLUT and GLAUX are supported?</h3>
+Currently only the Microsoft Win32 OpenGl implementation and the GLUT 3.6
+(<a href="http://www.cs.utah.edu/~narobins/glut.html">http://www.cs.utah.edu/~narobins/glut.html</a>)
+implementation for Windows NT &amp; 95. My goal is of course to have EGL
+run smoothly on all important OpenGL and GLUT implementations.
+<br>&nbsp;
+<h3>
+3. What do I need to use EiffelOpenGL?</h3>
+To use EiffelOpenGL you need:
+<ul>
+<li>
+The ISE Eiffel compiler and IDE. EiffelOpenGL was developed with ISE 4.2f,
+but seems to work fine with ISE 4.4004. At the moment EiffelOpenGL has
+some dependencies on WEL (ISE Eiffels Windows Eiffel Library). These will
+be removed in the near future. Since the semantics of the manifest string
+in the language part of the Eiffel external clause isn't covered by ETL
+or defined by NICE, it's interpretation depends upon what Eiffel compiler
+you are using.</li>
+
+<li>
+To have installed the gl.h and glu.h include files and set your include
+path so that your C compiler can find them.</li>
+
+<li>
+To have installed the opengl32.lib and glu32.lib import libraries, as well
+as the opengl32.dll and glu32.dll dynamic libraries.</li>
+</ul>
+The Microsoft Win32 OpenGL implementation is for instance shipped with
+Developer Studio 5.0 and 6.0. To use EGLUT you need, in addition to the
+above mentioned:
+<ul>
+<li>
+To have installed the glut.h include file and set your include path so
+that your C compiler can find it.</li>
+
+<li>
+To have installed the glut32.lib import library as well as the glut32.dll
+dynamic library.</li>
+
+<li>
+Compiled the eglut.lib (static) library.</li>
+</ul>
+To use EGLAUX you need, in addition to that needed for EiffelOpenGL:
+<ul>
+<li>
+<font size=+0>To have installed the glaux.h include file and set your include
+path so that your C compiler can find it.</font></li>
+
+<li>
+To have installed the glaux.lib library.</li>
+</ul>
+
+<h3>
+<b><font size=+1>4. With which Eiffel compilers/IDEs and on which platforms
+does it work?</font></b></h3>
+At the moment it has only been tested with ISE bench 4.2f, 4.3 and 4.5
+on Windows 95/NT. I hope to be able to port it to SmallEiffel and X Window/Linux
+soon.
+<br>&nbsp;
+<h3>
+5. What is the current version of EiffelOpenGL?</h3>
+0.1.0. Version numbering follows the format [Major Version].[Minor Version].[Patch
+Level].
+<br>&nbsp;
+<h3>
+6. How large is the EiffelOpenGL source code?</h3>
+Currently it is comprised of 128 Eiffel classes, 2 C text files and 11
+C header files.
+<br>&nbsp;
+<h3>
+8. Why should I use EiffelOpenGL?</h3>
+Well, you can write your OpenGL/GLUT program in Eiffel! That means design-by-contract,
+carbage collection (if you want it turned on that is), multiple inheritance
+and readable syntax among other things. EiffelOpenGL attempts to use all
+the benefits of Eiffel's support for design-by-contract. This enables a
+lot of obscure or implicit conditions in the OpenGL and GLUT API can be
+implemented in formal contracts and class invariants and thus be made explicit.
+<h3>
+9. Are there any example programs?</h3>
+Yes. Look in the examples directory.
+<br>&nbsp;
+<h3>
+10. What sort of licensing is EiffelOpenGL under?</h3>
+EFFL - The Eiffel Forum Freeware License. See the file "<a href="../forum.txt">forum.txt</a>"
+<br>&nbsp;
+<h3>
+11. What are the future development goals of EiffelOpenGL?</h3>
+In no particular order:
+<ul>
+<li>
+Ensure platform portability. Primarily Win32 API and X Window. Maybe MacOS.</li>
+
+<li>
+Ensure independence of WEL.</li>
+
+<li>
+Continue the encapsulation work on OpenGL.</li>
+
+<li>
+Continue the encapsulation work on GLUT.</li>
+
+<li>
+Drop the encapsulation of GLAUX. GLAUX seems to be unsupported and is not
+being further developed.</li>
+
+<li>
+Develop more comprehensive example programs. Evaluate performance of EiffelOpenGL.</li>
+</ul>
+
+<h3>
+12. Can I help with developing EiffelOpenGL?</h3>
+Yes you certainly can. Either by just trying out the example programs and
+or using EiffelOpenGL and finding bugs and reporting them back to me (paco@enea.se)
+or by helping to continue writing the encapsulating code, or by testing
+and porting the code to other platforms and compilers. Or by sending me
+copious amounts of money or other useful things like a <a href="http://www.nationalguitars.com/styleo.html">National
+Style N Reso-Phonic guitar</a>. Just be sure to send me <b>style guide
+formatted</b> and <b>compilable</b> code additions or examples and <b>readable
+and understandable</b> suggestions for code changes.
+</body>
+</html>

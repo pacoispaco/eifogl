@@ -1,0 +1,76 @@
+-- application: "teapot"
+-- author: "Paul Cohen"
+-- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
+-- date: "$Date: 2001/01/14 14:23:39 $"
+-- revision: "$Revision: 1.1 $"
+
+system
+	teapot
+
+root
+	MAIN_WINDOW (src_root): "make"
+
+default
+	assertion (all);
+
+cluster
+
+		-- Eiffel OpenGL
+	eifogl:		"$EIFOGL";
+
+	        -- Application
+	src_root (eifogl):	"$\examples\eglaux\OpenGL_SuperBible\teapot\src";
+
+		 -- EGL
+	egl (eifogl):		"$\egl";
+
+		 -- EGL (Compiler specific "external" classes)
+	egl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\egl";
+        gl_constants (egl_comp):	"$\gl_constants";
+        glu_constants (egl_comp):	"$\glu_constants";
+
+		-- EGLAUX 
+	eglaux (eifogl):		"$\eglaux";
+
+		-- EGLAUX (Compiler specific "external" classes)
+	eglaux_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\eglaux"
+		visible
+			EGLAUX_WINDOW
+				export
+					"main_application_callback"
+				end
+		end;
+
+		-- WEL (These dependecies should be removed in the future)
+	wel_structs: "$EIFFEL4\library\wel\structs";
+	wel_support: "$EIFFEL4\library\wel\support";
+
+		-- EiffelBase	
+	kernel:		"$EIFFEL4\library\base\kernel";
+	support:	"$EIFFEL4\library\base\support";
+	access:		"$EIFFEL4\library\base\structures\access";
+	cursors:	"$EIFFEL4\library\base\structures\cursors";
+	cursor_tree:	"$EIFFEL4\library\base\structures\cursor_tree";
+	dispenser:	"$EIFFEL4\library\base\structures\dispenser";
+	iteration:	"$EIFFEL4\library\base\structures\iteration";
+	list:		"$EIFFEL4\library\base\structures\list";
+	set:		"$EIFFEL4\library\base\structures\set";
+	sort:		"$EIFFEL4\library\base\structures\sort";
+	storage:	"$EIFFEL4\library\base\structures\storage";
+	table:		"$EIFFEL4\library\base\structures\table";
+	traversing:	"$EIFFEL4\library\base\structures\traversing";
+	tree:		"$EIFFEL4\library\base\structures\tree";
+	thread:		"$EIFFEL4\library\thread";
+
+external
+	include_path:	"$(EIFFEL4)\library\wel\spec\windows\include",
+			"$(GL)\include\gl",
+			"$(EIFOGL)\eglaux\include",
+			"$(EIFOGL)\spec\platform\win32\include";
+
+	object:		"$(GL)\lib\opengl32.lib",
+			"$(GL)\lib\glu32.lib",
+			"$(GL)\lib\glaux.lib",
+			"$(EIFOGL)\eglaux\lib\eglaux.lib";
+
+end
