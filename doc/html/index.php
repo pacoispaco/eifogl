@@ -22,7 +22,7 @@
 <B>EiffelOpenGL</B>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#FFFFFF">
 <P>
-Current release 0.1.0 <BR> January 13, 2001
+Current release 0.2.0 <BR> January 1, 2002
 </P>
 </FONT>
 </TD>
@@ -156,8 +156,7 @@ created with EiffelOpenGL!
 <TR><TD>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <BR>
-A new release is on its way! The next release is due in a few weeks 
-time and features the following:
+EiffelOpenGL 0.2.0 finally released! The important features of the new release are:
 <UL>
 <LI>A large number of OpenGL functions have been added to the main wrapper class EGL. </LI>
 <LI>More OpenGL GLU functions have been added to the GLU wrapper class EGLU. </LI>
@@ -168,6 +167,8 @@ time and features the following:
 <LI>7 example programs in C from the Red Book that have been translated to Eiffel. </LI>
 <LI>A few bugs have been fixed. </LI>
 <LI>A lot of code has been tidied up. </LI>
+<LI>I have stopped working on EGLAUX in order to focus on the wrappings of GLUT and OpenGL proper. </LI>
+<LI>No updated documentation. I intend to do a supplementary release to this 0.2.0 release containing documentation as soon as I have the time. </LI>
 </UL>
 <BR>
 </TD></TR>
@@ -181,8 +182,8 @@ time and features the following:
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2001/11/13 22:55:22 $" <BR>
-"$Revision: 1.4 $"
+"$Date: 2002/01/07 23:03:29 $" <BR>
+"$Revision: 1.5 $"
 </FONT>
 </TD></TR>
 
