@@ -1,8 +1,8 @@
 -- application: "planet"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/10/30 23:36:36 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2001/11/11 15:04:11 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	planet
@@ -22,7 +22,7 @@ cluster
 	src_root:			"$EIFOGL\examples\eglut\red_book\planet\src"
 
 		 -- EGL
-	all egl (eifogl):			"$\egl"
+	all egl (eifogl):		"$\egl"
 
 		 -- EGL (Compiler specific "external" classes)
 	egl_comp (eifogl):		"$\spec\compiler\$EIFFEL_COMPILER\egl"
@@ -53,7 +53,7 @@ cluster
 external
         include_path:   "$(GL)\include",
                         "$(GLUT)\include",
-                        "$(EIFOGL)\egl\include",
+                        "$(EIFOGL)\egl\c\include",
                         "$(EIFOGL)\eglut\include";
 
         object:         "$(GL)\lib\opengl32.lib",

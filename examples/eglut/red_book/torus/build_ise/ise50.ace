@@ -1,8 +1,8 @@
 -- application: "torus"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2001/10/30 23:23:07 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2001/11/11 15:01:27 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	torus
@@ -57,7 +57,7 @@ external
         include_path:   
 		"$(GL)\include",
                 "$(GLUT)\include",
-		"$(EIFOGL)\egl\include",
+		"$(EIFOGL)\egl\c\include",
                 "$(EIFOGL)\eglut\include";
 
         object: 
