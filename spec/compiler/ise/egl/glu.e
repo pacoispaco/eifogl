@@ -1,12 +1,12 @@
 indexing
 	description: "Raw wrapper class for the OpenGL GLU library."
 	library: "EGL - Eiffel wrapping of OpenGL"
-	compilers: "ISE 4.3, ISE 4.5"
+	compilers: "ISE 5.2"
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/23 21:19:06 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/03/08 21:27:04 $"
+	revision: "$Revision: 1.5 $"
 
 class GLU
 	
