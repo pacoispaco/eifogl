@@ -3,8 +3,8 @@ indexing
 	library: "EGL"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:32:13 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/02/03 17:41:39 $"
+	revision: "$Revision: 1.2 $"
 
 class EGL_GLFLOAT_C_ARRAY
 	
@@ -13,9 +13,19 @@ inherit
 	EGL_CONSTANTS
 	
 creation
-	make_from_array
+	make_empty, make_from_array
 	
 feature {NONE} -- Initialization
+	
+	make_empty (size: INTEGER) is
+			-- Create an empty GLfloat C array with the given `size'. 
+		require
+			valid_size: size > 0
+		do
+			count := size
+			c_array_size := count * gl_type_size
+			make
+		end
 	
 	make_from_array (a: ARRAY [REAL]) is
 			-- Create from the Eiffel ARRAY `a'.
@@ -55,6 +65,22 @@ feature -- Access
 			-- OpenGL Type
 		do
 			Result := Gl_float
+		end
+	
+	contents : ARRAY [REAL] is
+			-- Contents
+		local
+			i: INTEGER
+		do
+			!! Result.make (1, count)
+			from
+				i := 0
+			until
+				i = count
+			loop
+				Result.put (c_real_in_glfloat_array (pointer, i), i + 1)
+				i := i + 1
+			end			
 		end
 
 feature {NONE} -- Implementation	
@@ -119,7 +145,7 @@ feature -- Test & debug
 			from
 				i := 0
 			until
-				i > count
+				i = count
 			loop
 				print ("Item ") 
 				print (i)
