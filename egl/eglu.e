@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/03/23 13:40:31 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/12/23 21:06:07 $"
+	revision: "$Revision: 1.5 $"
 
 class EGLU
 	
@@ -38,7 +38,7 @@ feature -- Basic operations (Setting up the viewing volume)
 	
 feature -- Basic operations (Textures)	
 	
-	eglu_build_2D_mipmaps (target, internal_format, width, height, format, type: INTEGER; data: POINTER) is
+	eglu_build_2D_mipmaps (target, internal_format, width, height, format, type: INTEGER; data: PIXEL_DATA_MAP) is
 			-- Specify a two-dimensional mipmap.
 		require
 			valid_target: target = Gl_texture_2D
@@ -47,7 +47,7 @@ feature -- Basic operations (Textures)
 			valid_height: height > 0
 --			valid_format: 
 --			valid_type:
-			valid_data: data /= default_pointer
+			data_not_void: data /= Void
 		do
 			glu_api.glu_build_2D_mipmaps (target, internal_format, width, height, format, type, data)
 		end

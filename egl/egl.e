@@ -6,8 +6,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/08 11:16:01 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2002/12/23 21:05:57 $"
+	revision: "$Revision: 1.10 $"
 
 class EGL
 	
@@ -556,7 +556,7 @@ feature -- Coordinate transformation (Transform the current matrix)
 		require		
 			valid_state: not drawing_a_primitive
 		do
-			-- TBD!
+			gl_api.gl_rotate_d (angle, x, y, z)
 		end
 	
 	egl_translate_f (x, y, z: REAL) is
@@ -820,10 +820,10 @@ feature -- Coordinate Transformation (Manipulate the current matrix)
 							     egl_get_integer_v (Gl_modelview_stack_depth) @ 1 =  
 							     old egl_get_integer_v (Gl_modelview_stack_depth) @ 1 + 1)
 			projection_matrix_stack_incremented: (egl_get_integer_v (Gl_matrix_mode) @ 1 = Gl_projection implies
-							      egl_get_integer_v (Gl_projection_stack_depth) @ 1 < 
+							      egl_get_integer_v (Gl_projection_stack_depth) @ 1 = 
 							      old egl_get_integer_v (Gl_projection_stack_depth) @ 1 + 1)
 			texture_matrix_stack_incremented: (egl_get_integer_v (Gl_matrix_mode) @ 1= Gl_texture implies
-							   egl_get_integer_v (Gl_texture_stack_depth) @ 1 < 
+							   egl_get_integer_v (Gl_texture_stack_depth) @ 1 =
 							   old egl_get_integer_v (Gl_texture_stack_depth) @ 1 + 1)
 		end
 	
@@ -1228,11 +1228,12 @@ feature -- Rasterization (Specify or return a stipple pattern for lines or polyg
 		require
 			valid_state: not drawing_a_primitive			
 			mask_not_void: mask /= Void
-		local
-			a: ANY
+--		local
+--			a: ANY
 		do
-			a := mask.glubyte_string.to_c
-			gl_api.gl_polygon_stipple ($a)
+--			a := mask.glubyte_string.to_c
+--			gl_api.gl_polygon_stipple ($a)
+			gl_api.gl_polygon_stipple (mask.glubyte_string)
 		ensure
 			-- Polygon stipple pattern is set
 		end
@@ -1348,7 +1349,7 @@ feature -- Textures (Specify a one-, two- or threedimensional texture image or s
 	
 --	egl_tex_image_1D TBD!
 	
-	egl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type: INTEGER; pixels: POINTER) is
+	egl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type: INTEGER; pixels: PIXEL_DATA_MAP) is
 			-- Specify a two_dimensional texture image.
 		require
 			valid_state: not drawing_a_primitive
@@ -1360,10 +1361,11 @@ feature -- Textures (Specify a one-, two- or threedimensional texture image or s
 			valid_border: border = 1 or border = 0
 --			valid_format: valid_pixel_format (format)
 --			valid_type: valid_pixel_data_type (type)
-			valid_pixels: pixels /= default_pointer
+			pixels_not_void: pixels /= Void
 		do
 			gl_api.gl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type, pixels)
 		end
+	
 	
 --	egl_tex_image_3D TBD!
 --	egl_tex_sub_image_1D TBD!

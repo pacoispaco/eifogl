@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:16:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/23 21:07:56 $"
+	revision: "$Revision: 1.2 $"
 
 class EGL_POLYGON_STIPPLE_PATTERN
 		
@@ -42,13 +42,12 @@ feature {EGL} -- Conversion
 		do
 			from
 				i := 1
-				!! Result.make (128)
-				Result.fill_character ('#')
+				create Result.make_filled ('#', 128)
 			until
 				i > 128
 			loop
 				glubyte := bit8_to_integer (pattern @ i)
-				Result.put (glubyte.ascii_char, i)
+				Result.put (glubyte.to_character, i)
 				i := i +1
 			end
 		end
@@ -56,6 +55,18 @@ feature {EGL} -- Conversion
 feature {NONE} -- Implementation	
 	
 	bit8_to_integer (b: BIT 8): INTEGER is
+		do
+                        if b.item (1) then Result := Result + 128 end
+                        if b.item (2) then Result := Result + 64 end
+                        if b.item (3) then Result := Result + 32 end
+                        if b.item (4) then Result := Result + 16 end
+                        if b.item (5) then Result := Result + 8 end
+                        if b.item (6) then Result := Result + 4 end
+                        if b.item (7) then Result := Result + 2 end
+                        if b.item (8) then Result := Result + 1 end		
+		end
+			
+	bit8_to_integer_old (b: BIT 8): INTEGER is
 		local
 			i: INTEGER
 		do
@@ -65,7 +76,10 @@ feature {NONE} -- Implementation
 				i > 8
 			loop
 				if b.item (i) then
+					-- '^' operator in INTEGER incompatible
+					-- between ISE and SmartEiffel :-(
 					Result := Result + (2^(8-i)).truncated_to_integer
+--					Result := Result + (2^(8-i))
 				end
 				i := i + 1
 			end
