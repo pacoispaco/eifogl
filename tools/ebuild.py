@@ -2,8 +2,8 @@
 # Description:	Python module for building ISE Eiffel systems
 # Author:	Paul Cohen
 # Copyright:	Copyright (c) 2001 Paul Cohen
-# Date:		$Date: 2001/11/11 14:16:26 $
-# Revision:	$Revision: 1.3 $
+# Date:		$Date: 2001/11/11 14:30:56 $
+# Revision:	$Revision: 1.4 $
 ####################################################################
 
 import os
@@ -399,7 +399,7 @@ class EiffelSystemBuilder:
 					break
 			words = string.split (line, "(")
 			if len (words) > 0:
-				print words[0]
+##				print words[0]
 				if words[0] == "shared_library_definition":
 					self.__system_is_dynamic_library = 1
 				else:
