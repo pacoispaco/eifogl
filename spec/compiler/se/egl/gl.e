@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/12/08 11:44:27 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/12/23 21:19:29 $"
+	revision: "$Revision: 1.4 $"
 
 class GL
 		
@@ -66,13 +66,18 @@ feature -- OpenGL API
 			"glPolygonMode"
 		end
 	
-	gl_polygon_stipple (mask: POINTER) is
+	c_gl_polygon_stipple (mask: POINTER) is
 		external
 --			"C (GLubyte *) | <gl.h> "
 --			"C [macro <gl.h>] (GLubyte *)"
 			"C use <gl.h>"
 		alias
 			"glPolygonStipple"
+		end
+	
+	gl_polygon_stipple (mask: STRING) is
+		do
+			c_gl_polygon_stipple (mask.to_external)
 		end
 	
 	gl_get_boolean_v (pname: INTEGER; params: POINTER) is
@@ -617,13 +622,23 @@ feature -- OpenGL API
 			"glTexCoord2f"
 		end		
 		
-	gl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type: INTEGER; pixels: POINTER) is
+	c_gl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type: INTEGER; pixels: POINTER) is
 		external
 --			"C (GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid *)"
 			"C use <gl.h>"
 		alias
 			"glTexImage2D"
+		end
+	
+	c_gl_tex_image_2D_pixels: PIXEL_DATA_MAP
+			-- We need to keep a reference to the Pixel Data Map so
+			-- that it and its memory segment aren't garbage collected!
+	
+	gl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type: INTEGER; pixels: PIXEL_DATA_MAP) is
+		do
+			c_gl_tex_image_2D_pixels := pixels
+			c_gl_tex_image_2D (target, level, internal_format, witdh, height, border, format, type, pixels.pointer)
 		end
 	
 	gl_bind_texture (target, texture: INTEGER) is
@@ -800,6 +815,15 @@ feature -- OpenGL API
 			"glNormal3f"
 		end
 		
+	gl_normal_3fv (p: POINTER) is
+		external
+--			"C (const GLfloat *) | <gl.h>" 
+--			"C [macro <gl.h>] (const GLfloat *)"
+			"C use <gl.h>"
+		alias
+			"glNormal3fv"
+		end
+	
 	gl_normal_3d (nx, ny, nz: DOUBLE) is
 		external
 --			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
@@ -809,13 +833,13 @@ feature -- OpenGL API
 			"glNormal3d"
 		end
 		
-	gl_normal_3fv (p: POINTER) is
+	gl_normal_3dv (p: POINTER) is
 		external
---			"C (const GLfloat *) | <gl.h>" 
---			"C [macro <gl.h>] (const GLfloat *)"
+--			"C (const GLdouble *) | <gl.h>" 
+--			"C [macro <gl.h>] (const GLdouble *)"
 			"C use <gl.h>"
 		alias
-			"glNormal3fv"
+			"glNormal3dv"
 		end
 	
 	gl_push_matrix is
@@ -864,6 +888,15 @@ feature -- OpenGL API
 			"C use <gl.h>"
 		alias
 			"glRotatef"
+		end
+		
+	gl_rotate_d (angle, x, y, z: DOUBLE) is
+		external
+--			"C (GLdouble, GLdouble, GLdouble, GLdouble) | <gl.h>" 
+--			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble, GLdouble)"
+			"C use <gl.h>"
+		alias
+			"glRotated"
 		end
 		
 	gl_get_error: INTEGER is

@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/02/10 21:26:20 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/12/23 21:19:06 $"
+	revision: "$Revision: 1.4 $"
 
 class GLU
 	
@@ -18,14 +18,24 @@ feature -- OpenGL glu API.
 		alias
 			"gluOrtho2D"
 		end
-		
-	glu_build_2D_mipmaps (target, internal_format, width, height, format, type: INTEGER; data: POINTER) is
+	
+	c_glu_build_2D_mipmaps (target, internal_format, width, height, format, type: INTEGER; data: POINTER) is
 		external
 			"C [macro <glu.h>] (GLenum, GLint, GLsizei, GLsizei, GLenum, GLenum, const void *)"
 		alias
 			"gluBuild2DMipmaps"
 		end
-		
+	
+	c_glu_build_2D_mipmaps_data: PIXEL_DATA_MAP
+			-- We need to keep a reference to the Pixel Data Map so
+			-- that it and its memory segment aren't garbage collected!
+	
+	glu_build_2D_mipmaps (target, internal_format, width, height, format, type: INTEGER; data: PIXEL_DATA_MAP) is
+		do
+			c_glu_build_2D_mipmaps_data := data
+			c_glu_build_2D_mipmaps (target, internal_format, width, height, format, type, data.pointer)
+		end
+	
 	glu_new_quadric: POINTER is
 		external
 			"C [macro <glu.h>] (): GLUquadricObj *"
