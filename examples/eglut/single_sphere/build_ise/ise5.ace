@@ -1,8 +1,8 @@
 -- application: "single_sphere"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2003/03/11 10:25:59 $"
--- revision: "$Revision: 1.1 $"
+-- date: "$Date: 2003/03/11 10:34:19 $"
+-- revision: "$Revision: 1.2 $"
 
 system
 	single_sphere
@@ -12,7 +12,6 @@ root
 
 default
         assertion (all);
---		debug ("egl");
 
 cluster
 
@@ -32,39 +31,43 @@ cluster
 
 		-- EGLUT     
 	eglut (eifogl):			"$\eglut"
-
-		-- EGLUT (Compiler specific "external" classes)
-	eglut_comp:			"$EIFOGL\spec\compiler\ise\eglut"
-		option
-			debug ("callback"): EGLUT_WINDOW		
 		visible
 			EGLUT_APPLICATION
 				export
 					"main_application_callback"
 				end
 		end
+
+		-- EGLUT (Compiler specific "external" classes)
+	eglut_comp:			"$EIFOGL\spec\compiler\ise\eglut"
 	
 		-- C Wrap Utilities
-	cwrap:		"$EIFOGL\utility\cwrap"
-	        exclude
-		        se
-		end
+	cwrap:		                 "$EIFOGL\utility\cwrap"
+	cwrap_spec (cwrap):              "$EIFOGL\utility\cwrap\spec\ise"
+	mixins:                          "$EIFOGL\utility\mixins"
 
-                -- EiffelBase   
-        all base:         "$ISE_EIFFEL\library\base"
-	        exclude
-			table_eiffel3
-		end
+		-- GOBO
+	all gobo:         "$GOBO\library"
+	      exclude
+	            hact 
+		    se
+		    ve
+	      end
+	
+	        -- ISE Eiffel kernel
+	all ise_kernel:       "$ISE_EIFFEL\library\base\kernel"
+	all ise_support:      "$ISE_EIFFEL\library\base\support"
+	ise_table:            "$ISE_EIFFEL\library\base\structures\table"
 
 external
         include_path:   "$(GL)\include",
                         "$(GLUT)\include",
-			"$(EIFOGL)\egl\include",
-                        "$(EIFOGL)\eglut\include";
+			"$(EIFOGL)\egl\c\include",
+                        "$(EIFOGL)\spec\compiler\ise\eglut\include"
 
         object:         "$(GL)\lib\opengl32.lib",
                         "$(GLUT)\lib\glut32.lib",
-                        "$(EIFOGL)\eglut\lib\eglut.lib";
+                        "$(EIFOGL)\spec\compiler\ise\eglut\lib\eglut.lib"
 
 end
 
