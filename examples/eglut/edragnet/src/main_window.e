@@ -3,8 +3,8 @@ indexing
         application: "dragnet2k"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:23:37 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -223,9 +223,9 @@ feature {NONE} -- Implementation
 			-- Initialize the display list. (animate = anim in c code)
 		local
 			i, j, k: INTEGER
-			xx, yy, zz: REAL
-			temp: REAL
-			v1, v2, normal: ARRAY [REAL]
+			xx, yy, zz: DOUBLE
+			temp: DOUBLE
+			v1, v2, normal: ARRAY [DOUBLE]
 			point: POINT_3D
 		do
 			from  
@@ -319,7 +319,7 @@ feature {NONE} -- Implementation
 					v2.put (points.item (j+1, i+1).z - points.item (j+1, i).z, 3)
 					
 					normal := norm_cross_prod (v1, v2, normal)
-					egl_normal_3fv (normal)
+					egl_normal_3dv (normal)
 					
 					debug ("trace_display_list")
 						ptf.put_string ("Display list no ")
@@ -365,16 +365,16 @@ feature {NONE} -- Implementation
 					end
 					
 					-- Vertexes
-					egl_vertex_3f (points.item (j, i).x, 
+					egl_vertex_3d (points.item (j, i).x, 
 						      points.item (j, i).y, 
 						      points.item (j, i).z)
-					egl_vertex_3f (points.item (j+1, i).x, 
+					egl_vertex_3d (points.item (j+1, i).x, 
 						      points.item (j+1, i).y, 
 						      points.item (j+1, i).z)
-					egl_vertex_3f (points.item (j+1, i+1).x, 
+					egl_vertex_3d (points.item (j+1, i+1).x, 
 						      points.item (j+1, i+1).y, 
 						      points.item (j+1, i+1).z)
-					egl_vertex_3f (points.item (j, i+1).x, 
+					egl_vertex_3d (points.item (j, i+1).x, 
 						      points.item (j, i+1).y, 
 						      points.item (j, i+1).z)
 					egl_end
@@ -386,12 +386,12 @@ feature {NONE} -- Implementation
 			egl_end_list
 		end
 	
-	normalize (v: ARRAY [REAL]) is
+	normalize (v: ARRAY [DOUBLE]) is
 		require
 			v_not_void: v /= Void
 			v_has_3_items: v.count = 3
 		local
-			d: REAL
+			d: DOUBLE
 		do
 			d := sqrt (v @ 1 * v @ 1 + v @ 2 * v @ 2 + v @ 3 * v @ 3)
 			if d > 0.0 then
@@ -401,7 +401,7 @@ feature {NONE} -- Implementation
 			end
 		end
 	
-	norm_cross_prod (v1, v2, res: ARRAY [REAL]): ARRAY [REAL] is
+	norm_cross_prod (v1, v2, res: ARRAY [DOUBLE]): ARRAY [DOUBLE] is
 		require		
 			v1_not_void: v1 /= Void
 			v1_has_3_items: v1.count = 3
@@ -435,13 +435,13 @@ feature {NONE} -- Implementation
 	
 feature {NONE} -- Implementation (Application constants)
 	
-	Space: REAL is 35.0
+	Space: DOUBLE is 35.0
 	
-	Edgelen: REAL is 0.08
+	Edgelen: DOUBLE is 0.08
 	
 	Points_per_side: INTEGER is 32
 	
-	startcoord: REAL is
+	startcoord: DOUBLE is
 		do
 			Result := (Points_per_side - 1) * Edgelen / 2
 		end
@@ -466,17 +466,17 @@ feature {NONE} -- Implementation (Application entities)
 			Result := <<0.8, 0.8, 0.8, 1.0>>
 		end
 	
-	spin_x: REAL
+	spin_x: DOUBLE
 	
-	spin_y: REAL
+	spin_y: DOUBLE
 	
-	spin_z: REAL	
+	spin_z: DOUBLE
 	
-	x: REAL 	
+	x: DOUBLE
 	
-	y: REAL	
+	y: DOUBLE
 	
-	z: REAL
+	z: DOUBLE
 	
 	disp_list: INTEGER
 	

@@ -3,18 +3,18 @@ indexing
         application: "dragnet2k"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/08 11:23:55 $"
+	revision: "$Revision: 1.2 $"
 
 class POINT_3D
 
 feature -- Access
 	
-	x: REAL
+	x: DOUBLE
 	
-	y: REAL
+	y: DOUBLE
 	
-	z: REAL
+	z: DOUBLE
 	
 feature -- Status setting
 	
