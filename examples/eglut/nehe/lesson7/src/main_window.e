@@ -3,8 +3,8 @@ indexing
         application: "lesson7"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/03/23 19:32:35 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/23 21:17:41 $"
+	revision: "$Revision: 1.2 $"
 
 class MAIN_WINDOW
 
@@ -26,8 +26,6 @@ inherit
 		end
 	
 	EGLU
-	
-	TGA_FILE_CONSTANTS
 	
 creation
 	make
@@ -67,7 +65,9 @@ feature {NONE} -- Initialization
 			-- named file to memory. We will use this image to
 			-- create our textures! 
 			!! tga.make (texture_file_name)
-			tga.read (Tga_image_data)
+			tga.open_read
+			tga.read_header_and_image
+			print (tga.pretty_format)
 			
 			-- Let OpenGL generate a number of texture names
 			-- (actually unique integer values) that we can use for
@@ -86,7 +86,7 @@ feature {NONE} -- Initialization
 			egl_tex_parameter_i (Gl_texture_2d, Gl_texture_mag_filter, Gl_nearest)
 			egl_tex_parameter_i (Gl_texture_2d, Gl_texture_min_filter, Gl_nearest)
 			-- Create the OpenGL 2D texture from the tga image
-			egl_tex_image_2D (Gl_texture_2D, 0, Gl_rgb, tga.image_width, tga.image_height, 0, Gl_rgb, Gl_unsigned_byte, tga.image_data)
+			egl_tex_image_2D (Gl_texture_2D, 0, Gl_rgb, tga.image_spec_width, tga.image_spec_height, 0, Gl_rgb, Gl_unsigned_byte, tga.image_data)
 			
 			-- Bind the second texture name to the current
 			-- texture. 
@@ -99,7 +99,7 @@ feature {NONE} -- Initialization
 			egl_tex_parameter_i (Gl_texture_2d, Gl_texture_mag_filter, Gl_linear)
 			egl_tex_parameter_i (Gl_texture_2d, Gl_texture_min_filter, Gl_linear)
 			-- Create the OpenGL 2D texture from the tga image
-			egl_tex_image_2D (Gl_texture_2D, 0, Gl_rgb, tga.image_width, tga.image_height, 0, Gl_rgb, Gl_unsigned_byte, tga.image_data)
+			egl_tex_image_2D (Gl_texture_2D, 0, Gl_rgb, tga.image_spec_width, tga.image_spec_height, 0, Gl_rgb, Gl_unsigned_byte, tga.image_data)
 			
 			-- Bind the third texture name to the current
 			-- texture. 
@@ -117,7 +117,7 @@ feature {NONE} -- Initialization
 			egl_tex_parameter_i (Gl_texture_2d, Gl_texture_min_filter, Gl_linear_mipmap_nearest)
 			
 			-- Create the texture mipmaps from the tga image
-			eglu_build_2D_mipmaps (Gl_texture_2D, Gl_rgb, tga.image_width, tga.image_height, Gl_rgb, Gl_unsigned_byte, tga.image_data)
+			eglu_build_2D_mipmaps (Gl_texture_2D, Gl_rgb, tga.image_spec_width, tga.image_spec_height, Gl_rgb, Gl_unsigned_byte, tga.image_data)
     			
 			-- Bind the fourth texture name to the current
 			-- texture. 
@@ -131,7 +131,7 @@ feature {NONE} -- Initialization
 			egl_tex_parameter_i (Gl_texture_2d, Gl_texture_min_filter, Gl_linear_mipmap_linear)
 			
 			-- Create the texture mipmaps from the tga image
-			eglu_build_2D_mipmaps (Gl_texture_2D, Gl_rgb, tga.image_width, tga.image_height, Gl_rgb, Gl_unsigned_byte, tga.image_data)
+			eglu_build_2D_mipmaps (Gl_texture_2D, Gl_rgb, tga.image_spec_width, tga.image_spec_height, Gl_rgb, Gl_unsigned_byte, tga.image_data)
 			egl_enable (Gl_cull_face)
 			
 			egl_hint (Gl_perspective_correction_hint, Gl_nicest)
@@ -155,15 +155,15 @@ feature -- Access
 	default_width: INTEGER is 500
 	
 	default_height: INTEGER is 500
-
+	
 feature {NONE} -- Implementation (GLUT callbacks)	
 	
 	on_display is
 			-- The window has been displayed
 		local
-			t1, t2: TIME
+			t1, t2: DT_TIME
 		do
-			!! t1.make_now
+			t1 := system_clock.time_now 
 			
 			egl_clear (Gl_color_buffer_bit + Gl_depth_buffer_bit)
 			egl_load_identity
@@ -238,10 +238,10 @@ feature {NONE} -- Implementation (GLUT callbacks)
 
 			glut_swap_buffers
 			
-			!! t2.make_now
+			t2 := system_clock.time_now
 			
 			display_count := display_count + 1
-			display_time := display_time + (t2.fine_seconds - t1.fine_seconds)
+			display_time := display_time + (t2.millisecond_count - t1.millisecond_count)/1000
 			
 			if display_count \\ 1000 = 0 then
 				print_stats
@@ -362,9 +362,14 @@ feature {NONE} -- Implementation
 	
 feature -- Test & Debug	
 	
+	system_clock: DT_SYSTEM_CLOCK is 
+		once
+			 create Result.make
+		end
+	
 	display_durations: LINKED_LIST [TIME_DURATION] is
 		once
-			!! Result.make
+			create Result.make
 		end
 	
 	display_time: DOUBLE
