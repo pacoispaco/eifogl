@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/01/27 18:49:48 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/02/03 17:42:50 $"
+	revision: "$Revision: 1.4 $"
 
 class GL
 		
@@ -60,6 +60,22 @@ feature -- OpenGL API
 			"glPolygonStipple"
 		end
 
+	gl_get_float_v (pname: INTEGER; params: POINTER) is
+		external
+--			"C (GLenum, GLfloat *) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLfloat *)"
+		alias
+			"glGetFloatv"
+		end
+	
+	gl_get_double_v (pname: INTEGER; params: POINTER) is
+		external
+--			"C (GLenum, GLdouble *) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLdouble *)"
+		alias
+			"glGetDoublev"
+  		end
+	
 	gl_clear_color (r, g, b, a: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h> "
@@ -269,25 +285,6 @@ feature -- OpenGL API
 		alias
 			"glLoadMatrixd"
 		end
-	
---Fc	--Fc
---Fc	gl_get_float_v (p: INTEGER) : POINTER is
---Fc		external
---Fc--			"C (GLenum): (const GLfloat *) | <gl.h>" 
---Fc			"C [macro <gl.h>] (GLenum): (const GLfloat *)"
---Fc		alias
---Fc			"glGetFloatv"
---Fc		end
---Fc	--Fc
---Fc	
---Fc	--Fc
---Fc	gl_get_double_v (p: INTEGER) : POINTER is
---Fc		external
---Fc--			"C (GLenum): (const GLdouble *) | <gl.h>" 
---Fc			"C [macro <gl.h>] (GLenum): (const GLdouble *)"
---Fc		alias
---Fc			"glGetDoublev"
---Fc		end
 	
 	gl_ortho (left, right, bottom, top, near, far: DOUBLE) is
 		external
