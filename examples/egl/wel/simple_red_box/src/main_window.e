@@ -3,8 +3,8 @@ indexing
         application: "gl_test"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/01/19 22:31:29 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/03/23 13:42:32 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	MAIN_WINDOW
@@ -49,7 +49,7 @@ inherit
 		export
 			{NONE} all
 		end
-	
+		
 creation
 	make
 
@@ -153,6 +153,8 @@ feature {NONE} -- Implementation (Window messages)
 			near := 1.0
 			far := -1.0
 			egl_ortho (left, winw, bottom, winh, near, far)
+			
+			test_gl_get_functions
 		end
 
 feature {NONE} -- Implementation (Window class attributes)	
@@ -241,6 +243,52 @@ feature {NONE} -- Implementation
 				gl_device_context.realize_palette
 			end
 		end	
+	
+feature -- Test & Debug	
+	
+	calls: INTEGER
+	
+	test_gl_get_functions is
+		local
+			a: ARRAY [REAL]
+			a2: ARRAY [DOUBLE]
+			i: INTEGER
+		do
+			calls := calls + 1
+			print ("Call no ")
+			print (calls)
+			print (":%N")
+			print ("egl_get_float_v (Gl_projection_matrix) = ")
+			a := egl_get_float_v (Gl_projection_matrix)
+			print ("[")
+			from 
+				i := 1
+			until 
+				i > a.count
+			loop
+				print (a @ i)
+				i := i + 1
+				if i <= a.count then
+					print (", ")
+				end
+			end
+			print ("]%N")
+			print ("egl_get_double_v (Gl_projection_matrix) = ")
+			a2 := egl_get_double_v (Gl_projection_matrix)
+			print ("[")
+			from 
+				i := 1
+			until 
+				i > a2.count
+			loop
+				print (a2 @ i)
+				i := i + 1
+				if i <= a.count then
+					print (", ")
+				end
+			end
+			print ("]%N")
+ 		end
 	
 end -- class MAIN_WINDOW
 
