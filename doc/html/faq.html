@@ -50,7 +50,7 @@ Currrent release 0.1.0 <BR> January 13, 2001
 
 <BR><BR>
 
-<TR><TD><B><A HREF="index.html">
+<TR><TD><B><A HREF="index.php">
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
 <IMG SRC="images/blue_ball.gif" WIDTH="16" HEIGHT="16" BORDER=0 ALT="->">
 Home
@@ -95,7 +95,7 @@ Links
 <TR><TD><B>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#000000">
 <BR><BR>
-Contact:<A href="mailto:ericb@gobosoft.com"><BR>paco@ieee.org</A>
+Contact:<A href="mailto:paco@ieee.org"><BR>paco@ieee.org</A>
 </B></TD></TR>
 
 </TABLE>
@@ -129,18 +129,18 @@ EiffelOpenGL is divided into three parts:<P>
 for the Win32 platform.<P>
 
 <LI><B>What implementations of OpenGL and GLUT are supported?</B><P>
-Currently only the Microsoft Win32 OpenGl implementation and the GLUT 3.7 (and 3.6) 
+Currently only the Microsoft Win32 OpenGL implementation and the GLUT 3.7 (and 3.6) 
 implementation for Win32. Of course EiffelOpenGL should work well with any implementation
 that is fully OpenGL compliant. However, as every windowing platform has its own
 OpenGL extension library for integrating OpenGL, those extension libraries need
 to be wrapped as well. Today only WGL is wrapped. My goal is of course to have 
-EiffelOpenGL run smoothly on all important OpenGL implementations. GLUT on the
-other hand is a simple windowing system for OpenGL and already exists on a
-number of platforms.</LI><P>
+EiffelOpenGL run smoothly on all important OpenGL platforms such as X Window. 
+Since GLUT is a simple windowing system for OpenGL that already exists on a 
+number of platforms it should work on X Window as it is.</LI><P>
 
 <LI><B>What do I need to use EiffelOpenGL?</B><P>
 To use EiffelOpenGL you need: <P>
-* An Eiffel compiler. EiffelOpenGL was developed with ISE 4.2f, but works fine
+* An Eiffel compiler. EiffelOpenGL was originally developed with ISE 4.2f, but works fine
 with ISE 4.5 and <A HREF="http://www.eiffel.com">ISE 5.0</A>. It does not work with 
 <A HREF="http://www.loria.fr/projets/SmallEiffel/">SmallEiffel</A> at the moment due to 
 differences in the external clause syntax between those compilers. I hope to fix
@@ -169,6 +169,11 @@ EFL - The Eiffel Forum License. See the file <A HREF="../../forum.txt">
 forum.txt</A>
 </LI><P>
 
+<LI><B>What is this Red Book you're talking about?</B><P>
+<I>The OpenGL Programming Guide 3rd Edition - The Official Guide to Learning 
+OpenGL Version 1.2</I> (<A HREF="http://www.opengl.org/developers/documentation/books.html#refman">description at www.opengl.org</A>). If you only buy one book on OpenGL, this is the one to buy.
+</LI><P>
+
 <LI><B>Can I help with developing EiffelOpenGL?</B><P>
 Ehrm, not really a frequently asked question, but yes, you certainly can! Either
 by just trying out the example programs and reporting encountered problems or
@@ -189,8 +194,8 @@ guitar</A>.
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2001/10/26 23:25:57 $" <BR>
-"$Revision: 1.3 $"
+"$Date: 2001/10/30 23:46:11 $" <BR>
+"$Revision: 1.4 $"
 </FONT>
 </TD></TR>
 
