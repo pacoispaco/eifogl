@@ -1,7 +1,7 @@
 Author:	Paul Cohen
 Copyright: Copyright (c) 2001 Paul Cohen
-Date: $Date: 2003/04/26 21:47:06 $
-Revision: $Revision: 1.2 $
+Date: $Date: 2003/04/26 21:48:55 $
+Revision: $Revision: 1.1 $
 
 README file for eifogl/examples/eglut/nehe/lesson7
 ==================================================
