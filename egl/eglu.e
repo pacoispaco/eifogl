@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:03:06 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/02/10 21:22:31 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLU
 	
@@ -36,6 +36,22 @@ feature -- Basic operations (Setting up the viewing volume)
 			glu_api.glu_ortho_2d (left, right, bottom, top)
 		end
 	
+feature -- Basic operations (Textures)	
+	
+	eglu_build_2D_mipmaps (target, internal_format, width, height, format, type: INTEGER; data: POINTER) is
+			-- Specify a two-dimensional mipmap.
+		require
+			valid_target: target = Gl_texture_2D
+--			valid_internal_format:
+			valid_width: width > 0
+			valid_height: height > 0
+--			valid_format: 
+--			valid_type:
+			valid_data: data /= default_pointer
+		do
+			glu_api.glu_build_2D_mipmaps (target, internal_format, width, height, format, type, data)
+		end
+
 feature -- Basic operations (Quadrics: rendering spheres, cylinders and disks)
 	
 	eglu_cylinder (qobj: EGLU_QUADRIC; base_radius, top_radius, height: DOUBLE; slices, stacks: INTEGER) is

@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:48:13 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/02/10 21:26:20 $"
+	revision: "$Revision: 1.3 $"
 
 class GLU
 	
@@ -17,6 +17,13 @@ feature -- OpenGL glu API.
 			"C [macro <glu.h>] (GLdouble, GLdouble, GLdouble, GLdouble)"
 		alias
 			"gluOrtho2D"
+		end
+		
+	glu_build_2D_mipmaps (target, internal_format, width, height, format, type: INTEGER; data: POINTER) is
+		external
+			"C [macro <glu.h>] (GLenum, GLint, GLsizei, GLsizei, GLenum, GLenum, const void *)"
+		alias
+			"gluBuild2DMipmaps"
 		end
 		
 	glu_new_quadric: POINTER is
