@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<project name="edragnet" default="info">
+
+	 <target name="init">
+		 <set name="edragnet_dir" value="${EIFOGL}\examples\eglut\edragnet" />
+	 </target>
+
+	 <target name="ise" dir="${edragnet_dir}\build_ise" depend="init" description="Compile edragnet with ISE Eiffel">
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${edragnet_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${edragnet_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\edragnet.exe" to_file=".\edragnet.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="edragnet.epr"/>
+		 <delete file="edragnet.rc"/>
+	</target>
+
+	<target name="se" dir="${edragnet_dir}\build_se" depend="init" description="Compile edragnet with SmallEiffel">
+		<exec executable="compile -clean ${edragnet_dir}\build_se\se.ace"/>
+		<delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

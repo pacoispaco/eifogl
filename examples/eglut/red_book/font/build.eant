@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<project name="font" default="info">
+
+	 <target name="init">
+		 <set name="font_dir" value="${EIFOGL}\examples\eglut\red_book\font" />
+	 </target>
+
+	 <target name="ise" dir="${font_dir}\build_ise" depend="init" description="Compile font with ISE Eiffel">
+		 <echo message="Compiling font with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${font_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${font_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\font.exe" to_file=".\font.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="font.epr"/>
+		 <delete file="font.rc"/>
+	</target>
+
+	<target name="se" dir="${font_dir}\build_se" depend="init" description="Compile font with SmallEiffel">
+		 <echo message="Compiling font with SmallEiffel"/>
+		 <exec executable="compile -clean ${font_dir}\build_se\se.ace"/>
+		 <delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

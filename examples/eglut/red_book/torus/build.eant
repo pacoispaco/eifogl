@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<project name="torus" default="info">
+
+	 <target name="init">
+		 <set name="torus_dir" value="${EIFOGL}\examples\eglut\red_book\torus" />
+	 </target>
+
+	 <target name="ise" dir="${torus_dir}\build_ise" depend="init" description="Compile torus with ISE Eiffel">
+		 <echo message="Compiling torus with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${torus_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${torus_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\torus.exe" to_file=".\torus.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="torus.epr"/>
+		 <delete file="torus.rc"/>
+	</target>
+
+	<target name="se" dir="${torus_dir}\build_se" depend="init" description="Compile torus with SmallEiffel">
+		 <echo message="Compiling torus with SmallEiffel"/>
+		 <exec executable="compile -clean ${torus_dir}\build_se\se.ace"/>
+		 <delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

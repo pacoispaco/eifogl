@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<project name="aacanti" default="all">
+	 <target name="info">
+		 <echo message="Geant build file for aacanti."/>
+	 </target>
+
+	 <target name="init">
+		 <set name="aacanti_dir" value="${EIFOGL}\examples\eglut\red_book\aacanti" />
+	 </target>
+
+	 <target name="ise" dir="${aacanti_dir}\build_ise" depend="init" description="Compile aacanti with ISE Eiffel">
+		 <echo message="Compiling aacanti with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${aacanti_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${aacanti_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\aacanti.exe" to_file=".\aacanti.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="aacanti.epr"/>
+		 <delete file="aacanti.rc"/>
+         </target>
+
+	 <target name="se" dir="${aacanti_dir}\build_se" depend="init" description="Compile aacanti with SmallEiffel">
+		 <echo message="Compiling aacanti with SmallEiffel"/>
+		 <exec executable="compile -clean ${aacanti_dir}\build_se\se.ace"/>
+		 <delete file="eglut_application.h"/>
+	 </target>
+
+	 <target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	 </target>
+
+</project>

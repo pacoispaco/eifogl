@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<project name="lesson7" default="info">
+
+	 <target name="init">
+		 <set name="lesson7_dir" value="${EIFOGL}\examples\eglut\nehe\lesson7" />
+	 </target>
+
+	 <target name="ise" dir="${lesson7_dir}\build_ise" depend="init" description="Compile lesson7 with ISE Eiffel">
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${lesson7_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${lesson7_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\lesson7.exe" to_file=".\lesson7.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="lesson7.epr"/>
+		 <delete file="lesson7.rc"/>
+	</target>
+
+	<target name="se" dir="${lesson7_dir}\build_se" depend="init" description="Compile lesson7 with SmallEiffel">
+		<exec executable="compile -clean ${lesson7_dir}\build_se\se.ace"/>
+		<delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<project name="surface" default="info">
+
+	 <target name="init">
+		 <set name="surface_dir" value="${EIFOGL}\examples\eglut\red_book\surface" />
+	 </target>
+
+	 <target name="ise" dir="${surface_dir}\build_ise" depend="init" description="Compile surface with ISE Eiffel">
+		 <echo message="Compiling surface with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${surface_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${surface_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\surface.exe" to_file=".\surface.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="surface.epr"/>
+		 <delete file="surface.rc"/>
+	</target>
+
+	<target name="se" dir="${surface_dir}\build_se" depend="init" description="Compile surface with SmallEiffel">
+		 <echo message="Compiling surface with ISE Eiffel"/>
+		 <exec executable="compile -clean ${surface_dir}\build_se\se.ace"/>
+		 <delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

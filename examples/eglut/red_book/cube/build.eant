@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<project name="cube" default="info">
+
+	 <target name="init">
+		 <set name="cube_dir" value="${EIFOGL}\examples\eglut\red_book\cube" />
+	 </target>
+
+	 <target name="ise" dir="${cube_dir}\build_ise" depend="init" description="Compile cube with ISE Eiffel">
+		 <echo message="Compiling cube with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${cube_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${cube_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\cube.exe" to_file=".\cube.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="cube.epr"/>
+		 <delete file="cube.rc"/>
+	</target>
+
+	<target name="se" dir="${cube_dir}\build_se" depend="init" description="Compile cube with SmallEiffel">
+		 <echo message="Compiling cube with SmallEiffel"/>
+		 <exec executable="compile -clean ${cube_dir}\build_se\se.ace"/>
+		 <delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

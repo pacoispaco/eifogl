@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<project name="egl_primitives" default="info">
+
+	 <target name="init">
+		 <set name="egl_primitives_dir" value="${EIFOGL}\examples\eglut\egl_primitives" />
+	 </target>
+
+	 <target name="ise" dir="${egl_primitives_dir}\build_ise" depend="init" description="Compile egl_primitives with ISE Eiffel">
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${egl_primitives_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${egl_primitives_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\egl_primitives.exe" to_file=".\egl_primitives.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="egl_primitives.epr"/>
+		 <delete file="egl_primitives.rc"/>
+	</target>
+
+	<target name="se" dir="${egl_primitives_dir}\build_se" depend="init" description="Compile egl_primitives with SmallEiffel">
+		<exec executable="compile -clean ${egl_primitives_dir}\build_se\se.ace"/>
+		<delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

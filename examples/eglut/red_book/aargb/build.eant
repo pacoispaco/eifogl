@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<project name="aargb" default="info">
+
+	 <target name="init">
+		 <set name="aargb_dir" value="${EIFOGL}\examples\eglut\red_book\aargb" />
+	 </target>
+
+	 <target name="ise" dir="${aargb_dir}\build_ise" depend="init" description="Compile aargb with ISE Eiffel">
+		 <echo message="Compiling aargb with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${aargb_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${aargb_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\aargb.exe" to_file=".\aargb.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="aargb.epr"/>
+		 <delete file="aargb.rc"/>
+	</target>
+
+	<target name="se" dir="${aargb_dir}\build_se" depend="init" description="Compile aargb with SmallEiffel">
+		 <echo message="Compiling aargb with SmallEiffel"/>
+		<exec executable="compile -clean ${aargb_dir}\build_se\se.ace"/>
+		<delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<project name="eglut" default="info">
+
+	 <target name="info">
+		 <echo message="Geant build file for all the EGLUT example programs."/>
+	 </target>
+
+	 <target name="init">
+		 <set name="eglut_dir" value="${EIFOGL}\examples\eglut" />
+	 </target>
+
+	 <target name="ise" depend="init" description="Compile all EGLUT examples with ISE Eiffel">
+		 <echo message="Compiling all EGLUT examples with ISE Eiffel compiler"/>
+		 <exec executable="geant ise" dir="${eglut_dir}\red_book"/>
+		 <exec executable="geant ise" dir="${eglut_dir}\edragnet"/>
+		 <exec executable="geant ise" dir="${eglut_dir}\egl_primitives"/>
+		 <exec executable="geant ise" dir="${eglut_dir}\multi_sphere"/>
+		 <exec executable="geant ise" dir="${eglut_dir}\single_sphere"/>
+		 <exec executable="geant ise" dir="${eglut_dir}\nehe\lesson7"/> 
+	 </target>
+
+	 <target name="se" depend="init" description="Compile all EGLUT examples with SmallEiffel">
+		 <echo message="Compiling all EGLUT examples with SmallEiffel compiler"/>
+		 <exec executable="geant se" dir="${eglut_dir}\red_book"/>
+		 <exec executable="geant se" dir="${eglut_dir}\edragnet"/>
+
+		 <exec executable="geant se" dir="${eglut_dir}\multi_sphere"/>
+		 <exec executable="geant se" dir="${eglut_dir}\single_sphere"/>
+		 <exec executable="geant se" dir="${eglut_dir}\nehe\lesson7"/> 
+	 </target>
+
+	 <target name="all" description="Compile all EGLUT examples, both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	 </target>
+
+</project>

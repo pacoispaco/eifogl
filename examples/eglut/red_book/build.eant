@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+
+<project name="red_book" default="info">
+
+	 <target name="info">
+		 <echo message="Geant build file for all the Red Book example programs."/>
+	 </target>
+
+	 <target name="init">
+		 <set name="red_book_dir" value="${EIFOGL}\examples\eglut\red_book" />
+	 </target>
+
+	 <target name="ise" depend="init" description="Compile all Red Book examples with ISE Eiffel">
+		 <echo message="Compiling all Red Book examples with ISE Eiffel compiler"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\aacanti"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\aaindex"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\aapoly"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\aargb"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\alpha"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\alpha3d"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\bezcurve"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\cube"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\drawf"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\font"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\light"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\lines"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\planet"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\surface"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\teapots"/>
+		 <exec executable="geant ise" dir="${red_book_dir}\torus"/>
+	 </target>
+
+	 <target name="se" depend="init" description="Compile all Red Book examples with SmallEiffel">
+		 <echo message="Compiling all Red Book examples with SmallEiffel compiler"/>
+		 <exec executable="geant se" dir="${red_book_dir}\aacanti"/>
+		 <exec executable="geant se" dir="${red_book_dir}\aaindex"/>
+		 <exec executable="geant se" dir="${red_book_dir}\aapoly"/>
+		 <exec executable="geant se" dir="${red_book_dir}\aargb"/>
+		 <exec executable="geant se" dir="${red_book_dir}\alpha"/>
+		 <exec executable="geant se" dir="${red_book_dir}\alpha3d"/>
+		 <exec executable="geant se" dir="${red_book_dir}\bezcurve"/>
+		 <exec executable="geant se" dir="${red_book_dir}\cube"/>
+		 <exec executable="geant se" dir="${red_book_dir}\drawf"/>
+		 <exec executable="geant se" dir="${red_book_dir}\font"/>
+		 <exec executable="geant se" dir="${red_book_dir}\light"/>
+		 <exec executable="geant se" dir="${red_book_dir}\lines"/>
+		 <exec executable="geant se" dir="${red_book_dir}\planet"/>
+		 <exec executable="geant se" dir="${red_book_dir}\surface"/>
+		 <exec executable="geant se" dir="${red_book_dir}\teapots"/>
+		 <exec executable="geant se" dir="${red_book_dir}\torus"/>
+	 </target>
+
+	 <target name="all" description="Compile all Red Book examples, both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	 </target>
+
+</project>

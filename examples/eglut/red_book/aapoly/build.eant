@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<project name="aapoly" default="info">
+
+	 <target name="init">
+		 <set name="aapoly_dir" value="${EIFOGL}\examples\eglut\red_book\aapoly" />
+	 </target>
+
+	 <target name="ise" dir="${aapoly_dir}\build_ise" depend="init" description="Compile aapoly with ISE Eiffel">
+		 <echo message="Compiling aapoly with ISE Eiffel"/>
+		 <delete directory=".\EIFGEN"/>
+		 <exec executable="ec -batch -ace ${aapoly_dir}\build_ise\ise5.ace -finalize"/>
+		 <exec executable="finish_freezing -silent" dir="${aapoly_dir}\build_ise\EIFGEN\F_code"/>
+		 <move file=".\EIFGEN\F_code\aapoly.exe" to_file=".\aapoly.exe"/>
+		 <delete directory=".\EIFGEN"/>
+		 <delete file="aapoly.epr"/>
+		 <delete file="aapoly.rc"/>
+	</target>
+
+	<target name="se" dir="${aapoly_dir}\build_se" depend="init" description="Compile aapoly with SmallEiffel">
+		 <echo message="Compiling aapoly with SmallEiffel"/>
+		<exec executable="compile -clean ${aapoly_dir}\build_se\se.ace"/>
+		<delete file="eglut_application.h"/>
+	</target>
+
+	<target name="all" description="Compile both with ISE Eiffel and SmallEiffel" depend="ise, se">
+	</target>
+
+</project>
