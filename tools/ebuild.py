@@ -1,13 +1,9 @@
 ####################################################################
 # Description:	Python module for building ISE Eiffel systems
-# Version:      0.1.0
 # Author:	Paul Cohen
 # Copyright:	Copyright (c) 2001 Paul Cohen
-# Invested hours: 46
-# Date:		$Date: 2001/11/01 20:13:44 $
-# Revision:	$Revision: 1.1 $
-# History:
-#     0.1.0:    First release.
+# Date:		$Date: 2001/11/01 20:15:56 $
+# Revision:	$Revision: 1.2 $
 ####################################################################
 
 import os

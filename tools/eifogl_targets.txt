@@ -1,7 +1,8 @@
 -- Description: "ebuild instructions for eifogl"
 -- Author: "Paul Cohen"
--- Date: "$Date: 2001/11/01 20:13:44 $"
--- Revision: "$Revision: 1.1 $"
+-- Copyright: "Copyright (c) 2001 Paul Cohen"
+-- Date: "$Date: 2001/11/01 20:15:56 $"
+-- Revision: "$Revision: 1.2 $"
 
 target EGL_WEL_simple_red_box 
        compiler: ec
