@@ -3,15 +3,13 @@ indexing
         application: "torus"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2000 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/11/12 21:33:14 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/12/08 11:40:47 $"
+	revision: "$Revision: 1.4 $"
 
 class MAIN_WINDOW
 
 inherit
 	EGLUT_TOP_LEVEL_WINDOW
-		export
-			{NONE} all
 		redefine
 			default_window_title,
 			default_width,
@@ -29,9 +27,6 @@ inherit
 		end
 	
 	DOUBLE_MATH
-		export
-			{NONE} all
-		end
 
 creation
 	make
@@ -152,7 +147,7 @@ feature {NONE} -- Implementation
 						x := (1 + 0.1 * cosine (s * twopi/numc)) * cosine (t * twopi/numt)
 						y := (1 + 0.1 * cosine (s * twopi/numc)) * sine (t * twopi/numt)
 						z := 0.1 * sine (s * twopi/numc)
-						egl_vertex_3f (x, y, z)
+						egl_vertex_3d (x, y, z)
 						k := k - 1
 					end
 					j := j + 1
