@@ -2,8 +2,8 @@
 # Description:	Python script for building eifogl
 # Author:	Paul Cohen
 # Copyright:	Copyright (c) 2001 Paul Cohen
-# Date:		$Date: 2001/11/01 20:15:56 $
-# Revision:	$Revision: 1.2 $
+# Date:		$Date: 2001/11/01 20:18:46 $
+# Revision:	$Revision: 1.3 $
 ####################################################################
 
 import sys
@@ -14,7 +14,7 @@ import ebuild
 #### Main script ###################################################
 
 program_name = sys.argv[0]
-print "\n" + program_name + ": Python script for building eifogl. Version 0.1.0."
+print "\n" + program_name + ": Python script for building eifogl."
 print "Building on machine: " + socket.gethostname() 
 
 if len (sys.argv) != 2:
