@@ -3,7 +3,7 @@
 <HEAD>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
    <META NAME="Author" CONTENT="Paul Cohen">
-   <TITLE>EiffelOpenGL FAQ</TITLE>
+   <TITLE>EiffelOpenGL - Home page</TITLE>
 </HEAD>
 <BODY BACKGROUND="images/background_test.gif">
 
@@ -30,7 +30,7 @@ Currrent release 0.1.0 <BR> January 13, 2001
 <!-- Central top title square -->
 <TD WIDTH="400" ALIGN=CENTER VALIGN=CENTER>
 <FONT SIZE="4" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#FFFFFF">
-<B>EiffelOpenGL FAQ</B>
+<B>Welcome to the EiffelOpenGL Home page!</B>
 </TD>
 
 <!-- Top right square with various icons -->
@@ -108,78 +108,70 @@ Contact:<A href="mailto:ericb@gobosoft.com"><BR>paco@ieee.org</A>
 <BR>
 <TR><TD BGCOLOR="#BBBBBB">
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
-<b>Frequently Asked Questions</b>
+<b>General information</b>
 </TD></TR>
 
 <TR><TD>
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <BR>
-Here are some freqently (and not so frequently) asked questions and answers.
-<OL>
+EiffelOpenGL is an open source project that aims to develop a complete
+Eiffel binding for OpenGL. The binding is implemented as an Eiffel wrapping
+of the OpenGL C API.
+<P>
+The aim of the project is to devlop a wrapping that:
+<UL>
+<LI> Is a complete wrapping of the OpenGL and GLUT libraries. </LI>
+<LI> Runs on different platforms (primarily Win32 and X Window). </LI>
+<LI> Can be used with any Eiffel compiler (primarily ISE and SmallEiffel). </LI>
+<LI> Works with Mesa. </LI>
+<LI> Can be used with ISEs Eiffel Vision library. </LI>
+</UL>
+The project is hosted on the excellent SourceForge website. At the moment 
+there is only one person working on this project and that is me, Paul Cohen. 
+But, if you're interested and want to help out please feel free to contact me!
+<P>
+Okay, but why did I start this project? There are three simple answers 
+to that:
+<UL>
+<LI>I have long wanted to try my skills at graphics programming.</LI>
+<LI>I wanted to do it using OpenGL.</LI>
+<LI>I wanted to do it using Eiffel.</LI>
+</UL>
+OpenGL, the Eiffel way, means design-by-contract, garbage collection 
+multiple inheritance, generic types and readable syntax among other things. 
+EiffelOpenGL attempts to use all the benefits of Eiffel's support for 
+design-by-contract. This enables a lot of obscure or implicit conditions 
+in the OpenGL and GLUT API to be implemented in formal contracts and class 
+invariants and thus to be checked in runtime. <P>
+Of course, as you've already guessed, the small 3D balls to the left were 
+created with EiffelOpenGL! 
+<BR><BR>
+</TD></TR>
 
-<LI><B>What does EiffelOpenGL consist of?</B><P>
-A decent number of Eiffel classes and a few C and C header files. Together they
-implement a wrapping of the OpenGL and GLUT libraries and also the WGL OpenGL
-extension library. Originally I also started wrapping the OpenGL AUX library 
-but dropped that in favor of GLUT. <P>
-EiffelOpenGL is divided into three parts:<P>
-* EGL. The Eiffel library that wraps the OpenGL GL and GLU libraries.<P>
-* EGLUT. The Eiffel library that wraps the GLUT library.<P>
-* EWGL. The Eiffel library that wraps WGL, the OpenGL extension library
-for the Win32 platform.<P>
+<TR><TD BGCOLOR="#BBBBBB">
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
+<b>News</b>
+</TD></TR>
 
-<LI><B>What implementations of OpenGL and GLUT are supported?</B><P>
-Currently only the Microsoft Win32 OpenGl implementation and the GLUT 3.7 (and 3.6) 
-implementation for Win32. Of course EiffelOpenGL should work well with any implementation
-that is fully OpenGL compliant. However, as every windowing platform has its own
-OpenGL extension library for integrating OpenGL, those extension libraries need
-to be wrapped as well. Today only WGL is wrapped. My goal is of course to have 
-EiffelOpenGL run smoothly on all important OpenGL implementations. GLUT on the
-other hand is a simple windowing system for OpenGL and already exists on a
-number of platforms.</LI><P>
-
-<LI><B>What do I need to use EiffelOpenGL?</B><P>
-To use EiffelOpenGL you need: <P>
-* An Eiffel compiler. EiffelOpenGL was developed with ISE 4.2f, but works fine
-with ISE 4.5 and <A HREF="http://www.eiffel.com">ISE 5.0</A>. It does not work with 
-<A HREF="http://www.loria.fr/projets/SmallEiffel/">SmallEiffel</A> at the moment due to 
-differences in the external clause syntax between those compilers. I hope to fix
-that soon. Of course, you also need a back-end C compiler for your Eiffel compiler.<P>
-* To have OpenGL installed. That means the gl.h and glu.h include files and 
-(for Win32) the opengl32.lib and glu32.lib import libraries, as well as the 
-opengl32.dll and glu32.dll dynamic libraries. OpenGL is shipped on all Win32 
-platforms and the include files and import libraries are shipped with Microsoft Developer 
-Studio 5.0 and 6.0 (and can also be downloaded from <A HREF="http://www.opengl.org">
-www.opengl.org</A>). <P>
-To use EGLUT you need, in addition to the above mentioned: <P>
-* To have GLUT installed. That means the glut.h include file and (for Win32) 
-the glut32.lib import library as well as the glut32.dll dynamic library. </LI><P>
-
-<LI><B>How large is the EiffelOpenGL source code?</B><P>
-The library contains 125 Eiffel classes and the example programs another 43
-classes. The library also contains 3 C text files and 6 C header files. All
-in all 8.000+ LOC.</LI><P>
-
-<LI><B>Are there any example programs?</B>
-Yes. Look under the examples link. 
-</LI><P>
-
-<LI><B>What sort of licensing is EiffelOpenGL under?</B><P>
-EFL - The Eiffel Forum License. See the file <A HREF="../../forum.txt">
-forum.txt</A>
-</LI><P>
-
-<LI><B>Can I help with developing EiffelOpenGL?</B><P>
-Ehrm, not really a frequently asked question, but yes, you certainly can! Either
-by just trying out the example programs and reporting encountered problems or
-bugs or by joining in on the project and contributing with actual code. Or by 
-sending me copious amounts of money or other useful things like a 
-<A HREF="http://www.nationalguitars.com/styleo.html"> National Style N Reso-Phonic 
-guitar</A>. 
-</LI><P>
-
-</OL>
+<TR><TD>
+<FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <BR>
+A new release is on its way! The next release is due in a few weeks 
+time and features the following:
+<UL>
+<LI>A large number of OpenGL functions have been added to the main wrapper class EGL. </LI>
+<LI>More OpenGL GLU functions have been added to the GLU wrapper class EGLU. </LI>
+<LI>Support for NURBS has been added. </LI>
+<LI>Wrapper classes for all the OpenGL primitives has been added. </LI>
+<LI>Support for stippling patterns has been added. </LI>
+<LI>An example program for testing the OpenGL primitives and stippling patterns. </LI>
+<LI>7 example programs in C from the Red Book that have been translated to Eiffel. </LI>
+<LI>A few bugs have been fixed. </LI>
+<LI>A lot of code has been tidied up. </LI>
+</UL>
+<BR>
+</TD></TR>
+
 <TR><TD BGCOLOR="#BBBBBB">
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#330088">
 <BR>
@@ -189,8 +181,8 @@ guitar</A>.
 <FONT SIZE="1" FACE="verdana, verdana, arial, tahoma, helvetica" COLOR="#999999">
 <BR>
 Author: Paul Cohen <BR>
-"$Date: 2001/10/26 23:25:57 $" <BR>
-"$Revision: 1.3 $"
+"$Date: 2001/10/26 23:26:42 $" <BR>
+"$Revision: 1.1 $"
 </FONT>
 </TD></TR>
 
