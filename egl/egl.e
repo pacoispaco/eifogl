@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/01/27 18:46:59 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/02/03 17:42:14 $"
+	revision: "$Revision: 1.4 $"
 
 class EGL
 	
@@ -114,6 +114,36 @@ feature -- OpenGL states
 			gl_api.gl_cull_face (mode)
 		end
 	
+	egl_get_float_v (pname: INTEGER): ARRAY [REAL] is
+			-- Return the value(s) of selected parameter `pname'. 
+		require
+			-- valid_pname: is_valid_get_float_parameter (pname)
+			-- (to be implemented in egl_constants)
+		local
+			c_array: EGL_GLFLOAT_C_ARRAY
+		do
+			!! c_array.make_empty (16)
+			gl_api.gl_get_float_v (pname, c_array.pointer)
+			Result := c_array.contents
+		ensure
+			valid_result: Result /= Void and then Result.count >= 1
+		end
+        
+	egl_get_double_v (pname: INTEGER): ARRAY [DOUBLE] is
+			-- Return the value(s) of selected parameter `pname'.
+		require
+			-- valid_pname: is_valid_get_double_parameter (pname)
+			-- (to be implemented in egl_constants)
+		local
+			c_array: EGL_GLDOUBLE_C_ARRAY
+		do
+			!! c_array.make_empty (16)
+			gl_api.gl_get_double_v (pname, c_array.pointer)
+			Result := c_array.contents
+		ensure
+			valid_result: Result /= Void and then Result.count >= 1
+		end
+		
 feature -- Drawing geometric objects	
 	
 	egl_flush is
@@ -396,41 +426,6 @@ feature -- Viewing
 			-- and verify term-by-term that it coincides with m.
 		end
 
---Fc	egl_get_float_v (p: INTEGER) : ARRAY [REAL] is
---Fc			-- Return the value(s) of selected parameter p
---Fc		require
---Fc			--valid_p: is_valid_get_float_parameter (p)
---Fc			-- (to be implemented in egl_constants)
---Fc		local
---Fc			c_array: EGL_GLFLOAT_C_ARRAY
---Fc		do
---Fc			c_array := gl_api.gl_get_float_v (p)
---Fc                    -- transform c_array into an ARRAY [REAL] -> Result
---Fc			-- (but how ?)
---Fc
---Fc		ensure
---Fc			valid_result: Result /= Void and then Result.count >= 1
---Fc		end
---Fc        --Fc
---Fc
---Fc        --Fc
---Fc	egl_get_double_v (p: INTEGER) : ARRAY [DOUBLE] is
---Fc			-- Return the value(s) of selected parameter p
---Fc		require
---Fc			--valid_p: is_valid_get_double_parameter (p)
---Fc			-- (to be implemented in egl_constants)
---Fc		local
---Fc			c_array: EGL_GLDOUBLE_C_ARRAY
---Fc		do
---Fc			c_array := gl_api.gl_get_double_v (p)
---Fc                    -- transform c_array into an ARRAY [DOUBLE] -> Result
---Fc			-- (but how ?)
---Fc
---Fc		ensure
---Fc			valid_result: Result /= Void and then Result.count >= 1
---Fc		end
-	--Fc        --Fc	
-	
 	egl_ortho (left, right, bottom, top, near, far: DOUBLE) is
 			-- Create a matrix for an orthographic parallel viewing
 			-- volume and multiplies the current matrix by
