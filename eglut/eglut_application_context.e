@@ -3,25 +3,19 @@ indexing
                       %table of all EGLUT window objects in the EGLUT%
                       %application hashed by GLUT window id."
 	library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
-	compilers: "ISE 4.3, ISE 4.5, ISE 5.2"
+	compilers: "ISE 5.2, SmallEiffel -0.74"
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/14 14:29:42 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/11/25 17:33:54 $"
+	revision: "$Revision: 1.3 $"
 
 class EGLUT_APPLICATION_CONTEXT
 	
 inherit	
 	EGLUT
-		export
-			{NONE} all
-		end
 	
 	EGLUT_CONSTANTS
-		export
-			{NONE} all
-		end
 
 feature -- Access	
 	
@@ -37,8 +31,6 @@ feature {NONE} -- Implementation
 			-- Hash table containing all the applications EGLUT
 			-- windows hashed by the unique GLUT window id:s.
 		once
-			-- Note! This should not be hardcoded! Maybe a feature
-			-- `no_of_windows'!?
 			!! Result.make (10)
 		end
 	

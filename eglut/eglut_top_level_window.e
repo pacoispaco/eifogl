@@ -4,12 +4,12 @@ indexing
                      %and that class must be the `main_window' of the%
                      %applications EGLUT_APPLICATION class."
 	library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
-	compilers: "ISE 4.3, ISE 4.5, ISE 5.2"
+	compilers: "ISE 5.2, SmallEiffel -0.74"
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999, 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/13 16:57:22 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/11/25 17:35:42 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLUT_TOP_LEVEL_WINDOW
 
@@ -65,11 +65,8 @@ feature {NONE} -- Implementation (GLUT externals)
 			-- Create a top level window with the given `title'.
 		require
 			title_not_void: title /= Void
-		local
-			a: ANY
 		do
-			a := title.to_c
-			Result := glut_api.glut_create_window ($a)
+			Result := glut_api.eglut_create_window (title)
 		end
 	
 	glut_full_screen is

@@ -4,22 +4,17 @@ indexing
                      %applications must have one class that inherits%
                      %from this class."
 	library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
-	compilers: "ISE 4.3, ISE4.5, ISE 5.2"
+	compilers: "ISE 5.2, SmallEiffel -0.74"
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999, 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/13 16:57:22 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/11/25 17:33:24 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EGLUT_APPLICATION
 	
 inherit	
-	ARGUMENTS
-		export
-			{NONE} all
-		end
-	
 	EGLUT_APPLICATION_CONTEXT
 		export
 			{NONE} all
@@ -31,19 +26,16 @@ feature {NONE} -- Initialization
 			-- Create an EGLUT application, initialize the GLUT API
 			-- and set up the GLUT event loop.
 		do
-			eglut_init (argument_count + 1, argument_array)
+			eglut_init
 			glut_init_displaymode (initial_displaymode)
 			glut_init_window_size (initial_width, initial_height)
 			glut_init_window_position (initial_x, initial_y)
 			
-			-- Initialize the gl state machine
+			-- Initialize OpenGL
 			init_gl
 			
-			-- Initialize the EGLUT C interface
-			eglut_initialize_c_interface
-			
 			-- Create the main window
-			!! main_window.make
+			create main_window.make
 			
 			-- Initialize the application
 			init_application
@@ -111,8 +103,9 @@ feature -- Implementation (Callbacks)
 			-- denotes the type of event that has occured. `i1',
 			-- `i2', `i3', `i4' and `c' are event parameters that
 			-- are interpreted according to the specific
-			-- `event'. This feature is only invoked from the EGLUT
-			-- C interface when a callback is recieved!
+			-- `event'. This feature is only meant to be invoked
+			-- from the EGLUT C interface when a callback is
+			-- recieved! 
 		local
 			i: INTEGER
 		do
@@ -161,8 +154,8 @@ feature -- Implementation (Callback event constants)
 	-- those in the C #define:s in the eglut.h file! The reason that these
 	-- constants are not accessed, via external, from the eglut.h file is
 	-- that it is then able to write an "inspect" clause in the
-	-- `main_application_callback' feature, which is faster than a big "if"
-	-- clause.
+	-- `main_application_callback' feature, which looks better and is faster
+	-- than a big "if" clause.
 	
 	frozen Display_event: INTEGER is 1
 	
@@ -187,34 +180,10 @@ feature -- Implementation (Callback event constants)
 feature -- Implementation
 	
 	glut_get_modifiers: INTEGER is
+			-- The modifier key state when certain callbacks were
+			-- generated
 		do
 			Result := glut_api.glut_get_modifiers
-		end
-	
-	eglut_init (argc: INTEGER; argv: ARRAY [STRING]) is
-			-- Initialize the GLUT library. Note that GLUT library
-			-- will extract any command line options intended for
-			-- the GLUT library, and thus may modify both `argcp'
-			-- and `argv'. Nice isn't it!? X Window specific
-			-- command line options are:
-			-- -display DISPLAY
-			-- -geometry WxH+X+Y
-			-- -iconic
-			-- -indirect
-			-- -direct
-			-- -gldebug
-			-- -sync
-		require
-			consistent_params: argc = argv.count
-		local
-			a: CHAR_PP
-			s: SPECIAL [POINTER]
-			i: INTEGER
-		do
-			!! a.make (argv)
-			s := a.area
-			i := argc
-			glut_api.glut_init ($i, $s)
 		end
 	
 	glut_init_window_size (width, height: INTEGER) is
@@ -239,13 +208,13 @@ feature -- Implementation
 			glut_api.glut_main_loop
 		end
 	
-feature {NONE} -- Implementation (EGLUT C interface)	
+feature {NONE} -- Implementation (EGLUT C interface)
 	
-	frozen eglut_initialize_c_interface is
-			-- Initialize the EGLUT C interface
+	eglut_init is
+			-- Initialize the GLUT library.
 		do
-			glut_api.eglut_initialize_c_interface (Current)
+			glut_api.eglut_init (Current)
 		end
-	
+		
 end -- class EGLUT_APPLICATION
 

@@ -2,20 +2,17 @@ indexing
 	description: "Main wrapper class of GLUT 3.7.3. All other EGLUT_* classes% 
 	%except EGLUT_CONSTANTS inherit from this."
 	library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
-	compilers: "ISE 4.3, ISE 4.5, ISE 5.2"
+	compilers: "ISE 5.2, SmallEiffel -0.74"
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/11/13 16:38:43 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2002/11/25 17:32:49 $"
+	revision: "$Revision: 1.6 $"
 
 class EGLUT
 
 inherit
 	EGL
-		export
-			{NONE} all
-		end
 
 feature -- Debugging sub-API
 	
