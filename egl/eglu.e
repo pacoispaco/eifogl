@@ -5,12 +5,13 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:38 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/26 22:03:06 $"
+	revision: "$Revision: 1.2 $"
 
 class EGLU
 	
 inherit	
+	EGL_CONSTANTS
 	GLU_CONSTANTS
 	
 feature -- Basic operations (Error handling)
@@ -21,7 +22,20 @@ feature -- Basic operations (Error handling)
 			!! Result.make (0)
 			Result.from_c (glu_api.glu_error_string(i))
 		end
-			
+	
+feature -- Basic operations (Setting up the viewing volume) 	
+	
+	eglu_ortho_2d (left, right, bottom, top: DOUBLE) is
+			-- Create a matrix for projecting two-dimensional
+			-- coordinates onto the screen and multiplies the
+			-- current projection matrix by it. The clipping
+			-- rectangle is a rectangle with the lower left corner
+			-- at (`left', `bottom') and the upper right hand corner
+			-- at (`right', `top').
+		do
+			glu_api.glu_ortho_2d (left, right, bottom, top)
+		end
+	
 feature -- Basic operations (Quadrics: rendering spheres, cylinders and disks)
 	
 	eglu_cylinder (qobj: EGLU_QUADRIC; base_radius, top_radius, height: DOUBLE; slices, stacks: INTEGER) is
@@ -40,7 +54,7 @@ feature -- Basic operations (Quadrics: rendering spheres, cylinders and disks)
 			valid_slices: slices >= 0
 			valid_stacks: stacks >= 0
 		do
-			glu_api.glu_cylinder (qobj.item, base_radius, top_radius, height, slices, stacks)
+			glu_api.glu_cylinder (qobj.pointer, base_radius, top_radius, height, slices, stacks)
 		end
 		
 	eglu_sphere (qobj: EGLU_QUADRIC; radius: DOUBLE; slices, stacks: INTEGER) is
@@ -55,7 +69,7 @@ feature -- Basic operations (Quadrics: rendering spheres, cylinders and disks)
 			valid_slices: slices >= 0
 			valid_stacks: stacks >= 0
 		do
-			glu_api.glu_sphere (qobj.item, radius, slices, stacks)
+			glu_api.glu_sphere (qobj.pointer, radius, slices, stacks)
 		end
 
 feature -- Basic operations (Positioning)
@@ -87,7 +101,90 @@ feature -- Basic operations (Positioning)
 		do
 			glu_api.glu_look_at (eyex, eyey, eyez, centerx, centery, centerz, upx, upy, upz)
 		end
-
+	
+feature -- Basic operations (NURBS)
+	
+	eglu_new_nurbs_renderer: EGLU_NURBS_OBJ is
+			-- Create a new NURBS object. Returns void if OpenGL
+			-- cannot allocate memory for a new NURBS object.
+		do
+			!! Result.make_shared (glu_api.glu_new_nurbs_renderer)
+		end
+	
+	eglu_nurbs_property (nurb: EGLU_NURBS_OBJ; property: INTEGER; value: DOUBLE) is
+			-- Set the `value' of the give `property' in the given
+			-- NURBS object `nurb'.
+		require
+			nurb_not_void: nurb /= Void
+			valid_property: property = Glu_display_mode or
+--					property = Glu_nurbs_mode or
+					property = Glu_culling or
+					property = Glu_sampling_method or
+					property = Glu_sampling_tolerance or
+					property = Glu_parametric_tolerance or
+					property = Glu_u_step or
+					property = Glu_v_step or
+					property = Glu_auto_load_matrix
+		do
+			glu_api.glu_nurbs_property (nurb.pointer, property, value)
+		end
+	
+	eglu_begin_surface (nurb: EGLU_NURBS_OBJ) is
+			-- Start creating a NURBS surface.
+		require
+			nurb_not_void: nurb /= Void			
+		do
+			glu_api.glu_begin_surface (nurb.pointer)
+		end
+	
+	eglu_end_surface (nurb: EGLU_NURBS_OBJ) is
+			-- Stop creating a NURBS surface.
+		require
+			nurb_not_void: nurb /= Void			
+		do
+			glu_api.glu_end_surface (nurb.pointer)
+		end
+	
+	eglu_nurbs_surface (nurb: EGLU_NURBS_OBJ; 
+			    u_knot, v_knot: ARRAY [REAL]; 
+			    u_knot_stride, v_knot_stride: INTEGER; 
+			    ctl_array: ARRAY [REAL]; 
+			    u_order, v_order: INTEGER; 
+			    type: INTEGER) is
+			-- Describe the vertices (or surface normals or texture
+			-- coordinates) of the NURBS surface `nurb'.
+		require
+			nurb_not_void: nurb /= Void
+			u_knot_not_void: u_knot /= Void
+			v_knot_not_void: v_knot /= Void
+			valid_u_knot_stride: u_knot_stride > 0		
+			valid_v_knot_stride: v_knot_stride > 0
+			ctl_array_not_void: ctl_array /= Void
+			valid_u_order: u_order > 0
+			valid_v_order: v_order > 0
+			valid_type: type = Gl_map2_vertex_3 or
+				    type = Gl_map2_vertex_4 or
+				    type = Gl_map2_texture_coord_1 or
+				    type = Gl_map2_texture_coord_2 or
+				    type = Gl_map2_texture_coord_3 or
+				    type = Gl_map2_texture_coord_4 or
+				    type = Gl_map2_normal
+		local
+			u_knot_c_array, v_knot_c_array: EGL_GLFLOAT_C_ARRAY
+			ctl_c_array: EGL_GLFLOAT_C_ARRAY
+		do
+			!! u_knot_c_array.make_from_array (u_knot)
+			!! v_knot_c_array.make_from_array (v_knot)
+			!! ctl_c_array.make_from_array (ctl_array)
+			glu_api.glu_nurbs_surface (nurb.pointer, 
+						   u_knot.count, u_knot_c_array.pointer, 
+						   v_knot.count, v_knot_c_array.pointer,
+						   u_knot_stride, v_knot_stride,
+						   ctl_c_array.pointer, 
+						   u_order, v_order,
+						   type)
+		end
+	
 feature {NONE} -- Implementation 	
 	
 	glu_api: expanded GLU 
@@ -96,5 +193,5 @@ feature {NONE} -- Implementation
 end -- class EGLU
 
 -- begin dictionary
--- Eiffelized OpenGL glu interface
+-- 
 -- end dictionary
