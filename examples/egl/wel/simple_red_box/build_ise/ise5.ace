@@ -1,8 +1,8 @@
 -- application: "simple_red_box"
 -- author: "Paul Cohen"
 -- copyright: "Copyright (c) 1999, 2000 Paul Cohen, see file forum.txt"
--- date: "$Date: 2003/04/26 21:36:31 $"
--- revision: "$Revision: 1.4 $"
+-- date: "$Date: 2003/04/26 21:38:03 $"
+-- revision: "$Revision: 1.1 $"
 
 system 
         simple_red_box
