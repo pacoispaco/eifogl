@@ -8,8 +8,8 @@ indexing
 	platforms: "All platforms that have GLUT implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/01/14 22:41:47 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/03/23 14:28:41 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	EGLUT_APPLICATION
@@ -30,7 +30,7 @@ feature {NONE} -- Initialization
 	make is
 			-- Create an EGLUT application, initialize the GLUT API
 			-- and set up the GLUT event loop.
-		once
+		do
 			eglut_init (argument_count + 1, argument_array)
 			glut_init_displaymode (initial_displaymode)
 			glut_init_window_size (initial_width, initial_height)
@@ -40,8 +40,8 @@ feature {NONE} -- Initialization
 			init_gl
 			
 			-- Set the application object in the EGLUT C interface
---			eglut_set_application_object (ceif_adopt (Current))
-			eglut_initialize_library (current)
+			eglut_set_application_object (ceif_adopt (Current))
+--			eglut_initialize_library (current)
 			
 			-- Create the main window
 			!! main_window.make
@@ -185,7 +185,7 @@ feature -- Implementation (Callback event constants)
 	
 	frozen Idle_event: INTEGER is 10 
 	
-feature {NONE} -- Implementation (GLUT wrappers)
+feature -- Implementation (GLUT wrappers)
 	
 	glut_get_modifiers: INTEGER is
 			-- The modifier key state when certain callbacks were
@@ -196,7 +196,7 @@ feature {NONE} -- Implementation (GLUT wrappers)
 			"glutGetModifiers ()"
 		end
 	
-	eglut_init (argcp: INTEGER; argv: ARRAY [STRING]) is
+	eglut_init (argc: INTEGER; argv: ARRAY [STRING]) is
 			-- Initialize the GLUT library. Note that GLUT library
 			-- will extract any command line options intended for
 			-- the GLUT library, and thus may modify both `argcp'
@@ -210,14 +210,16 @@ feature {NONE} -- Implementation (GLUT wrappers)
 			-- -gldebug
 			-- -sync
 		require
-			consistent_params: argcp = argv.count
+			consistent_params: argc = argv.count
 		local
 			a: CHAR_PP
 			s: SPECIAL [POINTER]
+			i: INTEGER
 		do
 			!! a.make (argv)
 			s := a.area
-			glut_init ($argcp, $s)
+			i := argc
+			glut_init ($i, $s)
 		end
 	
 	glut_init (argcp, argv: POINTER) is
@@ -257,17 +259,17 @@ feature {NONE} -- Implementation (GLUT wrappers)
 	
 feature {NONE} -- Implementation (EGLUT C interface)	
 	
---	frozen eglut_set_application_object (p: POINTER) is
---			-- Set the application object in the EGLUT C interface
---		external
---			"C [macro <eglut.h>] (EIF_OBJ)"
---		end
-	
-	frozen eglut_initialize_library (object: like Current) is 
-			-- Intialize the C side of eglut.
+	frozen eglut_set_application_object (p: POINTER) is
+			-- Set the application object in the EGLUT C interface
 		external
 			"C [macro <eglut.h>] (EIF_OBJ)"
 		end
+	
+--	frozen eglut_initialize_library (object: like Current) is 
+--			-- Intialize the C side of eglut.
+--		external
+--			"C [macro <eglut.h>] (EIF_OBJ)"
+--		end
 
 feature {NONE} -- Implementation (CECIL stuff)	
 	
