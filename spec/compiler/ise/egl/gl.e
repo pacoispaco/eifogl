@@ -5,13 +5,61 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/26 22:46:09 $"
+	revision: "$Revision: 1.2 $"
 
 class GL
 		
 feature -- OpenGL API
 	
+	gl_edge_flag (flag: BOOLEAN) is
+		external
+--			"C (GLboolean) | <gl.h> "
+			"C [macro <gl.h>] (GLboolean)"
+		alias
+			"glEdgeFlag"
+		end
+	
+	gl_point_size (size: REAL) is
+		external
+--			"C (GLfloat) | <gl.h> "
+			"C [macro <gl.h>] (GLfloat)"
+		alias
+			"glPointSize"
+		end
+			
+	gl_line_width (width: REAL) is
+		external
+--			"C (GLfloat) | <gl.h> "
+			"C [macro <gl.h>] (GLfloat)"
+		alias
+			"glLineWidth"
+		end
+	
+	gl_line_stipple (factor: INTEGER; pattern: INTEGER) is
+		external
+--			"C (GLint, GLushort) | <gl.h> "
+			"C [macro <gl.h>] (GLint, GLushort)"
+		alias
+			"glLineStipple"
+		end
+		
+	gl_polygon_mode (face, mode: INTEGER) is
+		external
+--			"C (GLenum, GLenum) | <gl.h> "
+			"C [macro <gl.h>] (GLenum, GLenum)"
+		alias
+			"glPolygonMode"
+		end
+	
+	gl_polygon_stipple (mask: POINTER) is
+		external
+--			"C (GLubyte *) | <gl.h> "
+			"C [macro <gl.h>] (GLubyte *)"
+		alias
+			"glPolygonStipple"
+		end
+
 	gl_clear_color (r, g, b, a: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h> "
@@ -53,12 +101,100 @@ feature -- OpenGL API
 			"glFlush()"
 		end
 	
+	gl_vertex_2i (x, y: INTEGER) is
+		external
+--			"C (GLint, GLint) | <gl.h>" 
+			"C [macro <gl.h>] (GLint, GLint)"
+		alias
+			"glVertex2i"
+		end
+		
+	gl_vertex_2s (x, y: INTEGER_16) is
+		external
+--			"C (GLshort, GLshort) | <gl.h>" 
+			"C [macro <gl.h>] (GLshort, GLshort)"
+		alias
+			"glVertex2s"
+		end
+		
+	gl_vertex_2f (x, y: REAL) is
+		external
+--			"C (GLfloat, GLfloat) | <gl.h>" 
+			"C [macro <gl.h>] (GLfloat, GLfloat)"
+		alias
+			"glVertex2f"
+		end
+		
+	gl_vertex_2d (x, y: DOUBLE) is
+		external
+--			"C (GLdouble, GLdouble) | <gl.h>" 
+			"C [macro <gl.h>] (GLdouble, GLdouble)"
+		alias
+			"glVertex2d"
+		end
+		
+	gl_vertex_3i (x, y, z: INTEGER) is
+		external
+--			"C (GLint, GLint, GLint) | <gl.h>" 
+			"C [macro <gl.h>] (GLint, GLint, GLint)"
+		alias
+			"glVertex3i"
+		end
+	
+	gl_vertex_3s (x, y, z: INTEGER_16) is
+		external
+--			"C (GLshort, GLshort, GLshort) | <gl.h>" 
+			"C [macro <gl.h>] (GLshort, GLshort, GLshort)"
+		alias
+			"glVertex3s"
+		end
+	
 	gl_vertex_3f (x, y, z: REAL) is
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
 			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
 		alias
 			"glVertex3f"
+		end
+	
+	gl_vertex_3d (x, y, z: DOUBLE) is
+		external
+--			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
+			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble)"
+		alias
+			"glVertex3f"
+		end
+	
+	gl_vertex_4i (x, y, z, w: INTEGER) is
+		external
+--			"C (GLint, GLint, GLint, GLint) | <gl.h>" 
+			"C [macro <gl.h>] (GLint, GLint, GLint, GLint)"
+		alias
+			"glVertex4i"
+		end
+	
+	gl_vertex_4s (x, y, z, w: INTEGER_16) is
+		external
+--			"C (GLshort, GLshort, GLshort, GLshort) | <gl.h>" 
+			"C [macro <gl.h>] (GLshort, GLshort, GLshort, GLshort)"
+		alias
+			"glVertex4s"
+		end
+	
+	gl_vertex_4f (x, y, z, w: REAL) is
+		external
+--			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h>" 
+			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
+		alias
+			"glVertex4f"
+		end
+	
+	gl_vertex_4d (x, y, z, w: DOUBLE) is
+		external
+--			"C (GLdouble, GLdouble, GLdouble, GLdouble) | <gl.h>" 
+			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble, GLdouble)"
+		alias
+			"glVertex4d"
 		end
 	
 	gl_rect_f (x1, y1, x2, y2: REAL) is
@@ -69,7 +205,23 @@ feature -- OpenGL API
 			"glRectf"
 	 	end
 	
-	gl_viewport (x, y, w, h: INTEGER) is
+	gl_front_face (mode: INTEGER) is
+		external
+--			"C (GLenum) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum)"
+		alias
+			"glFrontFace"
+	 	end
+	
+	gl_cull_face (mode: INTEGER) is
+		external
+--			"C (GLenum) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum)"
+		alias
+			"glCullFace"
+	 	end
+	
+	gl_viewport (x, y, width, height: INTEGER) is
 		external
 --			"C (GLint, GLint, GLint, GLint) | <gl.h>" 
 			"C [macro <gl.h>] (GLint, GLint, GLint, GLint)"
@@ -77,6 +229,14 @@ feature -- OpenGL API
 			"glViewport"
 		end
 			
+	gl_frustum (left, right, bottom, top, near, far: DOUBLE) is
+		external
+--			"C (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble,) | <gl.h>" 
+			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble,)"
+		alias
+			"glFrustum"
+		end
+	
 	gl_load_identity is
 		external
 --			"C | <gl.h>" 
@@ -116,6 +276,38 @@ feature -- OpenGL API
 			"C [macro <gl.h>] (GLenum)"
 		alias
 			"glDisable"
+		end
+	
+	gl_enable_client_state (array: INTEGER) is
+		external
+--			"C (GLenum) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum)"
+		alias
+			"glEnableClientState"
+		end
+	
+	gl_disable_client_state (array: INTEGER) is
+		external
+--			"C (GLenum) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum)"
+		alias
+			"glDisableClientState"
+		end
+	
+	gl_vertex_pointer (size, type, stride: INTEGER; pointer: POINTER) is
+		external
+--			"C (GLint, GLenum, GLsizei, GLvoid *) | <gl.h>" 
+			"C [macro <gl.h>] (GLint, GLenum, GLsizei, GLvoid *)"
+		alias
+			"glVertexPointer"
+		end
+	
+	gl_color_pointer (size, type, stride: INTEGER; pointer: POINTER) is
+		external
+--			"C (GLint, GLenum, GLsizei, GLvoid *) | <gl.h>" 
+			"C [macro <gl.h>] (GLint, GLenum, GLsizei, GLvoid *)"
+		alias
+			"glColorPointer"
 		end
 	
 	gl_material_fv (face, pname: INTEGER; params: POINTER) is
@@ -174,6 +366,22 @@ feature -- OpenGL API
 			"glTranslatef"
 		end
 	
+	gl_scale_f (x, y, z: REAL) is
+		external
+--			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
+			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
+		alias
+			"glScalef"
+		end
+	
+	gl_blend_func (sfactor, dfactor: INTEGER) is
+		external
+--			"C (GLenum, GLenum) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLenum)"
+		alias
+			"glBlendFunc"
+		end
+
 	gl_gen_lists (range: INTEGER): INTEGER is
 		external
 --			"C (GLsizei) | <gl.h>" 
@@ -233,6 +441,14 @@ feature -- OpenGL API
 			"glEnd()"
 		end
 	
+	gl_draw_elements (mode, count, type: INTEGER; pointer: POINTER) is
+		external
+--			"C (GLenum, GLsizei, GLenum, void *) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLsizei, GLenum, void *)"		
+		alias
+			"glDrawElements"
+		end
+				
 	gl_finish is
 		external
 --			"C | <gl.h>" 
@@ -248,6 +464,14 @@ feature -- OpenGL API
 			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
 		alias
 			"glNormal3f"
+		end
+		
+	gl_normal_3d (nx, ny, nz: DOUBLE) is
+		external
+--			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
+			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble)"
+		alias
+			"glNormal3d"
 		end
 		
 	gl_normal_3fv (p: POINTER) is
