@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 22:46:09 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/01/27 18:49:48 $"
+	revision: "$Revision: 1.3 $"
 
 class GL
 		
@@ -90,6 +90,14 @@ feature -- OpenGL API
 			"C [macro <gl.h>] (const GLfloat *)"
 		alias
 			"glColor4fv"
+		end
+	
+	gl_depth_mask (flag: INTEGER) is
+		external
+--			"C (GLboolean) | <gl.h>"
+			"C [macro <gl.h>] (GLboolean)"
+		alias
+			"glDepthMask"
 		end
 		
 	gl_flush is
@@ -246,6 +254,41 @@ feature -- OpenGL API
 			"glLoadIdentity()"
 		end
 			
+	gl_load_matrix_f (m: POINTER) is
+		external
+--			"C (const GLfloat *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLfloat *)"
+		alias
+			"glLoadMatrixf"
+		end
+	
+	gl_load_matrix_d (m: POINTER) is
+		external
+--			"C (const GLdouble *) | <gl.h>" 
+			"C [macro <gl.h>] (const GLdouble *)"
+		alias
+			"glLoadMatrixd"
+		end
+	
+--Fc	--Fc
+--Fc	gl_get_float_v (p: INTEGER) : POINTER is
+--Fc		external
+--Fc--			"C (GLenum): (const GLfloat *) | <gl.h>" 
+--Fc			"C [macro <gl.h>] (GLenum): (const GLfloat *)"
+--Fc		alias
+--Fc			"glGetFloatv"
+--Fc		end
+--Fc	--Fc
+--Fc	
+--Fc	--Fc
+--Fc	gl_get_double_v (p: INTEGER) : POINTER is
+--Fc		external
+--Fc--			"C (GLenum): (const GLdouble *) | <gl.h>" 
+--Fc			"C [macro <gl.h>] (GLenum): (const GLdouble *)"
+--Fc		alias
+--Fc			"glGetDoublev"
+--Fc		end
+	
 	gl_ortho (left, right, bottom, top, near, far: DOUBLE) is
 		external
 --			"C (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble) | <gl.h>" 
@@ -374,6 +417,30 @@ feature -- OpenGL API
 			"glScalef"
 		end
 	
+	gl_pixel_store_i (pname, param: INTEGER) is
+		external
+--			"C (GLenum, GLint) | <gl.h>" 
+			"C [macro <gl.h>] (GLenum, GLint)"
+		alias
+			"glPixelStorei"
+		end
+	
+	gl_raster_pos_2i (x, y: INTEGER) is
+		external		
+--			"C (GLint, GLint) | <gl.h>" 
+			"C [macro <gl.h>] (GLint, GLint)"
+		alias		
+			"glRasterPos2i"
+		end
+	
+	gl_bitmap (width, height: INTEGER; xbo, ybo, xbi, ybi: REAL; bitmap: POINTER) is
+		external
+--			"C (GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat, const GLubyte *) | <gl.h>" 
+		        "C [macro <gl.h>] (GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat, const GLubyte *)"
+		alias		
+			"glBitmap"
+		end
+			
 	gl_blend_func (sfactor, dfactor: INTEGER) is
 		external
 --			"C (GLenum, GLenum) | <gl.h>" 
@@ -416,12 +483,27 @@ feature -- OpenGL API
 		end
 	
 	gl_call_list (list: INTEGER) is
-			-- executes a display list
 		external
 --			"C (GLuint) | <gl.h>" 
 			"C [macro <gl.h>] (GLuint)"
 		alias
 			"glCallList"
+		end
+	
+	gl_call_lists (n, type: INTEGER; lists: POINTER) is
+		external
+--			"C (GLsizei, GLenum, const GLvoid *) | <gl.h>" 
+			"C [macro <gl.h>] (GLsizei, GLenum, const GLvoid *)"
+		alias
+			"glCallLists"
+		end
+	
+	gl_list_base (base: INTEGER) is
+		external
+--			"C (GLuint) | <gl.h>" 
+			"C [macro <gl.h>] (GLuint)"
+		alias
+			"glListBase"
 		end
 	
 	gl_begin (mode: INTEGER) is
@@ -498,6 +580,24 @@ feature -- OpenGL API
 		alias
 --			"glPopMatrix"
 			"glPopMatrix()"
+		end
+	
+	gl_push_attrib (mask: INTEGER) is
+		external
+--			"C | <gl.h>" 
+			"C [macro <gl.h>] (GLbitfield)"		
+		alias
+--			"glPushAttrib"
+			"glPushAttrib"
+		end
+		
+	gl_pop_attrib is
+		external
+--			"C | <gl.h>" 
+			"C [macro <gl.h>] ()"		
+		alias
+--			"glPopAttrib"
+			"glPopAttrib()"
 		end
 	
 	gl_rotate_f (angle, x, y, z: REAL) is

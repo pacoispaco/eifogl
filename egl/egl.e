@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 21:57:33 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/01/27 18:46:59 $"
+	revision: "$Revision: 1.3 $"
 
 class EGL
 	
@@ -360,6 +360,77 @@ feature -- Viewing
 			gl_api.gl_load_identity
 		end
 			
+	egl_load_matrix_f (m: ARRAY [REAL]) is
+			-- Set the current matrix to `m'.
+		require
+			valid_state: not drawing_a_primitive		
+			m_not_void: m /= Void
+			valid_m_size: m.count = 16
+		local
+			c_array: EGL_GLFLOAT_C_ARRAY
+		do
+			!! c_array.make_from_array (m)
+			gl_api.gl_load_matrix_f (c_array.pointer)
+		ensure
+			--matrix_is_set: check that current matrix equals `m'
+			-- Implementation: e.g. use egl_get_float_v (when
+			-- it will be available) to obtain current matrix,
+			-- and verify term-by-term that it coincides with m.
+		end
+
+	egl_load_matrix_d (m: ARRAY [DOUBLE]) is
+			-- Set the current matrix to `m'.
+		require
+			valid_state: not drawing_a_primitive		
+			m_not_void: m /= Void
+			valid_m_size: m.count = 16
+		local
+			c_array: EGL_GLDOUBLE_C_ARRAY
+		do
+			!! c_array.make_from_array (m)
+			gl_api.gl_load_matrix_d (c_array.pointer)
+		ensure
+			--matrix_is_set: check that current matrix equals `m'
+			-- Implementation: e.g. use egl_get_double_v (when
+			-- it will be available) to obtain current matrix,
+			-- and verify term-by-term that it coincides with m.
+		end
+
+--Fc	egl_get_float_v (p: INTEGER) : ARRAY [REAL] is
+--Fc			-- Return the value(s) of selected parameter p
+--Fc		require
+--Fc			--valid_p: is_valid_get_float_parameter (p)
+--Fc			-- (to be implemented in egl_constants)
+--Fc		local
+--Fc			c_array: EGL_GLFLOAT_C_ARRAY
+--Fc		do
+--Fc			c_array := gl_api.gl_get_float_v (p)
+--Fc                    -- transform c_array into an ARRAY [REAL] -> Result
+--Fc			-- (but how ?)
+--Fc
+--Fc		ensure
+--Fc			valid_result: Result /= Void and then Result.count >= 1
+--Fc		end
+--Fc        --Fc
+--Fc
+--Fc        --Fc
+--Fc	egl_get_double_v (p: INTEGER) : ARRAY [DOUBLE] is
+--Fc			-- Return the value(s) of selected parameter p
+--Fc		require
+--Fc			--valid_p: is_valid_get_double_parameter (p)
+--Fc			-- (to be implemented in egl_constants)
+--Fc		local
+--Fc			c_array: EGL_GLDOUBLE_C_ARRAY
+--Fc		do
+--Fc			c_array := gl_api.gl_get_double_v (p)
+--Fc                    -- transform c_array into an ARRAY [DOUBLE] -> Result
+--Fc			-- (but how ?)
+--Fc
+--Fc		ensure
+--Fc			valid_result: Result /= Void and then Result.count >= 1
+--Fc		end
+	--Fc        --Fc	
+	
 	egl_ortho (left, right, bottom, top, near, far: DOUBLE) is
 			-- Create a matrix for an orthographic parallel viewing
 			-- volume and multiplies the current matrix by
@@ -425,6 +496,26 @@ feature -- Viewing
 			gl_api.gl_pop_matrix
 		end
 	
+	egl_push_attrib (mask: INTEGER) is
+			-- Save all the attributes indicated by `mask' by
+			-- pushing them on the attribute stack.
+		require
+			valid_state: not drawing_a_primitive
+			valid_attrib_mask: is_valid_attrib_mask (mask)
+		do
+			gl_api.gl_push_attrib (mask)
+		end
+	
+	egl_pop_attrib is
+			-- Restore all the attributes indicated by `mask' by
+			-- popping them from the attribute stack.
+		require
+			valid_state: not drawing_a_primitive
+--			more_than_one_attribute_on_the_stack:
+		do
+			gl_api.gl_pop_attrib
+		end
+	
 feature -- Color	
 	
 	egl_clear_color (r, g, b, a: REAL) is
@@ -487,6 +578,17 @@ feature -- Color
 			valid_shading_mode: is_valid_shading_mode (mode)
 		do
 			gl_api.gl_shade_model (mode)
+		end
+	
+feature -- Masking buffers
+	
+	egl_depth_mask (flag: INTEGER) is
+			-- Enable or disable the depth buffer for writing.
+		require
+			valid_state: not drawing_a_primitive
+			valid_flag: flag = Gl_true or flag = Gl_false
+		do
+			gl_api.gl_depth_mask (flag)
 		end
 	
 feature -- State management	
@@ -652,13 +754,56 @@ feature -- Lighting
 			gl_api.gl_color_material (face, mode)
 		end
 	
+feature -- Bitmap and pixel stuff	
+	
+	egl_pixel_store_i (pname, param: INTEGER) is
+			-- Set the pixel storage mode.
+		require
+			valid_state: not drawing_a_primitive			
+			valid_pixel_storage_parameter: is_valid_pixel_storage_parameter (pname)
+--			valid_param_1: pname = Gl_unpack_swap_bytes or pname Gl_pack_swap_bytes implies
+--				       param = 0 or param = 1
+--			valid_param_2: etc ...
+		do
+			gl_api.gl_pixel_store_i (pname, param)
+		end
+	
+	egl_raster_pos_2i (x, y: INTEGER) is
+			-- Set the current raster position to `x', `y'.
+		require
+			valid_state: not drawing_a_primitive			
+		do
+			gl_api.gl_raster_pos_2i (x, y)
+		ensure
+			valid_raster_position: 
+		end
+	
+	egl_bitmap (width, height: INTEGER; xbo, ybo, xbi, ybi: REAL; bitmap: EGL_BITMAP) is
+			-- Draws the bitmap specified by `bitmap' The origin of
+			-- the bitmap is placed at the current raster
+			-- position. After the call the raster position is
+			-- incremented by `xbi' and `ybi'. The `width' and
+			-- `height' indicate the width and height, in pixels, of
+			-- the bitmap. 
+		require
+			valid_state: not drawing_a_primitive	
+			bitmap_not_void: bitmap /= Void
+			valid_width_and_height: width * height <= bitmap.pixel_count
+--			valid_raster_position: 
+--			valid_raster_increment: 
+		do
+			gl_api.gl_bitmap (width, height, xbo, ybo, xbi, ybi, bitmap.pointer)
+		ensure
+--			valid_raster_position:
+		end
+	
 feature -- Blending, antialiasing, fog and polygon offset	
 	
 	egl_blend_func (sfactor, dfactor: INTEGER) is
 			-- Control how color values in the fragment being
 			-- processed (the source) are combined with those
 			-- already stored in the framebuffer (the
-			-- destination). Teh argument `sfactor' indicates how to
+			-- destination). The argument `sfactor' indicates how to
 			-- compute a source blending factor and `dfactor'
 			-- indicates how to compute a destination blending factor.
 		require
@@ -734,7 +879,35 @@ feature -- Display lists
 		do
 			gl_api.gl_call_list (list)
 		end
-
+	
+	egl_call_lists (n: INTEGER; lists: ARRAY [INTEGER]) is
+			-- Executes `n' display lists. The indices of the
+			-- display lists to be executed are computed by adding
+			-- the offset indicated by the current display list base
+			-- to the integer values in the array pointed to
+			-- by lists.
+		require
+			valid_state: drawing_a_primitive or not drawing_a_primitive			
+			valid_n: n > 0
+			lists_not_void: lists /= Void
+-- 			lists_are_defined: 
+		local
+			c_array: EGL_GLINT_C_ARRAY
+		do
+			!! c_array.make_from_array (lists)
+			gl_api.gl_call_lists (n, Gl_int, c_array.pointer)
+		end
+	
+	egl_list_base (base: INTEGER) is
+			-- Set the offset that's added to the display list
+			-- indices in `egl_call_lists' to obtain final display
+			-- list indices. The default value is 0.
+		require
+			valid_state: not drawing_a_primitive			
+		do
+			gl_api.gl_list_base (base)
+		end
+			
 feature -- Error handling
 	
 	egl_get_error: INTEGER is
