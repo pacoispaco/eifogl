@@ -3,8 +3,8 @@ indexing
 	library: "WEL extensions"
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:41 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/04/29 20:09:44 $"
+	revision: "$Revision: 1.2 $"
 
 class SINGLE_LINE_EDIT
 
@@ -47,6 +47,8 @@ feature -- Status report
 	
 	value: REAL is
 			-- Current value
+		require
+			has_valid_value: has_valid_value
 		do
 			Result := text.to_real
 		end
