@@ -5,8 +5,8 @@ indexing
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
 	copyright: "Copyright (c) 2002 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/03/23 20:33:08 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/02 08:34:36 $"
+	revision: "$Revision: 1.2 $"
 
 class GL
 		
@@ -16,7 +16,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPolygonOffset"
 	 	end
@@ -25,7 +25,7 @@ feature -- OpenGL API
 		external
 --			"C (GLboolean) | <gl.h> "
 --			"C [macro <gl.h>] (GLboolean)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glEdgeFlag"
 		end
@@ -34,7 +34,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat) | <gl.h> "
 --			"C [macro <gl.h>] (GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPointSize"
 		end
@@ -43,7 +43,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat) | <gl.h> "
 --			"C [macro <gl.h>] (GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glLineWidth"
 		end
@@ -52,7 +52,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint, GLushort) | <gl.h> "
 --			"C [macro <gl.h>] (GLint, GLushort)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glLineStipple"
 		end
@@ -61,7 +61,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum) | <gl.h> "
 --			"C [macro <gl.h>] (GLenum, GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPolygonMode"
 		end
@@ -70,7 +70,7 @@ feature -- OpenGL API
 		external
 --			"C (GLubyte *) | <gl.h> "
 --			"C [macro <gl.h>] (GLubyte *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPolygonStipple"
 		end
@@ -79,7 +79,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLfloat *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glGetFloatv"
 		end
@@ -88,7 +88,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLdouble *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLdouble *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glGetDoublev"
   		end
@@ -97,7 +97,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLint *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLint *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glGetIntegerv"
 		end	
@@ -106,7 +106,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h> "
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glClearColor"
 		end
@@ -115,7 +115,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint) | <gl.h>"
 --			"C [macro <gl.h>] (GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glClear"
 		end
@@ -124,7 +124,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>"
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glColor3f"
 		end
@@ -133,7 +133,7 @@ feature -- OpenGL API
 		external
 --			"C (const GLfloat *) | <gl.h>"
 --			"C [macro <gl.h>] (const GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glColor4fv"
 		end
@@ -142,7 +142,7 @@ feature -- OpenGL API
 		external
 --			"C (GLboolean) | <gl.h>"
 --			"C [macro <gl.h>] (GLboolean)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glDepthMask"
 		end
@@ -151,7 +151,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>"
 --			"C [macro <gl.h>] ()"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glFlush"
 --			"glFlush()"
@@ -161,7 +161,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glHint"
 		end
@@ -170,7 +170,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint, GLint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLint, GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex2i"
 		end
@@ -179,7 +179,7 @@ feature -- OpenGL API
 		external
 --			"C (GLshort, GLshort) | <gl.h>" 
 --			"C [macro <gl.h>] (GLshort, GLshort)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex2s"
 		end
@@ -188,7 +188,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex2f"
 		end
@@ -197,7 +197,7 @@ feature -- OpenGL API
 		external
 --			"C (GLdouble, GLdouble) | <gl.h>" 
 --			"C [macro <gl.h>] (GLdouble, GLdouble)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex2d"
 		end
@@ -206,7 +206,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint, GLint, GLint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLint, GLint, GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex3i"
 		end
@@ -215,7 +215,7 @@ feature -- OpenGL API
 		external
 --			"C (GLshort, GLshort, GLshort) | <gl.h>" 
 --			"C [macro <gl.h>] (GLshort, GLshort, GLshort)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex3s"
 		end
@@ -224,7 +224,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex3f"
 		end
@@ -233,7 +233,7 @@ feature -- OpenGL API
 		external
 --			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
 --			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex3f"
 		end
@@ -242,7 +242,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint, GLint, GLint, GLint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLint, GLint, GLint, GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex4i"
 		end
@@ -251,7 +251,7 @@ feature -- OpenGL API
 		external
 --			"C (GLshort, GLshort, GLshort, GLshort) | <gl.h>" 
 --			"C [macro <gl.h>] (GLshort, GLshort, GLshort, GLshort)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex4s"
 		end
@@ -260,7 +260,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex4f"
 		end
@@ -269,7 +269,7 @@ feature -- OpenGL API
 		external
 --			"C (GLdouble, GLdouble, GLdouble, GLdouble) | <gl.h>" 
 --			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble, GLdouble)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertex4d"
 		end
@@ -278,7 +278,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glRectf"
 	 	end
@@ -287,7 +287,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glFrontFace"
 	 	end
@@ -296,7 +296,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glCullFace"
 	 	end
@@ -305,7 +305,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint, GLint, GLint, GLint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLint, GLint, GLint, GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glViewport"
 		end
@@ -314,7 +314,7 @@ feature -- OpenGL API
 		external
 --			"C (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble,) | <gl.h>" 
 --			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble,)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glFrustum"
 		end
@@ -323,7 +323,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] ()"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glLoadIdentity"
 --			"glLoadIdentity()"
@@ -333,7 +333,7 @@ feature -- OpenGL API
 		external
 --			"C (const GLfloat *) | <gl.h>" 
 --			"C [macro <gl.h>] (const GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glLoadMatrixf"
 		end
@@ -342,7 +342,7 @@ feature -- OpenGL API
 		external
 --			"C (const GLdouble *) | <gl.h>" 
 --			"C [macro <gl.h>] (const GLdouble *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glLoadMatrixd"
 		end
@@ -351,7 +351,7 @@ feature -- OpenGL API
 		external
 --			"C (const GLfloat *) | <gl.h>" 
 --			"C [macro <gl.h>] (const GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glMultMatrixf"
 		end
@@ -360,7 +360,7 @@ feature -- OpenGL API
 		external
 --			"C (const GLdouble *) | <gl.h>" 
 --			"C [macro <gl.h>] (const GLdouble *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glMultMatrixd"
 		end	
@@ -369,7 +369,7 @@ feature -- OpenGL API
 		external
 --			"C (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble) | <gl.h>" 
 --			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble, GLdouble, GLdouble, GLdouble)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glOrtho"
 		end
@@ -378,7 +378,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glShadeModel"
 		end
@@ -387,7 +387,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glEnable"
 		end
@@ -396,7 +396,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glDisable"
 		end
@@ -405,7 +405,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glEnableClientState"
 		end
@@ -414,7 +414,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glDisableClientState"
 		end
@@ -423,7 +423,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint, GLenum, GLsizei, GLvoid *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLint, GLenum, GLsizei, GLvoid *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glVertexPointer"
 		end
@@ -432,7 +432,7 @@ feature -- OpenGL API
 		external
 --			"C (GLint, GLenum, GLsizei, GLvoid *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLint, GLenum, GLsizei, GLvoid *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glColorPointer"
 		end
@@ -441,7 +441,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum, const GLfloat *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLenum, const GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glMaterialfv"
 		end
@@ -450,7 +450,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLenum, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glMaterialf"
 		end
@@ -459,7 +459,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum, const GLfloat *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLenum, const GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glLightfv"
 		end
@@ -468,7 +468,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, const GLfloat *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, const GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glLightModelfv"
 		end
@@ -477,7 +477,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glColorMaterial"
 		end
@@ -486,7 +486,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glMatrixMode"
 		end
@@ -495,7 +495,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glTranslatef"
 		end
@@ -504,7 +504,7 @@ feature -- OpenGL API
 		external
 --			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
 --			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glTranslated"
 		end	
@@ -513,7 +513,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glScalef"
 		end
@@ -522,7 +522,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPixelStorei"
 		end
@@ -531,7 +531,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum, GLint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLenum, GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glTexParameteri"
 		end		
@@ -540,7 +540,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glTexCoord2f"
 		end		
@@ -549,7 +549,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glTexImage2D"
 		end
@@ -558,7 +558,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLuint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLuint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glBindTexture"
 		end
@@ -567,7 +567,7 @@ feature -- OpenGL API
 		external
 --			"C (GLsizei, GLuint *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLsizei, GLuint *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glGenTextures"
 		end
@@ -576,7 +576,7 @@ feature -- OpenGL API
 		external		
 --			"C (GLint, GLint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLint, GLint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias		
 			"glRasterPos2i"
 		end
@@ -585,7 +585,7 @@ feature -- OpenGL API
 		external
 --			"C (GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat, const GLubyte *) | <gl.h>" 
 --		        "C [macro <gl.h>] (GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat, const GLubyte *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias		
 			"glBitmap"
 		end
@@ -594,7 +594,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glBlendFunc"
 		end
@@ -603,7 +603,7 @@ feature -- OpenGL API
 		external
 --			"C (GLsizei) | <gl.h>" 
 --			"C [macro <gl.h>] (GLsizei): GLuint"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glGenLists"
 		end
@@ -612,7 +612,7 @@ feature -- OpenGL API
 		external
 --			"C (GLuint, GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLuint, GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glNewList"
 		end
@@ -621,7 +621,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] ()"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glEndList"
 --			"glEndList()"
@@ -631,7 +631,7 @@ feature -- OpenGL API
 		external
 --			"C (GLuint): GLboolean | <gl.h>"
 --			"C [macro <gl.h>] (GLuint): GLboolean"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glIsList"
 		end
@@ -640,7 +640,7 @@ feature -- OpenGL API
 		external
 --			"C (GLuint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLuint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glCallList"
 		end
@@ -649,7 +649,7 @@ feature -- OpenGL API
 		external
 --			"C (GLsizei, GLenum, const GLvoid *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLsizei, GLenum, const GLvoid *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glCallLists"
 		end
@@ -658,7 +658,7 @@ feature -- OpenGL API
 		external
 --			"C (GLuint) | <gl.h>" 
 --			"C [macro <gl.h>] (GLuint)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glListBase"
 		end
@@ -667,7 +667,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glBegin"
 		end
@@ -676,7 +676,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] ()"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glEnd"
 --			"glEnd()"
@@ -686,7 +686,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum, GLsizei, GLenum, void *) | <gl.h>" 
 --			"C [macro <gl.h>] (GLenum, GLsizei, GLenum, void *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glDrawElements"
 		end
@@ -695,7 +695,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] ()"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glFinish"
 --			"glFinish()"
@@ -705,7 +705,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glNormal3f"
 		end
@@ -714,7 +714,7 @@ feature -- OpenGL API
 		external
 --			"C (GLdouble, GLdouble, GLdouble) | <gl.h>" 
 --			"C [macro <gl.h>] (GLdouble, GLdouble, GLdouble)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glNormal3d"
 		end
@@ -723,7 +723,7 @@ feature -- OpenGL API
 		external
 --			"C (const GLfloat *) | <gl.h>" 
 --			"C [macro <gl.h>] (const GLfloat *)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glNormal3fv"
 		end
@@ -732,7 +732,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] ()"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPushMatrix"
 --			"glPushMatrix()"
@@ -742,7 +742,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] ()"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPopMatrix"
 --			"glPopMatrix()"
@@ -752,7 +752,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] (GLbitfield)"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPushAttrib"
 		end
@@ -761,7 +761,7 @@ feature -- OpenGL API
 		external
 --			"C | <gl.h>" 
 --			"C [macro <gl.h>] ()"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glPopAttrib"
 --			"glPopAttrib()"
@@ -771,7 +771,7 @@ feature -- OpenGL API
 		external
 --			"C (GLfloat, GLfloat, GLfloat, GLfloat) | <gl.h>" 
 --			"C [macro <gl.h>] (GLfloat, GLfloat, GLfloat, GLfloat)"
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glRotatef"
 		end
@@ -780,7 +780,7 @@ feature -- OpenGL API
 		external
 --			"C : GLenum | <gl.h>"			
 --			"C [macro <gl.h>] (): GLenum"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glGetError"
 --			"glGetError()"
@@ -790,7 +790,7 @@ feature -- OpenGL API
 		external
 --			"C (GLenum): GLubyte* | <gl.h>"			
 --			"C [macro <gl.h>] (GLenum): GLubyte*"		
-			"C macro use <gl.h>"
+			"C use <gl.h>"
 		alias
 			"glGetString"
 		end
