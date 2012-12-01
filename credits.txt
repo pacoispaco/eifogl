@@ -1,7 +1,7 @@
 Main developers
 ---------------
 
-* Paul Cohen <paco@enea.se>
+* Paul Cohen <paul.cohen@seibostudios.se>
 
 Substantial feedback and/or minor code additions
 ------------------------------------------------
@@ -35,4 +35,4 @@ Other credits
 * ELJ (http://elj.sourceforge.net). Provides a neat package of SmartEiffel, 
   lcc-win32 and lots of class libraries for the Win32 platform.
 * Roger Wetzel. Original author of the C version of dragnet.  
-* Matthias Brückner. Author of libtga.
+* Matthias Brï¿½ckner. Author of libtga.
