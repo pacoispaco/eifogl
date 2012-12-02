@@ -15,4 +15,4 @@ Since 2002 I haven't touched the library. The current library is thus completely
 Current status
 --------------
 
-On December 1, 2012, I moved the source code repository from SourceForge to GitHub. I am now making an effort to make sure all example programs and libraries work on Linux. I will not make any effort to ensure they work on Windows.
+On December 1, 2012, I moved the source code repository from SourceForge to GitHub. I am now making an effort to make sure all example programs and libraries work on Linux with the latest EiffelStudio compiler. I will not make any effort to ensure they work on Windows. Anyone wishing to help with that is welcome.
