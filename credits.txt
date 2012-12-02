@@ -35,4 +35,4 @@ Other credits
 * ELJ (http://elj.sourceforge.net). Provides a neat package of SmartEiffel, 
   lcc-win32 and lots of class libraries for the Win32 platform.
 * Roger Wetzel. Original author of the C version of dragnet.  
-* Matthias Br�ckner. Author of libtga.
+* Matthias Brückner. Author of libtga.
