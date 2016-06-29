@@ -1,43 +1,43 @@
-indexing
-	note:"Automatically generated code, don't edit"
+note
+	description: "Automatically generated code, don't edit"
 
 class ACCUM_OP_CONSTANTS
 
 feature -- Access
 
-	gl_accum: INTEGER is
+	gl_accum: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_ACCUM"
 		end
 
-	gl_load: INTEGER is
+	gl_load: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_LOAD"
 		end
 
-	gl_return: INTEGER is
+	gl_return: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_RETURN"
 		end
 
-	gl_mult: INTEGER is
+	gl_mult: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_MULT"
 		end
 
-	gl_add: INTEGER is
+	gl_add: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_ADD"
 		end
 
-end -- class ACCUM_OP_CONSTANTS
+end

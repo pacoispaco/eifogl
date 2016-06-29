@@ -1,24 +1,22 @@
-indexing
+note
 	description: "An encapsulated C struct"
 	library: "Eiffel C wrapper utilities"
 	author: "Paul Cohen"
-	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/10/26 23:07:28 $"
-	revision: "$Revision: 1.2 $"
+	copyright: "Copyright (c) 1999, 2016 Paul Cohen, see file forum.txt"
 
 deferred class C_STRUCTURE
-	
-inherit	
+
+inherit
 	MEMORY
 		redefine
 			dispose
 		end
-	
+
 	C_FUNCTIONS
-	
+
 feature -- Initialiazation
-	
-	make is
+
+	make
 			-- Create and allocate memory. When garbage collected,
 			-- free the allocated memory.
 		do
@@ -27,12 +25,12 @@ feature -- Initialiazation
 				-- Memory allocation problem
 				-- c_enomem
 			end
-			shared := False			
+			shared := False
 		ensure
 			not_shared: not shared
 		end
-	
-	make_unshared (p: POINTER) is
+
+	make_unshared (p: POINTER)
 			-- Create with pointer `p' pointing to already allocated
 			-- memory. When garbage collected, free the allocated
 			-- memory.
@@ -44,8 +42,8 @@ feature -- Initialiazation
 		ensure
 			not_shared: not shared
 		end
-	
-	make_shared (p: POINTER) is
+
+	make_shared (p: POINTER)
 			-- Create with pointer `p' pointing to already allocated
 			-- memory. When garbage collected, do not free the
 			-- allocated memory.
@@ -57,47 +55,41 @@ feature -- Initialiazation
 		ensure
 			shared: shared
 		end
-	
-feature -- Access	
-	
+
+feature -- Access
+
 	pointer: POINTER
 			-- Pointer to the allocated memory for this
 			-- C_STRUCTURE object.
-	
-	structure_size: INTEGER is
+
+	structure_size: INTEGER
 			-- Memory size in bytes
 		deferred
 		end
-	
+
 feature -- Status report
-	
+
 	shared: BOOLEAN
 			-- Is the memory that this C_STRUCTURE object refers
 			-- toalso referred to by some other C_STRUCTURE object
 			-- or C pointer?
-	
-	exists: BOOLEAN is
+
+	exists: BOOLEAN
 			-- Is `pointer' not a C NULL pointer?
 		do
 			Result := pointer /= default_pointer
 		end
-	
-feature {NONE} -- Memory cleanup 	
-	
-	dispose is
+
+feature {NONE} -- Memory cleanup
+
+	dispose
 		do
 			if not shared then
 				c_free (pointer)
 			end
 		end
-	
-invariant	
+
+invariant
 	pointer_valid: pointer /= Void
 
-end -- class C_STRUCTURE
-
-
--- begin documentation
---
--- end documentation
-
+end

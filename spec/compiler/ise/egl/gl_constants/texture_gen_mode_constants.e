@@ -1,29 +1,29 @@
-indexing
-	note:"Automatically generated code, don't edit"
+note
+	description: "Automatically generated code, don't edit"
 
 class TEXTURE_GEN_MODE_CONSTANTS
 
 feature -- Access
 
-	gl_eye_linear: INTEGER is
+	gl_eye_linear: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_EYE_LINEAR"
 		end
 
-	gl_object_linear: INTEGER is
+	gl_object_linear: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_OBJECT_LINEAR"
 		end
 
-	gl_sphere_map: INTEGER is
+	gl_sphere_map: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_SPHERE_MAP"
 		end
 
-end -- class TEXTURE_GEN_MODE_CONSTANTS
+end

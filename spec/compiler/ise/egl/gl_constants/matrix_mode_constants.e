@@ -1,29 +1,29 @@
-indexing
-	note:"Automatically generated code, don't edit"
+note
+	description: "Automatically generated code, don't edit"
 
 class MATRIX_MODE_CONSTANTS
 
 feature -- Access
 
-	gl_modelview: INTEGER is
+	gl_modelview: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_MODELVIEW"
 		end
 
-	gl_projection: INTEGER is
+	gl_projection: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_PROJECTION"
 		end
 
-	gl_texture: INTEGER is
+	gl_texture: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_TEXTURE"
 		end
 
-end -- class MATRIX_MODE_CONSTANTS
+end

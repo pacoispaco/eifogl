@@ -1,22 +1,22 @@
-indexing
-	note:"Automatically generated code, don't edit"
+note
+	description: "Automatically generated code, don't edit"
 
 class QUADRIC_ORIENTATION_CONSTANTS
 
 feature -- Access
 
-	glu_outside: INTEGER is
+	glu_outside: INTEGER
 		external
 			"C [macro <glu.h>]"
 		alias
 			"GLU_OUTSIDE"
 		end
 
-	glu_inside: INTEGER is
+	glu_inside: INTEGER
 		external
 			"C [macro <glu.h>]"
 		alias
 			"GLU_INSIDE"
 		end
 
-end -- class QUADRIC_ORIENTATION_CONSTANTS
+end

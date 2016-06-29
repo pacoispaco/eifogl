@@ -1,12 +1,10 @@
-indexing
+note
 	description: "OpenGL GLU library constants"
 	library: "EGL - Eiffel wrapping of OpenGL"
 	compilers: "All Eiffel compilers"
 	platforms: "All platforms that have OpenGL implementations."
 	author: "Paul Cohen"
-	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2002/03/23 13:39:40 $"
-	revision: "$Revision: 1.2 $"
+	copyright: "Copyright (c) 1999, 2016 Paul Cohen, see file forum.txt"
 
 class EGLU_CONSTANTS
 
@@ -27,9 +25,5 @@ inherit
 	TESS_PROPERTY_CONSTANTS
 	TESS_WINDING_CONSTANTS
 	VERSION_CONSTANTS	
-  
-end -- class EGLU_CONSTANTS
 
---| begin documentation
--- OpenGL constants
---| end documentation
+end

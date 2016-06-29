@@ -1,36 +1,36 @@
-indexing
-	note:"Automatically generated code, don't edit"
+note
+	description: "Automatically generated code, don't edit"
 
 class STRING_NAME_CONSTANTS
 
 feature -- Access
 
-	gl_vendor: INTEGER is
+	gl_vendor: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_VENDOR"
 		end
 
-	gl_renderer: INTEGER is
+	gl_renderer: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_RENDERER"
 		end
 
-	gl_version: INTEGER is
+	gl_version: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_VERSION"
 		end
 
-	gl_extensions: INTEGER is
+	gl_extensions: INTEGER
 		external
 			"C [macro <gl.h>]"
 		alias
 			"GL_EXTENSIONS"
 		end
 
-end -- class STRING_NAME_CONSTANTS
+end
