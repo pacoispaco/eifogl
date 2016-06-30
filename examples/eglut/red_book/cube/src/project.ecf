@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-15-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-15-0 http://www.eiffel.com/developers/xml/configuration-1-15-0.xsd" name="project" uuid="3A34AF3D-3EE9-4C6F-888A-C16732772A81">
+<system
+    xmlns="http://www.eiffel.com/developers/xml/configuration-1-15-0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-15-0 http://www.eiffel.com/developers/xml/configuration-1-15-0.xsd"
+    name="project"
+    uuid="3A34AF3D-3EE9-4C6F-888A-C16732772A81">
     <target name="project">
         <root feature="make" class="APPLICATION"/>
         <option warning="true">
@@ -9,6 +14,7 @@
         <setting name="concurrency" value="scoop"/>
         <library name="base" location="$ISE_EIFFEL/library/base/base-safe.ecf"/>
         <library name="egl" location="$EIFOGL/egl/library.ecf"/>
+        <library name="eglut" location="$EIFOGL/eglut/library.ecf"/>
         <library name="utility" location="$EIFOGL/utility/library.ecf"/>
         <cluster name="project" location="." recursive="true">
             <file_rule>

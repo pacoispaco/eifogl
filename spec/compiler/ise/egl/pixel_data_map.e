@@ -12,7 +12,7 @@ class
 inherit
 	C_STRUCTURE
 
-creation
+create
 
 	make_from_string
 
