@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system
+    xmlns="http://www.eiffel.com/developers/xml/configuration-1-15-0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-15-0 http://www.eiffel.com/developers/xml/configuration-1-15-0.xsd"
+    name="eifogl_eglut"
+    uuid="E1FFE100-60B0-0009-0001-000020160223"
+    library_target="eifogl_eglut">
+    <description>
+        description: "ECF file for the EiffelOpenGL eglut library"
+        library: "eglut"
+        copyright: "Copyright (c) 2016, Paul Cohen"
+        license: "Eiffel Forum License"
+    </description>
+    <target name="eifogl_eglut">
+        <root all_classes="true"/>
+        <file_rule>
+            <exclude>/\.git$</exclude>
+        </file_rule>
+        <option warning="true" full_class_checking="true" is_attached_by_default="true" is_obsolete_routine_type="true" void_safety="all"/>
+        <library name="base" location="$ISE_EIFFEL/library/base/base-safe.ecf" readonly="true"/>
+        <library name="gobo_structure" location="$ISE_EIFFEL/contrib/library/gobo/library/structure/library.ecf" readonly="true"/>
+
+        <library name="eifogl_utility" location="$EIFOGL/utility/library.ecf" readonly="true"/>
+        <library name="eifogl_egl" location="$EIFOGL/egl/library.ecf" readonly="true"/>
+
+        <cluster name="eglut" location="$EIFOGL/eglut" recursive="true"/>
+        <cluster name="eglut_spec" location="$EIFOGL/spec/compiler/ise/eglut" recursive="true"/>
+    </target>
+</system>
