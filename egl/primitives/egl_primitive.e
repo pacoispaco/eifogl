@@ -12,6 +12,9 @@ inherit
     EGL
         export
             {NONE} all
+            {EGL} deep_twin,
+                  is_deep_equal,
+                  standard_is_equal
         end
 
     EGL_CONSTANTS
@@ -62,7 +65,7 @@ feature {NONE} -- Initialization
                     vertex_draw_procedure := agent egl_vertex_4d (?, ?, ?, ?)
                 end
             end
-            !! vertices.make (1, resize_step)
+            create vertices.make (1, resize_step)
             no_of_vertices := 0
         end
 

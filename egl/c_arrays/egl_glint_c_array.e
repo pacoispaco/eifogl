@@ -70,7 +70,7 @@ feature -- Access
         local
             i: INTEGER
         do
-            !! Result.make (1, count)
+            create Result.make (1, count)
             from
                 i := 0
             until

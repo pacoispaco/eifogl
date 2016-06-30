@@ -17,7 +17,7 @@ feature {NONE} -- Initialization
             bytes_not_void: bytes /= Void
             bytes_are_valid: -- All bytes [i] <= 255
         do
-            pattern := clone (bytes)
+            pattern := bytes.twin
         end
 
 feature -- Access

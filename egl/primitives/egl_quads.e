@@ -19,7 +19,7 @@ create
 
 feature -- Access
 
-    opengl_primitive_type: INTEGER is
+    opengl_primitive_type: INTEGER
             -- Type of OpenGL geometric primitive
         do
             Result := Gl_quads

@@ -12,6 +12,9 @@ inherit
     ARGUMENTS
         export
             {NONE} all
+            {GLUT} deep_twin,
+                   is_deep_equal,
+                   standard_is_equal
         end
 
 feature -- Raw GLUT API

@@ -12,6 +12,43 @@ class EGL_DOUBLE_VERTEX
 create
     make_2d, make_3d, make_3d_alpha
 
+feature -- Initialiazation
+
+    make_2d (xval, yval: INTEGER)
+            -- Create and initialize as 2d vertex.
+        do
+            x := xval
+            y := yval
+            is_2d := True
+        ensure
+            is_2d: is_2d
+        end
+
+    make_3d (xval, yval, zval: INTEGER)
+            -- Create and initialize as 3d vertex.
+        do
+            x := xval
+            y := yval
+            z := zval
+            is_3d := True
+        ensure
+            is_3d: is_3d
+        end
+
+    make_3d_alpha (xval, yval, zval, alpha: INTEGER)
+            -- Create and initialize as 3d vertex with alpha value.
+        do
+            x := xval
+            y := yval
+            z := zval
+            is_3d := True
+            has_alpha_information := True
+            a := alpha
+        ensure
+            is_3d: is_3d
+            has_alpha_information: has_alpha_information
+        end
+
 feature -- Access
 
     x: DOUBLE

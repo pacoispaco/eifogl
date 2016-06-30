@@ -21,8 +21,7 @@ feature {NONE} -- Initialization
             bits_not_void: bits /= Void
 --            bits_has_128_items: bits.count = 128
         do
---            pattern := clone (bits)A
-              pattern := bits
+              pattern := bits.twin
         end
 
 feature -- Access
@@ -31,9 +30,9 @@ feature -- Access
             -- The polygon stipple pattern represented by an array
             -- containing 128 8-bit sequences.
 
-      pattern: INTEGER_8
+      pattern: ARRAY [INTEGER_8]
             -- The polygon stipple pattern represented by an 8 bit integer.
-            
+
 feature {EGL} -- Conversion
 
     glubyte_string: STRING
@@ -51,7 +50,7 @@ feature {EGL} -- Conversion
             loop
 --                glubyte := bit8_to_integer (pattern @ i)
                 glubyte := pattern @ i
-                Result.put (glubyte.to_character, i)
+                Result.put (glubyte.to_character_8, i)
                 i := i +1
             end
         end

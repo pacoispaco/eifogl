@@ -14,12 +14,12 @@ inherit
             opengl_primitive_type
         end
 
-creation
+create
     make_2d, make_3d, make_3d_homogeneous
 
 feature -- Access
 
-    opengl_primitive_type: INTEGER is
+    opengl_primitive_type: INTEGER
             -- Type of OpenGL geometric primitive
         do
             Result := Gl_line_strip

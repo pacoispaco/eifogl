@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<system 
+<system
     xmlns="http://www.eiffel.com/developers/xml/configuration-1-9-0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-9-0 http://www.eiffel.com/developers/xml/configuration-1-9-0.xsd"
     name="eifogl_egl"
     uuid="E1FFE100-60B0-0009-0001-000020160221"
@@ -17,9 +17,11 @@
         <file_rule>
             <exclude>/\.git$</exclude>
         </file_rule>
-        <option warning="true" full_class_checking="true" is_attached_by_default="true" void_safety="all" is_void_safe="true"/>
+        <option warning="true" full_class_checking="true" void_safety="none"/>
 
-        <library name="base" location="$ISE_EIFFEL/library/base/base-safe.ecf" readonly="true"/>
+        <library name="base" location="$ISE_EIFFEL/library/base/base.ecf" readonly="true"/>
+
+        <library name="eifogl_utility" location="$EIFOGL/utility/library.ecf" readonly="true"/>
 
         <cluster name="egl" location="." recursive="true"/>
         <cluster name="egl_spec" location="../spec/compiler/ise/egl" recursive="true"/>

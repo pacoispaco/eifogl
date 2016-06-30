@@ -194,7 +194,7 @@ feature -- Primitives (Specify vertices or rectangles)
         local
             c_array: EGL_GLFLOAT_C_ARRAY
         do
-            !! c_array.make_from_array (fv)
+            create c_array.make_from_array (fv)
             gl_api.gl_vertex_3fv (c_array.pointer)
         end
 
@@ -217,7 +217,7 @@ feature -- Primitives (Specify vertices or rectangles)
         local
             c_array: EGL_GLDOUBLE_C_ARRAY
         do
-            !! c_array.make_from_array (dv)
+            create c_array.make_from_array (dv)
             gl_api.gl_vertex_3dv (c_array.pointer)
         end
 
@@ -359,7 +359,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
             c_array: EGL_GLINT_C_ARRAY
         do
-            !! c_array.make_from_array (array)
+            create c_array.make_from_array (array)
             gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -375,7 +375,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
 --          c_array: EGL_GLSHORT_C_ARRAY
         do
---          !! c_array.make_from_array (array)
+--          create c_array.make_from_array (array)
 --          gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -391,7 +391,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
 --          c_array: EGL_GLREAL_C_ARRAY
         do
---          !! c_array.make_from_array (array)
+--          create c_array.make_from_array (array)
 --          gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -407,7 +407,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
             c_array: EGL_GLDOUBLE_C_ARRAY
         do
-            !! c_array.make_from_array (array)
+            create c_array.make_from_array (array)
             gl_api.gl_vertex_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -428,7 +428,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
             c_array: EGL_GLINT_C_ARRAY
         do
-            !! c_array.make_from_array (array)
+            create c_array.make_from_array (array)
             gl_api.gl_color_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -443,7 +443,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
 --          c_array: EGL_GLSHORT_C_ARRAY
         do
---          !! c_array.make_from_array (array)
+--          create c_array.make_from_array (array)
 --          gl_api.gl_color_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -458,7 +458,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
 --          c_array: EGL_GLFLOAT_C_ARRAY
         do
---          !! c_array.make_from_array (array)
+--          create c_array.make_from_array (array)
 --          gl_api.gl_color_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -473,7 +473,7 @@ feature -- Vertex Arrays (Specify vertex arrays)
         local
             c_array: EGL_GLDOUBLE_C_ARRAY
         do
-            !! c_array.make_from_array (array)
+            create c_array.make_from_array (array)
             gl_api.gl_color_pointer (size, c_array.gl_type, stride, c_array.pointer)
         end
 
@@ -523,7 +523,7 @@ feature -- Vertex Arrays (Control drawing of arrays and their components)
         local
             indices_c_array: EGL_GLUINT_C_ARRAY
         do
-            !! indices_c_array.make_from_array (indices)
+            create indices_c_array.make_from_array (indices)
             gl_api.gl_draw_elements (mode, indices_c_array.count, indices_c_array.gl_type, indices_c_array.pointer)
         end
 
@@ -602,7 +602,7 @@ feature -- Coordinate transformation (Transform the current matrix)
         local
             c_array: EGL_GLFLOAT_C_ARRAY
         do
-            !! c_array.make_from_array (m)
+            create c_array.make_from_array (m)
             gl_api.gl_mult_matrix_f (c_array.pointer)
         end
 
@@ -615,7 +615,7 @@ feature -- Coordinate transformation (Transform the current matrix)
         local
             c_array: EGL_GLDOUBLE_C_ARRAY
         do
-            !! c_array.make_from_array (m)
+            create c_array.make_from_array (m)
             gl_api.gl_mult_matrix_d (c_array.pointer)
         end
 
@@ -671,15 +671,15 @@ feature -- Coordinate Transformation (Replace the current matrix - contract pred
                         iv: ARRAY [INTEGER]
             i, mode: INTEGER
         do
-                        iv := egl_get_integer_v (Gl_matrix_mode)
-                        mode := iv.item (1)
-                        if mode = Gl_modelview then
+            iv := egl_get_integer_v (Gl_matrix_mode)
+            mode := iv.item (1)
+            if mode = Gl_modelview then
                 c := egl_get_float_v (Gl_modelview_matrix)
             elseif mode = Gl_projection then
                 c := egl_get_float_v (Gl_projection_matrix)
-                        elseif mode = Gl_texture then
+            elseif mode = Gl_texture then
                 c := egl_get_float_v (Gl_texture_matrix)
-                        end
+            end
             Result := True
             from
                 i := 1
@@ -709,15 +709,15 @@ feature -- Coordinate Transformation (Replace the current matrix - contract pred
                         iv: ARRAY [INTEGER]
             i, mode: INTEGER
         do
-                        iv := egl_get_integer_v (Gl_matrix_mode)
-                        mode := iv.item (1)
-                        if mode = Gl_modelview then
+            iv := egl_get_integer_v (Gl_matrix_mode)
+            mode := iv.item (1)
+            if mode = Gl_modelview then
                 c := egl_get_double_v (Gl_modelview_matrix)
-                        elseif mode = Gl_projection then
+            elseif mode = Gl_projection then
                 c := egl_get_double_v (Gl_projection_matrix)
-                        elseif mode = Gl_texture then
+            elseif mode = Gl_texture then
                 c := egl_get_double_v (Gl_texture_matrix)
-                        end
+            end
             Result := True
             from
                 i := 1
@@ -759,7 +759,7 @@ feature -- Coordinate Transformation (Replace the current matrix)
         local
             c_array: EGL_GLFLOAT_C_ARRAY
         do
-            !! c_array.make_from_array (m)
+            create c_array.make_from_array (m)
             gl_api.gl_load_matrix_f (c_array.pointer)
         ensure
             matrix_is_set: current_matrix_equals_f (m)
@@ -774,7 +774,7 @@ feature -- Coordinate Transformation (Replace the current matrix)
         local
             c_array: EGL_GLDOUBLE_C_ARRAY
         do
-            !! c_array.make_from_array (m)
+            create c_array.make_from_array (m)
             gl_api.gl_load_matrix_d (c_array.pointer)
         ensure
             matrix_is_set: current_matrix_equals_d (m)
@@ -904,11 +904,11 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
 --      do
 --          s := fv.area
 --          gl_api.gl_color_4fv ($s)
-                local
-                        c_array: EGL_GLFLOAT_C_ARRAY
-                do
-                        !! c_array.make_from_array (fv)
-                        gl_api.gl_color_4fv (c_array.pointer)
+        local
+            c_array: EGL_GLFLOAT_C_ARRAY
+        do
+        create c_array.make_from_array (fv)
+        gl_api.gl_color_4fv (c_array.pointer)
         ensure
             -- Color is set
         end
@@ -949,11 +949,11 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
             valid_state: True
             fv_not_void: fv /= Void
             fv_has_3_reals: fv.count = 3
-                local
-                        c_array: EGL_GLFLOAT_C_ARRAY
-                do
-                        !! c_array.make_from_array (fv)
-                        gl_api.gl_normal_3fv (c_array.pointer)
+        local
+        c_array: EGL_GLFLOAT_C_ARRAY
+        do
+            create c_array.make_from_array (fv)
+            gl_api.gl_normal_3fv (c_array.pointer)
         end
 
     egl_normal_3d (nx, ny, nz: DOUBLE)
@@ -972,11 +972,11 @@ feature -- Coloring and Lighting (Set the current color, color index, or normal 
             valid_state: True
             dv_not_void: dv /= Void
             dv_has_3_doubles: dv.count = 3
-                local
-                        c_array: EGL_GLDOUBLE_C_ARRAY
-                do
-                        !! c_array.make_from_array (dv)
-                        gl_api.gl_normal_3dv (c_array.pointer)
+        local
+            c_array: EGL_GLDOUBLE_C_ARRAY
+        do
+            create c_array.make_from_array (dv)
+            gl_api.gl_normal_3dv (c_array.pointer)
         end
 
 
@@ -999,11 +999,11 @@ feature -- Coloring and Lighting (specify light source, material, or lighting mo
 --      do
 --          s := params.area
 --          gl_api.gl_light_fv (light, pname, $s)
-                local
-                        c_array: EGL_GLFLOAT_C_ARRAY
-                do
-                        !! c_array.make_from_array (params)
-                        gl_api.gl_light_fv (light, pname, c_array.pointer)
+        local
+            c_array: EGL_GLFLOAT_C_ARRAY
+        do
+            create c_array.make_from_array (params)
+            gl_api.gl_light_fv (light, pname, c_array.pointer)
         ensure
             -- Light parameter is set
         end
@@ -1023,11 +1023,11 @@ feature -- Coloring and Lighting (specify light source, material, or lighting mo
 --      do
 --          s := params.area
 --          gl_api.gl_material_fv (face, pname, $s)
-                local
-                        c_array: EGL_GLFLOAT_C_ARRAY
-                do
-                        !! c_array.make_from_array (params)
-                        gl_api.gl_material_fv (face, pname, c_array.pointer)
+        local
+            c_array: EGL_GLFLOAT_C_ARRAY
+        do
+            create c_array.make_from_array (params)
+            gl_api.gl_material_fv (face, pname, c_array.pointer)
         ensure
             -- Material parameter is set
         end
@@ -1060,11 +1060,11 @@ feature -- Coloring and Lighting (specify light source, material, or lighting mo
 --      do
 --          s := params.area
 --          gl_api.gl_light_model_fv (pname, $s)
-                local
-                        c_array: EGL_GLFLOAT_C_ARRAY
-                do
-                        !! c_array.make_from_array (params)
-                        gl_api.gl_light_model_fv (pname, c_array.pointer)
+        local
+            c_array: EGL_GLFLOAT_C_ARRAY
+        do
+            create c_array.make_from_array (params)
+            gl_api.gl_light_model_fv (pname, c_array.pointer)
         ensure
             -- Light model parameter is set
         end
@@ -1121,23 +1121,22 @@ feature -- Coloring and Lighting (Obtain light source or material parameter valu
 
 feature -- Clipping (Specify a clipping plane)
 
-        egl_clip_plane (plane: INTEGER; equation: ARRAY [DOUBLE])
-                        -- Specify a plane against which all geometry
-                        -- clipped. `plane' specifies the plane in question and
-                        -- thefour values in ?q' are interpreted as a plane
-                        -- equation.
-                require
-                        valid_state: not drawing_a_primitive
-                        equation_not_void: equation /= Void
-                        valid_equation_size: equation.count = 4
-                        valid_plane: plane >= 0 and then plane <= 5
+    egl_clip_plane (plane: INTEGER; equation: ARRAY [DOUBLE])
+            -- Specify a plane against which all geometry clipped. `plane' 
+            -- specifies the plane in question and thei four values in `q' 
+            -- are interpreted as a plane equation.
+        require
+            valid_state: not drawing_a_primitive
+            equation_not_void: equation /= Void
+            valid_equation_size: equation.count = 4
+            valid_plane: plane >= 0 and then plane <= 5
             -- The last precondition might also be:
             -- valid_plane: plane >= 0 and egl_get_value (Gl_max_clip_planes) - 1
-                local
-                        c_array: EGL_GLDOUBLE_C_ARRAY
-                do
-                        !! c_array.make_from_array (equation)
-                        gl_api.gl_clip_plane (plane, c_array.pointer)
+        local
+            c_array: EGL_GLDOUBLE_C_ARRAY
+        do
+            create c_array.make_from_array (equation)
+            gl_api.gl_clip_plane (plane, c_array.pointer)
         end
 
 feature -- Clipping (Return clipping plane coefficients)
@@ -1414,7 +1413,7 @@ feature -- Textures (Create a named texture and prioritize texture memory reside
         local
             c_array: EGL_GLUINT_C_ARRAY
         do
-            !! c_array.make_empty (n)
+            create c_array.make_empty (n)
             gl_api.gl_gen_textures (n, c_array.pointer)
             Result := c_array.contents
         ensure
@@ -1584,7 +1583,7 @@ feature -- Evaluators (Define a one- or two-dimensional evaluator)
             c_array: EGL_GLFLOAT_C_ARRAY
         do
             a := flattened_array_of_real (points)
-            !! c_array.make_from_array (a)
+            create c_array.make_from_array (a)
             -- Find out the number of coordinates used for the
             -- points (assuming all points have the same number of
             -- coordinates as the first point)
@@ -1713,7 +1712,7 @@ feature -- Display Lists (Execute a display list or set of lists)
         local
             c_array: EGL_GLINT_C_ARRAY
         do
-            !! c_array.make_from_array (lists)
+            create c_array.make_from_array (lists)
             gl_api.gl_call_lists (n, Gl_int, c_array.pointer)
         end
 
@@ -1834,7 +1833,7 @@ feature -- State Queries (Obtain information about an error or the current OpenG
             valid_name: name = Gl_vendor or name = Gl_renderer or
                     name = Gl_version or name = Gl_extensions
         do
-            !! Result.make (0)
+            create Result.make (0)
             Result.from_c (gl_api.gl_get_string (name))
         ensure
             valid_result: Result /= Void
@@ -1851,7 +1850,7 @@ feature -- State Queries (Obtain information about an error or the current OpenG
         local
             c_array: EGL_GLBOOLEAN_C_ARRAY
         do
-            !! c_array.make_empty (16)
+            create c_array.make_empty (16)
             gl_api.gl_get_boolean_v (pname, c_array.pointer)
             Result := c_array.contents
         ensure
@@ -1867,7 +1866,7 @@ feature -- State Queries (Obtain information about an error or the current OpenG
         local
             c_array: EGL_GLDOUBLE_C_ARRAY
         do
-            !! c_array.make_empty (16)
+            create c_array.make_empty (16)
             gl_api.gl_get_double_v (pname, c_array.pointer)
             Result := c_array.contents
         ensure
@@ -1883,7 +1882,7 @@ feature -- State Queries (Obtain information about an error or the current OpenG
         local
             c_array: EGL_GLFLOAT_C_ARRAY
         do
-            !! c_array.make_empty (16)
+            create c_array.make_empty (16)
             gl_api.gl_get_float_v (pname, c_array.pointer)
             Result := c_array.contents
         ensure
@@ -1899,7 +1898,7 @@ feature -- State Queries (Obtain information about an error or the current OpenG
         local
             c_array: EGL_GLINT_C_ARRAY
         do
-            !! c_array.make_empty (16)
+            create c_array.make_empty (16)
             gl_api.gl_get_integer_v (pname, c_array.pointer)
             Result := c_array.contents
         ensure
