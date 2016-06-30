@@ -7,7 +7,7 @@
     uuid="3A34AF3D-3EE9-4C6F-888A-C16732772A81">
     <target name="project">
         <root feature="make" class="APPLICATION"/>
-        <option warning="true">
+        <option warning="true" full_class_checking="true" is_obsolete_routine_type="true" void_safety="none">
             <assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true" supplier_precondition="true"/>
         </option>
         <setting name="console_application" value="true"/>
