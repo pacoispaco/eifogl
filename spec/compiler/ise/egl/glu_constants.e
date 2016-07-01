@@ -5,31 +5,18 @@ class GLU_CONSTANTS
 
 feature
 
-
-
-    glapientry: INTEGER
-        external
-            "C [macro <glu.h>]"
-        alias
-            "GLAPIENTRY"
-        end
-
-
-
-
-
     glu_ext_object_space_tess: INTEGER
         external
             "C [macro <glu.h>]"
         alias
-            "GLU_EXT_OBJECT_SPACE_TESS"
+            "GLU_EXT_object_space_tess"
         end
 
     glu_ext_nurbs_tessellator: INTEGER
         external
             "C [macro <glu.h>]"
         alias
-            "GLU_EXT_NURBS_TESSELLATOR"
+            "GLU_EXT_nurbs_tessellator"
         end
 
     glu_false: INTEGER

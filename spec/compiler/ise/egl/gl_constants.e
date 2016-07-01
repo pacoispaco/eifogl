@@ -5,37 +5,6 @@ class GL_CONSTANTS
 
 feature
 
-
-
-
-
-    win32_lean_and_mean: INTEGER
-        external
-            "C [macro <gl.h>]"
-        alias
-            "WIN32_LEAN_AND_MEAN"
-        end
-
-    glapi: INTEGER
-        external
-            "C [macro <gl.h>]"
-        alias
-            "GLAPI"
-        end
-
-
-
-    apientry: INTEGER
-        external
-            "C [macro <gl.h>]"
-        alias
-            "APIENTRY"
-        end
-
-
-
-
-
     gl_version_1_1: INTEGER
         external
             "C [macro <gl.h>]"
@@ -61,7 +30,7 @@ feature
         external
             "C [macro <gl.h>]"
         alias
-            "GL_ARB_IMAGING"
+            "GL_ARB_imaging"
         end
 
     gl_false: INTEGER
@@ -5255,7 +5224,7 @@ feature
         external
             "C [macro <gl.h>]"
         alias
-            "GL_ARB_MULTITEXTURE"
+            "GL_ARB_multitexture"
         end
 
     gl_texture0_arb: INTEGER
@@ -5507,7 +5476,7 @@ feature
         external
             "C [macro <gl.h>]"
         alias
-            "GL_MESA_PACKED_DEPTH_STENCIL"
+            "GL_MESA_packed_depth_stencil"
         end
 
     gl_depth_stencil_mesa: INTEGER
@@ -5549,7 +5518,7 @@ feature
         external
             "C [macro <gl.h>]"
         alias
-            "GL_ATI_BLEND_EQUATION_SEPARATE"
+            "GL_ATI_blend_equation_separate"
         end
 
     gl_alpha_blend_equation_ati: INTEGER
@@ -5563,7 +5532,7 @@ feature
         external
             "C [macro <gl.h>]"
         alias
-            "GL_OES_EGL_IMAGE"
+            "GL_OES_EGL_image"
         end
 
 end -- class GL_CONSTANTS
