@@ -1,16 +1,14 @@
-/* 
+/*
  * EGLU_NURBS.C
  *
  * Eiffel EGLU_NURBS callback functions
  *
- * desciption: "The Eiffel GLU NURBS encapsulation needs to define 
- *              the callback functions that can be registered 
- *              with GLU for each NURBS object. 
+ * desciption: "The Eiffel GLU NURBS encapsulation needs to define
+ *              the callback functions that can be registered
+ *              with GLU for each NURBS object.
  * library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
  * author: "Paul Cohen"
- * copyright: "Copyright (c) 2001 Paul Cohen, see file forum.txt"
- * date: "$Date: 2001/10/26 22:37:12 $"
- * version: "$Revision: 1.1 $"
+ * copyright: "Copyright (c) 2001, 2016 Paul Cohen, see file forum.txt"
  */
 
 #ifndef __EGLU_NURBS__
@@ -20,7 +18,7 @@
 EIF_OBJ eglu_nurbs = NULL;
 /* Address of the Eiffel object EGLU_NURBS. */
 
-void CALLBACK eglu_error_callback (GLenum errorCode) {
+GLvoid eglu_error_callback (GLenum errorCode) {
   /* Error callback function. */
   EIF_PROC ep;
   EIF_TYPE_ID eti;
