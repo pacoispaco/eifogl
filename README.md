@@ -51,7 +51,7 @@ $ sudo apt-get install mesa-utils
 $ git clone https://github.com/pacoispaco/eifogl.git
 ```
 
- 5. Make sure the ISE_EIFFEL and EIFOGL environment variables are set. Edit the file 'tools/setupenv.sh' as is appropriate and then run it. You can of course put those environment variables in your .bashrc or other appropriate dotfile.
+ 5. Make sure the ISE_EIFFEL and EIFOGL environment variables are set. Edit the file 'tools/setupenv.sh' as is appropriate and then source it. You can of course put those environment variables in your .bashrc or other appropriate dotfile.
 
  6. Compile the C wrapper libraries in EiffelOpenGL. Run make in the root directory.
 

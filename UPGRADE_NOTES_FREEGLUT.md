@@ -43,7 +43,7 @@ $EIFOGL/spec/compiler/ise/eglut/lib  # Makefile and static library
 To compile the eglut.a library:
 
 ```
-$ gcc -c ../c/eglut.c -I$ISE_EIFFEL/studio/spec/linux-x86-64/include -I/usr/include/GL -I$EIFOGL/spec/compiler/ise/eglut/include -o eglut.o
-$ ar rcs libeglut.a eglut.o
+$EIFOGL/spec/compiler/ise/eglut/lib$ gcc -c ../c/eglut.c -I$ISE_EIFFEL/studio/spec/linux-x86-64/include -I/usr/include/GL -I$EIFOGL/spec/compiler/ise/eglut/include -o eglut.o
+$EIFOGL/spec/compiler/ise/eglut/lib$ ar rcs libeglut.a eglut.o
 ```
 
