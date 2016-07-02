@@ -15,4 +15,47 @@ Since 2002 I haven't touched the library. The current library is thus completely
 Current status
 --------------
 
-On December 1, 2012, I moved the source code repository from SourceForge to GitHub. I am now making an effort to make sure all example programs and libraries work on Linux with the latest EiffelStudio compiler. I will not make any effort to ensure they work on Windows; however anyone wishing to help with that is welcome to do so.
+In june 2016, after many years, I started working on upgrading the library to the latest release of EiffelStudio and in getting it working on Linux with the Mesa OpenGL and FreeGLUT libraries. Note: I'm working on Ubuntu 15.05/16.04 machines.
+
+Short term goals:
+
+ 1. Ignore support for Eifogl on Windows.
+ 2. Upgrade GLUT Eiffel binding to FreeGLUT.
+ 3. Update all GLUT example programs.
+
+Long term and low prio goals:
+
+ 1. Remove obsolete stuff.
+ 2. Upgrade GLX binding.
+
+Installing
+----------
+
+ 1. Install EiffelStudio Enterprise or the GPL licensed version from https://www.eiffel.org/downloads
+
+ 2. Install Mesa OpenGL and FreeGLUT.
+
+```
+$ sudo apt-get install freeglut3 freeglut3-dev libglew-dev
+```
+
+ 3. Install the Mesa utilities which include **glxinfo** tool that displays info on your OpenGL installation, i.e. capabilities of the OpenGL implementation.
+
+```
+$ sudo apt-get install mesa-utils
+```
+
+ 4. Clone this git repo.
+
+```
+$ git clone https://github.com/pacoispaco/eifogl.git
+```
+
+ 5. Make sure the ISE_EIFFEL and EIFOGL environment variables are set. Edit the file 'tools/setupenv.sh' as is appropriate and then run it. You can of course put those environment variables in your .bashrc or other appropriate dotfile.
+
+ 6. Compile the C wrapper libraries in EiffelOpenGL. Run make in the root directory.
+
+```
+$ make
+```
+
