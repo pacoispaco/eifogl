@@ -28,6 +28,8 @@ Long term and low prio goals:
  1. Remove obsolete stuff.
  2. Upgrade GLX binding.
 
+I'm currenly working on getting everything to compile with EIffelStudio 16.05 and FreeGLUT. I'm rusty on both but have got the example program 'simple' working. You can find that [here](https://github.com/pacoispaco/eifogl/tree/master/examples/eglut/simple).
+
 Installing
 ----------
 
