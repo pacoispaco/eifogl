@@ -1,7 +1,7 @@
-Notes for upgrading to FreeGLUT
-===============================
+Notes on the upgrade to FreeGLUT
+================================
 
-These are development notes on upgrading Eifolg to using FreeGLUT.
+These are development notes on upgrading Eiffel OpenGL to using FreeGLUT and the latest Mesa implementation of OpenGL on Linux.
 
 Note: I'm working on Ubuntu 15.05/16.04 machines.
 
@@ -29,21 +29,70 @@ libglew1.6-dev                # Virtual package representing OpenGl Extension Wr
 libglew1.10                   # OpenGL Extension Wrangler - runtime environment (provides libglew1.6-dev)
 ```
 
-Compiling the EGLUT C wrapper files
------------------------------------
+Compiling the EGL and EGLUT C wrapper files
+-------------------------------------------
 
-Using EGLUT requires a static library that handles callbacks. This static library is part of EGLUT and the source code is located here:
+Using EGL requires a static library that handles callbacks for GLU NURBS. This static library is part of EGL and the source code is located here:
+
+```
+$EIFOGL/spec/compiler/ise/egl/c    # C code
+$EIFOGL/spec/compiler/ise/egl/h    # C headers
+$EIFOGL/spec/compiler/ise/egl/lib  # This is were the static library is put when compiled
+```
+
+To compile the libeglu.a library go to the directory 'eifogl/spec/compiler/ise/egl' and run:
+
+```
+$ make
+```
+
+Using EGLUT requires a static library that handles callbacks for GLUT (FreeGLUT). This static library is part of EGLUT and the source code is located here:
 
 ```
 $EIFOGL/spec/compiler/ise/eglut/c    # C code
 $EIFOGL/spec/compiler/ise/eglut/h    # C headers
-$EIFOGL/spec/compiler/ise/eglut/lib  # Makefile and static library
+$EIFOGL/spec/compiler/ise/eglut/lib  # This is were the static library is put when compiled
 ```
 
-To compile the eglut.a library:
+To compile the libeglut.a library go to the directory 'eifogl/spec/compiler/ise/eglut' and run:
 
 ```
-$EIFOGL/spec/compiler/ise/eglut/lib$ gcc -c ../c/eglut.c -I$ISE_EIFFEL/studio/spec/linux-x86-64/include -I/usr/include/GL -I$EIFOGL/spec/compiler/ise/eglut/include -o eglut.o
-$EIFOGL/spec/compiler/ise/eglut/lib$ ar rcs libeglut.a eglut.o
+$ make
 ```
 
+Upgrade status for libraries and EGLUT programs
+-----------------------------------------------
+
+Here you can see the status of the ongoing upgrade to EiffelStudio 16.05, FreeGLUT and the Mesa OpenGL libraries on Linux.
+
+Status can be one of **completed** (compiles and no warnings), **working** (compiles but has warnings), **ongoing**, **todo** and **wontfix**.
+
+| *Library* | *Status* | *Comment* |
+| egl     | **working** | 11 obsolete calls, 2 unused locals. |
+| spec/compiler/ise/egl | **working** | Needs some cleaning up and possibly minor redesign. |
+| eglaux  | **wontfix** | The GLAUX library is very old and should not be used any more. |
+| eglut   | **working** | Needs some cleaning up and possibly minor redesign. |
+| ewgl    | **wontfix** | WGL or Wiggle is an API between OpenGL and the windowing system interface of Windows. |
+| utility | **ongoing** | The Eiffel clusters 'cwrap', 'mixins' and 'structures' are working. |
+| spec/compiler/ise/egl | **working** | Needs some cleaning up and possibly minor redesign. |
+| spec/compiler/ise/eglaux | **wontfix** | See comment on eglaux above. |
+| spec/compiler/ise/eglut | **working** | Needs some cleaning up and possibly minor redesign. |
+| spec/compiler/ise/ewgl | **wontfix** | see comment on ewgl above. |
+| spec/compiler/se/ | **todo** | Need to look up the status on the SmartEiffel and LibertyEiffel compilers first. |
+| spec/platform | **wontfix** | see comment on ewgl above. |
+
+
+| *Program* | *Status* | *Comment* |
+| examples/eglut/simple | **completed** |  |
+| examples/eglut/edragnet | **working** | Needs some cleaning up and possibly minor redesign. |
+| examples/eglut/egl_primitives | **todo** |  |
+| examples/eglut/multi_sphere | **todo** |  |
+| examples/eglut/single_sphere | **todo** |  |
+| examples/eglut/simple_model_displayer | **todo** |  |
+| examples/eglut/nehe/lesson7 | **todo** |  |
+| examples/eglut/nehe/red_book | **todo** | 16 more tutorial programs! |
+
+References
+----------
+
+ a) https://www.opengl.org/wiki/Related_toolkits_and_APIs
