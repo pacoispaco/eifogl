@@ -19,7 +19,7 @@ In june 2016, after many years, I started working on upgrading the library to th
 
 Short term goals:
 
- 1. Ignore support for Eifogl on Windows.
+ 1. Ignore support for Eiffel OpenGL on Windows.
  2. Upgrade GLUT Eiffel binding to FreeGLUT.
  3. Update all GLUT example programs.
 
@@ -28,9 +28,9 @@ Long term and low prio goals:
  1. Remove obsolete stuff.
  2. Upgrade GLX binding.
 
-I'm currenly working on getting everything to compile with EIffelStudio 16.05 and FreeGLUT. I'm rusty on both but have got the example program 'simple' working. You can find that [here](https://github.com/pacoispaco/eifogl/tree/master/examples/eglut/simple).
+I'm currenly working on getting everything to compile with EiffelStudio 16.05 and FreeGLUT. I'm rusty on both but have got the example program 'simple' working. You can find that [here](https://github.com/pacoispaco/eifogl/tree/master/examples/eglut/simple).
 
-Since I haven't yet gone through all code, there's a lot of stuff here that may not work at the moment. I hope to fix that and remove all obsolete stuff in teh coming months.
+Since I haven't yet gone through all code, there's a lot of stuff here that may not work at the moment. I hope to fix that and remove all obsolete stuff in the coming months. You can check the status of ongoing work [here](https://github.com/pacoispaco/eifogl/blob/master/UPGRADE_NOTES_FREEGLUT.md).
 
 Installing
 ----------
