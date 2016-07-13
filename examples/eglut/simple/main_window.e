@@ -40,7 +40,7 @@ feature -- Access
 
     default_window_title: STRING
         once
-            Result := "EGLUT: Hello"
+            Result := "EGLUT simple program"
         end
 
     default_width: INTEGER = 250
