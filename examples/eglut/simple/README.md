@@ -3,6 +3,8 @@ Readme file for the EGLUT simple program
 
 The 'simple' program is a simple EGLUT based program that draws a white rectangle in a GLUT window.
 
+![EGLUT simple program](./simple.png)
+
 To compile and run
 ------------------
 
