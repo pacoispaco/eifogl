@@ -6,8 +6,6 @@ The 'simple' program is a simple EGLUT based program that draws a white rectangl
 To compile and run
 ------------------
 
-Make sure the environment EIFOGL is set to the root directory of the Eiffel OpenGL source code tree. 
-
 To compile:
 
 ```
@@ -20,8 +18,8 @@ To run:
 $ ./simple
 ```
 
-Excercises
-----------
+Exercises
+---------
 
  1. Change the size and title of the GLUT Window.
 
