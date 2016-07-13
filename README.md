@@ -30,6 +30,8 @@ Long term and low prio goals:
 
 I'm currenly working on getting everything to compile with EIffelStudio 16.05 and FreeGLUT. I'm rusty on both but have got the example program 'simple' working. You can find that [here](https://github.com/pacoispaco/eifogl/tree/master/examples/eglut/simple).
 
+Since I haven't yet gone through all code, there's a lot of stuff here that may not work at the moment. I hope to fix that and remove all obsolete stuff in teh coming months.
+
 Installing
 ----------
 
