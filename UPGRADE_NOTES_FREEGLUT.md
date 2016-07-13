@@ -68,6 +68,7 @@ Here you can see the status of the ongoing upgrade to EiffelStudio 16.05, FreeGL
 Status can be one of **completed** (compiles and no warnings), **working** (compiles but has warnings), **ongoing**, **todo** and **wontfix**.
 
 | *Library* | *Status* | *Comment* |
+| --------- | -------- | --------- |
 | egl     | **working** | 11 obsolete calls, 2 unused locals. |
 | spec/compiler/ise/egl | **working** | Needs some cleaning up and possibly minor redesign. |
 | eglaux  | **wontfix** | The GLAUX library is very old and should not be used any more. |
@@ -83,6 +84,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 
 
 | *Program* | *Status* | *Comment* |
+| --------- | -------- | --------- |
 | examples/eglut/simple | **completed** |  |
 | examples/eglut/edragnet | **working** | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/egl_primitives | **todo** |  |
