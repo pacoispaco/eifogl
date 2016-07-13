@@ -87,7 +87,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | --------- | -------- | --------- |
 | examples/eglut/simple | **completed** |  |
 | examples/eglut/edragnet | **working** | Needs some cleaning up and possibly minor redesign. |
-| examples/eglut/egl_primitives | **todo** |  |
+| examples/eglut/egl_primitives | **ongoing** | Compiles with some warnings but does not run properly. |
 | examples/eglut/multi_sphere | **todo** |  |
 | examples/eglut/single_sphere | **todo** |  |
 | examples/eglut/simple_model_displayer | **todo** |  |
