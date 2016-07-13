@@ -1,47 +1,43 @@
-indexing
-	description: "An EGLUT test application: dragnet2k"
-        application: "dragnet2k"
-	author: "Paul Cohen"
-	copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
-	date: "$Date: 2001/01/14 14:23:39 $"
-	revision: "$Revision: 1.1 $"
+note
+    description: "EGLUT example application"
+    application: "dragnet2k"
+    author: "Paul Cohen"
+    copyright: "Copyright (c) 1999, 2016 Paul Cohen, see file forum.txt"
 
 class
-	APPLICATION
-	
-inherit
-	
-	EGLUT_APPLICATION
-		export
-			{NONE} all
-		redefine
-			main_window,
-			initial_displaymode
-		end
-	
-creation
+    APPLICATION
 
-	make
-		
+inherit
+
+    EGLUT_APPLICATION
+        redefine
+            main_window,
+            initial_displaymode
+        end
+
+create
+
+    make
+
 feature -- Initialization
-	
-	init_gl is
-		do
-		end
-	
-	init_application is
-		do
-		end
-	
-feature	-- Access
-	
-	main_window: MAIN_WINDOW
-			-- The GLUT application's main window
-	
-	initial_displaymode: INTEGER is
-			-- The initial display mode. Redefine this in
-		do
-			Result := Glut_double + Glut_rgb + Glut_depth
-		end
-	
-end -- class APPLICATION
+
+    init_gl
+        do
+        end
+
+    init_application
+        do
+        end
+
+feature -- Access
+
+    main_window: MAIN_WINDOW
+            -- The GLUT application's main window
+
+    initial_displaymode: INTEGER
+            -- The initial display mode. Redefine this in
+        do
+            Result := Glut_double + Glut_rgb + Glut_depth
+        end
+
+end
