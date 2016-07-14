@@ -69,7 +69,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 
 | *Library* | *Status* | *Comment* |
 | --------- | -------- | --------- |
-| egl     | **working** | 11 obsolete calls, 2 unused locals. |
+| egl     | **working** | 11 obsolete calls and 2 unused locals. Check how much of current OpenGL API is covered. |
 | spec/compiler/ise/egl | **working** | Needs some cleaning up and possibly minor redesign. |
 | eglaux  | **wontfix** | The GLAUX library is very old and should not be used any more. |
 | eglut   | **working** | Needs some cleaning up and possibly minor redesign. |
@@ -87,7 +87,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | --------- | -------- | --------- |
 | examples/eglut/simple | **completed** |  |
 | examples/eglut/edragnet | **working** | Needs some cleaning up and possibly minor redesign. |
-| examples/eglut/egl_primitives | **ongoing** | Compiles with some warnings but does not run properly. |
+| examples/eglut/egl_primitives | **working** | 11 obsolete calls and 2 unused locals. Needs some cleaning up and minor redesign. |
 | examples/eglut/multi_sphere | **todo** |  |
 | examples/eglut/single_sphere | **todo** |  |
 | examples/eglut/simple_model_displayer | **todo** |  |
