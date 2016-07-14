@@ -35,38 +35,40 @@ feature {NONE} -- Initialization
             no_of_vertice_coordinates := n
             inspect no_of_vertice_coordinates
             when 2 then
-                if g.generator.is_equal ("INTEGER") then
+                if g.generator.is_equal ("INTEGER_32") then
                     vertex_draw_procedure := agent egl_vertex_2i (?, ?)
                 elseif g.generator.is_equal ("INTEGER_16") then
                     vertex_draw_procedure := agent egl_vertex_2s (?, ?)
-                elseif g.generator.is_equal ("REAL") then
+                elseif g.generator.is_equal ("REAL_32") then
                     vertex_draw_procedure := agent egl_vertex_2f (?, ?)
-                elseif g.generator.is_equal ("DOUBLE") then
+                elseif g.generator.is_equal ("REAL_64") then
                     vertex_draw_procedure := agent egl_vertex_2d (?, ?)
                 end
             when 3 then
-                if g.generator.is_equal ("INTEGER") then
+                if g.generator.is_equal ("INTEGER_32") then
                     vertex_draw_procedure := agent egl_vertex_3i (?, ?, ?)
                 elseif g.generator.is_equal ("INTEGER_16") then
                     vertex_draw_procedure := agent egl_vertex_3s (?, ?, ?)
-                elseif g.generator.is_equal ("REAL") then
+                elseif g.generator.is_equal ("REAL_32") then
                     vertex_draw_procedure := agent egl_vertex_3f (?, ?, ?)
-                elseif g.generator.is_equal ("DOUBLE") then
+                elseif g.generator.is_equal ("REAL_64") then
                     vertex_draw_procedure := agent egl_vertex_3d (?, ?, ?)
                 end
             when 4 then
-                if g.generator.is_equal ("INTEGER") then
+                if g.generator.is_equal ("INTEGER_32") then
                     vertex_draw_procedure := agent egl_vertex_4i (?, ?, ?, ?)
                 elseif g.generator.is_equal ("INTEGER_16") then
                     vertex_draw_procedure := agent egl_vertex_4s (?, ?, ?, ?)
-                elseif g.generator.is_equal ("REAL") then
+                elseif g.generator.is_equal ("REAL_32") then
                     vertex_draw_procedure := agent egl_vertex_4f (?, ?, ?, ?)
-                elseif g.generator.is_equal ("DOUBLE") then
+                elseif g.generator.is_equal ("REAL_64") then
                     vertex_draw_procedure := agent egl_vertex_4d (?, ?, ?, ?)
                 end
             end
             create vertices.make (1, resize_step)
             no_of_vertices := 0
+        ensure
+            has_vertex_draw_procedure: vertex_draw_procedure /= Void
         end
 
     make_2d
