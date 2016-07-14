@@ -51,6 +51,9 @@ feature {NONE} -- Implementation (GLUT callbacks)
             triangle_fan_d: EGL_TRIANGLE_FAN [DOUBLE]
             quads_d: EGL_QUADS [DOUBLE]
             quad_strip_d: EGL_QUAD_STRIP [DOUBLE]
+            polygon_s: EGL_POLYGON [INTEGER_16]
+            polygon_i: EGL_POLYGON [INTEGER]
+            polygon_f: EGL_POLYGON [REAL]
             polygon_d: EGL_POLYGON [DOUBLE]
             f0, f1, f2: REAL
         do
@@ -176,6 +179,18 @@ feature {NONE} -- Implementation (GLUT callbacks)
 --          quad_strip_d.draw
 
             -- WORKS FINE:
+            create polygon_s.make_2d
+            polygon_s.set_vertices (<<[{INTEGER_16} 1, {INTEGER_16} 1],[{INTEGER_16} 2, {INTEGER_16} 1],[{INTEGER_16} 2, {INTEGER_16} 2],[{INTEGER_16} 1, {INTEGER_16} 2]>>)
+            polygon_s.draw
+
+            create polygon_i.make_2d
+            polygon_i.set_vertices (<<[0, 0],[1, 0],[1, 1],[0, 1]>>)
+            polygon_i.draw
+
+            create polygon_f.make_2d
+            polygon_f.set_vertices (<<[{REAL} 0.5, {REAL} 0.5],[{REAL} 1.5, {REAL} 0.5],[{REAL} 1.5, {REAL} 1.5],[{REAL} 0.5, {REAL} 1.5]>>)
+            polygon_f.draw
+
             create polygon_d.make_2d
             polygon_d.set_vertices (<<[0.5,0.5],[1.5,0.5],[1.5,1.5],[0.5,1.5]>>)
             polygon_d.draw
