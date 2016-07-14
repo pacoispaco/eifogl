@@ -1,19 +1,17 @@
-/* 
+/*
  * EGLUT.C
  *
  * Eiffel GLUT callback functions
  *
- * desciption: "The Eiffel GLUT encapsulation needs to define 
- *              the callback functions that will be registered 
- *              with GLUT for each GLUT window. Note that the 
- *              same event callback function is used for every 
- *              window! It is simply registered for the window 
- *              that currently is the current GLUT window!" 
+ * desciption: "The Eiffel GLUT encapsulation needs to define
+ *              the callback functions that will be registered
+ *              with GLUT for each GLUT window. Note that the
+ *              same event callback function is used for every
+ *              window! It is simply registered for the window
+ *              that currently is the current GLUT window!"
  * library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
  * author: "Paul Cohen"
- * copyright: "Copyright (c) 1999 Paul Cohen, see file forum.txt"
- * date: "$Date: 2002/11/25 16:47:33 $"
- * version: "$Revision: 1.1 $"
+ * copyright: "Copyright (c) 1999, 2016 Paul Cohen, see file forum.txt"
  */
 
 #ifndef __EGLUT__
@@ -29,21 +27,21 @@ void eglut_initialize_library (EIF_OBJ an_eglut_app) {
   EIF_TYPE_ID eti;
 
   eglut_app = an_eglut_app;
-  /* Since the same feature is called by all callbacks (and the code does 
+  /* Since the same feature is called by all callbacks (and the code does
      not move) we should be able to do this. */
   eti = eif_type_id ("EGLUT_APPLICATION");
 
   if (eti == EIF_NO_TYPE) {
-	 eif_panic ("Not a type");
+     eif_panic ("Not a type");
   }
 
   eglut_ep = eif_procedure ("main_application_callback", eti);
 
   if (eglut_ep == NULL) {
-	 eif_panic ("eglut_ep == NULL!");
+     eif_panic ("eglut_ep == NULL!");
   }
 }
-  
+
 void eglut_display_function (void) {
   /* Display callback function. */
   (eglut_ep) (eif_access (eglut_app), EGLUT_DISPLAY_EVENT, 0, 0, 0, 0, '/0');

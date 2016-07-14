@@ -1,4 +1,4 @@
-/* 
+/*
  * EGLUT.H
  *
  * desciption: "Header file for EGLUT.C"
@@ -60,10 +60,11 @@
 /* Macro for quitting the application */
 #define eglut_quit(_exitcode_) exit(_exitcode_)
 
-extern EIF_OBJ eglut_app;
 /* Address of the Eiffel object EGLUT_APPLICATION created for each application. */
+extern EIF_OBJ eglut_app;
 
 /* EGLUT global function prototypes */
+void eglut_initialize_library (EIF_OBJ);
 void eglut_display_function (void);
 void eglut_reshape_function (int, int);
 void eglut_keyboard_function (unsigned char, int, int);

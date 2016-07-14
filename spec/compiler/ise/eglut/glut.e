@@ -223,12 +223,21 @@ feature {EGLUT_APPLICATION} -- EGLUT C interface
             a := argument_array.to_c
             glut_init ($i, $a)
             eglut_set_application_object (ceif_adopt (app))
+            eglut_initialize_library (app)
         end
 
     frozen eglut_set_application_object (p: POINTER)
             -- Set the application object in the EGLUT C interface
         external
             "C [macro <eglut.h>] (EIF_OBJ)"
+        end
+
+    frozen eglut_initialize_library (app: EGLUT_APPLICATION)
+            -- Initialize the eglut C library.
+        external
+            "C [macro <eglut.h>] (EIF_OBJ)"
+        alias
+            "eglut_initialize_library"
         end
 
 feature {EGLUT_TOP_LEVEL_WINDOW} -- EGLUT C interface
