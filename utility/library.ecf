@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-15-0 http://www.eiffel.com/developers/xml/configuration-1-15-0.xsd"
     name="eifogl_utility"
-    uuid="E1FFE100-60B0-0009-0001-000020160222"
+    uuid="E1FFE100-80B0-0009-0001-000020160222"
     library_target="eifogl_utility">
     <description>
         description: "ECF file for the EiffelOpenGL utility Library"
@@ -25,5 +25,6 @@
             </file_rule>
         </cluster>
         <cluster name="mixins" location="$EIFOGL/utility/mixins" recursive="true"/>
+        <cluster name="structures" location="$EIFOGL/utility/structures" recursive="true"/>
     </target>
 </system>
