@@ -1,9 +1,13 @@
 Notes on the upgrade to FreeGLUT
 ================================
 
-These are development notes on upgrading Eiffel OpenGL to using FreeGLUT and the latest Mesa implementation of OpenGL on Linux.
+These are development notes on upgrading EiffelOpenGL to using FreeGLUT and the latest Mesa implementation of OpenGL on Linux.
 
-Note: I'm working on Ubuntu 15.05/16.04 machines.
+Notes: 
+
+ 1. I'm working on Ubuntu 15.05/16.04 machines.
+
+ 2. You have to make sure that the environment variable EIFOGL points to the root directory of the EiffelOpenGL source code tree.
 
 Setting up development environment with FreeGLUT
 ------------------------------------------------
@@ -59,6 +63,8 @@ To compile the libeglut.a library go to the directory 'eifogl/spec/compiler/ise/
 ```
 $ make
 ```
+
+Both the above libraries can be built by running 'make' with the Makefile in the $EIFOGL directory
 
 Upgrade status for libraries and EGLUT programs
 -----------------------------------------------
