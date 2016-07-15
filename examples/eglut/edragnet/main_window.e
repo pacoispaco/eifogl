@@ -2,7 +2,7 @@ note
     description: "Main window of the application"
     application: "dragnet2k"
     author: "Paul Cohen"
-    copyright: "Copyright (c) 1999, 201, 20166 Paul Cohen, see file forum.txt"
+    copyright: "Copyright (c) 1999, 2016 Paul Cohen, see file forum.txt"
 
 class MAIN_WINDOW
 
@@ -73,9 +73,6 @@ feature {NONE} -- Initialization
             until
                 i = Animlen
             loop
-                print ("Calling init_display_list (")
-                print (i)
-                print (")%N")
                 init_display_list (i)
                 i := i + 1
             end
@@ -485,7 +482,7 @@ feature -- Debug
 
     ptf: PLAIN_TEXT_FILE
         once
-            create Result.make_open_write ("dragnet2k.out")
+            create Result.make_open_write ("dragnet2k.log")
         end
 
 end
