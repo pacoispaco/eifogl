@@ -3,7 +3,7 @@ Notes on the upgrade to FreeGLUT
 
 These are development notes on upgrading EiffelOpenGL to using FreeGLUT and the latest Mesa implementation of OpenGL on Linux.
 
-Notes: 
+Notes:
 
  1. I'm working on Ubuntu 15.05/16.04 machines.
 
@@ -73,32 +73,32 @@ Here you can see the status of the ongoing upgrade to EiffelStudio 16.05, FreeGL
 
 Status can be one of **completed** (compiles and no warnings), **working** (compiles but has warnings), **ongoing**, **todo** and **wontfix**.
 
-| *Library* | *Status* | *Comment* |
-| --------- | -------- | --------- |
-| egl     | **working** | 11 obsolete calls and 2 unused locals. Check how much of current OpenGL API is covered. |
-| spec/compiler/ise/egl | **working** | Needs some cleaning up and possibly minor redesign. |
-| eglaux  | **wontfix** | The GLAUX library is very old and should not be used any more. |
-| eglut   | **working** | Needs some cleaning up and possibly minor redesign. |
-| ewgl    | **wontfix** | WGL or Wiggle is an API between OpenGL and the windowing system interface of Windows. |
-| utility | **ongoing** | The Eiffel clusters 'cwrap', 'mixins' and 'structures' are working. |
-| spec/compiler/ise/egl | **working** | Needs some cleaning up and possibly minor redesign. |
-| spec/compiler/ise/eglaux | **wontfix** | See comment on eglaux above. |
-| spec/compiler/ise/eglut | **working** | Needs some cleaning up and possibly minor redesign. |
-| spec/compiler/ise/ewgl | **wontfix** | see comment on ewgl above. |
-| spec/compiler/se/ | **todo** | Need to look up the status on the SmartEiffel and LibertyEiffel compilers first. |
-| spec/platform | **wontfix** | see comment on ewgl above. |
+| *Library* | *Status* | *Eiffel conformance* | *Comment* |
+| --------- | -------- | -------------------- | --------- |
+| egl     | **working** | Not Void-safe. Uses old routine declaration for agents in EGL_PRIMITIVES. | Uses 11 obsolete calls and 2 unused locals. Check how much of current OpenGL API is covered. |
+| spec/compiler/ise/egl | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
+| eglaux  | **wontfix** |  | The GLAUX library is very old and should not be used any more. |
+| eglut   | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
+| ewgl    | **wontfix** |  | WGL or Wiggle is an API between OpenGL and the windowing system interface of Windows. |
+| utility | **ongoing** | Not Void-safe. | The Eiffel clusters 'cwrap', 'mixins' and 'structures' are working. |
+| spec/compiler/ise/egl | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
+| spec/compiler/ise/eglaux | **wontfix** |  | See comment on eglaux above. |
+| spec/compiler/ise/eglut | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
+| spec/compiler/ise/ewgl | **wontfix** |  | See comment on ewgl above. |
+| spec/compiler/se/ | **todo** |  | Need to look up the status on the SmartEiffel and LibertyEiffel compilers first. |
+| spec/platform | **wontfix** |  | See comment on ewgl above. |
 
 
-| *Program* | *Status* | *Comment* |
-| --------- | -------- | --------- |
-| examples/eglut/simple | **completed** |  |
-| examples/eglut/edragnet | **working** | Needs some cleaning up and possibly minor redesign. |
-| examples/eglut/egl_primitives | **working** | 11 obsolete calls and 2 unused locals. Needs some cleaning up and minor redesign. |
-| examples/eglut/multi_sphere | **todo** |  |
-| examples/eglut/single_sphere | **todo** |  |
-| examples/eglut/simple_model_displayer | **todo** |  |
-| examples/eglut/nehe/lesson7 | **todo** |  |
-| examples/eglut/nehe/red_book | **todo** | 16 more tutorial programs! |
+| *Program* | *Status* | *Eiffel conformance* | *Comment* |
+| --------- | -------- | -------------------- | --------- |
+| examples/eglut/simple | **completed** | Not Void-safe. |  |
+| examples/eglut/edragnet | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
+| examples/eglut/egl_primitives | **working** | Not Void-safe. | 11 obsolete calls and 2 unused locals. Needs some cleaning up and minor redesign. |
+| examples/eglut/multi_sphere | **todo** |  |  |
+| examples/eglut/single_sphere | **todo** |  |  |
+| examples/eglut/simple_model_displayer | **todo** |  |  |
+| examples/eglut/nehe/lesson7 | **todo** |  |  |
+| examples/eglut/nehe/red_book | **todo** |  | 16 more tutorial programs! |
 
 References
 ----------
