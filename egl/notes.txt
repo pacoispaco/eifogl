@@ -1,0 +1,21 @@
+Notes for EGL
+=============
+
+The EGL_PRIMITIVE class uses agents but uses an older Eiffel syntax for agents.
+If compiled with EiffelStudio 16.05 the compiler reports 1 VUAR(2) error and 12
+VJAR errors in the class EGL_PRIMITIVE. VJAR has to do with non compatible types
+for agent assigments and VUAR has to do with how agent invocation is done.
+
+This is due to two changes in the Eiffel syntax:
+
+ a) EiffelStudio 15.08 introduced a new syntax to simplify calls to the features taking one tuple argument.
+
+ b) One more major change in EiffelStudio 15.11 deals with routine classes (PROCEDURE, FUNCTION) which describe agents.
+
+See: https://svn.eecs.yorku.ca/repos/sel-open/misc/tutorial/agents/docs/agents-simplified.html
+
+This needs to be fixed but for now we can get away with adding the option 
+"is_obsolete_routine_type="true"" to the .ecf file:
+
+
+  <option warning="true" full_class_checking="true" is_obsolete_routine_type="true" void_safety="none"/>
