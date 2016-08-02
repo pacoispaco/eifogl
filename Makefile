@@ -9,7 +9,9 @@ libeglut.a:
 libraries:
 	$(MAKE) -C egl
 	$(MAKE) -C eglut
+	$(MAKE) -C utility
 
 clean:
 	rm -rf egl/EIFGENs
 	rm -rf eglut/EIFGENs
+	rm -rf utility/EIFGENs
