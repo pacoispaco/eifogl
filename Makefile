@@ -5,3 +5,11 @@ libeglu.a:
 
 libeglut.a:
 	$(MAKE) -C spec/compiler/ise/eglut
+
+libraries:
+	$(MAKE) -C egl
+	$(MAKE) -C eglut
+
+clean:
+	rm -rf egl/EIFGENs
+	rm -rf eglut/EIFGENs
