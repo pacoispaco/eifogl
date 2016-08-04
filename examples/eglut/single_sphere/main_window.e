@@ -32,10 +32,10 @@ feature {NONE} -- Initialization
             subscribe_to_mouse_events
             subscribe_to_keyboard_events
             subscribe_to_visibility_events
-                subscribe_to_entry_events
-                    subscribe_to_motion_events
-                        subscribe_to_passive_motion_events
-                        subscribe_to_special_events
+            subscribe_to_entry_events
+            subscribe_to_motion_events
+            subscribe_to_passive_motion_events
+            subscribe_to_special_events
 
 --          glut_init_displaymode (Glut_double + Glut_rgb + Glut_depth)
 
@@ -62,7 +62,7 @@ feature {NONE} -- Implementation (GLUT callbacks)
     on_display
             -- The window has been displayed
         do
-                        precursor
+            precursor
             egl_clear (Gl_color_buffer_bit + Gl_depth_buffer_bit)
                 glut_solid_sphere (1.0, 80, 64)
             egl_flush
@@ -73,16 +73,16 @@ feature {NONE} -- Implementation (GLUT callbacks)
     on_reshape (width, height: INTEGER)
             -- The window has been reshaped
         do
-                        precursor (width, height)
+            precursor (width, height)
             egl_viewport (0, 0, width, height)
             egl_matrix_mode (Gl_projection)
             egl_load_identity
             if width <= height then
                 egl_ortho (-1.5, 1.5, -1.5 * height / width,
-                       1.5 * height / width, -10.0, 10.0)
+                            1.5 * height / width, -10.0, 10.0)
             else
                 egl_ortho (-1.5 * width / height, 1.5 * width / height,
-                       -1.5, 1.5, -10.0, 10.0)
+                           -1.5, 1.5, -10.0, 10.0)
             end
             egl_matrix_mode (Gl_modelview)
             egl_load_identity
@@ -93,7 +93,7 @@ feature {NONE} -- Implementation (GLUT callbacks)
     on_keyboard (char: CHARACTER; modifier, x, y: INTEGER)
             -- A keboard event has been recieved
         do
-                        precursor (char, modifier, x, y)
+            precursor (char, modifier, x, y)
             if char.code = 27 then
                 print ("I want to exit!")
                 quit (0)
@@ -103,7 +103,7 @@ feature {NONE} -- Implementation (GLUT callbacks)
     on_mouse (button, state, x, y: INTEGER)
             -- A mouse event has been recieved
         do
-                        precursor (button, state, x, y)
+            precursor (button, state, x, y)
             if button = Glut_left_button and then state = Glut_down then
                 diffuse_material.put (diffuse_material @ 1 + 0.1, 1)
                 if diffuse_material @ 1 > 1.0 then
@@ -130,7 +130,7 @@ feature {NONE} -- Implementation (GLUT callbacks)
 
     on_visibility (state: INTEGER)
         do
-                        precursor (state)
+            precursor (state)
             glut_post_redisplay
         end
 
