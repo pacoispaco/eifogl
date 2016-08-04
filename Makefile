@@ -4,7 +4,8 @@ CLIBS = spec/compiler/ise/egl \
 EXAMPLES = examples/eglut/simple \
 		   examples/eglut/edragnet \
 		   examples/eglut/egl_primitives \
-		   examples/eglut/single_sphere
+		   examples/eglut/single_sphere \
+		   examples/eglut/multi_sphere
 
 .PHONY: clean all elibs $(ELIBS) clibs $(CLIBS) examples $(EXAMPLES)
 

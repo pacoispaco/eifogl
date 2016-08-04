@@ -64,7 +64,7 @@ To compile the libeglut.a library go to the directory 'eifogl/spec/compiler/ise/
 $ make
 ```
 
-Both the above libraries can be built by running 'make' with the Makefile in the $EIFOGL directory
+Both the above libraries can be built by running 'make' with the Makefile in the top-level $EIFOGL directory
 
 Upgrade status for libraries and EGLUT programs
 -----------------------------------------------
@@ -94,7 +94,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | examples/eglut/simple | **completed** | Not Void-safe. |  |
 | examples/eglut/edragnet | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/egl_primitives | **working** | Not Void-safe. | 11 obsolete calls and 2 unused locals. Needs some cleaning up and minor redesign. |
-| examples/eglut/multi_sphere | **todo** |  |  |
+| examples/eglut/multi_sphere | **todo** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/single_sphere | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/simple_model_displayer | **todo** |  |  |
 | examples/eglut/nehe/lesson7 | **todo** |  |  |
