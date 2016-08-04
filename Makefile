@@ -3,7 +3,8 @@ CLIBS = spec/compiler/ise/egl \
 		spec/compiler/ise/eglut
 EXAMPLES = examples/eglut/simple \
 		   examples/eglut/edragnet \
-		   examples/eglut/egl_primitives
+		   examples/eglut/egl_primitives \
+		   examples/eglut/single_sphere
 
 .PHONY: clean all elibs $(ELIBS) clibs $(CLIBS) examples $(EXAMPLES)
 

@@ -95,7 +95,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | examples/eglut/edragnet | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/egl_primitives | **working** | Not Void-safe. | 11 obsolete calls and 2 unused locals. Needs some cleaning up and minor redesign. |
 | examples/eglut/multi_sphere | **todo** |  |  |
-| examples/eglut/single_sphere | **todo** |  |  |
+| examples/eglut/single_sphere | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/simple_model_displayer | **todo** |  |  |
 | examples/eglut/nehe/lesson7 | **todo** |  |  |
 | examples/eglut/nehe/red_book | **todo** |  | 16 more tutorial programs! |
