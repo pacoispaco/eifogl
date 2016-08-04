@@ -11,4 +11,4 @@ eglut.o: c/eglut.c
 	cc -Wall -c $(CFLAGS) c/eglut.c
      
 clean:
-	rm eglut.o libeglut.a
+	rm -f lib/libeglut.a

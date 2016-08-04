@@ -1,17 +1,31 @@
-all: libeglu.a libeglut.a
+ELIBS = egl eglut utility
+CLIBS = spec/compiler/ise/egl \
+		spec/compiler/ise/eglut
+EXAMPLES = examples/eglut/simple \
+		   examples/eglut/edragnet \
+		   examples/eglut/egl_primitives
 
-libeglu.a:
-	$(MAKE) -C spec/compiler/ise/egl
+.PHONY: clean all elibs $(ELIBS) clibs $(CLIBS) examples $(EXAMPLES)
 
-libeglut.a:
-	$(MAKE) -C spec/compiler/ise/eglut
+all: elibs clibs
 
-libraries:
-	$(MAKE) -C egl
-	$(MAKE) -C eglut
-	$(MAKE) -C utility
+clibs: $(CLIBS)
+
+$(CLIBS):
+	$(MAKE) -C $@
+
+elibs: $(ELIBS)
+
+$(ELIBS):
+	$(MAKE) -C $@
 
 clean:
-	rm -rf egl/EIFGENs
-	rm -rf eglut/EIFGENs
-	rm -rf utility/EIFGENs
+	-for d in $(ELIBS) $(CLIBS); do $(MAKE) clean -C $$d; done
+
+examples: $(EXAMPLES)
+
+$(EXAMPLES):
+	$(MAKE) -C $@
+
+cleanexamples:
+	-for d in $(EXAMPLES); do $(MAKE) clean -C $$d; done

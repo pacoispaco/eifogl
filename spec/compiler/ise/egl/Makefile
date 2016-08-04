@@ -11,4 +11,4 @@ eglu.o: c/eglu_nurbs.c
 	cc -Wall -c $(CFLAGS) c/eglu_nurbs.c
      
 clean:
-	rm eglu.o libeglu.a
+	rm -f lib/libeglu.a
