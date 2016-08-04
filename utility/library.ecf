@@ -18,7 +18,7 @@
             <exclude>/\.git$</exclude>
         </file_rule>
         <option warning="true" full_class_checking="true" is_obsolete_routine_type="true" void_safety="none"/>
-        <library name="base" location="$ISE_EIFFEL\library\base\base.ecf" readonly="true"/>
+        <library name="base" location="$ISE_EIFFEL\library\base\base-safe.ecf" readonly="true"/>
         <cluster name="cwrap" location="$EIFOGL/utility/cwrap" recursive="true">
             <file_rule>
                 <exclude>/spec/se/c_functions.e$</exclude>
