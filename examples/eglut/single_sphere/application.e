@@ -14,7 +14,7 @@ inherit
             main_window
         end
 
-creation
+create
 
     make
 
