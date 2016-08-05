@@ -18,7 +18,9 @@
             <exclude>/\.git$</exclude>
         </file_rule>
         <option warning="true" full_class_checking="true" is_obsolete_routine_type="true" void_safety="none"/>
-        <library name="base" location="$ISE_EIFFEL\library\base\base-safe.ecf" readonly="true"/>
+        <external_include location="$(EIFOGL)/utility/libtga/include/"/>
+        <library name="base" location="$ISE_EIFFEL/library/base/base-safe.ecf" readonly="true"/>
+        <library name="gobo-time" location="$ISE_EIFFEL/contrib/library/gobo/library/kernel/library.ecf"/>
         <cluster name="cwrap" location="$EIFOGL/utility/cwrap" recursive="true">
             <file_rule>
                 <exclude>/spec/se/c_functions.e$</exclude>
@@ -26,5 +28,6 @@
         </cluster>
         <cluster name="mixins" location="$EIFOGL/utility/mixins" recursive="true"/>
         <cluster name="structures" location="$EIFOGL/utility/structures" recursive="true"/>
+        <cluster name="tga" location="$EIFOGL/utility/tga" recursive="true"/>
     </target>
 </system>
