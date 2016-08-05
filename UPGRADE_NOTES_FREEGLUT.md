@@ -97,7 +97,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | examples/eglut/multi_sphere | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/single_sphere | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/simple_model_displayer | **ongoing** | Not Void-safe. | Needs rewriting. |
-| examples/eglut/nehe/lesson7 | **todo** |  |  |
+| examples/eglut/nehe/lesson7 | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/nehe/red_book | **todo** |  | 16 more tutorial programs! |
 
 References
