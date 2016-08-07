@@ -63,3 +63,11 @@ $ git clone https://github.com/pacoispaco/eifogl.git
 $ make
 ```
 
+Writing EGLUT based EiffelOpenGL programs
+-----------------------------------------
+
+There are a number of example programs in the directory examples/eglut. To use EGLUT you need to implement at the least, two classes and do it according to the following constraints:
+
+ * One of the classes must inherit from the EGLUT_APPLICATION class. In all the example programs this class is simply called APPLICATION. This is the root class of your EGLUT application. You must list the feature "make" as a creation procedure and you must specify it as the root class creation procedure in your applications .ecf file. You should not redefine this "make" feature unless you *really* understand the EGLUT library, since this feature sets up the wrapping of the GLUT C library and makes sure the neccessary callbacks from the C GLUT library will work. In all the example programs this class is simply called APPLICATION. **IMPORTANT NOTE:** You must specifiy your EGLUT_APPLICATION class as visible in your .ecf file. This is so that the GLUT callbacks from the GLUT C library will work.
+
+ * The other class must inherit from the EGLUT_TOP_LEVEL_WINDOW class. In all the example programs this class is simply called MAIN_WINDOW. In this class you implement your GLUT-based OpenGL program and there are two parts to this. First you ineed to specifiy which GLUT window events you want to subscribe to and then what you want to happen when thos events occur. Secondly you of course want to write your OpenGL program using all the OpenGL features available.
