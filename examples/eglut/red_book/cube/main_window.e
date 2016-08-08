@@ -44,9 +44,9 @@ feature -- Access
             Result := "EGLUT: cube"
         end
 
-    default_width: INTEGER = 150
+    default_width: INTEGER = 250
 
-    default_height: INTEGER = 150
+    default_height: INTEGER = 250
 
 feature {NONE} -- Implementation (GLUT callbacks
 
