@@ -9,8 +9,8 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 
 | *Program* | *Screenshot* | *Status* | *Eiffel conformance* | *Comment* |
 | --------- | ------------ | -------- | -------------------- | --------- |
-| aacanti   |  | **todo** |  |  |
-| aaindex   |  | **todo** |  |  |
+| aacanti   | ![Screenshot](./aacanti/aacanti.png) | **working** | Not Void-safe. | 9 obsolete calls. |
+| aaindex   |  | **working (maybe!)** | Not Void-safe. | Does not work on any of my machines due to the lack of support for FB/index in my OpenGL implementation. 9 obsolete calls. |
 | aapoly    |  | **todo** |  |  |
 | aargb     |  | **todo** |  |  |
 | alpha     |  | **todo** |  |  |
