@@ -35,33 +35,27 @@ Installing and setting up a development environment
 ---------------------------------------------------
 
  1. Install EiffelStudio Enterprise or the GPL licensed version from https://www.eiffel.org/downloads
-
  2. Make sure the ISE_EIFFEL environment variable is set.
-
  3. Install Mesa OpenGL and FreeGLUT.
 ```
 $ sudo apt-get install freeglut3 freeglut3-dev libglew-dev
 ```
-
  4. Install the Mesa utilities which include **glxinfo** tool that displays info on your OpenGL installation, i.e. capabilities of the OpenGL implementation.
 ```
 $ sudo apt-get install mesa-utils
 ```
-
  5. Clone this git repo.
 ```
 $ git clone https://github.com/pacoispaco/eifogl.git
 ```
-
  6. Make sure the EIFOGL environment variable is set to point to the root directory where you cloned your local copy of eifogl; typically something like this:
 ```
 $ export EIFOGL=~/myprojects/eifogl
 ```
 You should of course put the environment variables you need to have set in your .bashrc or other appropriate dotfile.
-
  7. Compile the C wrapper libraries in EiffelOpenGL. Run make in the root directory.
 ```
-$ make
+$ make clibs
 ```
 
 Writing EGLUT based EiffelOpenGL programs
