@@ -1,8 +1,21 @@
 History of EiffelOpenGL releases
 ================================
 
+Release 0.4.0 (2016-MM-DD)
+--------------------------
+
+Major changes compared to Release 0.3.0:
+
+* All GL, GLU, GLUT and EGLUT programs adapted to EiffelStudio 16.05 and 
+  FreeGLUT.
+* The cwrap, mixins, libtga and tga libraries in utility adapted to 
+  EiffelStudio 16.05 and FreeGLUT.
+* Minor reorganization of directory structure for programs.
+
 Release 0.3.0 (2003-MM-DD)
 --------------------------
+
+*Note*: This was never released!
 
 Major changes compared to Release 0.2.0:
 
@@ -11,12 +24,13 @@ Major changes compared to Release 0.2.0:
 * Added support for reading TGA/Targa image files.
 * More Red Book example programs translated to Eiffel.
 * An example program demonstrating the use of textures added.
-* Some refactoring and adaption to the Gobo library in order to make it easy to port to other Eiffel compilers.
+* Some refactoring and adaption to the Gobo library in order to make it easy 
+  to port to other Eiffel compilers.
 * Made to work with SmartEiffel.
 * Uses Gobo Geant tool to build example programs.
 
 Contents:
-* EGL. Eiffel wrapping of the OpenGL GL 1.1 C API 
+* EGL. Eiffel wrapping of the OpenGL GL 1.1 C API
   ~75 functions (of ~200) and all constants.
 * EGLU. Eiffel wrapping of the OpenGL GLU C API.
   ~16 functions (of ~50) and all constants.
@@ -30,7 +44,8 @@ Contents:
   2 EGL/EGLU + EWGL + WEL (ISE Eiffel) programs.
   21 EGL/EGLU + EGLUT programs consisting of
   - 1 simple GLUT program with a single window.
-  - 1 simple GLUT program with two windows, one of which contains a GLUT subwindow.
+  - 1 simple GLUT program with two windows, one of which contains a GLUT i
+    subwindow.
   - 1 test/example program that uses GL primitives and stippling patterns.
   - 16 translated C programs from the Red Book examples collection.
   - 1 animated "chessboard flag" program based on an existing C program.
@@ -46,7 +61,8 @@ Platforms supported:
 
 * Microsoft Win32 (yes)
 * Linux/X Window (no)
-  EGLUT should work as well as should EGL/EGLU on Mesa, but XGL is not wrapped yet.
+  EGLUT should work as well as should EGL/EGLU on Mesa, but XGL is not wrapped
+   yet.
 * MacOS (no)
 
 Release 0.2.0 (2002-01-01)
@@ -54,16 +70,18 @@ Release 0.2.0 (2002-01-01)
 
 Major changes compared to Release 0.1.0:
 
-* A large number of OpenGL functions have been added to the main wrapper class EGL. 
+* A large number of OpenGL functions have been added to the main wrapper class
+  EGL.
 * More OpenGL GLU functions have been added to the GLU wrapper class EGLU.
-* Basic support for NURBS has been added. 
-* Wrapper classes for all the OpenGL primitives has been added. 
-* Support for stippling patterns has been added. 
-* An example program for testing the OpenGL primitives and stippling patterns. 
-* 7 example programs in C from the Red Book that have been translated to Eiffel. 
-* A few bugs have been fixed. 
-* A lot of code has been tidied up. 
-* I have stopped working on EGLAUX in order to focus on the wrappings of GLUT and OpenGL proper.
+* Basic support for NURBS has been added.
+* Wrapper classes for all the OpenGL primitives has been added.
+* Support for stippling patterns has been added.
+* An example program for testing the OpenGL primitives and stippling patterns.
+* 7 example programs in C from the Red Book that have been translated to Eiffel.
+* A few bugs have been fixed.
+* A lot of code has been tidied up.
+* I have stopped working on EGLAUX in order to focus on the wrappings of GLUT i
+  and OpenGL proper.
 
 Contents:
 * Eiffel wrapping of the OpenGL GL 1.1 C API
@@ -116,6 +134,3 @@ Platforms supported:
 * Microsoft Win32 (yes)
 * Linux/X Window (no)
 * MacOS (no)
-
-
-
