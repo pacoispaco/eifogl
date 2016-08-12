@@ -17,11 +17,11 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | alpha3d   |  ![Screenshot](./alpha3d/alpha3d.png) | **working** | Not Void-safe. | 9 obsolete calls. |
 | bezcurve  |  ![Screenshot](./bezcurve/bezcurve.png) | **working** | Not Void-safe. | 9 obsolete calls. |
 | cube      |  ![Screenshot](./cube/cube.png) | **working** | Not Void-safe. | 6 obsolete calls. |
-| drawf     |  | **todo** |  |  |
-| font      |  | **todo** |  |  |
-| light     |  | **todo** |  |  |
-| lines     |  | **todo** |  |  |
-| planet    |  | **todo** |  |  |
+| drawf     |  ![Screenshot](./drawf/drawf.png) | **working** | Not Void-safe. | 9 obsolete calls. |
+| font      |  ![Screenshot](./font/font.png) | **working** | Not Void-safe. | 11 obsolete calls. |
+| light     |  ![Screenshot](./light/light.png) | **working** | Not Void-safe. | 9 obsolete calls. |
+| lines     |  ![Screenshot](./lines/lines.png) | **working** | Not Void-safe. | 9 obsolete calls. |
+| planet    |  ![Screenshot](./planet/planet.png) | **working** | Not Void-safe. | 9 obsolete calls. |
 | surface   |  | **todo** |  |  |
 | teapots   |  | **todo** |  |  |
 | torus     |  | **todo** |  |  |
