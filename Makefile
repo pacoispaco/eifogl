@@ -13,6 +13,7 @@ EXAMPLES = examples/eglut/simple \
 		   examples/eglut/red_book/aargb \
 		   examples/eglut/red_book/alpha \
 		   examples/eglut/red_book/alpha3d \
+		   examples/eglut/red_book/bezcurve \
 		   examples/eglut/red_book/cube
 
 .PHONY: clean all elibs $(ELIBS) clibs $(CLIBS) examples $(EXAMPLES)
