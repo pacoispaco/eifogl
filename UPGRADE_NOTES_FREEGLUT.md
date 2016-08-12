@@ -98,7 +98,7 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | examples/eglut/single_sphere | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/simple_model_displayer | **ongoing** | Not Void-safe. | Needs rewriting. |
 | examples/eglut/nehe/lesson7 | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
-| examples/eglut/nehe/red_book | **todo** |  | 16 more tutorial programs! |
+| examples/eglut/nehe/red_book | **working** | Not Void-safe. | 16 example programs from The Red Book. On average 10 obsolete calls per program. Needs some cleaning up. On program does not run due to lack of support for FB/Index in my OpenGL implementations. |
 
 References
 ----------
