@@ -6,7 +6,12 @@ EXAMPLES = examples/eglut/simple \
 		   examples/eglut/egl_primitives \
 		   examples/eglut/single_sphere \
 		   examples/eglut/multi_sphere \
-		   examples/eglut/nehe/lesson7
+		   examples/eglut/nehe/lesson7 \
+		   examples/eglut/red_book/aacanti \
+		   examples/eglut/red_book/aaindex \
+		   examples/eglut/red_book/aapoly \
+		   examples/eglut/red_book/aargb \
+		   examples/eglut/red_book/cube
 
 .PHONY: clean all elibs $(ELIBS) clibs $(CLIBS) examples $(EXAMPLES)
 

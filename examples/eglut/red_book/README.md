@@ -11,8 +11,8 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | --------- | ------------ | -------- | -------------------- | --------- |
 | aacanti   | ![Screenshot](./aacanti/aacanti.png) | **working** | Not Void-safe. | 9 obsolete calls. |
 | aaindex   |  | **working (maybe!)** | Not Void-safe. | Does not work on any of my machines due to the lack of support for FB/index in my OpenGL implementation. 9 obsolete calls. |
-| aapoly    |  | **todo** |  |  |
-| aargb     |  | **todo** |  |  |
+| aapoly    |  ![Screenshot](./aapoly/aapoly.png) | **working** | Not Void-safe. | 20 obsolete calls. |
+| aargb     |  ![Screenshot](./aargb/aargb.png) | **working** | Not Void-safe. | 9 obsolete calls. |
 | alpha     |  | **todo** |  |  |
 | alpha3d   |  | **todo** |  |  |
 | bezcurve  |  | **todo** |  |  |
