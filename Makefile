@@ -19,7 +19,10 @@ EXAMPLES = examples/eglut/simple \
 		   examples/eglut/red_book/font \
 		   examples/eglut/red_book/light \
 		   examples/eglut/red_book/lines \
-		   examples/eglut/red_book/planet
+		   examples/eglut/red_book/planet \
+		   examples/eglut/red_book/surface \
+		   examples/eglut/red_book/teapots\
+		   examples/eglut/red_book/torus
 
 .PHONY: clean all elibs $(ELIBS) clibs $(CLIBS) examples $(EXAMPLES)
 

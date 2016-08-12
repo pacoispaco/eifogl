@@ -22,6 +22,6 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | light     |  ![Screenshot](./light/light.png) | **working** | Not Void-safe. | 9 obsolete calls. |
 | lines     |  ![Screenshot](./lines/lines.png) | **working** | Not Void-safe. | 9 obsolete calls. |
 | planet    |  ![Screenshot](./planet/planet.png) | **working** | Not Void-safe. | 9 obsolete calls. |
-| surface   |  | **todo** |  |  |
-| teapots   |  | **todo** |  |  |
-| torus     |  | **todo** |  |  |
+| surface   |  ![Screenshot](./surface/surface.png) | **working** | Not Void-safe. | 10 obsolete calls. |
+| teapots   |  ![Screenshot](./teapots/teapots.png) | **working** | Not Void-safe. | 10 obsolete calls. |
+| torus     |  ![Screenshot](./torus/torus.png) | **working** | Not Void-safe. | 9 obsolete calls. |
