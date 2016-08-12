@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-15-0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-15-0 http://www.eiffel.com/developers/xml/configuration-1-15-0.xsd"
+        name="aargb" 
+        uuid="3A34AF3D-3EE9-4C6F-888A-C16732772A81">
+    <target name="aargb">
+        <root class="APPLICATION" feature="make"/>
+        <option warning="true" full_class_checking="true" is_obsolete_routine_type="true" void_safety="none">
+            <assertions precondition="true" postcondition="true" check="true" invariant="true" loop="true" supplier_precondition="true"/>
+        </option>
+        <setting name="console_application" value="true"/>
+        <setting name="concurrency" value="scoop"/>
+        <external_include location="/usr/include/GL/"/>
+        <external_include location="$(EIFOGL)/egl/include/"/>
+        <external_include location="$(EIFOGL)/spec/compiler/ise/eglut/include/"/>
+        <external_include location="$(EIFOGL)/spec/compiler/ise/egl/include/"/>
+        <external_object location="/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1"/>
+        <external_object location="/usr/lib/x86_64-linux-gnu/libGLU.so.1"/>
+        <external_object location="/usr/lib/x86_64-linux-gnu/libglut.so.3"/>
+        <external_object location="$(EIFOGL)/spec/compiler/ise/eglut/lib/libeglut.a"/>
+        <external_object location="$(EIFOGL)/spec/compiler/ise/egl/lib/libeglu.a"/>
+        <library name="base" location="$ISE_EIFFEL\library\base\base-safe.ecf"/>
+        <library name="egl" location="$EIFOGL\egl\library.ecf"/>
+        <library name="eglut" location="$EIFOGL\eglut\library.ecf">
+            <visible class="EGLUT_APPLICATION"/>
+        </library>
+        <library name="utility" location="$EIFOGL\utility\library.ecf"/>
+        <cluster name="project" location=".\" recursive="true">
+            <file_rule>
+                <exclude>/.git$</exclude>
+            </file_rule>
+        </cluster>
+    </target>
+</system>
