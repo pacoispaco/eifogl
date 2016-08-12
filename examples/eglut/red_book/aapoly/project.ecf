@@ -22,9 +22,7 @@
         <external_object location="$(EIFOGL)/spec/compiler/ise/egl/lib/libeglu.a"/>
         <library name="base" location="$ISE_EIFFEL\library\base\base-safe.ecf"/>
         <library name="egl" location="$EIFOGL\egl\library.ecf"/>
-        <library name="eglut" location="$EIFOGL\eglut\library.ecf">
-            <visible class="EGLUT_APPLICATION"/>
-        </library>
+        <library name="eglut" location="$EIFOGL\eglut\library.ecf"/>
         <library name="utility" location="$EIFOGL\utility\library.ecf"/>
         <cluster name="project" location=".\" recursive="true">
             <file_rule>

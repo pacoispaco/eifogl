@@ -24,9 +24,7 @@
         <library name="time" location="$ISE_EIFFEL\library\time\time-safe.ecf"/>
         <library name="gobo-time" location="$ISE_EIFFEL/contrib/library/gobo/library/time/library.ecf"/>
         <library name="egl" location="$EIFOGL\egl\library.ecf"/>
-        <library name="eglut" location="$EIFOGL\eglut\library.ecf">
-            <visible class="EGLUT_APPLICATION"/>
-        </library>
+        <library name="eglut" location="$EIFOGL\eglut\library.ecf"/>
         <library name="utility" location="$EIFOGL\utility\library.ecf"/>
         <cluster name="application" location=".\" recursive="true">
             <file_rule>

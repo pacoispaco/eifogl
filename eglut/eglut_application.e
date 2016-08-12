@@ -1,8 +1,10 @@
 note
     description: "An EGLUT application. There is only one instance%
-             %of this class in any EGLUT application. All EGLUT%
-                     %applications must have one class that inherits%
-                     %from this class."
+                 %of this class in any EGLUT application. All EGLUT%
+                 %applications must have one class that inherits%
+                 %from this class. NOTE: This class must be set as%
+                 %visible in the .ecf file in order for the C callbacks%
+                 % to work!"
     library: "EGLUT - Eiffel wrapping of the OpenGL GLUT library"
     compilers: "ISE 5.2, SmallEiffel -0.74"
     platforms: "All platforms that have GLUT implementations."
