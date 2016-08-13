@@ -1,8 +1,3 @@
-Author:	Paul Cohen
-Copyright: Copyright (c) 2001 Paul Cohen
-Date: $Date: 2002/01/02 22:21:01 $
-Revision: $Revision: 1.1 $
-
 README file for eifogl/tools
 ============================
 
