@@ -100,6 +100,19 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | examples/eglut/nehe/lesson7 | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | examples/eglut/nehe/red_book | **working** | Not Void-safe. | 16 example programs from The Red Book. On average 10 obsolete calls per program. Needs some cleaning up. On program does not run due to lack of support for FB/Index in my OpenGL implementations. |
 
+TODO list for tidying up
+------------------------
+
+ 1. Make sure there are README.md files for all directories that need it.
+ 2. Delete obsolete code.
+ 3. Move spec code to respective top level directory for that library. This mean we get:
+    * **egl/spec** with **ise** and **se** subdirectories.
+    * **eglaux/spec** with **ise** and **se** subdirectories. This should be marked as obsolete but not deleted.
+    * **eglut/spec** with **ise** and **se** subdirectories.
+    * **ewgl/spec** with **ise** and **se** subdirectories. This should be marked as not maintained.
+    * **ewglwel/spec** with **ise** and **se** subdirectories. This should be marked as not maintained.
+ 4. Tag everything as release 0.4.0!
+
 References
 ----------
 
