@@ -1,11 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Description: Script for generating Eiffel wrappers of C header files.
 # Authors: Paul Cohen
-# Date: $Date:$
-# Revision: $Revision: $
-# Head URL: $HeadURL: $
-# Last changed by: $Author: $
+# Copyright: Copyright (c) 2001, 2016 Paul Cohen, see file forum.txt
 
 import os.path
 from optparse import OptionParser
@@ -14,10 +11,10 @@ def eiffel_class_name (efile, hfilename):
     """Eiffel class name for Eiffel file 'efile', or if that is None, for the
        given C header file 'hfilename'."""
     if efile:
-        return efile.split (".e")[0].upper () 
+        return efile.split (".e")[0].upper ()
     else:
         return hfilename.split (".h")[0].upper () + "_C_HEADER_FILE"
-        
+
 def eiffel_c_define (line, hfilename):
     """Eiffel wrapper of C define in 'line'."""
     items = line.split ()
@@ -29,11 +26,11 @@ def eiffel_c_define (line, hfilename):
             "C [macro <%s>]"
         alias
             "%s"
-        end""" % (symbol.lower (), hfilename, symbol.upper ()) 
+        end""" % (symbol.lower (), hfilename, symbol.upper ())
     else:
         result = ""
     return result
-    
+
 def generate_efile (hfile, efile, startline):
     """Generate the Eiffel file 'efile' from the C header file 'hfile'. Begin
        generating wrapper features after the line matching 'startline'."""
@@ -86,11 +83,7 @@ def main():
     if not os.path.isfile (args[0]):
         parser.error ("'%s' is not a file" % (args[0]))
 
-    #print options
-    #print args
-    
     generate_efile (args[0], options.efile, options.startline)
 
 if __name__ == '__main__':
     main()
-
