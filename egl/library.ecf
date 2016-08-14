@@ -18,11 +18,8 @@
             <exclude>/\.git$</exclude>
         </file_rule>
         <option warning="true" full_class_checking="true" is_obsolete_routine_type="true" void_safety="none"/>
-
         <library name="base" location="$ISE_EIFFEL/library/base/base-safe.ecf" readonly="true"/>
         <library name="eifogl_utility" location="$EIFOGL/utility/library.ecf" readonly="true"/>
-
         <cluster name="egl" location="." recursive="true"/>
-        <cluster name="egl_spec" location="../spec/compiler/ise/egl" recursive="true"/>
     </target>
 </system>
