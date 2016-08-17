@@ -1,4 +1,0 @@
--- Name of h file to create:
-eglut_application.h
--- name of feature to be called from eglut.c:
-mac	EGLUT_APPLICATION	main_application_callback
