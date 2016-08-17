@@ -93,16 +93,9 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 TODO list for tidying up
 ------------------------
 
- 1. Make sure there are README.md files for all directories that need it.
- 2. Review doc cluster and update documentation.
- 3. Delete obsolete code.
- 4. Move spec code to respective top level directory for that library. This mean we get:
-    * **egl/spec** with **ise** and **se** subdirectories.
-    * **eglaux/spec** with **ise** and **se** subdirectories. This should be marked as obsolete but not deleted.
-    * **eglut/spec** with **ise** and **se** subdirectories.
-    * **ewgl/spec** with **ise** and **se** subdirectories. This should be marked as not maintained.
-    * **ewglwel/spec** with **ise** and **se** subdirectories. This should be marked as not maintained.
- 5. Tag everything as release 0.4.0!
+ 1. Review doc cluster and update documentation.
+ 2. Delete obsolete code.
+ 3. Tag everything as release 0.4.0!
 
 References
 ----------
