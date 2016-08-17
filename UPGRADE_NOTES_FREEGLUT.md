@@ -39,12 +39,11 @@ Compiling the EGL and EGLUT C wrapper files
 Using EGL requires a static library that handles callbacks for GLU NURBS. This static library is part of EGL and the source code is located here:
 
 ```
-$EIFOGL/spec/compiler/ise/egl/c    # C code
-$EIFOGL/spec/compiler/ise/egl/h    # C headers
-$EIFOGL/spec/compiler/ise/egl/lib  # This is were the static library is put when compiled
+$EIFOGL/clib            # C code
+$EIFOGL/clib/include    # C headers
 ```
 
-To compile the libeglu.a library go to the directory 'eifogl/spec/compiler/ise/egl' and run:
+To compile the libeglu.a library go to the directory 'eifogl/egl/clib' and run:
 
 ```
 $ make
@@ -53,12 +52,11 @@ $ make
 Using EGLUT requires a static library that handles callbacks for GLUT (FreeGLUT). This static library is part of EGLUT and the source code is located here:
 
 ```
-$EIFOGL/spec/compiler/ise/eglut/c    # C code
-$EIFOGL/spec/compiler/ise/eglut/h    # C headers
-$EIFOGL/spec/compiler/ise/eglut/lib  # This is were the static library is put when compiled
+$EIFOGL/eglut/clib      # C code
+$EIFOGL/eglut/include   # C headers
 ```
 
-To compile the libeglut.a library go to the directory 'eifogl/spec/compiler/ise/eglut' and run:
+To compile the libeglut.a library go to the directory 'eifogl/eglut/clib' and run:
 
 ```
 $ make
@@ -76,7 +74,6 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | *Library* | *Status* | *Eiffel conformance* | *Comment* |
 | --------- | -------- | -------------------- | --------- |
 | egl     | **working** | Not Void-safe. Uses old routine declaration for agents in EGL_PRIMITIVES. | Uses 11 obsolete calls and 2 unused locals. Check how much of current OpenGL API is covered. |
-| spec/compiler/ise/egl | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | eglaux  | **wontfix** |  | The GLAUX library is very old and should not be used any more. |
 | eglut   | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | ewgl    | **wontfix** |  | WGL or Wiggle is an API between OpenGL and the windowing system interface of Windows. |
