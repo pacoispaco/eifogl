@@ -81,13 +81,6 @@ Status can be one of **completed** (compiles and no warnings), **working** (comp
 | eglut   | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
 | ewgl    | **wontfix** |  | WGL or Wiggle is an API between OpenGL and the windowing system interface of Windows. |
 | utility | **ongoing** | Not Void-safe. | The Eiffel clusters 'cwrap', 'mixins' and 'structures' are working. |
-| spec/compiler/ise/egl | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
-| spec/compiler/ise/eglaux | **wontfix** |  | See comment on eglaux above. |
-| spec/compiler/ise/eglut | **working** | Not Void-safe. | Needs some cleaning up and possibly minor redesign. |
-| spec/compiler/ise/ewgl | **wontfix** |  | See comment on ewgl above. |
-| spec/compiler/se/ | **todo** |  | Need to look up the status on the SmartEiffel and LibertyEiffel compilers first. |
-| spec/platform | **wontfix** |  | See comment on ewgl above. |
-
 
 | *Program* | *Status* | *Eiffel conformance* | *Comment* |
 | --------- | -------- | -------------------- | --------- |
