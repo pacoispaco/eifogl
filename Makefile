@@ -1,6 +1,6 @@
 ELIBS = egl eglut utility
-CLIBS = spec/compiler/ise/egl \
-		spec/compiler/ise/eglut
+CLIBS = egl/clib \
+		eglut/clib
 EXAMPLES = examples/eglut/simple \
 		   examples/eglut/edragnet \
 		   examples/eglut/egl_primitives \

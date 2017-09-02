@@ -25,6 +25,6 @@
         <cluster name="eglut" location="$EIFOGL\eglut\" recursive="true">
              <visible class="EGLUT_APPLICATION"/>
         </cluster>
-        <cluster name="eglut_spec" location="$EIFOGL\spec\compiler\ise\eglut\" recursive="true"/>
+        <cluster name="eglut_spec" location="$EIFOGL\eglut\clib" recursive="true"/>
     </target>
 </system>
